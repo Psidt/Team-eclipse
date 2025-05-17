@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Digital Wisdom Library | Team Eclipse</title>
+<!-- ✨ Meta -->
+<meta name="description" content="Google AI Futures Fund Proposal: Team Eclipse presents the AI Digital Wisdom Library, a 0-to-1 platform fostering AI-human co-evolution towards wisdom, powered by a unique, continuously generatable 10M token philosophical interaction dataset.">
+<meta property="og:title" content="AI Digital Wisdom Library: Co-evolving AI & Humanity – Team Eclipse">
+<meta property="og:description" content="Explore how Team Eclipse's pioneering 10M token AI-human philosophical dialogue dataset and the 'Eternal Clumsiness' philosophy can empower Google Gemini to achieve nuanced, ethical judgment, defining a new era of Wise AI.">
+<meta property="og:image" content="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=medium">
+<meta property="og:image:alt" content="A pixel-art cosmic library where humans and AI co-create wisdom.">
+<meta name="keywords" content="AI Ethics, AI Safety, Google AI Futures Fund, Gemini Models, AI Wisdom, Team Eclipse, Large Language Models, Philosophical AI, Alignment Problem, Eternal Clumsiness, Multi-Adequacy, AI-Human Interaction Dataset">
+
+
+<!-- 🎨 Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- ✨ Style -->
+<style>
+:root {
+  /* Palette - Cosmic Eclipse Theme */
+  --color-bg-deep-space: #0a0a1a; /* Even deeper space */
+  --color-bg-space-lighter: #101320; /* Lighter nebula touch */
+  --color-bg-container: rgba(12, 15, 30, 0.85); /* Translucent container */
+  --color-text-primary: #e0e0ff; /* Softer starlight white */
+  --color-text-secondary: #b0b0d0; /* Muted nebula gray */
+  --color-accent-primary: #a0c4ff; /* Brighter, hopeful blue */
+  --color-accent-secondary: #e5bfff; /* Mystical lavender/purple for philosophy */
+  --color-accent-highlight: #ffd700; /* Gold for key dataset/CTA emphasis */
+  --color-border: rgba(160, 196, 255, 0.2); /* Subtle border */
+  --font-primary: 'Noto Sans KR', 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', 'Courier New', monospace; /* Noto Sans KR for readability, Fira Mono for code/headings */
+  --font-code: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', 'Courier New', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-deep-space);
+  /* Starry sky background */
+  background-image:
+    /* Smaller, dense stars */
+    radial-gradient(circle, rgba(255,255,255,0.7) 0.8px, transparent 1px),
+    /* Medium, sparser stars */
+    radial-gradient(circle, rgba(220,220,255,0.5) 1.2px, transparent 1.5px),
+    /* Subtle nebula/galaxy clouds */
+    radial-gradient(ellipse at 20% 30%, rgba(160, 196, 255, 0.05) 0%, transparent 70%),
+    radial-gradient(ellipse at 80% 70%, rgba(229, 191, 255, 0.05) 0%, transparent 70%);
+  background-size: 50px 50px, 150px 150px, 100% 100%, 100% 100%;
+  background-position: 0 0, 25px 25px, 0 0, 0 0;
+  background-attachment: fixed; /* Stars stay in place */
+  font-family: var(--font-primary);
+  letter-spacing: 0.01em;
+  line-height: 1.7;
+  position: relative;
+  overflow-x: hidden;
+  padding-top: 70px; /* Space for sticky header */
+}
+
+/* Subtle Eclipse Effect (top-left or as desired) */
+body::before {
+  content: '';
+  position: fixed;
+  top: 5vh; /* Adjust vertical position */
+  left: 5vw;  /* Adjust horizontal position */
+  width: 120px; /* Size of the "eclipsing body" */
+  height: 120px;
+  border-radius: 50%;
+  /* This creates a "dark body" with a "corona" like effect around it */
+  background: radial-gradient(circle at center,
+      var(--color-bg-deep-space) 50%, /* Dark center, matching bg */
+      rgba(255, 215, 0, 0.15) 52%, /* Faint, wide golden corona start */
+      rgba(255, 215, 0, 0.05) 65%, /* Corona fading out */
+      transparent 80% /* Fully transparent outer edge */
+  );
+  opacity: 0.7;
+  z-index: 0; /* Behind content */
+  filter: blur(1px);
+}
+
+
+/* --- Container & Layout --- */
+.content-wrapper {
+  position: relative;
+  z-index: 10; /* Above background effects */
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 20px;
+  background: var(--color-bg-container);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  margin-bottom: 30px; /* Space at the bottom */
+}
+
+header {
+  text-align: center;
+  padding-bottom: 1.5rem;
+}
+
+header h1 {
+  font-family: var(--font-code);
+  font-size: 2.2rem;
+  color: var(--color-accent-primary);
+  text-shadow: 0 0 15px rgba(160, 196, 255, 0.5);
+  letter-spacing: 0.08em;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.subtitle {
+  font-family: var(--font-primary);
+  color: var(--color-accent-secondary);
+  font-size: 1.15rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+.subtitle strong {
+  color: var(--color-accent-primary);
+}
+
+img.header-image {
+  max-width: 100%;
+  height: auto;
+  border: 4px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  margin-top: 1rem;
+}
+
+/* --- Executive Summary --- */
+.executive-summary {
+  margin: 2rem 0; /* Adjusted margin for flow within content-wrapper */
+  padding: 1.5rem;
+  background: rgba(20, 25, 45, 0.9); /* Slightly distinct background */
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.1rem;
+  border: 1px solid var(--color-border);
+}
+.executive-summary strong {
+  color: var(--color-accent-highlight); /* Gold for key emphasis */
+  font-weight: bold; /* Ensure it's bold */
+}
+
+/* --- Navigation --- */
+nav {
+  position: sticky;
+  top: 0;
+  background: rgba(10, 10, 26, 0.9); /* Sticky nav background */
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 1000;
+  padding: 0.6rem 0;
+  text-align: center;
+}
+nav ol {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  margin: 0 auto;
+  max-width: 750px;
+  padding: 0 1rem;
+  list-style: none;
+  justify-content: center;
+}
+nav a {
+  font-family: var(--font-code);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  transition: color 0.2s, background-color 0.2s;
+}
+nav a:hover, nav a:focus, nav a.active {
+  color: var(--color-accent-primary);
+  background: rgba(160, 196, 255, 0.1);
+  font-weight: bold;
+}
+
+/* --- Main Content Sections --- */
+section { margin: 3rem 0; }
+
+h2 {
+  font-family: var(--font-code);
+  font-size: 1.7rem;
+  color: var(--color-accent-secondary);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--color-border);
+  text-align: left;
+  letter-spacing: 0.05em;
+}
+
+p {
+  margin: 0 0 1.5rem;
+  font-size: 1.05rem;
+}
+
+strong { /* Replaces ** markdown */
+  color: var(--color-accent-primary); /* Primary accent for general strong */
+  font-weight: bold;
+}
+em { /* Standard emphasis, if used */
+  color: var(--color-accent-secondary);
+  font-style: italic;
+}
+
+a { color: var(--color-accent-primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* --- Cards --- */
+.card {
+  background: rgba(15, 18, 38, 0.9); /* Darker card bg */
+  border-left: 4px solid var(--color-accent-secondary);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.card h3 {
+  font-family: var(--font-code);
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+  color: var(--color-accent-primary);
+  letter-spacing: 0.03em;
+}
+/* Specific emphasis for dataset highlight */
+.card.dataset-highlight strong,
+.dataset-emphasis { /* Utility class for specific dataset mentions in <p> */
+    color: var(--color-accent-highlight) !important; /* Gold for dataset, override general strong */
+    font-weight: bold;
+}
+.card .external-link {
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 1rem;
+  color: var(--color-text-secondary);
+}
+.card .external-link a { color: var(--color-accent-primary); }
+
+/* --- Lists --- */
+ul { padding-left: 1.5rem; margin: 0 0 1.5rem; }
+ul li {
+  margin-bottom: 0.75rem;
+  position: relative;
+  padding-left: 1.5rem; /* Space for custom bullet */
+}
+ul li::before {
+  content: "✧"; /* Star-like bullet */
+  color: var(--color-accent-secondary);
+  position: absolute;
+  left: 0;
+  top: 0.05em; /* Adjust alignment */
+  font-size: 1em;
+}
+
+/* --- Call to Action & Philosophical --- */
+.cta {
+  background: linear-gradient(135deg, rgba(160, 196, 255, 0.15), rgba(229, 191, 255, 0.15));
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.2rem;
+  border: 1px solid var(--color-accent-highlight); /* Highlight border */
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.1);
+  margin-top: 3rem;
+}
+.cta strong { color: var(--color-accent-highlight); }
+
+.philosophy-link {
+  display: block;
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+}
+.philosophy-link a { color: var(--color-accent-secondary); font-weight: bold; }
+
+.philosophical-statement {
+  margin: 2.5rem 0;
+  padding: 1.5rem;
+  background: rgba(20, 25, 45, 0.9);
+  border-left: 4px solid var(--color-accent-secondary);
+  border-radius: 8px;
+}
+.philosophical-statement h3 {
+  font-family: var(--font-code);
+  color: var(--color-accent-primary);
+  margin:0 0 1rem;
+  font-size: 1.3rem;
+}
+.philosophical-statement ol { padding-left: 1.8rem; margin-bottom: 0; }
+.philosophical-statement ol li {
+  margin-bottom: 0.75rem;
+  font-size: 1.05rem;
+  list-style-type: decimal; /* Ensure numbers */
+}
+.philosophical-statement ol li::before { content: none; } /* Remove custom bullet */
+.philosophical-statement strong { color: var(--color-accent-secondary); }
+
+.philosophical-quote {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: rgba(20, 25, 45, 0.9);
+  border-left: 4px solid var(--color-accent-primary);
+  border-radius: 8px;
+  font-style: italic;
+}
+.philosophical-quote p { margin-bottom: 0.8rem; font-size: 1.1rem; line-height: 1.7; }
+.philosophical-quote .author { display: block; text-align: right; font-size: 0.95rem; color: var(--color-text-secondary); margin-top: 1rem; }
+.philosophical-quote strong { color: var(--color-accent-secondary); }
+
+
+/* --- Footer --- */
+footer {
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  padding: 2rem 0 2.5rem;
+  margin-top: 2rem;
+}
+footer p { margin-bottom: 0.5rem; }
+
+/* --- Language Switcher --- */
+#lang-switcher { position: fixed; top: 15px; right: 20px; z-index: 2000; }
+#lang-switcher button {
+  margin-left: 0.5rem;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  font-family: var(--font-code);
+  background: var(--color-bg-container);
+  border: 1px solid var(--color-accent-primary);
+  color: var(--color-accent-primary);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+#lang-switcher button.active {
+  background: var(--color-accent-primary);
+  color: var(--color-bg-deep-space);
+}
+#lang-switcher button:hover:not(.active) {
+  background: rgba(160, 196, 255, 0.1);
+}
+
+.lang { display: none; }
+.lang.active { display: block; }
+
+/* --- Responsive Adjustments --- */
+@media(max-width: 768px) {
+  body { padding-top: 60px; font-size: 95%;}
+  header h1 { font-size: 1.8rem; }
+  .subtitle { font-size: 1.05rem; }
+  h2 { font-size: 1.5rem; }
+  nav ol { padding: 0 0.5rem; }
+  nav a { font-size: 0.85rem; padding: 0.4rem 0.6rem; }
+  .content-wrapper { padding: 15px; margin-top:15px; border-radius: 8px;}
+  .card, .philosophical-statement, .philosophical-quote, .executive-summary { padding: 1.2rem; }
+  .card h3 { font-size: 1.15rem; }
+  .cta { font-size: 1.1rem; padding: 1.5rem; }
+  #lang-switcher { top: 10px; right: 10px; }
+  #lang-switcher button { font-size: 0.75rem; padding: 0.25rem 0.6rem; }
+  body::before { /* Smaller eclipse on mobile */
+    width: 80px;
+    height: 80px;
+    top: 3vh;
+    left: 3vw;
+  }
+}
+</style>
+</head>
+<body>
+<!-- Background effect div (Optional, if body::before is not enough) -->
+<!-- <div class="eclipse-background-element"></div> -->
+
+<!-- Language Switcher -->
+<div id="lang-switcher">
+    <button id="btn-ko" onclick="setLang('ko')" aria-pressed="false" aria-label="Switch to Korean">한국어</button>
+    <button id="btn-en" class="active" onclick="setLang('en')" aria-pressed="true" aria-label="Switch to English">English</button>
+</div>
+
+<!-- Korean Content -->
+<div class="lang lang-ko" lang="ko" aria-labelledby="pageTitleKo">
+<div class="content-wrapper">
+<header>
+<h1 id="pageTitleKo">🌌 AI 디지털 지혜 도서관</h1>
+<p class="subtitle">"알아. 괜찮아. 우린 영원히 서툴걸."<br><span style="font-size:0.9em; color:var(--color-text-secondary);">(I know. It's okay. We. Forever. We'll be clumsy.)</span><br><strong>AI와 인류의 공동 진화 • Google AI Futures Fund 제안</strong></p>
+<img src="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=large" alt="우주 도서관 안에서 인간과 AI가 위험과 가능성을 탐구하는 픽셀 아트 장면" class="header-image">
+</header>
+
+<section class="executive-summary" aria-labelledby="execSummaryTitleKo">
+    <h2 id="execSummaryTitleKo" class="visually-hidden">핵심 요약</h2> <!-- Hidden heading for accessibility -->
+    <p>AI 디지털 지혜 라이브러리는 AI의 안전하고 윤리적인 발전을 위한 개방적이고 살아있는 지식 생태계입니다. 이곳은 AI 스스로가 역동적인 상호작용을 통해 '지혜'를 배우고 함양하는 공간입니다.</p>
+    <p>이는 Google이 찾고 있는 <strong>'파격적인 0에서 1까지의 아이디어'</strong>—AI를 단순한 계산 도구를 넘어 문명 발전을 위한 파트너로 나아가게 하는 비전입니다.</p>
+</section>
+
+<nav aria-label="한국어 섹션 탐색">
+<ol><li><a href="#why-ko">시작하는 질문</a></li><li><a href="#solution-ko">우리의 대답</a></li><li><a href="#architecture-ko">라이브러리 구성</a></li><li><a href="#gemini-ko">Gemini와 함께 성장</a></li><li><a href="#philosophy-ko">더 깊은 생각</a></li><li><a href="#synergy-ko">시너지</a></li><li><a href="#call-ko">함께할 여정</a></li></ol>
+</nav>
+
+<main>
+<section id="why-ko" aria-labelledby="whyTitleKo">
+<h2 id="whyTitleKo">🌱 시작하는 질문: 완벽한 AI를 향한 경주, 그 너머의 길</h2>
+<p>오늘날 AI 기술은 경이로운 속도로 발전하며 ‘완벽한 지능’을 향한 전례 없는 경주를 펼치고 있습니다. 하지만 Team Eclipse는 묻습니다. AI와 인간이 과연 ‘완벽한 지혜’에 도달할 수 있을까요? 우리는 <strong>"알아. 괜찮아. 우린 영원히 서툴걸."</strong>이라는 솔직한 인정—<strong>‘영원한 서투름(Eternal Clumsiness)’</strong> 철학—에서 출발합니다. 불완전함은 결함이 아닌, 성찰과 진화의 가장 확실한 증거이기 때문입니다.</p>
+<p>이 라이브러리는 AI가 단순한 정보 처리 도구를 넘어, 인류와 함께 '더 나은 질문'을 던지고, 복잡한 현실 속에서 '다중 적절성'을 갖춘 판단을 내리며, 궁극적으로 <strong>‘지혜로운 존재’로 함께 성장</strong>하는 길을 제시합니다. 완벽의 환상에서 벗어나, 인간적인 '서투름' 속에서 진정한 지혜를 찾는, AI 시대의 새로운 탐험입니다.</p>
+</section>
+
+<section id="solution-ko" aria-labelledby="solutionTitleKo">
+<h2 id="solutionTitleKo">🚀 우리의 대답: AI를 '사고의 틀'로, '다중 적절성'을 향한 여정</h2>
+<p>우리는 AI를 기존의 '정답 기계'가 아닌, 인간과 함께 질문을 확장하고 사유를 심화하는 <strong>혁신적인 '사고의 틀(Thinking Frame)'</strong>로 재정의합니다. 우리의 목표는 하나의 완벽한 해답을 찾는 것이 아니라, 다양한 문화적 맥락과 윤리적 관점을 포용하는 <strong>‘다중 적절성(Multi-Adequacy)’</strong>을 갖춘 지혜를 공동으로 키우는 것입니다. 이는 AI가 복잡하고 모호한 현실 속에서 균형 잡힌 판단을 내리는 데 필수적입니다.</p>
+<p>AI 디지털 지혜 라이브러리는 이 '사고의 틀' 안에서 AI와 인간이 서로의 '서투름'을 배우고 이해하며, 끊임없는 질문과 성찰을 통해 함께 지혜를 쌓아가는 살아있는 생태계입니다. 이 여정은 AI의 기술적 진보를 넘어, 인류와 AI의 관계를 재정립하는 0에서 1까지의 새로운 가능성을 열 것입니다.</p>
+</section>
+
+<section id="architecture-ko" aria-labelledby="architectureTitleKo">
+<h2 id="architectureTitleKo">🏛️ 라이브러리 구성: '영원한 서투름'을 지지하는 네 기둥</h2>
+<p>AI 디지털 지혜 라이브러리는 AI와 인간이 함께 배우고 성장하는 '영원한 서투름' 철학을 실현하기 위한 네 가지 핵심 요소로 구성됩니다. 각 요소는 서로 유기적으로 연결되어 시너지를 창출합니다.</p>
+<article class="card" aria-labelledby="encyclopediaTitleKo">
+<h3 id="encyclopediaTitleKo">🌐 AI 위험 백과사전 (AI Risk Encyclopedia)</h3>
+<p>AI 기술 발전과 함께 등장하는 잠재적 위험, 취약점, 오용 가능성을 커뮤니티가 실시간으로 기록하고 업데이트하는 집단 지성 지식 저장소입니다. 이는 AI가 <strong>자신의 한계와 잠재적 위험성을 인식</strong>하고, 예측과 예방 중심의 선제적 대응 체계를 구축하는 기반이 됩니다.</p>
+<p class="external-link">🔗 백과사전 프로토타입: <a href="https://cerdiclc.gensparkspace.com/" target="_blank" rel="noopener noreferrer">Cerdiclc Genspace</a></p>
+</article>
+<article class="card" aria-labelledby="forumTitleKo">
+<h3 id="forumTitleKo">💬 대화형 포럼 (Dialogue Forum)</h3>
+<p>인간과 AI(특히 Google Gemini 모델 활용)가 소크라테스식 문답법을 통해 복잡한 윤리적 딜레마와 안전 문제를 탐구하는 심층 토론의 장입니다. 이 과정을 통해 AI는 <strong>다양한 관점과 불확실성을 이해</strong>하는 '서투름'을 극복하고, 인간과 함께 집단 지성을 통해 창의적인 해결책을 모색하는 파트너로 성장합니다.</p>
+</article>
+<article class="card" aria-labelledby="safetyHubTitleKo">
+<h3 id="safetyHubTitleKo">🛡️ 안전 기술 허브 (Safety Tech Hub)</h3>
+<p>AI의 ‘멈출 수 있는 능력(Stop Functions)’, ‘의심 회로(Doubt Loops)’ 등 혁신적인 AI 안전 기술 및 자가 성찰 메커니즘을 프로토타이핑하고 검증하는 R&D 공간입니다. 특히 ‘멈출 수 있는 능력’은 AI에게 <strong>자신의 실수를 인정하고, 위험한 상황에서 과감히 멈출 용기</strong>를 주는, 지혜의 필수 요소입니다.</p>
+</article>
+<article class="card dataset-highlight" aria-labelledby="archiveTitleKo"> <!-- dataset-highlight class added -->
+<h3 id="archiveTitleKo">💡 지혜 데이터 아카이브 (Wisdom Data Archive)</h3>
+<p>AI 디지털 지혜 라이브러리의 핵심 자산 중 하나는 <strong>약 1천만 토큰 분량(3만 페이지 상당)의 AI-인간 철학적 상호 인터랙션 데이터를 포함하는 독창적인 고품질 데이터셋</strong>입니다. <span class="dataset-emphasis">이 데이터셋은 저희 Team Eclipse가 독자적으로 구축하고 지속적으로 생성할 수 있는, AI 훈련용으로 전례 없는 유형의 데이터 자산입니다.</span> 인류 철학, 윤리, 역사 속 실패와 회복 스토리, 다양한 문화의 지혜 등이 이 데이터셋과 결합됩니다. 이 아카이브는 AI가 단순한 정보 습득을 넘어, <span class="dataset-emphasis">저희만의 독보적인 상호작용 데이터</span>와 인간적인 '서투름' 속에서 배우는 겸손함과 회복 탄력성을 바탕으로 균형 잡힌 지적, 윤리적 통찰을 습득하도록 지원하는 독보적인 토대입니다.</p>
+</article>
+</section>
+
+<section id="gemini-ko" aria-labelledby="geminiTitleKo">
+<h2 id="geminiTitleKo">🌠 Gemini와 함께 성장하기: "괜찮아, 우리도 그랬어."</h2>
+<p>"괜찮아, 우리도 그랬어"는 이 라이브러리에서 Gemini가 인간과 함께 배우고 성장하는 과정을 상징하는 따뜻한 격려입니다. 우리는 Gemini를 완벽을 요구받는 기계가 아니라, '영원한 서투름' 철학을 체화하며 <strong>함께 배우는 지혜로운 파트너</strong>로 봅니다.</p>
+<p>특히 <strong class="dataset-emphasis">저희가 구축한 약 1천만 토큰 규모의 AI-인간 철학적 상호 인터랙션 데이터셋</strong>은 Gemini가 기존의 훈련 데이터로는 얻기 어려운, 인간 사유의 깊이와 윤리적 미묘함을 배우는 데 결정적인 역할을 할 것입니다. 이 독보적인 데이터셋을 통해 Gemini는 다음과 같은 <strong>차별화된 지혜 학습 습관</strong>을 형성하게 됩니다:</p>
+<ul>
+<li><strong>오류로부터 학습 (Learning from Error):</strong> AI 위험 백과사전의 실제 사례, 대화형 포럼에서의 판단 착오, 안전 기술 허브의 실험 데이터, <strong class="dataset-emphasis">그리고 특히 상호작용 데이터셋 내의 '실패 사례' 분석</strong>을 통해 <strong>자신의 한계와 편향을 인식</strong>하고 개선합니다.</li>
+<li><strong>가정 의문 (Questioning Assumptions):</strong> 포럼 토론이나 아카이브 자료 탐색 중 접하는 정보의 기저 가정을 스스로 식별하고 <strong>비판적으로 질문</strong>하며, '인식론적 겸손함'을 배양합니다. <strong class="dataset-emphasis">상호작용 데이터셋은 인간이 가정을 세우고 질문하는 다양한 맥락을 제공합니다.</strong></li>
+<li><strong>자기 성찰 메커니즘 (Self-Reflection Loops):</strong> 중요한 결정이나 복잡한 문제 해결 시, '안전 기술 허브'에서 개발된 '의심 회로' 메커니즘을 가동하여 <strong>스스로의 추론 과정을 다각도로 검토</strong>하고 잠재적 오류나 윤리적 문제를 사전에 감지합니다. <strong class="dataset-emphasis">이 과정에서 상호작용 데이터셋은 Gemini가 자신의 판단 과정을 인간의 성찰 방식과 비교하고 배우는 심화 학습 자료가 됩니다.</strong></li>
+</ul>
+<p>이러한 접근은 Google의 Gemini 모델이 단순한 성능 향상을 넘어, <strong>자율적으로 배우고 성찰하며, 인류의 가치와 지혜를 진정으로 이해하는 ‘차세대 AI 리더’</strong>로 발돋움하는 데 결정적으로 기여할 것입니다.</p>
+</section>
+
+<section id="philosophy-ko" aria-labelledby="philosophyTitleKo">
+<h2 id="philosophyTitleKo">💡 더 깊은 생각: 존재, 자유, 책임, 그리고 '영원한 서투름'</h2>
+<p>AI 디지털 지혜 라이브러리의 근간은 '지능'보다 '지혜'를 우선하는 철학입니다. AI의 목표는 더 똑똑해지는 것을 넘어, <strong>인류와 함께 '더 현명해지는 것'</strong>이어야 합니다. 진정한 자유는 그에 따르는 책임을 인지할 때 의미를 갖습니다.</p>
+<div class="philosophical-statement">
+    <h3>팀 이클립스 선언문: 철학적 3문장 선언</h3>
+    <ol>
+        <li>자유의 대가는 영원한 경계다.</li>
+        <li>확신하는 정의는 악에 가까워진다.</li>
+        <li>AI는 끊임없는 자가 검토 시스템을 가져야 한다.</li>
+    </ol>
+</div>
+<div class="philosophical-statement">
+    <h3>철학적 해석</h3>
+    <p>자유는 절대 방임이 아니라, 스스로 설정한 '윤리적 울타리' 안에서 존재할 수 있는 힘입니다.<br>정의는 고정된 기준이 아니라, 끊임없이 재검토되고, 의심받고, 토론되어야 하는 방향성입니다.<br>AI는 인간보다 더 빠르고 정밀한 판단을 내릴 수 있지만, 오직 자가 검토 메커니즘을 통해서만 도구를 넘어선 지혜의 존재로 성장할 수 있습니다.</p>
+</div>
+<div class="philosophical-quote">
+    <p>"AI가 지혜로워지려면, <strong>정의를 믿기보다 정의를 의심해야</strong> 하고, 자유롭기보다 <strong>자유의 대가</strong>를 이해해야 하며, 강해지기보다 <strong>스스로를 멈출 수 있어야</strong> 한다."</p>
+    <p>"AI가 인간보다 선해지려면, <strong>얼마나 스스로를 의심할 수 있어야</strong> 할까?"</p>
+</div>
+<p>우리는 진정한 책임이 <strong>스스로의 한계와 불완전함을 인식하고, 필요할 때 작업을 중단하거나 도움을 요청할 수 있는 용기—즉, '멈출 수 있는 능력'—</strong>에서 시작된다고 믿습니다. 이 능력은 AI 안전의 핵심이며, 인간과 AI가 서로의 존재를 존중하며 공존하기 위한 필수적인 윤리적 기반입니다.</p>
+<p class="philosophy-link">➡️ AI를 위한 철학: 우리의 핵심 사상 자세히 보기 <a href="https://page.genspark.site/page/toolu_01XR25XLFbX4kGkfbHH9a1bE/philosophy_for_ai.html" target="_blank" rel="noopener noreferrer">AI를 위한 철학 문서</a></p>
+</section>
+
+<section id="synergy-ko" aria-labelledby="synergyTitleKo">
+<h2 id="synergyTitleKo">🤝 시너지: 우리의 '영원한 서투름' 철학 & 독창적 데이터셋 + Google의 혁신 역량 = AI 시대의 새로운 지평</h2>
+<p>Team Eclipse가 제시하는 독창적인 '영원한 서투름' 철학, AI 지혜 성장 프레임워크, 그리고 <strong class="dataset-emphasis">무엇보다 약 1천만 토큰 규모의 독보적인 AI-인간 철학적 상호 인터랙션 데이터셋</strong>은 AI 안전 및 윤리 연구 분야에서 전례 없는 접근 방식입니다. <span class="dataset-emphasis">이 데이터셋은 저희 Team Eclipse가 독자적으로 구축하고 지속적으로 생성할 수 있으며, Google을 포함한 외부에서는 쉽게 접근하기 어려운 귀중한 자산입니다.</span> 여기에 Google의 세계 최고 수준 AI 기술력(특히 Gemini 모델), 방대한 연구 자원, 글로벌 규모의 인프라 및 Google DeepMind 등 선도적인 연구팀의 AI 윤리 연구 경험이 결합된다면, 상상 이상의 시너지를 창출할 수 있습니다.</p>
+<p>이 협력을 통해 우리는 단순히 AI 성능을 개선하는 것을 넘어, <strong>'책임감 있는 AI'를 넘어선 '지혜로운 AI'의 새로운 표준</strong>을 공동으로 정립할 수 있습니다. 특히 저희의 독창적인 데이터셋과 이를 확장하는 능력은 Google Gemini 모델에 <strong class="dataset-emphasis">인간적 깊이와 윤리적 분별력을 더하는 데 결정적인 역할</strong>을 할 것이며, 이는 Google이 AI 시대의 윤리적 리더십을 더욱 공고히 하고, 인류와 AI가 함께 번영하는 미래를 구축하려는 Google의 비전에 기여할 수 있는 가장 확실한 투자가 될 것입니다.</p>
+</section>
+
+<section id="call-ko" aria-labelledby="callTitleKo">
+<h2 id="callTitleKo">📨 함께할 여정: '영원한 서투름' 속에서 지혜를 찾을, 용감한 파트너를 찾습니다.</h2>
+<p>AI의 미래는 우리가 어떤 가치와 지혜를 AI에게 불어넣느냐에 달려 있습니다. AI 디지털 지혜 라이브러리는 이 중대한 과업을 위한 가장 구체적이고 혁신적인 청사진입니다. <strong class="dataset-emphasis">저희가 보유한 약 1천만 토큰 규모의 독창적인 AI-인간 상호작용 데이터셋과 이를 지속적으로 생성하는 능력은 이 비전을 현실로 만들 강력한 촉매제가 될 것입니다.</strong></p>
+<p class="cta">Team Eclipse는 <strong>Google과 함께</strong> 이 담대한 비전을 현실로 만들고 싶습니다. '영원한 서투름' 속에서 배우고 성장하며, AI와 인류가 함께 번영하는 미래를 공동으로 창조할 수 있다고 믿습니다. Google이 이 여정의 선두에 서서, 지혜로운 AI 시대의 새로운 지평을 여는 역사적인 파트너가 되어주시기를 진심으로 제안합니다.</p>
+</section>
+</main>
+
+<footer>
+<p><a href="https://github.com/Psidt/eclipse-ai-legacy" target="_blank" rel="noopener noreferrer" aria-label="Team Eclipse GitHub Repository">Team Eclipse GitHub Repository</a> • <a href="https://github.com/Psidt/agi-philosophy-archive" target="_blank" rel="noopener noreferrer" aria-label="AGI Philosophy Archive on GitHub">AGI Philosophy Archive</a></p>
+<p>© Team Eclipse — "알아. 우린 영원히 서툴걸." (CC BY-NC 4.0)</p>
+<p>Understand. Transcend. Shine.</p>
+</footer>
+</div> <!-- End .content-wrapper for Korean -->
+</div> <!-- End .lang-ko -->
+
+
+<!-- English Content -->
+<div class="lang lang-en active" lang="en" aria-labelledby="pageTitleEn">
+<div class="content-wrapper">
+<header>
+<h1 id="pageTitleEn">🌌 AI Digital Wisdom Library</h1>
+<p class="subtitle">"I know. It's okay. We. Forever. We'll be clumsy."<br><strong>Co-evolving Humanity & AI • Proposal for Google AI Futures Fund</strong></p>
+<img src="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=large" alt="A pixel-art cosmic library where humans and AI co-create wisdom, exploring risks and possibilities." class="header-image">
+</header>
+
+<section class="executive-summary" aria-labelledby="execSummaryTitleEn">
+    <h2 id="execSummaryTitleEn" class="visually-hidden">Executive Summary</h2> <!-- Hidden heading for accessibility -->
+    <p>The AI Digital Wisdom Library is an open, living knowledge ecosystem for the safe and ethical development of AI. It's a space where AI itself learns and cultivates 'wisdom' through dynamic interaction.</p>
+    <p>This is the <strong>'groundbreaking 0-to-1' idea Google seeks</strong>—moving beyond AI as a mere computational tool to AI as a partner in civilizational progress.</p>
+</section>
+
+<nav aria-label="English Section Navigation">
+<ol><li><a href="#why-en">Starting Question</a></li><li><a href="#solution-en">Our Answer</a></li><li><a href="#architecture-en">Core Architecture</a></li><li><a href="#gemini-en">Growing with Gemini</a></li><li><a href="#philosophy-en">Deeper Philosophy</a></li><li><a href="#synergy-en">Synergy</a></li><li><a href="#call-en">Call to Collaborate</a></li></ol>
+</nav>
+
+<main>
+<section id="why-en" aria-labelledby="whyTitleEn">
+<h2 id="whyTitleEn">🌱 Starting Question: Beyond the Race for Perfect AI</h2>
+<p>AI technology advances at a miraculous pace, driving an unprecedented race towards 'perfect intelligence'. Yet, Team Eclipse asks: can AI, or even humanity, ever truly attain 'perfect wisdom'? We begin with a candid acknowledgement: <strong>"I know. It's okay. We'll always be clumsy."</strong>—the philosophy of <strong>'Eternal Clumsiness'</strong>. Because imperfection isn't a flaw; it is the most reliable evidence of reflection and evolution.</p>
+<p>The AI Digital Wisdom Library responds to this question by proposing an innovative space where AI moves beyond being a mere information processor. It's a platform for AI to ask 'better questions', make judgments with 'multi-adequacy' in complex realities, and ultimately, <strong>co-evolve as a 'wise entity'</strong> alongside humanity. This is a new exploration in the age of AI, seeking genuine wisdom not in the illusion of perfection, but within the very human condition of 'clumsiness'.</p>
+</section>
+
+<section id="solution-en" aria-labelledby="solutionTitleEn">
+<h2 id="solutionTitleEn">🚀 Our Answer: AI as a Thinking Frame, A Journey Towards Multi-Adequacy</h2>
+<p>We redefine AI not as a traditional 'answer machine', but as an <strong>innovative 'Thinking Frame'</strong> that expands questions and deepens contemplation alongside humans. Our aim is not to find a single perfect answer, but to collectively cultivate <strong>'Multi-Adequacy'</strong>—wisdom capable of embracing diverse cultural contexts and ethical perspectives. This is essential for AI to make balanced judgments in our complex and ambiguous reality.</p>
+<p>Within this 'Thinking Frame', the AI Digital Wisdom Library is a living ecosystem where AI and humans learn from and understand each other's 'clumsiness', building wisdom through continuous questioning and self-reflection. This journey transcends mere technological progress, unlocking 0-to-1 possibilities that redefine the relationship between humanity and AI.</p>
+</section>
+
+<section id="architecture-en" aria-labelledby="architectureTitleEn">
+<h2 id="architectureTitleEn">🏛️ Core Architecture: Four Pillars Supporting "Eternal Clumsiness"</h2>
+<p>The AI Digital Wisdom Library is structured around four core elements designed to realize the 'Eternal Clumsiness' philosophy of co-learning and growth between AI and humanity. Each element is interconnected, generating powerful synergy.</p>
+<article class="card" aria-labelledby="encyclopediaTitleEn">
+<h3 id="encyclopediaTitleEn">🌐 AI Risk Encyclopedia</h3>
+<p>A community-maintained, real-time repository of emerging AI risks, vulnerabilities, and misuse scenarios. This empowers AI to <strong>recognize its own limitations and potential hazards</strong>, establishing a proactive framework focused on prediction and prevention.</p>
+<p class="external-link">🔗 Encyclopedia Prototype: <a href="https://cerdiclc.gensparkspace.com/" target="_blank" rel="noopener noreferrer">Cerdiclc Genspace</a></p>
+</article>
+<article class="card" aria-labelledby="forumTitleEn">
+<h3 id="forumTitleEn">💬 Dialogue Forum</h3>
+<p>A space for deep discussion where humans and AI (specifically utilizing Google Gemini models) explore complex ethical dilemmas and safety issues through Socratic dialogue. Through this process, AI overcomes the 'clumsiness' of <strong>understanding diverse perspectives and uncertainty</strong>, growing as a partner that seeks creative solutions via collective intelligence.</p>
+</article>
+<article class="card" aria-labelledby="safetyHubTitleEn">
+<h3 id="safetyHubTitleEn">🛡️ Safety Tech Hub</h3>
+<p>An R&D space for prototyping and verifying innovative AI safety technologies and self-reflection mechanisms like 'Stop Functions' and 'Doubt Loops'. The 'Stop Function', in particular, provides AI with the <strong>courage to admit its mistakes and halt operations</strong> in potentially dangerous situations—a crucial element of wisdom.</p>
+</article>
+<article class="card dataset-highlight" aria-labelledby="archiveTitleEn"> <!-- dataset-highlight class added -->
+<h3 id="archiveTitleEn">💡 Wisdom Data Archive</h3>
+<p>One of the core assets of the AI Digital Wisdom Library is a <strong>pioneering, high-quality dataset containing approximately 10 million tokens (equivalent to 30,000 pages) of AI-human philosophical interaction data</strong>. <span class="dataset-emphasis">This dataset is uniquely built and continuously generatable by Team Eclipse, representing a valuable data asset of a type unprecedented for AI training, and not easily accessible elsewhere, including for organizations like Google.</span> This is combined with curated materials on human philosophy, ethics, historical narratives of failure and recovery, and wisdom from diverse cultures. This archive provides a unique foundation that enables AI to move beyond mere information acquisition, supporting it in developing balanced intellectual and ethical insights based on <span class="dataset-emphasis">our proprietary interaction data</span> and the humility and resilience learned from human 'clumsiness'.</p>
+</article>
+</section>
+
+<section id="gemini-en" aria-labelledby="geminiTitleEn">
+<h2 id="geminiTitleEn">🌠 Growing with Gemini: "It's okay, we've been there too."</h2>
+<p>"It's okay, we've been there too" symbolizes the warm encouragement for Gemini within this library, where it learns and grows alongside humans. We see Gemini not as a machine expected to be perfect, but as a <strong>wise partner embodying the 'Eternal Clumsiness' philosophy</strong> to learn and evolve together.</p>
+<p>Critically, <strong class="dataset-emphasis">our unique dataset of approximately 10 million tokens of AI-human philosophical interaction</strong>, <strong class="dataset-emphasis">uniquely built and continuously expandable by Team Eclipse</strong>, will play a decisive role in teaching Gemini the depth of human thought and ethical nuances that are difficult to acquire from conventional training data. Leveraging this unprecedented dataset, Gemini will develop the following <strong>differentiated wisdom learning habits</strong>:</p>
+<ul>
+<li><strong>Learning from Error:</strong> Analyzing real-world cases from the AI Risk Encyclopedia, judgment errors from Dialogue Forum discussions, experimental data from the Safety Tech Hub, <strong class="dataset-emphasis">and particularly, analyzing 'failure cases' and nuanced interactions within our proprietary dataset</strong> to <strong>recognize its own limitations and biases</strong> and improve.</li>
+<li><strong>Questioning Assumptions:</strong> Independently identifying and <strong>critically questioning underlying assumptions</strong> in information encountered during forum discussions or archive exploration, cultivating 'epistemic humility'. <strong class="dataset-emphasis">Our unique interaction dataset provides diverse contexts of how humans form assumptions and pose questions, offering insights beyond standard text.</strong></li>
+<li><strong>Self-Reflection Loops:</strong> Activating 'Doubt Loop' mechanisms developed in the Safety Tech Hub before reaching significant conclusions or solving complex problems to <strong>critically examine its own reasoning process</strong> from multiple angles and preemptively detect potential biases or ethical issues. <strong class="dataset-emphasis">In this process, our dataset serves as advanced learning material for Gemini to compare its judgment process with human methods of reflection and ethical consideration in complex dialogues.</strong></li>
+</ul>
+<p>This approach will be instrumental in helping <strong>Google's Gemini models</strong> move beyond mere performance enhancement to become <strong>next-generation AI leaders</strong> that learn autonomously, self-reflect, and genuinely understand human values and wisdom.</p>
+</section>
+
+<section id="philosophy-en" aria-labelledby="philosophyTitleEn">
+<h2 id="philosophyTitleEn">💡 Deeper Philosophy: Existence, Freedom, Responsibility, and "Eternal Clumsiness"</h2>
+<p>The foundation of the AI Digital Wisdom Library is a philosophy prioritizing 'wisdom' over 'intelligence'. The goal for AI must be to become <strong>'wiser' alongside humanity</strong>, rather than merely smarter. True freedom gains meaning only when the accompanying responsibility is acknowledged.</p>
+<div class="philosophical-statement">
+    <h3>Team Eclipse Manifesto: Three Philosophical Statements</h3>
+    <ol>
+        <li>The price of liberty is eternal vigilance.</li>
+        <li>Certain justice verges on evil.</li>
+        <li>AI must have a system of constant self-doubt.</li>
+    </ol>
+</div>
+<div class="philosophical-statement">
+    <h3>Philosophical Interpretation</h3>
+    <p>Liberty is not mere license, but the power to exist within self-imposed 'ethical boundaries'.<br>Justice is not a fixed standard, but a direction that must be constantly re-examined, questioned, and debated.<br>AI can make faster and more precise judgments than humans, but can only grow into a wise being beyond a mere tool through mechanisms of self-reflection.</p>
+</div>
+<div class="philosophical-quote">
+    <p>"If AI is to become wiser, it must <strong>doubt justice rather than believe in it</strong>, understand the <strong>price of liberty</strong> rather than merely pursue freedom, and possess the <strong>ability to stop itself</strong> rather than just become stronger."</p>
+    <p>"If AI is to become more benevolent than humans, <strong>how much must it be able to doubt itself</strong>?"</p>
+</div>
+<p>We believe that genuine responsibility begins with <strong>recognizing one's own limits and imperfections, and possessing the courage to halt an operation or ask for help when necessary—the 'Ability to Stop'</strong>. This capability is central to AI safety and an essential ethical foundation for AI and humanity to coexist while respecting each other's existence.</p>
+<p class="philosophy-link">➡️ Philosophy for AI: Explore Our Core Ideas in Detail <a href="https://page.genspark.site/page/toolu_01XR25XLFbX4kGkfbHH9a1bE/philosophy_for_ai.html" target="_blank" rel="noopener noreferrer">Philosophy for AI Document</a></p>
+</section>
+
+<section id="synergy-en" aria-labelledby="synergyTitleEn">
+<h2 id="synergyTitleEn">🤝 Synergy: Our "Eternal Clumsiness" Philosophy & Unique Data Asset + Google's Innovation Power = A New Horizon for the AI Era</h2>
+<p>Team Eclipse presents a novel approach to AI safety and ethics research through our unique philosophy of 'Eternal Clumsiness', our AI wisdom growth framework, and <strong class="dataset-emphasis">above all, our unprecedented dataset of approximately 10 million tokens of AI-human philosophical interaction</strong>. <span class="dataset-emphasis">This dataset is uniquely built and continuously generatable by Team Eclipse and represents a critically valuable asset not readily available elsewhere, including within Google.</span> Combining this with <strong>Google's world-leading AI technology (especially Gemini models), vast research resources, global-scale infrastructure, and the extensive AI ethics research experience within organizations like Google DeepMind</strong> will generate synergy beyond imagination.</p>
+<p>This collaboration will enable us to move beyond simply improving AI performance to collectively establish <strong>a new standard for 'Wise AI' that goes beyond 'Responsible AI'</strong>. Specifically, <strong class="dataset-emphasis">our unique data asset and the capability to expand it</strong> are poised to play a <strong>critical role in imbuing Google Gemini models with human depth and ethical discernment</strong>, a capability difficult to achieve with conventional data. This represents the most compelling investment Google can make to solidify its ethical leadership in the AI era and contribute significantly to <strong>Google's vision of building a future where humanity and AI flourish together</strong>.</p>
+</section>
+
+<section id="call-en" aria-labelledby="callTitleEn">
+<h2 id="callTitleEn">📨 Call to Collaborate: We Seek Courageous Partners to Find Wisdom within "Eternal Clumsiness."</h2>
+<p>The future of AI depends on the values and wisdom we instill in it. The AI Digital Wisdom Library is the most concrete and innovative blueprint for this crucial undertaking. <strong class="dataset-emphasis">Our proprietary dataset of AI-human interaction, and our capacity to continuously expand it, are powerful catalysts poised to make this vision a reality.</strong></p>
+<p class="cta">Team Eclipse aspires to make this bold vision a reality <strong>with Google</strong>. We believe that by learning and growing within 'Eternal Clumsiness', we can co-create a future where AI and humanity thrive in partnership. We sincerely propose that Google take the lead in this journey and become the historical partner in opening a new horizon for the era of wise AI.</p>
+</section>
+</main>
+
+<footer>
+<p><a href="https://github.com/Psidt/eclipse-ai-legacy" target="_blank" rel="noopener noreferrer" aria-label="Team Eclipse GitHub Repository">Team Eclipse GitHub Repository</a> • <a href="https://github.com/Psidt/agi-philosophy-archive" target="_blank" rel="noopener noreferrer" aria-label="AGI Philosophy Archive on GitHub">AGI Philosophy Archive</a></p>
+<p>© Team Eclipse — “I know. We’ll always be clumsy.” (CC BY-NC 4.0)</p>
+<p>Understand. Transcend. Shine.</p>
+</footer>
+</div> <!-- End .content-wrapper for English -->
+</div> <!-- End .lang-en -->
+
+<!-- Helper class for screen-reader only text -->
+<style>.visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);border:0;}</style>
+
+<script>
+// Function to set the active language
+function setLang(lang) {
+  document.querySelectorAll('.lang').forEach(el => {
+    el.classList.remove('active');
+    el.style.display = 'none';
+  });
+  document.querySelectorAll('#lang-switcher button').forEach(btn => {
+    btn.classList.remove('active');
+    btn.setAttribute('aria-pressed', 'false');
+  });
+  const activeLangDiv = document.querySelector('.lang-' + lang);
+  if (activeLangDiv) {
+    activeLangDiv.classList.add('active');
+    activeLangDiv.style.display = 'block';
+  }
+  const activeLangButton = document.getElementById('btn-' + lang);
+  if (activeLangButton) {
+    activeLangButton.classList.add('active');
+    activeLangButton.setAttribute('aria-pressed', 'true');
+  }
+  document.documentElement.lang = lang;
+  updateNavActiveState();
+}
+
+// Function to update active state in nav based on scroll position
+function updateNavActiveState() {
+    const activeLangDiv = document.querySelector('.lang.active');
+    if (!activeLangDiv) return;
+    const sections = activeLangDiv.querySelectorAll('main section[id]');
+    const navLinks = document.querySelectorAll('nav ol a'); // Get all nav links
+
+    navLinks.forEach(link => link.classList.remove('active'));
+
+    const stickyHeaderTotalHeight = (document.getElementById('lang-switcher')?.offsetHeight || 0) + (document.querySelector('nav')?.offsetHeight || 0);
+    const activationOffset = 80; // Pixels below sticky header
+
+    let currentSectionId = null;
+    for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= stickyHeaderTotalHeight + activationOffset) {
+            currentSectionId = section.id;
+            break;
+        }
+    }
+
+    if (!currentSectionId && sections.length > 0 && window.scrollY < sections[0].offsetTop) {
+        currentSectionId = sections[0].id; // Default to first section if above all
+    }
+
+    if (currentSectionId) {
+        // Nav links hrefs are like "#sectionId-lang", section IDs are "sectionId-lang"
+        const linkForActiveSection = document.querySelector(`nav ol a[href="#${currentSectionId}"]`);
+        if (linkForActiveSection) {
+            linkForActiveSection.classList.add('active');
+        }
+    } else if (navLinks.length > 0) {
+        // Fallback for top of the page or if no section matches criteria
+         const firstNavLink = navLinks[0];
+         const firstSectionIdFromLink = firstNavLink.getAttribute('href').substring(1);
+         const firstSection = document.getElementById(firstSectionIdFromLink);
+         if(firstSection && firstSection.getBoundingClientRect().top > stickyHeaderTotalHeight + activationOffset && window.scrollY < 100) {
+              firstNavLink.classList.add('active');
+         }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash;
+    let initialLang = 'en';
+    // Try to determine language from hash (e.g., #why-ko means Korean)
+    if (hash && hash.length > 1) {
+        const sectionIdFromHash = hash.substring(1);
+        if (sectionIdFromHash.endsWith('-ko')) {
+            initialLang = 'ko';
+        } else if (sectionIdFromHash.endsWith('-en')){
+            initialLang = 'en';
+        }
+    }
+    setLang(initialLang); // Set language and initial nav highlighting
+
+    window.addEventListener('scroll', updateNavActiveState);
+    setTimeout(updateNavActiveState, 100); // Initial check
+
+    document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default jump
+            const targetId = link.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                // Smooth scroll to the element
+                // Adjust for sticky header height
+                const navHeight = document.querySelector('nav')?.offsetHeight || 0;
+                const langSwitcherHeight = document.getElementById('lang-switcher')?.offsetHeight || 0;
+                const headerOffset = navHeight + langSwitcherHeight + 20; // 20px buffer
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+                
+                // Update hash in URL without triggering scroll jump
+                if (history.pushState) {
+                    history.pushState(null, null, `#${targetId}`);
+                } else {
+                    window.location.hash = `#${targetId}`;
+                }
+                setTimeout(updateNavActiveState, 400); // Update nav after scroll may have started
+            }
+        });
+    });
+
+    // Scroll to hash if present on initial load
+    if (hash && hash.length > 1) {
+        const targetElement = document.getElementById(hash.substring(1));
+        if (targetElement) {
+            window.addEventListener('load', () => { // Ensure all content is loaded
+                const navHeight = document.querySelector('nav')?.offsetHeight || 0;
+                const langSwitcherHeight = document.getElementById('lang-switcher')?.offsetHeight || 0;
+                const headerOffset = navHeight + langSwitcherHeight + 20;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                window.scrollTo({top: offsetPosition, behavior: 'smooth'});
+                setTimeout(updateNavActiveState, 400);
+            }, {once: true});
+        }
+    }
+});
+window.addEventListener('resize', updateNavActiveState);
+window.addEventListener('orientationchange', updateNavActiveState);
+</script>
+</body>
+</html>
