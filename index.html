@@ -2,10 +2,29 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>TEAM ECLIPSE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEAM ECLIPSE 모바일 백과사전</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>TEAM ECLIPSE 용어사전</h1>
-    <p>테스트 페이지입니다.</p>
+    <header>
+        <h1>TEAM ECLIPSE 모바일 백과사전</h1>
+        <p>AGI 안전 및 윤리 관련 용어 모음</p>
+    </header>
+    
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="용어 검색...">
+    </div>
+    
+    <div id="letterNav"></div>
+    
+    <div id="dictionaryContent"></div>
+    
+    <footer>
+        <p>© TEAM ECLIPSE - AGI 안전 및 윤리 프로젝트</p>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
