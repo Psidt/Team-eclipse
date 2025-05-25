@@ -9,6 +9,12 @@ document.addEventListener('DOMContentLoaded', function() {
     renderDictionary();
     generateAlphabetNav();
     setupSearch();
+    
+    // 스크롤 탑 버튼 설정
+    setupScrollTopButton();
+    
+    // 홈 버튼 설정
+    setupHomeButton();
 });
 
 // 별 반짝임 효과 생성
@@ -36,20 +42,28 @@ function generateAlphabetNav() {
     const navContainer = document.getElementById('letterNav');
     let navHTML = '';
 
+    // 활성 문자 먼저 확인
+    let activeLetters = {};
+    dictionary.forEach(item => {
+        const firstLetter = item.term.charAt(0).toUpperCase();
+        activeLetters[firstLetter] = true;
+    });
+
     alphabet.forEach(letter => {
-        // 해당 문자로 시작하는 용어가 있는지 확인
-        const termsWithLetter = dictionary.filter(item => 
-            item.term.charAt(0).toUpperCase() === letter.toUpperCase());
-        
-        if (termsWithLetter.length > 0) {
-             navHTML += `<span class="letter-btn" data-letter="${letter}" onclick="scrollToLetter('${letter}')">${letter}</span>`;
+        if (activeLetters[letter]) {
+            navHTML += `<span class="letter-btn" data-letter="${letter}" onclick="scrollToLetter('${letter}')">${letter}</span>`;
         } else {
-             // 해당 문자로 시작하는 용어가 없으면 비활성화
-             navHTML += `<span class="letter-btn opacity-30 cursor-not-allowed" data-letter="${letter}">${letter}</span>`;
+            navHTML += `<span class="letter-btn opacity-30 cursor-not-allowed" data-letter="${letter}">${letter}</span>`;
         }
     });
 
     navContainer.innerHTML = navHTML;
+    
+    // 페이지 로드 시 현재 보이는 섹션 강조
+    setTimeout(highlightVisibleSection, 500);
+    
+    // 스크롤 시에도 현재 섹션 강조
+    window.addEventListener('scroll', debounce(highlightVisibleSection, 100));
 }
 
 // 특정 문자 섹션으로 스크롤
@@ -62,6 +76,50 @@ window.scrollToLetter = function(letter) {
         document.querySelectorAll('.letter-btn').forEach(btn =>
             btn.classList.remove('active'));
         document.querySelector(`.letter-btn[data-letter="${letter}"]`).classList.add('active');
+    }
+}
+
+// 홈 버튼 설정
+function setupHomeButton() {
+    const homeButton = document.getElementById('homeButton');
+    if (homeButton) {
+        homeButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // 검색창 초기화
+            const searchInput = document.getElementById('searchInput');
+            searchInput.value = '';
+            searchInput.dispatchEvent(new Event('input'));
+            
+            // 페이지 맨 위로 스크롤
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+}
+
+// 스크롤 시 현재 보이는 섹션 강조
+function highlightVisibleSection() {
+    const sections = document.querySelectorAll('.letter-section');
+    const windowHeight = window.innerHeight;
+    const offset = windowHeight * 0.3; // 화면의 30% 지점을 기준으로
+    
+    // 모든 버튼에서 활성 클래스 제거
+    document.querySelectorAll('.letter-btn').forEach(btn => btn.classList.remove('active'));
+    
+    // 현재 보이는 섹션 찾기
+    let currentSection = null;
+    sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= offset && rect.bottom >= offset) {
+            currentSection = section;
+        }
+    });
+    
+    // 해당 버튼 활성화
+    if (currentSection) {
+        const letter = currentSection.id.split('-')[1]; // "letter-A"에서 "A"를 추출
+        const btn = document.querySelector(`.letter-btn[data-letter="${letter}"]`);
+        if (btn) btn.classList.add('active');
     }
 }
 
@@ -119,12 +177,20 @@ function renderDictionary() {
 // 검색 기능 설정
 function setupSearch() {
     const searchInput = document.getElementById('searchInput');
+    const clearButton = document.querySelector('.search-clear');
     
     searchInput.addEventListener('input', function() {
         const searchTerm = this.value.toLowerCase();
         const termCards = document.querySelectorAll('#dictionaryContent .term-card');
         const letterSections = document.querySelectorAll('#dictionaryContent .letter-section');
         let matchFound = false;
+
+        // 검색어가 있으면 지우기 버튼 표시
+        if (searchTerm.length > 0) {
+            clearButton.classList.remove('hidden');
+        } else {
+            clearButton.classList.add('hidden');
+        }
 
         // 검색어가 비어있으면 모두 표시
         if (searchTerm === '') {
@@ -181,28 +247,8 @@ function setupSearch() {
             if (existingNoMatchMsg) existingNoMatchMsg.remove();
         }
     });
-}
-
-// 스크롤 시 요소 가시성 체크 (애니메이션 효과용)
-function checkVisibility() {
-    const cards = document.querySelectorAll('.term-card');
-    const windowHeight = window.innerHeight;
     
-    cards.forEach(card => {
-        const cardTop = card.getBoundingClientRect().top;
-        if (cardTop < windowHeight - 50) {
-            card.style.opacity = '1';
-        }
-    });
-}
-
-// 용어 검색 직접 실행 함수
-window.searchTerm = function(term) {
-    const searchInput = document.getElementById('searchInput');
-    searchInput.value = term;
-    searchInput.dispatchEvent(new Event('input'));
-    
-    // 검색창으로 스크롤
-    searchInput.scrollIntoView({ behavior: 'smooth' });
-    searchInput.focus();
-}
+    // 검색어 지우기 버튼
+    if (clearButton) {
+        clearButton.addEventListener('click', function() {
+            searchInput
