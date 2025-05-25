@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> - TEAM ECLIPSE 모바일 백과사전</title>
+    <title>TEAM ECLIPSE - 모바일 백과사전</title>
     <!-- Tailwind CSS (v2.2.19) from CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <!-- Font Awesome (v6.4.0) from CDN for icons -->
@@ -12,13 +12,39 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="pb-10">
-    <!-- Header with site title and navigation links (Adjusted to latest image) -->
+    <!-- Combined Header: Site title, Search bar, and Navigation links (Sticky) -->
     <header class="header-links bg-space bg-opacity-80 shadow-lg px-4 py-3 mb-4 
-                   flex flex-col md:flex-row items-center justify-between sticky top-0 z-20">
-        <h1 class="text-xl md:text-2xl font-bold text-white glow mb-2 md:mb-0">
-            모바일 백과사전
+                   flex flex-col md:flex-row md:items-center md:justify-between 
+                   gap-4 md:gap-6 sticky top-0 z-20"> <!-- Header itself is sticky -->
+        
+        <!-- Site Title -->
+        <h1 class="text-xl md:text-2xl font-bold text-white glow mb-2 md:mb-0 md:flex-shrink-0">
+            TEAM ECLIPSE<span class="text-purple-400"> 모바일 백과사전</span>
         </h1>
-        <nav aria-label="메인 내비게이션">
+
+        <!-- Search Bar (now integrated into the header, NOT sticky itself) -->
+        <section aria-labelledby="search-heading" 
+                 class="relative flex-grow md:max-w-md lg:max-w-lg xl:max-w-xl 
+                        bg-gray-900 rounded-lg p-2 shadow border border-gray-700 
+                        md:order-none order-first md:mb-0 mb-2"> 
+            <h2 id="search-heading" class="sr-only">용어 검색</h2>
+            <input type="text" 
+                   id="searchInput" 
+                   placeholder="용어 검색..." 
+                   class="w-full pr-10 py-1 bg-transparent text-gray-100 
+                          focus:outline-none focus:ring-0 focus:border-transparent" 
+                   aria-label="백과사전 용어 검색">
+            <button type="button" 
+                    class="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-gray-400 
+                           hover:text-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded" 
+                    aria-label="검색 실행"
+                    tabindex="0">
+                <i class="fas fa-search" aria-hidden="true"></i>
+            </button>
+        </section>
+
+        <!-- Navigation Buttons -->
+        <nav aria-label="메인 내비게이션" class="md:flex-shrink-0">
             <ul class="flex flex-wrap justify-center gap-2">
                 <li>
                     <a href="home.html" 
@@ -43,7 +69,7 @@
         </nav>
     </header>
 
-    <!-- Introduction Section (Re-added as per latest image) -->
+    <!-- Introduction Section -->
     <section aria-labelledby="introduction-heading" class="px-4 md:px-8 py-2 mb-6">
         <h2 id="introduction-heading" class="sr-only">소개</h2>
         <p class="text-center text-sm md:text-base text-blue-200 mb-4">
@@ -51,28 +77,7 @@
         </p>
     </section>
 
-    <!-- Search Bar Section (z-index increased for proper layering) -->
-    <section aria-labelledby="search-heading" class="search-container sticky top-16 z-30 px-4 md:px-8 mb-4">
-        <h2 id="search-heading" class="sr-only">용어 검색</h2>
-        <div class="relative mx-auto max-w-2xl 
-                    bg-gray-900 rounded-lg p-3 shadow-xl border border-gray-700">
-            <input type="text" 
-                   id="searchInput" 
-                   placeholder="용어 검색..." 
-                   class="w-full pr-10 py-1 bg-transparent text-gray-100 
-                          focus:outline-none focus:ring-0 focus:border-transparent" 
-                   aria-label="백과사전 용어 검색">
-            <button type="button" 
-                    class="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-gray-400 
-                           hover:text-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded" 
-                    aria-label="검색 실행"
-                    tabindex="0">
-                <i class="fas fa-search" aria-hidden="true"></i>
-            </button>
-        </div>
-    </section>
-
-    <!-- Alphabet Navigation Section -->
+    <!-- Alphabet Navigation Section (NOT sticky) -->
     <section aria-labelledby="alphabet-nav-heading" class="px-4 md:px-8 mb-6">
         <h2 id="alphabet-nav-heading" class="sr-only">알파벳 내비게이션</h2>
         <div class="letter-nav shadow-lg mx-auto max-w-3xl" id="letterNav" role="navigation" aria-label="알파벳별 용어 필터">
@@ -85,34 +90,7 @@
     <main aria-labelledby="dictionary-content-heading" class="px-4 md:px-8 max-w-4xl mx-auto space-y-8" id="dictionaryContent">
         <h2 id="dictionary-content-heading" class="sr-only">용어사전 내용</h2>
         
-        <!-- Placeholder content for demonstration, matching the provided image -->
-        <article class="bg-gray-800 bg-opacity-60 rounded-lg p-6 shadow-xl border border-gray-700" aria-labelledby="dangerous-capability-evaluations-heading">
-            <header class="flex items-center justify-between mb-4">
-                <h3 id="dangerous-capability-evaluations-heading" class="text-xl md:text-2xl font-bold text-purple-400">Dangerous Capability Evaluations</h3>
-                <span class="text-purple-300 text-sm md:text-base sr-only" aria-label="한국어 번역 위험 능력 평가">위험 능력 평가</span>
-            </header>
-            <p class="mb-4 text-gray-200 text-sm md:text-base">
-                A process of testing an AI system's tendency to act against the developer's intent or human values (misalignment) by deliberately creating extreme situations or tricky conditions. It is similar to crash-testing a car to evaluate its safety under extreme conditions. Red teams actively seek counterexamples showing that key assumptions in the AI's alignment plan are incorrect, thus evaluating the robustness of current alignment methods or identifying vulnerabilities.
-            </p>
-            <p class="text-blue-300 text-xs md:text-sm" lang="ko">
-                개발 중인 AI가 위험한 행동을 할 수 있는 능력이 있는지 구체적으로 측정하고 평가하는 방법입니다.
-            </p>
-        </article>
-
-        <article class="bg-gray-800 bg-opacity-60 rounded-lg p-6 shadow-xl border border-gray-700" aria-labelledby="data-poisoning-heading">
-            <header class="flex items-center justify-between mb-4">
-                <h3 id="data-poisoning-heading" class="text-xl md:text-2xl font-bold text-purple-400">Data Poisoning</h3>
-                <span class="text-purple-300 text-sm md:text-base" aria-label="한국어 번역 데이터 오염">데이터 오염</span>
-            </header>
-            <p class="mb-4 text-gray-200 text-sm md:text-base">
-                A technical attack technique where malicious actors intentionally corrupt or subtly alter the data used to train an AI model. The goal is typically to compromise the model's integrity, inject backdoors, degrade performance, or induce the model to learn undesirable behaviors; affecting its robustness and safety.
-            </p>
-            <p class="text-blue-300 text-xs md:text-sm" lang="ko">
-                악의적인 행위자가 의도적으로 AI 모델 훈련에 사용되는 데이터를 손상시키거나 미묘하게 변경하는 기술적인 공격 기술입니다.
-            </p>
-        </article>
-
-        <!-- Placeholder for 'Alignment' term (matching the latest image) -->
+        <!-- Placeholder content for demonstration -->
         <article class="bg-gray-800 bg-opacity-60 rounded-lg p-6 shadow-xl border border-gray-700" aria-labelledby="alignment-heading">
             <header class="flex items-center justify-between mb-4">
                 <h3 id="alignment-heading" class="text-xl md:text-2xl font-bold text-purple-400">Alignment</h3>
@@ -123,6 +101,32 @@
             </p>
             <p class="text-blue-300 text-xs md:text-sm" lang="ko">
                 AI 시스템이 개발자나 사용자가 의도한 목표와 가치에 맞게 행동하도록 만드는 과정입니다.
+            </p>
+        </article>
+
+        <article class="bg-gray-800 bg-opacity-60 rounded-lg p-6 shadow-xl border border-gray-700" aria-labelledby="control-safety-case-heading">
+            <header class="flex items-center justify-between mb-4">
+                <h3 id="control-safety-case-heading" class="text-xl md:text-2xl font-bold text-purple-400">Control Safety Case</h3>
+                <span class="text-purple-300 text-sm md:text-base" aria-label="한국어 번역 통제 안전 사례">통제 안전 사례</span>
+            </header>
+            <p class="mb-4 text-gray-200 text-sm md:text-base">
+                An approach that argues an AI system is safe because strong safety features (e.g., monitoring systems, access restrictions) are in place that can effectively detect and block dangerous behaviors, even if the AI has a tendency to act against developer intent (misalignment). This approach relies on external 'control' systems to ensure safety, rather than depending on the AI itself being perfectly 'good'.
+            </p>
+            <p class="text-blue-300 text-xs md:text-sm" lang="ko">
+                AI 시스템이 설령 위험한 행동 성향이 있더라도, 효과적으로 감지하고 막는 강력한 안전 장치가 있어 안전하다는 주장입니다.
+            </p>
+        </article>
+
+        <article class="bg-gray-800 bg-opacity-60 rounded-lg p-6 shadow-xl border border-gray-700" aria-labelledby="controllable-trade-offs-heading">
+            <header class="flex items-center justify-between mb-4">
+                <h3 id="controllable-trade-offs-heading" class="text-xl md:text-2xl font-bold text-purple-400">Controllable Trade-offs</h3>
+                <span class="text-purple-300 text-sm md:text-base" aria-label="한국어 번역 제어 가능한 트레이드오프">제어 가능한 트레이드오프</span>
+            </header>
+            <p class="mb-4 text-gray-200 text-sm md:text-base">
+                A concept where, when designing or operating an AI system, users can intentionally choose and adjust an appropriate balance point among various potentially conflicting goals (e.g., safety, performance, cost, efficiency). For instance, adjusting the sensitivity of a monitoring system to detect potential risks (higher detection rate leads to more false positives) to balance safety and operational efficiency according to the situation.
+            </p>
+            <p class="text-blue-300 text-xs md:text-sm" lang="ko">
+                AI 시스템 설계/운영 시 서로 상충될 수 있는 여러 목표들(안전성, 성능 등) 사이에서 사용자가 원하는 균형점을 조절할 수 있는 개념입니다.
             </p>
         </article>
     </main>
@@ -145,37 +149,5 @@
     <!-- JavaScript files -->
     <script src="data.js"></script>
     <script src="script.js"></script>
-    <script>
-        // Scroll to Top Button functionality
-        document.addEventListener('DOMContentLoaded', () => {
-            const scrollTopButton = document.getElementById('scrollTopBtn');
-            if (!scrollTopButton) return;
-
-            const handleScrollVisibility = () => {
-                if (window.pageYOffset > 300) {
-                    scrollTopButton.classList.add('visible');
-                } else {
-                    scrollTopButton.classList.remove('visible');
-                }
-            };
-
-            const handleScrollToTop = () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            };
-
-            window.addEventListener('scroll', handleScrollVisibility);
-            scrollTopButton.addEventListener('click', handleScrollToTop);
-            scrollTopButton.addEventListener('keydown', (event) => {
-                if (event.key === 'Enter' || event.key === ' ') {
-                    handleScrollToTop();
-                }
-            });
-
-            handleScrollVisibility(); // Initial check
-        });
-    </script>
 </body>
 </html>
