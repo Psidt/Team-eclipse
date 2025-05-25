@@ -1,13 +1,3 @@
-// 글자 섹션으로 스크롤
-window.scrollToLetter = function(letter) {
-    const section = document.getElementById(`letter-${letter}`);
-    if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
-        document.querySelectorAll('.letter-btn').forEach(btn => btn.classList.remove('active'));
-        document.querySelector(`.letter-btn[data-letter="${letter}"]`).classList.add('active');
-    }
-}
-
 // 사전 렌더링
 function renderDictionary() {
     const container = document.getElementById('dictionaryContent');
@@ -72,39 +62,33 @@ function setupSearch() {
     });
 }
 
-// 스크롤 이벤트: 검색바 고정 & 알파벳 네비 숨김
+// 스크롤 이벤트: 검색바 고정 & 맨 위로 버튼
 document.addEventListener('DOMContentLoaded', function() {
     renderDictionary();
     setupSearch();
 
     const searchBar = document.getElementById('searchBarWrapper');
-    const letterNav = document.getElementById('letterNav');
-    const triggerPoint = searchBar.offsetTop + 60; // 헤더 높이에 따라 조정
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+    const triggerPoint = searchBar.offsetTop + 60;
 
     window.addEventListener('scroll', function() {
+        // 검색바 고정
         if (window.scrollY > triggerPoint) {
-            searchBar.classList.add('fixed-search');
-            letterNav.classList.add('hide-on-scroll');
+            searchBar.classList.add('sticky-search');
         } else {
-            searchBar.classList.remove('fixed-search');
-            letterNav.classList.remove('hide-on-scroll');
+            searchBar.classList.remove('sticky-search');
+        }
+        // 맨 위로 버튼
+        if (window.scrollY > 200) {
+            scrollToTopBtn.classList.add('show');
+            scrollToTopBtn.classList.remove('hidden');
+        } else {
+            scrollToTopBtn.classList.remove('show');
+            scrollToTopBtn.classList.add('hidden');
         }
     });
-});
 
-document.addEventListener('DOMContentLoaded', function() {
-  const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 200) {
-      scrollToTopBtn.classList.add('show');
-      scrollToTopBtn.classList.remove('hidden');
-    } else {
-      scrollToTopBtn.classList.remove('show');
-      scrollToTopBtn.classList.add('hidden');
-    }
-  });
-  scrollToTopBtn.addEventListener('click', function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+    scrollToTopBtn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 });
-
