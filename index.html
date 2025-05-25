@@ -12,10 +12,11 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="pb-10">
-    <!-- Header with navigation links -->
-    <header class="header-links bg-space bg-opacity-80 shadow-lg px-4 py-3 mb-4 flex flex-col md:flex-row items-center justify-between">
+    <!-- Header with site title and navigation links (Adjusted to latest image) -->
+    <header class="header-links bg-space bg-opacity-80 shadow-lg px-4 py-3 mb-4 
+                   flex flex-col md:flex-row items-center justify-between sticky top-0 z-20">
         <h1 class="text-xl md:text-2xl font-bold text-white glow mb-2 md:mb-0">
-            TEAM ECLIPSE<span class="text-purple-400"> 모바일 백과사전</span>
+            모바일 백과사전
         </h1>
         <nav aria-label="메인 내비게이션">
             <ul class="flex flex-wrap justify-center gap-2">
@@ -38,22 +39,12 @@
                         <i class="fas fa-book mr-1" aria-hidden="true"></i> 용어사전
                     </a>
                 </li>
-                <li>
-                    <a href="https://zqsglqwg.gensparkspace.com/" 
-                       class="px-3 py-1 bg-indigo-900 hover:bg-indigo-800 rounded-lg text-sm flex items-center transition-all"
-                       tabindex="0" 
-                       role="link" 
-                       aria-label="AGI 리스크 관리 페이지로 이동 (새 탭에서 열림)" 
-                       target="_blank" 
-                       rel="noopener noreferrer">
-                        <i class="fas fa-shield-alt mr-1" aria-hidden="true"></i> AGI RISK MANAGEMENT
-                    </a>
-                </li>
+                <!-- AGI RISK MANAGEMENT link removed as per latest image -->
             </ul>
         </nav>
     </header>
 
-    <!-- Introduction Section -->
+    <!-- Introduction Section (Re-added as per latest image) -->
     <section aria-labelledby="introduction-heading" class="px-4 md:px-8 py-2 mb-6">
         <h2 id="introduction-heading" class="sr-only">소개</h2>
         <p class="text-center text-sm md:text-base text-blue-200 mb-4">
@@ -61,21 +52,19 @@
         </p>
     </section>
 
-    <!-- Search Bar Section - MODIFIED -->
+    <!-- Search Bar Section (Background now opaque) -->
     <section aria-labelledby="search-heading" class="search-container sticky top-16 z-10 px-4 md:px-8 mb-4">
         <h2 id="search-heading" class="sr-only">용어 검색</h2>
-        <!-- This div now acts as the 'card' for the search bar -->
         <div class="relative mx-auto max-w-2xl 
-                    bg-gray-800 bg-opacity-60 rounded-lg p-3 shadow-xl border border-gray-700"> 
+                    bg-gray-900 rounded-lg p-3 shadow-xl border border-gray-700"> <!-- Changed to bg-gray-900 (opaque) -->
             <input type="text" 
                    id="searchInput" 
                    placeholder="용어 검색..." 
                    class="w-full pr-10 py-1 bg-transparent text-gray-100 
                           focus:outline-none focus:ring-0 focus:border-transparent" 
                    aria-label="백과사전 용어 검색">
-            <!-- The search icon, now a button for accessibility -->
             <button type="button" 
-                    class="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-gray-400 
+                    class="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-gray-400 
                            hover:text-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded" 
                     aria-label="검색 실행"
                     tabindex="0">
@@ -98,30 +87,29 @@
         <h2 id="dictionary-content-heading" class="sr-only">용어사전 내용</h2>
         
         <!-- Placeholder content for demonstration, matching the provided image -->
-        <!-- This content would typically be dynamically loaded by script.js -->
-        <article class="bg-gray-800 bg-opacity-60 rounded-lg p-6 shadow-xl border border-gray-700" aria-labelledby="agi-safety-heading">
+        <article class="bg-gray-800 bg-opacity-60 rounded-lg p-6 shadow-xl border border-gray-700" aria-labelledby="dangerous-capability-evaluations-heading">
             <header class="flex items-center justify-between mb-4">
-                <h3 id="agi-safety-heading" class="text-xl md:text-2xl font-bold text-purple-400">AGI Safety</h3>
-                <span class="text-purple-300 text-sm md:text-base" aria-label="한국어 번역 AGI 안전">AGI 안전</span>
+                <h3 id="dangerous-capability-evaluations-heading" class="text-xl md:text-2xl font-bold text-purple-400">Dangerous Capability Evaluations</h3>
+                <span class="text-purple-300 text-sm md:text-base sr-only" aria-label="한국어 번역 위험 능력 평가">위험 능력 평가</span>
             </header>
             <p class="mb-4 text-gray-200 text-sm md:text-base">
-                The assumption that AI systems themselves can automate the process of scientific research or technological development, potentially accelerating the pace of AI technology advancement. This means that AI can contribute to creating smarter AI, leading to an accelerating pace of development. If this materializes, it raises the need for AI safety technology to also accelerate alongside, perhaps with AI assistance.
+                A process of testing an AI system's tendency to act against the developer's intent or human values (misalignment) by deliberately creating extreme situations or tricky conditions. It is similar to crash-testing a car to evaluate its safety under extreme conditions. Red teams actively seek counterexamples showing that key assumptions in the AI's alignment plan are incorrect, thus evaluating the robustness of current alignment methods or identifying vulnerabilities.
             </p>
             <p class="text-blue-300 text-xs md:text-sm" lang="ko">
-                AI 시스템 스스로 과학 연구/기술 개발 자동화하여 AI 기술 발전 속도가 점점 빨라질 수 있다는 가정입니다.
+                개발 중인 AI가 위험한 행동을 할 수 있는 능력이 있는지 구체적으로 측정하고 평가하는 방법입니다.
             </p>
         </article>
 
-        <article class="bg-gray-800 bg-opacity-60 rounded-lg p-6 shadow-xl border border-gray-700" aria-labelledby="access-restrictions-heading">
+        <article class="bg-gray-800 bg-opacity-60 rounded-lg p-6 shadow-xl border border-gray-700" aria-labelledby="data-poisoning-heading">
             <header class="flex items-center justify-between mb-4">
-                <h3 id="access-restrictions-heading" class="text-xl md:text-2xl font-bold text-purple-400">Access Restrictions</h3>
-                <span class="text-purple-300 text-sm md:text-base" aria-label="한국어 번역 접근 제한">접근 제한</span>
+                <h3 id="data-poisoning-heading" class="text-xl md:text-2xl font-bold text-purple-400">Data Poisoning</h3>
+                <span class="text-purple-300 text-sm md:text-base" aria-label="한국어 번역 데이터 오염">데이터 오염</span>
             </header>
             <p class="mb-4 text-gray-200 text-sm md:text-base">
-                A preventative measure that limits access privileges to AI systems, particularly those with highly powerful or risky functionalities, to trusted, specific users or for specified purposes only. This aims to reduce the opportunities for malicious users to misuse the AI at the source. Examples include granting permission to use high-performance AI only for specific research purposes and implementing rigorous procedures for verifying the user's identity and purpose.
+                A technical attack technique where malicious actors intentionally corrupt or subtly alter the data used to train an AI model. The goal is typically to compromise the model's integrity, inject backdoors, degrade performance, or induce the model to learn undesirable behaviors; affecting its robustness and safety.
             </p>
             <p class="text-blue-300 text-xs md:text-sm" lang="ko">
-                위험하거나 강력한 AI의 사용 권한을 신뢰할 수 있는 특정 사용자나 목적에만 제한하는 예방 조치입니다.
+                악의적인 행위자가 의도적으로 AI 모델 훈련에 사용되는 데이터를 손상시키거나 미묘하게 변경하는 기술적인 공격 기술입니다.
             </p>
         </article>
     </main>
