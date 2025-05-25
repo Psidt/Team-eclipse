@@ -11,7 +11,7 @@ const dictionary = [
         koreanTerm: "접근 제한",
         explanation: "A preventative measure that limits access privileges to AI systems, particularly those with highly powerful or risky functionalities, to trusted, specific users or for specified purposes only. This aims to reduce the opportunities for malicious users to misuse the AI at the source. Examples include granting permission to use high-performance AI only for specific research purposes and implementing rigorous procedures for verifying the user's identity and purpose.",
         koreanExplanation: "위험하거나 강력한 AI의 사용 권한을 신뢰할 수 있는 특정 사용자나 목적에만 제한하는 예방 조치입니다."
-    }
+    },
     {
                 term: "Adaptive Governance",
                 koreanTerm: "적응적 거버넌스",
