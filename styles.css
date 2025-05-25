@@ -10,6 +10,7 @@ body {
     min-height: 100vh;
     word-wrap: break-word; /* Ensure word wrapping */
     overflow-wrap: break-word; /* Ensure word wrapping */
+    overflow-x: hidden; /* Added: Prevents horizontal scrollbar and helps sticky behavior */
 }
 .bg-space {
     background: linear-gradient(to bottom, #0a0a1a, #161632, #0a0a1a);
@@ -36,6 +37,7 @@ body {
 }
 .search-container {
     backdrop-filter: blur(5px);
+    /* REMOVED: position, top, z-index - These are now handled by the parent .header-links */
 }
 ::-webkit-scrollbar {
     width: 5px;
@@ -48,9 +50,7 @@ body {
     background-color: rgba(30, 30, 60, 0.9);
     border-radius: 15px;
     padding: 5px;
-    position: sticky;
-    top: 70px;
-    z-index: 10;
+    /* REMOVED: position: sticky; top: 70px; z-index: 10; - This will now scroll */
     overflow-x: auto;
     white-space: nowrap;
     scrollbar-width: none;
@@ -77,9 +77,9 @@ body {
     color: white;
 }
 .header-links {
-    position: sticky;
-    top: 0;
-    z-index: 20;
+    position: sticky; /* ADDED/CONFIRMED */
+    top: 0;          /* ADDED/CONFIRMED */
+    z-index: 20;     /* ADDED/CONFIRMED */
     backdrop-filter: blur(10px);
 }
 strong { /* Ensure strong is bold */
@@ -94,5 +94,13 @@ strong { /* Ensure strong is bold */
 }
 
 #scrollTopBtn {
-    transform: translateY(20px);
+    opacity: 0; /* Ensures it starts hidden */
+    visibility: hidden; /* Ensures it starts hidden */
+    transition: all 0.3s ease; /* Keeps the smooth transition */
+    /* REMOVED: transform: translateY(20px); - Initial state is handled by opacity/visibility */
+}
+
+/* Ensure main content's overflow doesn't conflict with sticky elements */
+main {
+    overflow: visible; 
 }
