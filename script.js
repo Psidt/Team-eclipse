@@ -26,10 +26,11 @@ const generateAlphabetNav = () => {
 const scrollToLetter = (letter) => {
     const section = document.getElementById(`letter-${letter}`);
     if (section) {
-        // Calculate offset to account for sticky search bar
-        const searchContainer = document.querySelector('.search-container');
-        const searchBarHeight = searchContainer ? searchContainer.offsetHeight : 0;
-        const offset = searchBarHeight + 20; // Add some extra padding for visual comfort
+        // Calculate offset to account for the now-sticky header
+        const stickyHeader = document.querySelector('.header-links');
+        const headerHeight = stickyHeader ? stickyHeader.offsetHeight : 0;
+        
+        const offset = headerHeight + 20; // Add some extra padding for visual comfort
 
         window.scrollTo({
             top: section.offsetTop - offset,
@@ -186,48 +187,6 @@ const setupScrollTopButton = () => {
     handleScrollVisibility(); // Initial check in case page loads already scrolled
 };
 
-// NEW FUNCTION: Manage sticky search bar offset to prevent content overlap
-const setupStickySearchBarOffset = () => {
-    const searchContainer = document.querySelector('.search-container'); // The section with sticky
-    
-    if (!searchContainer) return; // Early return if element not found
-
-    // Create a dynamic spacer element that will take up space when the search bar is sticky
-    const stickySpacer = document.createElement('div');
-    stickySpacer.id = 'stickySearchBarSpacer';
-    stickySpacer.classList.add('w-full', 'transition-all', 'duration-300', 'ease-out');
-    stickySpacer.style.height = '0px'; // Initially no height
-
-    // Insert the spacer immediately after the sticky search container in the DOM
-    searchContainer.parentNode.insertBefore(stickySpacer, searchContainer.nextSibling);
-
-    const adjustSpacer = () => {
-        // Get the computed style of the search container to check if it's currently 'stuck'
-        const computedStyle = window.getComputedStyle(searchContainer);
-        // An element is sticky AND stuck when its position is 'sticky' and its top is at the sticky limit (here, '0px')
-        const isStuck = computedStyle.position === 'sticky' && 
-                        searchContainer.getBoundingClientRect().top <= 0;
-
-        if (isStuck) {
-            // If it's stuck, set the spacer's height to the search bar's current height
-            const searchBarHeight = searchContainer.offsetHeight; 
-            stickySpacer.style.height = `${searchBarHeight}px`;
-        } else {
-            // If it's not stuck, collapse the spacer
-            stickySpacer.style.height = '0px';
-        }
-    };
-
-    // Initial adjustment (after all elements and CSS are loaded)
-    // Use requestAnimationFrame for smoother initial layout after all rendering
-    requestAnimationFrame(adjustSpacer);
-
-    // Add event listeners for scroll and resize to continually adjust the spacer
-    window.addEventListener('scroll', adjustSpacer);
-    window.addEventListener('resize', adjustSpacer);
-};
-
-
 // Initialize all functionalities on page load
 window.onload = () => {
     // These order matter for proper rendering
@@ -235,5 +194,5 @@ window.onload = () => {
     generateAlphabetNav();
     setupSearch();
     setupScrollTopButton();
-    setupStickySearchBarOffset(); // Call the new sticky offset management function
+    // Removed setupStickySearchBarOffset() as it's no longer needed for combined sticky header
 };
