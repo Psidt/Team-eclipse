@@ -75,7 +75,6 @@ function setupSearch() {
 // 스크롤 이벤트: 검색바 고정 & 알파벳 네비 숨김
 document.addEventListener('DOMContentLoaded', function() {
     renderDictionary();
-    generateAlphabetNav();
     setupSearch();
 
     const searchBar = document.getElementById('searchBarWrapper');
