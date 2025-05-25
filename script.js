@@ -104,3 +104,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 200) {
+      scrollToTopBtn.classList.add('show');
+      scrollToTopBtn.classList.remove('hidden');
+    } else {
+      scrollToTopBtn.classList.remove('show');
+      scrollToTopBtn.classList.add('hidden');
+    }
+  });
+  scrollToTopBtn.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
