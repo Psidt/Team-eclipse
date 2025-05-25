@@ -105,3 +105,226 @@ strong {
 main {
     overflow: visible;
 }
+/* 기존 CSS 코드 ... (생략) ... */
+
+/* Header & Navigation 수정 */
+.header {
+    /* position: fixed; */ /* 중요: fixed를 제거하여 일반적인 흐름을 따르도록 함 */
+    /* top: 0; */
+    /* left: 0; */
+    width: 100%;
+    z-index: 1000; /* 다른 sticky 요소보다 위에 오도록 유지 가능 (하지만 sticky-search-nav가 더 중요) */
+    transition: background-color var(--transition-normal), box-shadow var(--transition-normal);
+    /* 스크롤 시 배경 변경은 JS(GSAP)로 제어할 수 있음 */
+    padding-top: 1.5rem; /* 검색/알파벳 바가 상단에 고정될 공간 확보 */
+    padding-bottom: 1.5rem;
+}
+/* header-scrolled 클래스는 여전히 GSAP으로 배경/그림자 변경에 사용 가능 */
+.header-scrolled {
+    background: rgba(9, 11, 20, 0.85);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+
+/* --- 용어사전 관련 스타일 추가 --- */
+.sticky-search-nav-wrapper {
+    position: sticky;
+    top: 0; /* 화면 최상단에 고정 */
+    z-index: 950; /* 원래 헤더보다 약간 낮거나, 원래 헤더 z-index를 조정 */
+    background-color: rgba(18, 22, 43, 0.95); /* var(--bg-secondary)와 유사, 더 진하게 */
+    backdrop-filter: blur(12px);
+    padding-top: 1rem; /* 내부 상단 여백 */
+    /* box-shadow: 0 4px 12px rgba(0,0,0,0.25); */ /* 아래쪽 그림자 */
+    /* 초기에는 숨김 처리하고 싶다면 아래 주석 해제 후 JS로 제어 */
+    /* opacity: 0; visibility: hidden; transform: translateY(-100%); transition: opacity 0.3s, visibility 0.3s, transform 0.3s; */
+}
+/* 스크롤 시 보이게 하려면 JS로 클래스 추가
+.sticky-search-nav-wrapper.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+*/
+
+/* 검색창 스타일 (테마 적용) */
+.search-bar-container {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 1.5rem; /* 좌우 여백 */
+}
+#searchInput {
+    width: 100%;
+    max-width: 700px;
+    padding: 0.85rem 1.25rem 0.85rem 3.25rem; /* 아이콘 공간 확보 */
+    background-color: rgba(9, 11, 20, 0.8); /* var(--bg-primary) 반투명 */
+    color: var(--text-primary);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    transition: var(--transition-normal);
+}
+#searchInput:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(46, 157, 255, 0.4);
+}
+#searchInput::placeholder {
+    color: var(--text-muted);
+}
+.search-icon-wrapper {
+    position: absolute;
+    left: 1.25rem; /* 아이콘 위치 조정 */
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 1.1rem; /* 아이콘 크기 */
+    pointer-events: none;
+}
+
+/* 알파벳 내비게이션 바 스타일 (테마 적용) */
+.alphabet-nav-container {
+    display: flex;
+    justify-content: center;
+    padding: 0.75rem 1.5rem 1.25rem; /* 위아래, 좌우 여백 */
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.alphabet-nav-container::-webkit-scrollbar {
+    display: none;
+}
+.letter-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px; /* 버튼 크기 약간 키움 */
+    height: 40px;
+    padding: 0 0.6rem;
+    margin: 0 0.3rem;
+    border-radius: var(--radius-sm);
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-family: 'Space Mono', monospace;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    border: 1px solid transparent;
+}
+.letter-btn:hover {
+    background-color: rgba(46, 157, 255, 0.2); /* var(--accent-blue) 반투명 */
+    color: var(--accent-blue);
+}
+.letter-btn.active {
+    background-color: var(--accent-blue);
+    color: var(--bg-primary);
+    font-weight: 700;
+    box-shadow: 0 0 15px rgba(46, 157, 255, 0.5);
+}
+.letter-btn[disabled] {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* 용어 카드 스타일 (테마 적용) */
+#dictionaryContent {
+    padding-top: 3rem; /* 고정 헤더 아래부터 시작하도록 충분한 여백 */
+    position: relative; /* 내부 요소들의 기준점 */
+    z-index: 1; /* 다른 sticky 요소들보다 뒤에 오도록 */
+}
+.term-card-wrapper {
+     margin-bottom: 3rem;
+}
+.letter-heading {
+    font-size: 3rem; /* 알파벳 제목 크기 키움 */
+    color: var(--accent-purple);
+    margin-bottom: 1.5rem; /* 여백 늘림 */
+    padding-bottom: 0.75rem;
+    border-bottom: 3px solid var(--accent-purple);
+    display: inline-block;
+    text-shadow: 0 0 10px rgba(185, 149, 255, 0.3);
+}
+.term-card {
+    background: var(--neumorph-bg); /* 뉴모피즘 배경 사용 */
+    box-shadow: 8px 8px 16px var(--neumorph-shadow-dark), -8px -8px 16px var(--neumorph-shadow-light);
+    border-radius: var(--radius-lg); /* 더 둥글게 */
+    padding: 2rem; /* 패딩 늘림 */
+    margin-bottom: 2rem; /* 여백 늘림 */
+    transition: var(--transition-normal);
+    border: none; /* 기존 border-left 제거 또는 다른 효과로 대체 */
+}
+.term-card:hover {
+    box-shadow: 12px 12px 24px var(--neumorph-shadow-dark), -12px -12px 24px var(--neumorph-shadow-light);
+    transform: translateY(-5px);
+}
+.term-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem; /* 여백 늘림 */
+}
+.term-card-header h3 {
+    font-size: 1.75rem; /* 용어 제목 크기 조정 */
+    color: var(--accent-teal);
+    margin-bottom: 0;
+}
+.term-card-korean-term {
+    font-size: 1rem; /* 한국어 용어 크기 조정 */
+    color: var(--text-muted);
+    font-weight: 500;
+    text-align: right;
+    margin-left: 1rem;
+}
+.term-card-explanation {
+    font-size: 1.05rem; /* 설명 폰트 크기 조정 */
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+.term-card-korean-explanation {
+    font-size: 0.95rem; /* 한국어 설명 폰트 크기 조정 */
+    color: var(--text-muted);
+    font-style: italic;
+}
+#no-results-message {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 4rem 0; /* 여백 늘림 */
+    font-size: 1.3rem;
+    font-family: 'Space Mono', monospace;
+}
+
+/* 맨 위로 가기 버튼 스타일 */
+#scrollTopBtn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: var(--accent-blue);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(46, 157, 255, 0.3);
+    transition: opacity var(--transition-normal), visibility var(--transition-normal), transform var(--transition-normal), background-color var(--transition-fast);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    z-index: 1001;
+}
+#scrollTopBtn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+#scrollTopBtn:hover {
+    background-color: #2588e0;
+    transform: translateY(-3px) scale(1.05); /* 호버 시 약간 커지는 효과 */
+}
+
+/* 기존 CSS 코드 ... (생략) ... */
