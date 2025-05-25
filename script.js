@@ -1,15 +1,3 @@
-// 알파벳 네비게이션 생성
-function generateAlphabetNav() {
-    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-    const navContainer = document.getElementById('letterNav');
-    navContainer.innerHTML = alphabet.map(letter => {
-        const hasTerms = dictionary.some(term => term.term.charAt(0).toUpperCase() === letter);
-        const className = hasTerms ? 'letter-btn' : 'letter-btn disabled';
-        const onclick = hasTerms ? `onclick="scrollToLetter('${letter}')"` : '';
-        return `<span class="${className}" data-letter="${letter}" ${onclick}>${letter}</span>`;
-    }).join('');
-}
-
 // 글자 섹션으로 스크롤
 window.scrollToLetter = function(letter) {
     const section = document.getElementById(`letter-${letter}`);
