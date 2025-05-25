@@ -5,14 +5,14 @@ const dictionary = [
         koreanTerm: "개선 가속 가능성 가정",
         explanation: "The assumption that AI systems themselves can automate the process of scientific research or technological development, potentially accelerating the pace of AI technology advancement. This means that AI can contribute to creating smarter AI, leading to an accelerating pace of development. If this materializes, it raises the need for AI safety technology to also accelerate alongside, perhaps with AI assistance.",
         koreanExplanation: "AI 시스템 스스로 과학 연구/기술 개발 자동화하여 AI 기술 발전 속도가 점점 빨라질 수 있다는 가정입니다."
-                 },
-            {
-                term: "Access Restrictions",
-                koreanTerm: "접근 제한",
-                explanation: "A preventative measure that limits access privileges to AI systems, particularly those with highly powerful or risky functionalities, to trusted, specific users or for specified purposes only. This aims to reduce the opportunities for malicious users to misuse the AI at the source. Examples include granting permission to use high-performance AI only for specific research purposes and implementing rigorous procedures for verifying the user's identity and purpose.",
-                koreanExplanation: "위험하거나 강력한 AI의 사용 권한을 신뢰할 수 있는 특정 사용자나 목적에만 제한하는 예방 조치입니다."
-            },
-            {
+    },
+    {
+        term: "Access Restrictions",
+        koreanTerm: "접근 제한",
+        explanation: "A preventative measure that limits access privileges to AI systems, particularly those with highly powerful or risky functionalities, to trusted, specific users or for specified purposes only. This aims to reduce the opportunities for malicious users to misuse the AI at the source. Examples include granting permission to use high-performance AI only for specific research purposes and implementing rigorous procedures for verifying the user's identity and purpose.",
+        koreanExplanation: "위험하거나 강력한 AI의 사용 권한을 신뢰할 수 있는 특정 사용자나 목적에만 제한하는 예방 조치입니다."
+    }
+    {
                 term: "Adaptive Governance",
                 koreanTerm: "적응적 거버넌스",
                 explanation: "A governance approach that involves a continuous cycle of monitoring AI systems and their impacts, evaluating the effectiveness of existing policies/standards, updating them based on findings, and re-applying the revised framework. This allows governance to keep pace with the rapid and unpredictable development of AGI technology.",
