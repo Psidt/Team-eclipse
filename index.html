@@ -55,30 +55,38 @@
 
     <!-- Introduction Section -->
     <section aria-labelledby="introduction-heading" class="px-4 md:px-8 py-2 mb-6">
-        <h2 id="introduction-heading" class="sr-only">소개</h2> <!-- Screen reader only heading -->
+        <h2 id="introduction-heading" class="sr-only">소개</h2>
         <p class="text-center text-sm md:text-base text-blue-200 mb-4">
             AGI 안전 및 윤리 관련 용어를 모바일에 최적화하여 제공하는 백과사전입니다.
         </p>
     </section>
 
-    <!-- Search Bar Section -->
+    <!-- Search Bar Section - MODIFIED -->
     <section aria-labelledby="search-heading" class="search-container sticky top-16 z-10 px-4 md:px-8 mb-4">
-        <h2 id="search-heading" class="sr-only">용어 검색</h2> <!-- Screen reader only heading -->
-        <div class="relative mx-auto max-w-2xl">
+        <h2 id="search-heading" class="sr-only">용어 검색</h2>
+        <!-- This div now acts as the 'card' for the search bar -->
+        <div class="relative mx-auto max-w-2xl 
+                    bg-gray-800 bg-opacity-60 rounded-lg p-3 shadow-xl border border-gray-700"> 
             <input type="text" 
                    id="searchInput" 
                    placeholder="용어 검색..." 
-                   class="w-full px-4 py-2 rounded-lg bg-gray-900 bg-opacity-80 text-gray-100 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                   class="w-full pr-10 py-1 bg-transparent text-gray-100 
+                          focus:outline-none focus:ring-0 focus:border-transparent" 
                    aria-label="백과사전 용어 검색">
-            <span class="absolute right-3 top-2 text-gray-400" aria-hidden="true">
-                <i class="fas fa-search"></i>
-            </span>
+            <!-- The search icon, now a button for accessibility -->
+            <button type="button" 
+                    class="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-gray-400 
+                           hover:text-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded" 
+                    aria-label="검색 실행"
+                    tabindex="0">
+                <i class="fas fa-search" aria-hidden="true"></i>
+            </button>
         </div>
     </section>
 
     <!-- Alphabet Navigation Section -->
     <section aria-labelledby="alphabet-nav-heading" class="px-4 md:px-8 mb-6">
-        <h2 id="alphabet-nav-heading" class="sr-only">알파벳 내비게이션</h2> <!-- Screen reader only heading -->
+        <h2 id="alphabet-nav-heading" class="sr-only">알파벳 내비게이션</h2>
         <div class="letter-nav shadow-lg mx-auto max-w-3xl" id="letterNav" role="navigation" aria-label="알파벳별 용어 필터">
             <!-- Will be populated by JavaScript (script.js) -->
             <p class="text-center text-gray-400">알파벳 내비게이션이 여기에 로드됩니다.</p>
@@ -87,7 +95,7 @@
 
     <!-- Dictionary Content Section -->
     <main aria-labelledby="dictionary-content-heading" class="px-4 md:px-8 max-w-4xl mx-auto space-y-8" id="dictionaryContent">
-        <h2 id="dictionary-content-heading" class="sr-only">용어사전 내용</h2> <!-- Screen reader only heading -->
+        <h2 id="dictionary-content-heading" class="sr-only">용어사전 내용</h2>
         
         <!-- Placeholder content for demonstration, matching the provided image -->
         <!-- This content would typically be dynamically loaded by script.js -->
@@ -137,10 +145,10 @@
     <script src="data.js"></script>
     <script src="script.js"></script>
     <script>
-        // Scroll to Top Button functionality (simplified to avoid conflict with script.js if it exists)
-        document.addEventListener('DOMContentLoaded', function() {
+        // Scroll to Top Button functionality
+        document.addEventListener('DOMContentLoaded', () => {
             const scrollTopButton = document.getElementById('scrollTopBtn');
-            if (!scrollTopButton) return; // Early return if button not found
+            if (!scrollTopButton) return;
 
             const handleScrollVisibility = () => {
                 if (window.pageYOffset > 300) {
@@ -165,8 +173,7 @@
                 }
             });
 
-            // Initial check in case page loads already scrolled
-            handleScrollVisibility();
+            handleScrollVisibility(); // Initial check
         });
     </script>
 </body>
