@@ -14,6 +14,7 @@
 <!--
     body 태그는 전체 페이지의 배경색, 배경 이미지(별 효과), 기본 글자색, 폰트 등을 정의합니다.
     min-h-screen과 flex flex-col은 푸터가 항상 페이지 하단에 붙도록 돕습니다.
+    pb-10은 하단 푸터와 스크롤바 버튼 사이에 여백을 줍니다.
 -->
 <body class="min-h-screen flex flex-col pb-10">
 
@@ -26,36 +27,37 @@
     <header class="header-links bg-black shadow-lg p-6 sticky top-0 z-20">
         <!--
             헤더의 상단 부분: 사이트 제목과 내비게이션 링크를 포함합니다.
-            `container mx-auto`: 내용을 중앙에 배치하고 너비를 제한합니다.
-            `flex justify-between items-center`: 사이트 제목과 내비게이션을 양쪽 끝에 배치하고 세로 중앙 정렬합니다.
+            모바일(`flex-col`)에서는 제목과 내비게이션이 수직으로 쌓이고,
+            PC(`md:flex-row md:justify-between md:items-center`)에서는 가로로 배치됩니다.
             `mb-6`: 아래쪽으로 여백을 주어 검색창 부분과 분리합니다.
         -->
-        <div class="container mx-auto flex justify-between items-center mb-6">
-            <!-- 사이트 제목: 클릭하면 홈 페이지로 이동합니다. -->
-            <h1 class="text-3xl font-extrabold text-white glow">
+        <div class="container mx-auto flex flex-col md:flex-row md:justify-between md:items-center mb-6">
+            <!-- 사이트 제목: 클릭하면 홈 페이지로 이동합니다. 모바일에서 더 크게 보이도록 `text-3xl`로 조정. -->
+            <h1 class="text-3xl font-extrabold text-white glow mb-4 md:mb-0">
                 TEAM ECLIPSE<span class="text-purple-400"> 모바일 백과사전</span>
             </h1>
 
             <!-- 내비게이션 버튼들: 다른 페이지로 이동하는 링크들입니다. -->
-            <nav aria-label="메인 내비게이션">
-                <ul class="flex flex-wrap justify-center gap-2">
+            <!-- 모바일에서는 우측에 정렬되도록 `ml-auto`를 추가하고, 버튼 자체의 패딩과 글자 크기 조정 -->
+            <nav aria-label="메인 내비게이션" class="ml-auto md:ml-0">
+                <ul class="flex flex-wrap justify-end gap-2">
                     <li>
                         <a href="home.html"
-                           class="px-4 py-2 bg-purple-900 hover:bg-purple-800 rounded-lg text-base flex items-center transition-all"
+                           class="px-5 py-2 bg-purple-900 hover:bg-purple-800 rounded-lg text-base flex items-center transition-all"
                            tabindex="0"
                            role="link"
                            aria-label="홈 페이지로 이동">
-                            <i class="fas fa-home mr-1" aria-hidden="true"></i> 홈
+                            <i class="fas fa-home mr-2" aria-hidden="true"></i> 홈
                         </a>
                     </li>
                     <li>
                         <a href="index.html"
-                           class="px-4 py-2 bg-indigo-900 hover:bg-indigo-800 rounded-lg text-base flex items-center transition-all"
+                           class="px-5 py-2 bg-indigo-900 hover:bg-indigo-800 rounded-lg text-base flex items-center transition-all"
                            tabindex="0"
                            role="link"
                            aria-current="page"
                            aria-label="현재 페이지인 용어사전 페이지로 이동">
-                            <i class="fas fa-book mr-1" aria-hidden="true"></i> 용어사전
+                            <i class="fas fa-book mr-2" aria-hidden="true"></i> 용어사전
                         </a>
                     </li>
                 </ul>
@@ -64,7 +66,7 @@
 
         <!--
             헤더의 하단 부분: 검색창과 웹사이트 설명 텍스트를 포함합니다.
-            이 부분이 `container mx-auto text-center`를 통해 PC에서 가운데 정렬됩니다.
+            `container mx-auto text-center`를 통해 모바일과 PC 모두에서 가운데 정렬됩니다.
             `mb-6`: 아래쪽으로 여백을 주어 알파벳 내비게이션과 분리합니다.
         -->
         <div class="container mx-auto text-center mb-6">
@@ -79,10 +81,11 @@
                        id="searchInput"
                        placeholder="용어 검색..."
                        class="w-full pr-10 py-3 pl-14 bg-gray-800 text-gray-100 rounded-lg border border-gray-700
-                              focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-xl"
+                              focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-lg md:text-xl"
                        aria-label="백과사전 용어 검색">
                 <!-- 돋보기 아이콘: 검색창 내부에 위치합니다. -->
                 <button type="button"
+                        id="searchButton" <!-- 검색 기능을 위한 ID 추가 -->
                         class="absolute left-4 top-1/2 -translate-y-1/2 p-1 text-gray-400
                                hover:text-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
                         aria-label="검색 실행"
@@ -90,8 +93,8 @@
                     <i class="fas fa-search" aria-hidden="true"></i>
                 </button>
             </div>
-            <!-- 검색창 아래 설명 텍스트: 가운데 정렬됩니다. -->
-            <p class="text-center text-base text-blue-200 mt-4 max-w-2xl mx-auto">
+            <!-- 검색창 아래 설명 텍스트: 가운데 정렬됩니다. 모바일에서 더 크게 보이도록 `text-base md:text-lg`로 조정. -->
+            <p class="text-center text-base md:text-lg text-blue-200 mt-4 max-w-2xl mx-auto">
                 AGI 안전 및 윤리 관련 용어를 모바일에 최적화하여 제공하는 백과사전입니다.
             </p>
         </div>
@@ -100,8 +103,9 @@
     <!-- 알파벳 내비게이션 섹션: 이미지와 동일하게 헤더 아래에 위치하며, 스크롤됩니다. -->
     <section aria-labelledby="alphabet-nav-heading" class="px-4 md:px-8 mb-6">
         <h2 id="alphabet-nav-heading" class="sr-only">알파벳 내비게이션</h2>
+        <!-- `letter-nav`는 `styles.css`에서 정의되며, `mx-auto max-w-3xl`로 가운데 정렬됩니다. -->
         <div class="letter-nav shadow-lg mx-auto max-w-3xl" id="letterNav" role="navigation" aria-label="알파벳별 용어 필터">
-            <!-- Will be populated by JavaScript (script.js) -->
+            <!-- JavaScript (script.js)에 의해 내용이 채워집니다. -->
             <p class="text-center text-gray-400 py-3">알파벳 내비게이션이 여기에 로드됩니다.</p>
         </div>
     </section>
@@ -109,46 +113,8 @@
     <!-- 용어사전 콘텐츠 섹션: 실제 용어 카드들이 여기에 표시됩니다. -->
     <main aria-labelledby="dictionary-content-heading" class="px-4 md:px-8 max-w-4xl mx-auto space-y-8" id="dictionaryContent">
         <h2 id="dictionary-content-heading" class="sr-only">용어사전 내용</h2>
-
-        <!-- Placeholder content for demonstration -->
-        <article class="term-card rounded-lg p-6 shadow-xl border border-gray-700" aria-labelledby="alignment-heading">
-            <header class="flex items-center justify-between mb-4">
-                <h3 id="alignment-heading" class="text-xl md:text-2xl font-bold text-purple-400">Alignment</h3>
-                <span class="text-purple-300 text-sm md:text-base" aria-label="한국어 번역 정렬">정렬</span>
-            </header>
-            <p class="mb-4 text-gray-200 text-sm md:text-base leading-relaxed">
-                Refers to the process of ensuring an AI system acts in accordance with the goals and values intended by the developer or user. It can be likened to 'training' or 'domesticating' the AI to operate beneficially without diverging from human intent. Failure to achieve alignment means the AI could act harmfully in unexpected ways and is considered one of the severe risks that AGI could pose.
-            </p>
-            <p class="text-blue-300 text-xs md:text-sm italic" lang="ko">
-                AI 시스템이 개발자나 사용자가 의도한 목표와 가치에 맞게 행동하도록 만드는 과정입니다.
-            </p>
-        </article>
-
-        <article class="term-card rounded-lg p-6 shadow-xl border border-gray-700" aria-labelledby="control-safety-case-heading">
-            <header class="flex items-center justify-between mb-4">
-                <h3 id="control-safety-case-heading" class="text-xl md:text-2xl font-bold text-purple-400">Control Safety Case</h3>
-                <span class="text-purple-300 text-sm md:text-base" aria-label="한국어 번역 통제 안전 사례">통제 안전 사례</span>
-            </header>
-            <p class="mb-4 text-gray-200 text-sm md:text-base leading-relaxed">
-                An approach that argues an AI system is safe because strong safety features (e.g., monitoring systems, access restrictions) are in place that can effectively detect and block dangerous behaviors, even if the AI has a tendency to act against developer intent (misalignment). This approach relies on external 'control' systems to ensure safety, rather than depending on the AI itself being perfectly 'good'.
-            </p>
-            <p class="text-blue-300 text-xs md:text-sm italic" lang="ko">
-                AI 시스템이 설령 위험한 행동 성향이 있더라도, 효과적으로 감지하고 막는 강력한 안전 장치가 있어 안전하다는 주장입니다.
-            </p>
-        </article>
-
-        <article class="term-card rounded-lg p-6 shadow-xl border border-gray-700" aria-labelledby="controllable-trade-offs-heading">
-            <header class="flex items-center justify-between mb-4">
-                <h3 id="controllable-trade-offs-heading" class="text-xl md:text-2xl font-bold text-purple-400">Controllable Trade-offs</h3>
-                <span class="text-purple-300 text-sm md:text-base" aria-label="한국어 번역 제어 가능한 트레이드오프">제어 가능한 트레이드오프</span>
-            </header>
-            <p class="mb-4 text-gray-200 text-sm md:text-base leading-relaxed">
-                A concept where, when designing or operating an AI system, users can intentionally choose and adjust an appropriate balance point among various potentially conflicting goals (e.g., safety, performance, cost, efficiency). For instance, adjusting the sensitivity of a monitoring system to detect potential risks (higher detection rate leads to more false positives) to balance safety and operational efficiency according to the situation.
-            </p>
-            <p class="text-blue-300 text-xs md:text-sm italic" lang="ko">
-                AI 시스템 설계/운영 시 서로 상충될 수 있는 여러 목표들(안전성, 성능 등) 사이에서 사용자가 원하는 균형점을 조절할 수 있는 개념입니다.
-            </p>
-        </article>
+        <!-- JavaScript에 의해 동적으로 용어 카드들이 여기에 생성됩니다. -->
+        <p class="text-center text-gray-400 py-10">용어사전 내용이 여기에 로드됩니다.</p>
     </main>
 
     <!-- 페이지 맨 위로 이동 버튼 -->
@@ -166,7 +132,7 @@
         <p class="mt-2 text-xs">모든 내용은 TEAM ECLIPSE의 AGI 안전 연구에 기반합니다.</p>
     </footer>
 
-    <!-- JavaScript 파일 연결. 스크립트 기능이 여기에 구현됩니다. -->
+    <!-- JavaScript 파일 연결. data.js에는 용어 데이터가, script.js에는 동적 기능이 구현됩니다. -->
     <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
