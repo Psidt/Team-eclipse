@@ -4,135 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEAM ECLIPSE - 모바일 백과사전</title>
-    <!-- Tailwind CSS (v2.2.19) from CDN. 디자인을 위한 기본 도구입니다. -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-    <!-- Font Awesome (v6.4.0) from CDN for icons. 돋보기 아이콘 등에 사용됩니다. -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    <!-- Custom styles for consistent theme. 직접 정의한 스타일과 배경이 여기에 있습니다. -->
     <link rel="stylesheet" href="styles.css">
 </head>
-<!--
-    body 태그는 전체 페이지의 배경색, 배경 이미지(별 효과), 기본 글자색, 폰트 등을 정의합니다.
-    min-h-screen과 flex flex-col은 푸터가 항상 페이지 하단에 붙도록 돕습니다.
-    pb-10은 하단 푸터와 스크롤바 버튼 사이에 여백을 줍니다.
--->
 <body class="min-h-screen flex flex-col pb-10">
 
     <!--
-        메인 헤더: 사이트 제목, 내비게이션, 검색창, 설명 텍스트를 포함하며,
-        스크롤 시 화면 상단에 고정됩니다.
-        `bg-black`으로 솔리드 검은색 배경을 주고, `styles.css`의 `backdrop-filter`로 흐림 효과를 줍니다.
-        `p-6`은 헤더 전체에 패딩을 추가하여 내용이 여유롭게 보이도록 합니다.
+        메인 헤더: 모든 주요 정보 (내비게이션, 소개, 검색, 알파벳 바)를 포함하며,
+        더 이상 화면 상단에 고정되지 않습니다.
     -->
-    <header class="header-links bg-black shadow-lg p-6 sticky top-0 z-20">
-        <!--
-            헤더의 상단 부분: 사이트 제목과 내비게이션 링크를 포함합니다.
-            모바일(`flex-col`)에서는 제목과 내비게이션이 수직으로 쌓이고,
-            PC(`md:flex-row md:justify-between md:items-center`)에서는 가로로 배치됩니다.
-            `mb-6`: 아래쪽으로 여백을 주어 검색창 부분과 분리합니다.
-        -->
-        <div class="container mx-auto flex flex-col md:flex-row md:justify-between md:items-center mb-6">
-            <!-- 사이트 제목: 클릭하면 홈 페이지로 이동합니다. 모바일에서 더 크게 보이도록 `text-3xl`로 조정. -->
-            <h1 class="text-3xl font-extrabold text-white glow mb-4 md:mb-0">
-                TEAM ECLIPSE<span class="text-purple-400"> 모바일 백과사전</span>
-            </h1>
-
-            <!-- 내비게이션 버튼들: 다른 페이지로 이동하는 링크들입니다. -->
-            <!-- 모바일에서는 우측에 정렬되도록 `ml-auto`를 추가하고, 버튼 자체의 패딩과 글자 크기 조정 -->
-            <nav aria-label="메인 내비게이션" class="w-full md:w-auto flex justify-end">
-                <ul class="flex flex-wrap justify-end gap-2">
-                    <li>
-                        <a href="home.html"
-                           class="px-5 py-2 bg-purple-900 hover:bg-purple-800 rounded-lg text-base flex items-center transition-all"
-                           tabindex="0"
-                           role="link"
-                           aria-label="홈 페이지로 이동">
-                            <i class="fas fa-home mr-2" aria-hidden="true"></i> 홈
-                        </a>
-                    </li>
-                    <li>
-                        <a href="index.html"
-                           class="px-5 py-2 bg-indigo-900 hover:bg-indigo-800 rounded-lg text-base flex items-center transition-all"
-                           tabindex="0"
-                           role="link"
-                           aria-current="page"
-                           aria-label="현재 페이지인 용어사전 페이지로 이동">
-                            <i class="fas fa-book mr-2" aria-hidden="true"></i> 용어사전
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-
-        <!--
-            헤더의 하단 부분: 검색창과 웹사이트 설명 텍스트를 포함합니다.
-            `container mx-auto text-center`를 통해 모바일과 PC 모두에서 가운데 정렬됩니다.
-            `mb-6`: 아래쪽으로 여백을 주어 알파벳 내비게이션과 분리합니다.
-        -->
-        <div class="container mx-auto text-center mb-6">
+    <header class="main-header bg-black shadow-lg p-6 relative"> <!-- relative 추가하여 내비게이션 버튼 위치 조정 용이 -->
+        <div class="container mx-auto">
             <!--
-                검색창 입력 필드와 돋보기 아이콘을 감싸는 div입니다.
-                `relative`: 아이콘 위치를 설정하기 위함.
-                `w-full max-w-xl mx-auto`: 너비를 최대로 하고 (최대 576px), `mx-auto`로 가운데 정렬합니다.
+                주요 내비게이션 버튼 (홈, 용어사전)
+                화면 우측 상단에 배치합니다. (PC 기준)
+                모바일에서는 제목 아래에 올 수 있도록 flex-col 사용.
             -->
-            <div class="relative w-full max-w-xl mx-auto">
-                <h2 id="search-heading" class="sr-only">용어 검색</h2>
-                <input type="text"
-                       id="searchInput"
-                       placeholder="용어 검색..."
-                       class="w-full pr-10 py-3 pl-14 bg-gray-800 text-gray-100 rounded-lg border border-gray-700
-                              focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-lg md:text-xl"
-                       aria-label="백과사전 용어 검색">
-                <!-- 돋보기 아이콘: 검색창 내부에 위치합니다. `left-4`로 왼쪽 여백, `w-6 h-6`으로 크기 조정. -->
-                <button type="button"
-                        id="searchButton"
-                        class="absolute left-4 top-1/2 -translate-y-1/2 p-1 text-gray-400 w-6 h-6 flex items-center justify-center
-                               hover:text-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
-                        aria-label="검색 실행"
-                        tabindex="0">
-                    <i class="fas fa-search" aria-hidden="true"></i>
-                </button>
+            <div class="flex justify-end mb-4 md:absolute md:top-6 md:right-6 z-10">
+                <nav aria-label="메인 내비게이션">
+                    <ul class="flex gap-2">
+                        <li>
+                            <a href="home.html"
+                               class="px-4 py-2 bg-purple-900 hover:bg-purple-800 rounded-lg text-sm flex items-center transition-all"
+                               tabindex="0" role="link" aria-label="홈 페이지로 이동">
+                                <i class="fas fa-home mr-1" aria-hidden="true"></i> 홈
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index.html"
+                               class="px-4 py-2 bg-indigo-900 hover:bg-indigo-800 rounded-lg text-sm flex items-center transition-all"
+                               tabindex="0" role="link" aria-current="page" aria-label="현재 페이지인 용어사전 페이지로 이동">
+                                <i class="fas fa-book mr-1" aria-hidden="true"></i> 용어사전
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-            <!-- 검색창 아래 설명 텍스트: 가운데 정렬됩니다. 모바일에서 더 크게 보이도록 `text-base md:text-lg`로 조정. -->
-            <p class="text-center text-base md:text-lg text-blue-200 mt-4 max-w-2xl mx-auto">
+
+            <!-- 사이트 제목 (선택 사항: 이미지에는 없으므로 일단 주석 처리. 원하시면 주석 해제) -->
+            <!--
+            <div class="text-center mb-8">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-white glow">
+                    TEAM ECLIPSE<span class="text-purple-400"> 모바일 백과사전</span>
+                </h1>
+            </div>
+            -->
+
+            <!-- 소개 문구: 검색창 위로 이동 -->
+            <p class="text-center text-base md:text-lg text-blue-200 mb-6 mt-8 md:mt-16 max-w-2xl mx-auto"> <!-- mt-8, md:mt-16 추가하여 상단 여백 확보 -->
                 AGI 안전 및 윤리 관련 용어를 모바일에 최적화하여 제공하는 백과사전입니다.
             </p>
+
+            <!-- 용어 검색창 -->
+            <div class="text-center mb-8">
+                <div class="relative w-full max-w-xl mx-auto">
+                    <h2 id="search-heading" class="sr-only">용어 검색</h2>
+                    <input type="text"
+                           id="searchInput"
+                           placeholder="용어 검색..."
+                           class="w-full pr-10 py-3 pl-14 bg-gray-800 text-gray-100 rounded-lg border border-gray-700
+                                  focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-lg md:text-xl"
+                           aria-label="백과사전 용어 검색">
+                    <button type="button"
+                            id="searchButton"
+                            class="absolute left-4 top-1/2 -translate-y-1/2 p-1 text-gray-400 w-6 h-6 flex items-center justify-center
+                                   hover:text-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
+                            aria-label="검색 실행"
+                            tabindex="0">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 알파벳 내비게이션 -->
+            <section aria-labelledby="alphabet-nav-heading" class="px-4 md:px-8 pb-6">
+                <h2 id="alphabet-nav-heading" class="sr-only">알파벳 내비게이션</h2>
+                <div class="letter-nav shadow-lg mx-auto max-w-3xl" id="letterNav" role="navigation" aria-label="알파벳별 용어 필터">
+                    <p class="text-center text-gray-400 py-3">알파벳 내비게이션이 여기에 로드됩니다.</p>
+                </div>
+            </section>
         </div>
     </header>
 
-    <!-- 알파벳 내비게이션 섹션: 이미지와 동일하게 헤더 아래에 위치하며, 스크롤됩니다. -->
-    <section aria-labelledby="alphabet-nav-heading" class="px-4 md:px-8 mb-6">
-        <h2 id="alphabet-nav-heading" class="sr-only">알파벳 내비게이션</h2>
-        <!-- `letter-nav`는 `styles.css`에서 정의되며, `mx-auto max-w-3xl`로 가운데 정렬됩니다. -->
-        <div class="letter-nav shadow-lg mx-auto max-w-3xl" id="letterNav" role="navigation" aria-label="알파벳별 용어 필터">
-            <!-- JavaScript (script.js)에 의해 내용이 채워집니다. -->
-            <p class="text-center text-gray-400 py-3">알파벳 내비게이션이 여기에 로드됩니다.</p>
-        </div>
-    </section>
-
-    <!-- 용어사전 콘텐츠 섹션: 실제 용어 카드들이 여기에 표시됩니다. -->
-    <main aria-labelledby="dictionary-content-heading" class="px-4 md:px-8 max-w-4xl mx-auto space-y-8" id="dictionaryContent">
+    <!-- 용어사전 콘텐츠 섹션 -->
+    <main aria-labelledby="dictionary-content-heading" class="px-4 md:px-8 max-w-4xl mx-auto space-y-8 mt-8" id="dictionaryContent">
         <h2 id="dictionary-content-heading" class="sr-only">용어사전 내용</h2>
-        <!-- JavaScript에 의해 동적으로 용어 카드들이 여기에 생성됩니다. -->
         <p class="text-center text-gray-400 py-10">용어사전 내용이 여기에 로드됩니다.</p>
     </main>
 
     <!-- 페이지 맨 위로 이동 버튼 -->
     <button id="scrollTopBtn"
             class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg transform transition-all duration-300 opacity-0 invisible z-50"
-            tabindex="0"
-            role="button"
-            aria-label="페이지 맨 위로 이동">
+            tabindex="0" role="button" aria-label="페이지 맨 위로 이동">
         <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
 
-    <!-- 푸터 영역: 웹사이트 하단 정보가 포함됩니다. -->
+    <!-- 푸터 영역 -->
     <footer class="mt-12 px-4 py-6 text-center text-sm text-gray-400" role="contentinfo">
         <p>© TEAM ECLIPSE - AGI 안전 및 윤리 프로젝트 CC BY 4.0</p>
         <p class="mt-2 text-xs">모든 내용은 TEAM ECLIPSE의 AGI 안전 연구에 기반합니다.</p>
     </footer>
 
-    <!-- JavaScript 파일 연결. data.js에는 용어 데이터가, script.js에는 동적 기능이 구현됩니다. -->
     <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
