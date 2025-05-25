@@ -27,47 +27,6 @@ body {
     border-bottom: 1px solid rgba(150,150,255,0.3);
 }
 
-.letter-nav {
-    background-color: rgba(30,30,60,0.9);
-    border-radius: 15px;
-    padding: 10px;
-    text-align: center;
-    position: static;
-    margin-top: 8px;
-    transition: opacity 0.3s, visibility 0.3s;
-}
-
-.letter-nav.hide-on-scroll {
-    opacity: 0;
-    pointer-events: none;
-    visibility: hidden;
-}
-
-.letter-btn {
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-    line-height: 32px;
-    text-align: center;
-    margin: 3px;
-    border-radius: 50%;
-    background: rgba(60,60,100,0.5);
-    color: #c0c0ff;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.letter-btn:hover, .letter-btn.active {
-    background: rgba(100,100,255,0.7);
-    color: white;
-}
-
-.letter-btn.disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-}
-
 #searchBarWrapper {
     position: static;
     width: 100%;
@@ -76,7 +35,7 @@ body {
     transition: box-shadow 0.3s, background 0.3s;
 }
 
-.fixed-search {
+.sticky-search {
     position: fixed !important;
     top: 0;
     left: 0;
@@ -90,20 +49,6 @@ body {
     animation: fadeIn 0.3s;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px);}
-    to { opacity: 1; transform: translateY(0);}
-}
-
-::-webkit-scrollbar {
-    width: 5px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgba(100,100,255,0.5);
-    border-radius: 10px;
-}
-
 #scrollToTopBtn {
   opacity: 0;
   pointer-events: none;
@@ -112,4 +57,17 @@ body {
 #scrollToTopBtn.show {
   opacity: 1;
   pointer-events: auto;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(100,100,255,0.5);
+    border-radius: 10px;
 }
