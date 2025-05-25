@@ -5,112 +5,103 @@ html {
 }
 
 body {
-    background-color: #0a0a1a; /* 기본 배경색 (우주 배경 패턴 아래) */
+    background-color: #0a0a1a;
     background-image:
         radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
         radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
         radial-gradient(circle at 50% 50%, rgba(100, 100, 255, 0.2) 1px, transparent 1px);
-    background-size: 100px 100px; /* 별 패턴 크기 */
-    color: #e0e0ff; /* 기본 글자색 (밝은 파란색 계열) */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* 폰트 설정 */
-    min-height: 100vh; /* 최소 높이를 뷰포트 높이로 설정 */
-    word-wrap: break-word; /* 단어 자동 줄바꿈 */
-    overflow-wrap: break-word; /* 단어 자동 줄바꿈 */
-    overflow-x: hidden; /* 가로 스크롤바 방지 및 sticky 요소에 도움 */
+    background-size: 100px 100px;
+    color: #e0e0ff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    overflow-x: hidden;
 }
 
-/* 헤더의 sticky 속성과 배경 흐림 효과를 정의합니다. */
-.header-links {
-    position: sticky; /* 스크롤 시 고정 */
-    top: 0;          /* 화면 상단에 고정 */
-    z-index: 20;     /* 다른 요소 위에 표시 (숫자가 높을수록 앞에 옴) */
-    backdrop-filter: blur(10px); /* 헤더 아래 내용이 흐리게 보임 */
+/* .main-header는 일반적인 헤더 역할을 하며, 더 이상 sticky가 아닙니다. */
+/* Tailwind CSS 클래스가 대부분의 스타일을 처리합니다. */
+.main-header {
+    /* backdrop-filter: blur(10px); /* 고정되지 않으므로, 이 효과는 이제 불필요하거나, 원한다면 유지할 수 있습니다. */
+    /* 현재 HTML에서는 헤더 배경이 bg-black으로 지정되어 있습니다. */
 }
 
-/* 사이트 제목에 빛나는 효과를 줍니다. */
 .glow {
-    text-shadow: 0 0 8px rgba(150, 150, 255, 0.9); /* 그림자 효과로 빛나는 느낌 */
+    text-shadow: 0 0 8px rgba(150, 150, 255, 0.9);
 }
 
-/* 용어 카드 스타일: 어두운 배경, 테두리, 호버 효과 */
 .term-card {
-    background-color: rgba(30, 30, 60, 0.8); /* 어두운 보라색 계열의 반투명 배경 */
-    border-left: 3px solid #6610f2; /* 왼쪽 보라색 테두리 */
-    transition: all 0.3s ease; /* 부드러운 전환 효과 */
+    background-color: rgba(30, 30, 60, 0.8);
+    border-left: 3px solid #6610f2;
+    transition: all 0.3s ease;
 }
 
 .term-card:hover {
-    transform: translateY(-3px); /* 호버 시 약간 위로 이동 */
-    box-shadow: 0 6px 16px rgba(150, 150, 255, 0.25); /* 호버 시 그림자 강화 */
-    background-color: rgba(40, 40, 80, 0.9); /* 호버 시 배경색 약간 변경 */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(150, 150, 255, 0.25);
+    background-color: rgba(40, 40, 80, 0.9);
 }
 
-/* 스크롤바 디자인 */
 ::-webkit-scrollbar {
-    width: 6px; /* 스크롤바 너비 */
+    width: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(100, 100, 255, 0.6); /* 스크롤바 색상 (반투명 파란색) */
-    border-radius: 10px; /* 스크롤바 모서리 둥글게 */
+    background: rgba(100, 100, 255, 0.6);
+    border-radius: 10px;
 }
 
-/* 알파벳 내비게이션 바 스타일 */
 .letter-nav {
-    background-color: rgba(30, 30, 60, 0.95); /* 어두운 보라색 계열의 반투명 배경 */
-    border-radius: 15px; /* 모서리 둥글게 */
-    padding: 8px; /* 패딩 */
-    overflow-x: auto; /* 내용이 넘칠 경우 가로 스크롤바 생성 */
-    white-space: nowrap; /* 버튼들이 한 줄에 유지되도록 함 */
-    scrollbar-width: none; /* Firefox에서 스크롤바 숨김 */
-    -ms-overflow-style: none; /* IE에서 스크롤바 숨김 */
+    background-color: rgba(30, 30, 60, 0.95);
+    border-radius: 15px;
+    padding: 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 .letter-nav::-webkit-scrollbar {
-    height: 0; /* Webkit (Chrome, Safari)에서 스크롤바 숨김 */
+    height: 0;
 }
 
-/* 알파벳 버튼 스타일 */
 .letter-btn {
-    display: inline-flex; /* Flexbox로 아이콘과 텍스트를 정렬 */
-    align-items: center; /* 세로 중앙 정렬 */
-    justify-content: center; /* 가로 중앙 정렬 */
-    width: 38px; /* 버튼 너비 */
-    height: 38px; /* 버튼 높이 */
-    line-height: 1; /* 텍스트 줄 높이 */
-    margin: 4px; /* 버튼 간 여백 */
-    border-radius: 50%; /* 완전한 원형 */
-    background: rgba(60, 60, 100, 0.6); /* 배경색 */
-    color: #c0c0ff; /* 글자색 */
-    font-weight: bold; /* 글자 두께 */
-    cursor: pointer; /* 마우스 오버 시 포인터 변경 */
-    transition: all 0.2s; /* 부드러운 전환 효과 */
-    font-size: 1.1rem; /* 글자 크기 */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    line-height: 1;
+    margin: 4px;
+    border-radius: 50%;
+    background: rgba(60, 60, 100, 0.6);
+    color: #c0c0ff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1.1rem;
 }
 
 .letter-btn:hover, .letter-btn.active {
-    background: rgba(100, 100, 255, 0.8); /* 호버/활성화 시 배경색 변경 */
-    color: white; /* 호버/활성화 시 글자색 변경 */
+    background: rgba(100, 100, 255, 0.8);
+    color: white;
 }
 
-/* `strong` 태그의 글자 두께를 보장합니다. */
 strong {
     font-weight: bold;
 }
 
-/* 맨 위로 이동 버튼의 전환 효과와 가시성을 정의합니다. */
 #scrollTopBtn {
-    opacity: 0; /* 기본적으로 숨김 */
-    visibility: hidden; /* 렌더링에서 제외하여 클릭 방지 */
-    transition: all 0.3s ease; /* 모든 속성에 부드러운 전환 효과 */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
 }
 
 #scrollTopBtn.visible {
-    opacity: 1; /* 보임 상태에서 불투명도 1 */
-    visibility: visible; /* 보임 상태에서 렌더링에 포함 */
-    transform: translateY(0); /* 초기 상태에서 이동된 것이 있다면 원래 위치로 */
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
-/* main 태그의 오버플로우 설정을 보장합니다. */
 main {
     overflow: visible;
 }
