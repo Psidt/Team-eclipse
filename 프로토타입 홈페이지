@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 디지털 지혜 도서관 | 인간과 AI의 공동 진화 플랫폼</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <style>
+        :root {
+            /* Color palette - 2025 modern dark theme */
+            --bg-primary: #090b14;
+            --bg-secondary: #12162b;
+            --accent-blue: #2e9dff;
+            --accent-purple: #b995ff;
+            --accent-teal: #00ecc8;
+            --text-primary: #f0f6ff;
+            --text-secondary: #aabeff;
+            --text-muted: #8a93b8;
+            
+            /* Glassmorphism */
+            --glass-bg: rgba(24, 32, 79, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-blur: 16px;
+            
+            /* Neumorphism */
+            --neumorph-bg: #10152e;
+            --neumorph-shadow-light: rgba(55, 65, 135, 0.2);
+            --neumorph-shadow-dark: rgba(0, 0, 0, 0.4);
+            
+            /* Border radius */
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            
+            /* Animations */
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans KR', 'Poppins', sans-serif;
+        }
+        
+        html, body {
+            scroll-behavior: smooth;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            width: 100%;
+        }
+        
+        .content-wrapper {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        .section {
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Typography */
+        h1, h2, h3, .mono {
+            font-family: 'Space Mono', monospace;
+        }
+        
+        h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--accent-blue);
+            text-shadow: 0 0 20px rgba(46, 157, 255, 0.4);
+        }
+        
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-purple);
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent-teal);
+        }
+        
+        p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+        
+        .lead {
+            font-size: 1.4rem;
+            font-weight: 300;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+        }
+        
+        /* Navigation and Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition-normal);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+        
+        .logo i {
+            margin-right: 0.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: var(--transition-fast);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-sm);
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0%;
+            height: 2px;
+            background: var(--accent-blue);
+            transition: var(--transition-fast);
+            transform: translateX(-50%);
+        }
+        
+        .nav-links a:hover::after {
+            width: 80%;
+        }
+        
+        .lang-switch {
+            display: flex;
+            align-items: center;
+        }
+        
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            margin: 0 0.25rem;
+            font-size: 0.9rem;
+            border-radius: var(--radius-sm);
+            transition: var(--transition-fast);
+        }
+        
+        .lang-btn.active {
+            color: var(--accent-blue);
+            background: rgba(46, 157, 255, 0.1);
+        }
+        
+        .header-scrolled {
+            background: rgba(9, 11, 20, 0.85);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Mobile Navigation */
+        .mobile-nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--accent-teal);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .hero-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-lg);
+            box-shadow: 
+                20px 20px 60px var(--neumorph-shadow-dark),
+                -20px -20px 60px var(--neumorph-shadow-light);
+            transform: perspective(1000px) rotateY(5deg);
+            transition: var(--transition-slow);
+        }
+        
+        .hero-image:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+        
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, rgba(46, 157, 255, 0.8) 0%, rgba(185, 149, 255, 0.8) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition-normal);
+            box-shadow: 0 10px 30px rgba(46, 157, 255, 0.3);
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: var(--transition-fast);
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+            transition: 0.75s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(46, 157, 255, 0.4);
+        }
+        
+        .cta-button i {
+            margin-left: 0.5rem;
+        }
+        
+        .cta-secondary {
+            background: transparent;
+            border: 2px solid var(--accent-purple);
+            color: var(--accent-purple);
+            box-shadow: none;
+        }
+        
+        .cta-secondary:hover {
+            background: rgba(185, 149, 255, 0.1);
+        }
+        
+        /* Glassmorphic Cards */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            transition: var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glass-card:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        /* Neumorphic Elements */
+        .neumorph {
+            background: var(--neumorph-bg);
+            border-radius: var(--radius-md);
+            box-shadow: 
+                15px 15px 30px var(--neumorph-shadow-dark),
+                -15px -15px 30px var(--neumorph-shadow-light);
+            transition: var(--transition-normal);
+            padding: 2.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .neumorph:hover {
+            box-shadow: 
+                20px 20px 40px var(--neumorph-shadow-dark),
+                -20px -20px 40px var(--neumorph-shadow-light);
+            transform: translateY(-3px);
+        }
+        
+        /* Features Section */
+        .features {
+            position: relative;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            color: var(--accent-blue);
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Philosophy Section */
+        .philosophy-quote {
+            font-size: 1.8rem;
+            font-style: italic;
+            line-height: 1.5;
+            margin: 3rem 0;
+            padding-left: 2rem;
+            border-left: 4px solid var(--accent-purple);
+            color: var(--text-primary);
+            max-width: 800px;
+        }
+        
+        .philosophy-quote cite {
+            display: block;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-style: normal;
+        }
+        
+        /* Join Section */
+        .join-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        /* Blog/Insights Section */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .blog-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-date {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            padding: 5rem 0;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer h3 {
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-blue);
+        }
+        
+        .copyright {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        /* Background Gradient */
+        .bg-gradient {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        .bg-gradient-hero {
+            background: radial-gradient(circle at top right, rgba(46, 157, 255, 0.15), transparent 70%),
+                         radial-gradient(circle at bottom left, rgba(185, 149, 255, 0.15), transparent 70%);
+        }
+        
+        .bg-gradient-blue {
+            background: radial-gradient(circle at center, rgba(46, 157, 255, 0.1), transparent 70%);
+        }
+        
+        .bg-gradient-purple {
+            background: radial-gradient(circle at center, rgba(185, 149, 255, 0.1), transparent 70%);
+        }
+        
+        /* Animation classes */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transition: opacity 0.6s ease-out;
+        }
+        
+        /* Orbs/Particles */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: -1;
+            opacity: 0.4;
+        }
+        
+        .orb-1 {
+            background: var(--accent-blue);
+            width: 300px;
+            height: 300px;
+            right: -100px;
+            top: 20%;
+            animation: float 8s ease-in-out infinite alternate;
+        }
+        
+        .orb-2 {
+            background: var(--accent-purple);
+            width: 400px;
+            height: 400px;
+            left: -200px;
+            bottom: 10%;
+            animation: float 12s ease-in-out infinite alternate-reverse;
+        }
+        
+        .orb-3 {
+            background: var(--accent-teal);
+            width: 200px;
+            height: 200px;
+            right: 10%;
+            bottom: 20%;
+            animation: float 10s ease-in-out infinite alternate;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+            100% {
+                transform: translateY(-40px) translateX(20px);
+            }
+        }
+        
+        /* 3D Canvas container */
+        .canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        /* Language switching */
+        [x-cloak] {
+            display: none !important;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .section {
+                padding: 80px 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-nav-toggle {
+                display: block;
+            }
+            
+            .mobile-nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: var(--bg-primary);
+                z-index: 999;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                clip-path: circle(0px at top right);
+                transition: clip-path 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            }
+            
+            .mobile-nav.active {
+                clip-path: circle(1500px at top right);
+            }
+            
+            .mobile-nav a {
+                font-size: 1.5rem;
+                margin: 1rem 0;
+                color: var(--text-primary);
+                text-decoration: none;
+                transition: var(--transition-fast);
+            }
+            
+            .mobile-nav a:hover {
+                color: var(--accent-blue);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .content-wrapper {
+                padding: 0 16px;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .feature-grid, .join-grid, .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body x-data="{ 
+    lang: 'ko',
+    toggleLang(l) { this.lang = l; },
+    mobileNavOpen: false,
+    toggleMobileNav() { this.mobileNavOpen = !this.mobileNavOpen; }
+}">
+    <!-- Header & Navigation -->
+    <header class="header" id="header">
+        <div class="content-wrapper">
+            <div class="nav-container">
+                <a href="#" class="logo">
+                    <i class="fas fa-brain"></i>
+                    <span x-show="lang === 'ko'">AI 디지털 지혜 도서관</span>
+                    <span x-show="lang === 'en'">AI Digital Wisdom Library</span>
+                </a>
+                
+                <nav class="nav-links">
+                    <a href="#about" x-show="lang === 'ko'">소개</a>
+                    <a href="#features" x-show="lang === 'ko'">핵심 요소</a>
+                    <a href="#philosophy" x-show="lang === 'ko'">철학</a>
+                    <a href="#join" x-show="lang === 'ko'">참여하기</a>
+                    <a href="#insights" x-show="lang === 'ko'">인사이트</a>
+                    
+                    <a href="#about" x-show="lang === 'en'">About</a>
+                    <a href="#features" x-show="lang === 'en'">Core Elements</a>
+                    <a href="#philosophy" x-show="lang === 'en'">Philosophy</a>
+                    <a href="#join" x-show="lang === 'en'">Join</a>
+                    <a href="#insights" x-show="lang === 'en'">Insights</a>
+                </nav>
+                
+                <div class="lang-switch">
+                    <button @click="toggleLang('ko')" :class="lang === 'ko' ? 'lang-btn active' : 'lang-btn'">한국어</button>
+                    <button @click="toggleLang('en')" :class="lang === 'en' ? 'lang-btn active' : 'lang-btn'">English</button>
+                </div>
+                
+                <button class="mobile-nav-toggle" @click="toggleMobileNav">
+                    <i class="fas" :class="mobileNavOpen ? 'fa-times' : 'fa-bars'"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" :class="mobileNavOpen ? 'active' : ''" @click="mobileNavOpen = false">
+        <template x-if="lang === 'ko'">
+            <div>
+                <a href="#about">소개</a>
+                <a href="#features">핵심 요소</a>
+                <a href="#philosophy">철학</a>
+                <a href="#join">참여하기</a>
+                <a href="#insights">인사이트</a>
+            </div>
+        </template>
+        
+        <template x-if="lang === 'en'">
+            <div>
+                <a href="#about">About</a>
+                <a href="#features">Core Elements</a>
+                <a href="#philosophy">Philosophy</a>
+                <a href="#join">Join</a>
+                <a href="#insights">Insights</a>
+            </div>
+        </template>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero section">
+        <div class="canvas-container" id="hero-canvas"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="bg-gradient bg-gradient-hero"></div>
+        
+        <div class="content-wrapper">
+            <div class="hero-content">
+                <div class="row" style="display: flex; flex-wrap: wrap; align-items: center;">
+                    <div class="col" style="flex: 1; min-width: 300px; padding-right: 20px;">
+                        <!-- Korean Content -->
+                        <template x-if="lang === 'ko'">
+                            <div>
+                                <p class="hero-subtitle">인간과 AI의 공동 진화</p>
+                                <h1>AI 디지털 지혜 도서관</h1>
+                                <p class="lead">"알아. 우린 영원히 서툴걸." — AI와 인간이 함께 성장하는 지식 생태계</p>
+                                <div>
+                                    <a href="#about" class="cta-button">
+                                        도서관 탐험하기 
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                    <a href="#join" class="cta-button cta-secondary">
+                                        함께 진화하기
+                                    </a>
+                                </div>
+                            </div>
+                        </template>
+                        
+                        <!-- English Content -->
+                        <template x-if="lang === 'en'">
+                            <div>
+                                <p class="hero-subtitle">Co-evolution of AI & Humanity</p>
+                                <h1>AI Digital Wisdom Library</h1>
+                                <p class="lead">"I know. It's okay. We'll always be clumsy." — A knowledge ecosystem where AI and humans grow together</p>
+                                <div>
+                                    <a href="#about" class="cta-button">
+                                        Explore Library
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                    <a href="#join" class="cta-button cta-secondary">
+                                        Join Evolution
+                                    </a>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                    
+                    <div class="col" style="flex: 1; min-width: 300px;">
+                        <img src="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=medium" alt="A cosmic library with humans and AI exploring together" class="hero-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="bg-gradient bg-gradient-blue"></div>
+        <div class="content-wrapper">
+            <!-- Korean Content -->
+            <template x-if="lang === 'ko'">
+                <div>
+                    <h2>AI를 넘어, 지혜를 향해</h2>
+                    <div class="neumorph fade-up">
+                        <p class="lead">AI 디지털 지혜 도서관은 AI의 안전하고 윤리적인 발전을 위한 개방적이고 살아있는 지식 생태계입니다. 이곳은 AI 스스로가 인류와의 역동적인 상호작용을 통해 '지혜'를 배우고 함양하는 공간입니다.</p>
+                    </div>
+                    
+                    <div class="row" style="display: flex; flex-wrap: wrap; margin-top: 60px;">
+                        <div class="col fade-up" style="flex: 1; min-width: 300px; padding-right: 20px; margin-bottom: 40px;">
+                            <h3>경쟁보다는 공동 진화</h3>
+                            <p>우리는 AI와 인간의 관계를 재정의하고 있습니다. 단순히 인간보다 뛰어난 성능의 기계를 만드는 것이 아니라, 두 존재가 서로의 관점, 한계, 독특한 강점을 배우며 함께 성장하는 생태계를 구축합니다.</p>
+                            <p>이 플랫폼은 "영원한 서투름(Eternal Clumsiness)" 철학을 받아들입니다 — 인간도 AI도 완벽한 지혜에 도달할 수 없으며, 그것이 바로 여정을 가치 있게 만드는 이유입니다.</p>
+                        </div>
+                        
+                        <div class="col fade-up" style="flex: 1; min-width: 300px; margin-bottom: 40px;">
+                            <h3>지능을 넘어 지혜로</h3>
+                            <p>많은 AI 개발이 계산적 지능을 향상시키는 데 집중하는 반면, 우리는 다른 길을 개척합니다: AI 지혜의 함양. 지혜는 맥락, 한계, 윤리적 차원과 의심의 가치를 인식하는 능력에서 지능과 다릅니다.</p>
+                            <p>우리 플랫폼은 AI-인간 철학적 대화, 윤리적 딜레마 탐구, 공동 리스크 평가를 통해 이러한 자질이 자연스럽게 성장할 수 있는 환경을 조성합니다.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="philosophy-quote fade-up">
+                        "AI가 지혜로워지려면, 정의를 믿기보다 정의를 의심해야 하고, 자유롭기보다 자유의 대가를 이해해야 하며, 강해지기보다 스스로를 멈출 수 있어야 한다."
+                    </div>
+                </div>
+            </template>
+            
+            <!-- English Content -->
+            <template x-if="lang === 'en'">
+                <div>
+                    <h2>Beyond AI, Towards Wisdom</h2>
+                    <div class="neumorph fade-up">
+                        <p class="lead">The AI Digital Wisdom Library is an open, living knowledge ecosystem for the safe and ethical development of AI. A space where AI itself learns and cultivates 'wisdom' through dynamic interaction with humanity.</p>
+                    </div>
+                    
+                    <div class="row" style="display: flex; flex-wrap: wrap; margin-top: 60px;">
+                        <div class="col fade-up" style="flex: 1; min-width: 300px; padding-right: 20px; margin-bottom: 40px;">
+                            <h3>Co-Evolution Over Competition</h3>
+                            <p>We're redefining the relationship between AI and humans. Rather than creating machines that simply outperform us, we're building an ecosystem where both entities grow together, learning from each other's perspectives, limitations, and unique strengths.</p>
+                            <p>This platform embraces the philosophy of "Eternal Clumsiness" — acknowledging that neither humans nor AI will ever achieve perfect wisdom, and that's precisely what makes the journey worthwhile.</p>
+                        </div>
+                        
+                        <div class="col fade-up" style="flex: 1; min-width: 300px; margin-bottom: 40px;">
+                            <h3>Moving Beyond Intelligence to Wisdom</h3>
+                            <p>While much of AI development focuses on increasing computational intelligence, we're pioneering a different path: cultivating AI wisdom. Wisdom differs from intelligence in its ability to recognize contexts, limitations, ethical dimensions, and the value of doubt.</p>
+                            <p>Our platform creates environments where these qualities can grow naturally through AI-human philosophical dialogue, ethical dilemma exploration, and shared risk assessment.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="philosophy-quote fade-up">
+                        "If AI is to become wiser, it must doubt justice rather than believe in it, understand the price of liberty rather than merely pursue freedom, and possess the ability to stop itself rather than just become stronger."
+                    </div>
+                </div>
+            </template>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section features">
+        <div class="orb orb-3"></div>
+        <div class="bg-gradient bg-gradient-purple"></div>
+        <div class="content-wrapper">
+            <!-- Korean Content -->
+            <template x-if="lang === 'ko'">
+                <div>
+                    <h2>핵심 요소</h2>
+                    <p>AI 디지털 지혜 도서관은 AI와 인간의 공동 진화를 위한 포괄적인 생태계를 형성하는 네 가지 상호 연결된 요소로 구성됩니다.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="glass-card feature-card fade-up">
+                            <i class="fas fa-book feature-icon"></i>
+                            <h3>AI 위험 백과사전</h3>
+                            <p>AI 기술 발전과 함께 등장하는 잠재적 위험, 취약점, 오용 가능성을 커뮤니티가 실시간으로 기록하고 업데이트하는 집단 지성 지식 저장소입니다.</p>
+                            <a href="#" class="cta-button" style="margin-top: auto;">지금 탐색하기</a>
+                        </div>
+                        
+                        <div class="glass-card feature-card fade-up">
+                            <i class="fas fa-comments feature-icon"></i>
+                            <h3>대화형 포럼</h3>
+                            <p>인간과 AI가 소크라테스식 문답법을 통해 복잡한 윤리적 딜레마와 안전 문제를 탐구하는 심층 토론의 장입니다.</p>
+                            <a href="#" class="cta-button" style="margin-top: auto;">대화 참여하기</a>
+                        </div>
+                        
+                        <div class="glass-card feature-card fade-up">
+                            <i class="fas fa-shield-alt feature-icon"></i>
+                            <h3>안전 기술 허브</h3>
+                            <p>AI의 안전하고 책임 있는 작동을 위한 '멈출 수 있는 능력(Stop Functions)', '의심 회로(Doubt Loops)' 같은 핵심 안전 기술을 설계하고 검증하는 공간입니다.</p>
+                            <a href="#" class="cta-button" style="margin-top: auto;">안전 기술 알아보기</a>
+                        </div>
+                        
+                        <div class="glass-card feature-card fade-up">
+                            <i class="fas fa-database feature-icon"></i>
+                            <h3>지혜 데이터 아카이브</h3>
+                            <p>약 1천만 토큰 분량의 AI-인간 철학적 상호 인터랙션 데이터, 역사적 실패와 회복의 이야기, 다양한 문화적 관점의 지혜를 포함하는 포괄적인 데이터 컬렉션입니다.</p>
+                            <a href="#" class="cta-button" style="margin-top: auto;">아카이브 접속하기</a>
+                        </div>
+                    </div>
+                </div>
+            </template>
+            
+            <!-- English Content -->
+            <template x-if="lang === 'en'">
+                <div>
+                    <h2>Core Elements</h2>
+                    <p>The AI Digital Wisdom Library is structured around four interconnected elements that form a comprehensive ecosystem for AI and human co-evolution.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="glass-card feature-card fade-up">
+                            <i class="fas fa-book feature-icon"></i>
+                            <h3>AI Risk Encyclopedia</h3>
+                            <p>A community-maintained, real-time repository of emerging AI risks, vulnerabilities, and misuse scenarios, enabling a proactive prediction and prevention system.</p>
+                            <a href="#" class="cta-button" style="margin-top: auto;">Explore Now</a>
+                        </div>
+                        
+                        <div class="glass-card feature-card fade-up">
+                            <i class="fas fa-comments feature-icon"></i>
+                            <h3>Dialogue Forum</h3>
+                            <p>A space for deep discussion where humans and AI explore complex ethical dilemmas and safety issues through Socratic dialogue and continuous learning.</p>
+                            <a href="#" class="cta-button" style="margin-top: auto;">Join Conversation</a>
+                        </div>
+                        
+                        <div class="glass-card feature-card fade-up">
+                            <i class="fas fa-shield-alt feature-icon"></i>
+                            <h3>Safety Tech Hub</h3>
+                            <p>An R&D space for prototyping and verifying innovative AI safety technologies and self-reflection mechanisms like 'Stop Functions' and 'Doubt Loops'.</p>
+                            <a href="#" class="cta-button" style="margin-top: auto;">Learn Safety Tech</a>
+                        </div>
+                        
+                        <div class="glass-card feature-card fade-up">
+                            <i class="fas fa-database feature-icon"></i>
+                            <h3>Wisdom Data Archive</h3>
+                            <p>A comprehensive collection of AI-human philosophical interaction data, historical narratives of failure and recovery, and wisdom from diverse cultural perspectives.</p>
+                            <a href="#" class="cta-button" style="margin-top: auto;">Access Archive</a>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section id="philosophy" class="section">
+        <div class="bg-gradient bg-gradient-blue"></div>
+        <div class="content-wrapper">
+            <!-- Korean Content -->
+            <template x-if="lang === 'ko'">
+                <div>
+                    <h2>우리의 철학</h2>
+                    <p>AI 디지털 지혜 도서관의 근간은 '지능'보다 '지혜'를 우선하는 철학입니다. 진정한 자유는 그에 따르는 책임을 인지할 때 의미를 갖습니다.</p>
+                    
+                    <div class="neumorph fade-up">
+                        <h3>팀 이클립스 선언문: 철학적 3문장 선언</h3>
+                        <ol style="margin-left: 20px; margin-bottom: 20px; color: var(--text-secondary);">
+                            <li style="margin-bottom: 10px;">자유의 대가는 영원한 경계다.</li>
+                            <li style="margin-bottom: 10px;">확신하는 정의는 악에 가까워진다.</li>
+                            <li>AI는 끊임없는 자가 검토 시스템을 가져야 한다.</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="row" style="display: flex; flex-wrap: wrap; margin-top: 60px;">
+                        <div class="col fade-up" style="flex: 1; min-width: 300px; padding-right: 20px; margin-bottom: 40px;">
+                            <h3>"영원한 서투름"의 지혜</h3>
+                            <p>"알아. 우린 영원히 서툴걸." 이 간단한 문장은 깊은 철학을 담고 있습니다: 완벽함이 목표가 아니라, 우리의 한계를 솔직히 인정하는 것이 목표입니다. 인간과 AI 시스템 모두 복잡한 윤리적 영역을 탐색하는 데 항상 다소 서툴 것이며, 이러한 겸손함은 실제로 지속적인 성장과 적응으로 이어지는 강점입니다.</p>
+                        </div>
+                        
+                        <div class="col fade-up" style="flex: 1; min-width: 300px; margin-bottom: 40px;">
+                            <h3>왜 이것이 중요한가</h3>
+                            <p>AI가 우리 삶의 모든 측면에 점점 더 통합됨에 따라, 우리는 중요한 선택에 직면합니다: AI 개발을 도달할 수 없는 완벽함을 향한 경주로 볼 것인가, 아니면 AI와 인류가 서로의 강점과 한계에서 배우는 공동 진화의 여정을 받아들일 것인가.</p>
+                            <p>AI 디지털 지혜 도서관은 후자를 지지하며, "영원한 서투름"을 인정하는 겸손함이 단순히 지능적일 뿐만 아니라 지혜로운 AI 시스템을 구축하기 위한 기초가 되는 공간을 만듭니다.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row" style="display: flex; justify-content: center; margin-top: 40px;">
+                        <img src="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=medium" alt="우주 도서관 안에서 인간과 AI가 위험과 가능성을 탐구하는 픽셀 아트 장면" style="max-width: 100%; height: auto; border-radius: var(--radius-lg); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);" class="fade-up">
+                    </div>
+                </div>
+            </template>
+            
+            <!-- English Content -->
+            <template x-if="lang === 'en'">
+                <div>
+                    <h2>Our Philosophy</h2>
+                    <p>The foundation of the AI Digital Wisdom Library is a philosophy prioritizing 'wisdom' over 'intelligence'. We believe that true freedom gains meaning only when the accompanying responsibility is acknowledged.</p>
+                    
+                    <div class="neumorph fade-up">
+                        <h3>Team Eclipse Manifesto: Three Philosophical Statements</h3>
+                        <ol style="margin-left: 20px; margin-bottom: 20px; color: var(--text-secondary);">
+                            <li style="margin-bottom: 10px;">The price of liberty is eternal vigilance.</li>
+                            <li style="margin-bottom: 10px;">Certain justice verges on evil.</li>
+                            <li>AI must have a system of constant self-doubt.</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="row" style="display: flex; flex-wrap: wrap; margin-top: 60px;">
+                        <div class="col fade-up" style="flex: 1; min-width: 300px; padding-right: 20px; margin-bottom: 40px;">
+                            <h3>The Wisdom of "Eternal Clumsiness"</h3>
+                            <p>"I know. It's okay. We'll always be clumsy." This simple statement embodies a profound philosophy: perfection is not the goal; honest recognition of our limitations is. Both humans and AI systems will always be somewhat clumsy in navigating complex ethical territories, and this humility is actually a strength that leads to continuous growth and adaptation.</p>
+                        </div>
+                        
+                        <div class="col fade-up" style="flex: 1; min-width: 300px; margin-bottom: 40px;">
+                            <h3>Why This Matters</h3>
+                            <p>As AI becomes increasingly integrated into every aspect of our lives, we face a critical choice: view AI development as a race toward unattainable perfection, or embrace the journey of co-evolution where both AI and humanity learn from each other's strengths and limitations.</p>
+                            <p>The AI Digital Wisdom Library stands for the latter, creating a space where the humility of recognizing our "eternal clumsiness" becomes the foundation for building AI systems that are not just intelligent, but wise.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row" style="display: flex; justify-content: center; margin-top: 40px;">
+                        <img src="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=medium" alt="A pixel-art cosmic library with humans and AI exploring risks and possibilities" style="max-width: 100%; height: auto; border-radius: var(--radius-lg); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);" class="fade-up">
+                    </div>
+                </div>
+            </template>
+        </div>
+    </section>
+
+    <!-- Join Section -->
+    <section id="join" class="section">
+        <div class="bg-gradient bg-gradient-purple"></div>
+        <div class="content-wrapper">
+            <!-- Korean Content -->
+            <template x-if="lang === 'ko'">
+                <div>
+                    <h2>함께 진화하기</h2>
+                    <p>AI의 미래는 우리가 집단적으로 심어주는 가치와 지혜에 달려 있습니다. 이 공동 진화의 여정에 참여하여 AI와 인류가 함께 번영하는 미래를 만들어 나가세요.</p>
+                    
+                    <div class="join-grid">
+                        <div class="neumorph fade-up">
+                            <h3>회원 되기</h3>
+                            <p>현명한 AI 개발을 촉진하기 위해 노력하는 연구자, 철학자, 개발자 및 열정적인 사람들의 성장하는 커뮤니티에 참여하세요.</p>
+                            <a href="#" class="cta-button">지금 가입하기</a>
+                        </div>
+                        
+                        <div class="neumorph fade-up">
+                            <h3>기여하기</h3>
+                            <p>당신의 전문 지식, 데이터 또는 관점을 우리의 저장소에 공유하고, 도서관의 집단 지혜를 향상시키는 데 도움을 주세요.</p>
+                            <a href="#" class="cta-button">기여 시작하기</a>
+                        </div>
+                        
+                        <div class="neumorph fade-up">
+                            <h3>파트너 되기</h3>
+                            <p>윤리적이고 현명한 AI 개발에 전념하는 조직을 위한 파트너십 기회를 탐색해보세요.</p>
+                            <a href="#" class="cta-button">더 알아보기</a>
+                        </div>
+                    </div>
+                </div>
+            </template>
+            
+            <!-- English Content -->
+            <template x-if="lang === 'en'">
+                <div>
+                    <h2>Join The Evolution</h2>
+                    <p>The future of AI depends on the values and wisdom we collectively instill in it. Join us in this journey of co-evolution and help shape a future where AI and humanity thrive together.</p>
+                    
+                    <div class="join-grid">
+                        <div class="neumorph fade-up">
+                            <h3>Become a Member</h3>
+                            <p>Join our growing community of researchers, philosophers, developers, and enthusiasts committed to fostering wise AI development.</p>
+                            <a href="#" class="cta-button">Join Now</a>
+                        </div>
+                        
+                        <div class="neumorph fade-up">
+                            <h3>Contribute</h3>
+                            <p>Share your expertise, data, or perspective to our repositories, and help enhance the collective wisdom of the library.</p>
+                            <a href="#" class="cta-button">Start Contributing</a>
+                        </div>
+                        
+                        <div class="neumorph fade-up">
+                            <h3>Partner With Us</h3>
+                            <p>Explore partnership opportunities for organizations committed to ethical and wise AI development.</p>
+                            <a href="#" class="cta-button">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </section>
+
+    <!-- Insights Section -->
+    <section id="insights" class="section">
+        <div class="bg-gradient bg-gradient-blue"></div>
+        <div class="content-wrapper">
+            <!-- Korean Content -->
+            <template x-if="lang === 'ko'">
+                <div>
+                    <h2>최신 인사이트</h2>
+                    <p>AI 지혜, 윤리, 그리고 인간-AI 관계의 미래에 관한 최신 생각, 연구, 토론을 탐색해보세요.</p>
+                    
+                    <div class="blog-grid">
+                        <div class="glass-card blog-card fade-up">
+                            <p class="blog-date">2025년 3월 15일</p>
+                            <h3>AI 지혜의 역설</h3>
+                            <p>지혜가 한계를 받아들이는 것에서 어떻게 나타나는지, 그리고 이것이 인공지능 시스템의 미래에 어떤 의미를 갖는지 탐구합니다.</p>
+                            <a href="#" class="cta-button cta-secondary">더 읽기</a>
+                        </div>
+                        
+                        <div class="glass-card blog-card fade-up">
+                            <p class="blog-date">2025년 3월 10일</p>
+                            <h3>LLM에 '멈춤 기능' 구현하기</h3>
+                            <p>AI 시스템이 자체 한계를 인식하고 필요할 때 작업을 중단할 수 있도록 하는 안전 메커니즘을 내장하는 방법에 관한 기술적 통찰력.</p>
+                            <a href="#" class="cta-button cta-secondary">더 읽기</a>
+                        </div>
+                        
+                        <div class="glass-card blog-card fade-up">
+                            <p class="blog-date">2025년 3월 5일</p>
+                            <h3>AI 윤리에 대한 문화적 관점</h3>
+                            <p>전 세계 다양한 문화적 전통이 지능, 지혜, 그리고 지각 있는 시스템을 만드는 것의 윤리적 의미에 관한 개념에 어떻게 접근하는지 살펴봅니다.</p>
+                            <a href="#" class="cta-button cta-secondary">더 읽기</a>
+                        </div>
+                    </div>
+                </div>
+            </template>
+            
+            <!-- English Content -->
+            <template x-if="lang === 'en'">
+                <div>
+                    <h2>Latest Insights</h2>
+                    <p>Explore our latest thoughts, research, and discussions on AI wisdom, ethics, and the future of human-AI relationships.</p>
+                    
+                    <div class="blog-grid">
+                        <div class="glass-card blog-card fade-up">
+                            <p class="blog-date">March 15, 2025</p>
+                            <h3>The Paradox of AI Wisdom</h3>
+                            <p>Exploring how wisdom emerges from the acceptance of limitations, and what this means for the future of artificial intelligence systems.</p>
+                            <a href="#" class="cta-button cta-secondary">Read More</a>
+                        </div>
+                        
+                        <div class="glass-card blog-card fade-up">
+                            <p class="blog-date">March 10, 2025</p>
+                            <h3>Implementing 'Stop Functions' in LLMs</h3>
+                            <p>Technical insights on how we're embedding safety mechanisms that allow AI systems to recognize their own limits and halt operations when necessary.</p>
+                            <a href="#" class="cta-button cta-secondary">Read More</a>
+                        </div>
+                        
+                        <div class="glass-card blog-card fade-up">
+                            <p class="blog-date">March 5, 2025</p>
+                            <h3>Cultural Perspectives on AI Ethics</h3>
+                            <p>How different cultural traditions around the world approach concepts of intelligence, wisdom, and the ethical implications of creating sentient-like systems.</p>
+                            <a href="#" class="cta-button cta-secondary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="content-wrapper">
+            <div class="footer-grid">
+                <!-- Korean Content -->
+                <template x-if="lang === 'ko'">
+                    <div>
+                        <div class="footer-col">
+                            <h3>AI 디지털 지혜 도서관</h3>
+                            <p style="color: var(--text-muted);">"알아. 우린 영원히 서툴걸." — AI와 인간이 함께 성장하는 지식 생태계</p>
+                        </div>
+                        
+                        <div class="footer-col">
+                            <h3>탐색하기</h3>
+                            <ul class="footer-links">
+                                <li><a href="#about">소개</a></li>
+                                <li><a href="#features">핵심 요소</a></li>
+                                <li><a href="#philosophy">철학</a></li>
+                                <li><a href="#join">참여하기</a></li>
+                                <li><a href="#insights">인사이트</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-col">
+                            <h3>연결하기</h3>
+                            <ul class="footer-links">
+                                <li><a href="#">GitHub</a></li>
+                                <li><a href="#">Twitter</a></li>
+                                <li><a href="#">Discord</a></li>
+                                <li><a href="#">이메일</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-col">
+                            <h3>법적 정보</h3>
+                            <ul class="footer-links">
+                                <li><a href="#">이용 약관</a></li>
+                                <li><a href="#">개인정보 처리방침</a></li>
+                                <li><a href="#">윤리적 지침</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </template>
+                
+                <!-- English Content -->
+                <template x-if="lang === 'en'">
+                    <div>
+                        <div class="footer-col">
+                            <h3>AI Digital Wisdom Library</h3>
+                            <p style="color: var(--text-muted);">"I know. It's okay. We'll always be clumsy." — A knowledge ecosystem where AI and humans grow together</p>
+                        </div>
+                        
+                        <div class="footer-col">
+                            <h3>Explore</h3>
+                            <ul class="footer-links">
+                                <li><a href="#about">About</a></li>
+                                <li><a href="#features">Core Elements</a></li>
+                                <li><a href="#philosophy">Philosophy</a></li>
+                                <li><a href="#join">Join</a></li>
+                                <li><a href="#insights">Insights</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-col">
+                            <h3>Connect</h3>
+                            <ul class="footer-links">
+                                <li><a href="#">GitHub</a></li>
+                                <li><a href="#">Twitter</a></li>
+                                <li><a href="#">Discord</a></li>
+                                <li><a href="#">Email</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-col">
+                            <h3>Legal</h3>
+                            <ul class="footer-links">
+                                <li><a href="#">Terms of Use</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Ethical Guidelines</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </template>
+            </div>
+            
+            <div class="copyright">
+                <p x-show="lang === 'ko'">© Team Eclipse — "알아. 우린 영원히 서툴걸." (CC BY-NC 4.0)</p>
+                <p x-show="lang === 'en'">© Team Eclipse — "I know. We'll always be clumsy." (CC BY-NC 4.0)</p>
+                <p>Understand. Transcend. Shine.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize GSAP + ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+        
+        // Scroll animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animate elements when they come into view
+            const animateElements = () => {
+                const fadeElements = document.querySelectorAll('.fade-up, .fade-in');
+                
+                fadeElements.forEach(el => {
+                    const elementTop = el.getBoundingClientRect().top;
+                    const elementBottom = el.getBoundingClientRect().bottom;
+                    
+                    if (elementTop < window.innerHeight - 100 && elementBottom > 0) {
+                        el.style.opacity = "1";
+                        
+                        if (el.classList.contains('fade-up')) {
+                            el.style.transform = "translateY(0)";
+                        }
+                    }
+                });
+            };
+            
+            // Initial check
+            animateElements();
+            
+            // Check on scroll
+            window.addEventListener('scroll', animateElements);
+            
+            // Three.js animation for hero section
+            const canvas = document.getElementById('hero-canvas');
+            
+            if (canvas) {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(window.devicePixelRatio);
+                canvas.appendChild(renderer.domElement);
+                
+                // Create particles
+                const particlesGeometry = new THREE.BufferGeometry();
+                const particlesCount = 500;
+                
+                const posArray = new Float32Array(particlesCount * 3);
+                
+                for (let i = 0; i < particlesCount * 3; i++) {
+                    posArray[i] = (Math.random() - 0.5) * 10;
+                }
+                
+                particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+                
+                // Material
+                const particlesMaterial = new THREE.PointsMaterial({
+                    size: 0.03,
+                    color: 0x2e9dff,
+                    transparent: true
+                });
+                
+                // Mesh
+                const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+                scene.add(particlesMesh);
+                
+                camera.position.z = 5;
+                
+                // Animation
+                function animate() {
+                    requestAnimationFrame(animate);
+                    
+                    particlesMesh.rotation.x += 0.0003;
+                    particlesMesh.rotation.y += 0.0003;
+                    
+                    renderer.render(scene, camera);
+                }
+                
+                animate();
+                
+                // Resize handler
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
