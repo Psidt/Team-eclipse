@@ -1,406 +1,89 @@
-/* TEAM ECLIPSE 모바일 백과사전 - 2025 디자인 트렌드 적용 */
-:root {
-    --primary: #6610f2;
-    --primary-light: #7e3ff2;
-    --secondary: #2a2a72;
-    --accent: #a294ff;
-    --dark-bg: #0a0a1a;
-    --card-bg: rgba(30, 30, 60, 0.7);
-    --glow: rgba(150, 150, 255, 0.7);
-}
-
 body {
-    background-color: var(--dark-bg);
-    background-image:
-        radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        radial-gradient(circle at 50% 50%, rgba(100, 100, 255, 0.08) 1px, transparent 1px);
-    background-size: 100px 100px;
+    background-color: #0a0a1a;
     color: #e0e0ff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    min-height: 100vh;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    animation: backgroundShift 60s ease infinite;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-@keyframes backgroundShift {
-    0%, 100% { background-position: 0% 0%; }
-    50% { background-position: 100% 100%; }
+header {
+    background: linear-gradient(to bottom, #0a0a1a, #161632);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* 현대적 배경 효과 */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 20% 20%, rgba(102, 16, 242, 0.15), transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(42, 42, 114, 0.15), transparent 40%);
-    pointer-events: none;
-    z-index: -1;
+header h1 {
+    color: #a294ff;
+    margin-bottom: 5px;
 }
 
-/* 별 반짝임 효과 */
-.star {
-    position: fixed;
-    width: 2px;
-    height: 2px;
-    background: white;
-    border-radius: 50%;
-    opacity: 0;
-    z-index: -1;
-    animation: twinkle var(--duration, 5s) ease-in-out infinite;
-    animation-delay: var(--delay, 0s);
-}
-
-@keyframes twinkle {
-    0%, 100% { opacity: 0; }
-    50% { opacity: 0.8; }
-}
-
-/* 배경 스타일링 */
-.bg-space {
-    background: linear-gradient(to bottom, var(--dark-bg), #161632, var(--dark-bg));
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.eclipse-gradient {
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-}
-
-.glow {
-    text-shadow: 0 0 5px var(--glow);
-}
-
-/* 카드 디자인 - 네오글래스모피즘 */
-.term-card {
-    background-color: var(--card-bg);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 
-        0 10px 15px -3px rgba(0, 0, 0, 0.2),
-        0 4px 6px -4px rgba(0, 0, 0, 0.2),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    overflow: hidden;
-}
-
-.term-card:hover {
-    transform: translateY(-4px) scale(1.01);
-    box-shadow: 
-        0 20px 25px -5px rgba(0, 0, 0, 0.3),
-        0 8px 10px -6px rgba(0, 0, 0, 0.3),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-    background-color: rgba(40, 40, 80, 0.8);
-}
-
-/* 카드 제목 부분 */
-.term-title {
-    position: relative;
-    color: var(--accent);
-    border-bottom: 1px solid rgba(150, 150, 255, 0.2);
-    background: linear-gradient(90deg, rgba(102, 16, 242, 0.2), rgba(42, 42, 114, 0.1));
-    margin: -1rem -1rem 0.75rem -1rem;
-    padding: 1rem 1rem 0.75rem 1rem;
-}
-
-.term-card h3 {
-    background: linear-gradient(90deg, #a294ff, #ffffff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 700;
-}
-
-/* 검색 컨테이너 */
 .search-container {
-    backdrop-filter: blur(10px);
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    background-color: rgba(10, 10, 26, 0.8);
+    z-index: 10;
 }
 
 #searchInput {
-    padding: 12px 16px; 
-    font-size: 16px; 
-    border-radius: 12px;
-    background-color: rgba(30, 30, 50, 0.8);
-    color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(8px);
-    transition: all 0.3s ease;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #2a2a72;
+    background-color: rgba(30, 30, 50, 0.5);
+    color: white;
 }
 
-#searchInput::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-}
-
-#searchInput:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(126, 63, 242, 0.3), 0 4px 12px rgba(0, 0, 0, 0.3);
-    background-color: rgba(40, 40, 70, 0.9);
-    border-color: rgba(126, 63, 242, 0.5);
-    transform: translateY(-2px);
-}
-
-.search-icon {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 18px;
-}
-
-.search-clear {
-    color: rgba(255, 255, 255, 0.6);
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.search-clear:hover {
-    color: rgba(255, 255, 255, 0.9);
-}
-
-/* 스크롤바 디자인 */
-::-webkit-scrollbar {
-    width: 6px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgba(126, 63, 242, 0.5);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(126, 63, 242, 0.7);
-}
-
-/* 알파벳 내비게이션 */
 .letter-nav {
-    background-color: rgba(30, 30, 60, 0.8);
-    border-radius: 18px;
-    padding: 10px 12px;
-    position: sticky;
-    top: 70px;
-    z-index: 10;
-    overflow-x: auto;
-    white-space: nowrap;
-    scrollbar-width: none;
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    margin: 0 auto;
-    text-align: center;
-}
-
-.letter-nav::-webkit-scrollbar {
-    height: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+    background-color: rgba(30, 30, 60, 0.5);
+    margin-bottom: 20px;
 }
 
 .letter-btn {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    margin: 4px;
-    border-radius: 50%;
-    background: rgba(60, 60, 100, 0.6);
-    color: #ffffff;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-    transform-style: preserve-3d;
-    transform: perspective(500px);
-    font-size: 16px;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.letter-btn:before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    background: linear-gradient(45deg, rgba(126, 63, 242, 0.4), transparent);
-    transform: translateZ(-10px);
-    filter: blur(8px);
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.letter-btn:hover:before, .letter-btn.active:before {
-    opacity: 1;
-}
-
-.letter-btn:hover, .letter-btn.active {
-    background: rgba(126, 63, 242, 0.8);
-    color: white;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-}
-
-.letter-btn.active {
-    transform: perspective(500px) translateZ(5px);
-    box-shadow: 0 0 20px rgba(126, 63, 242, 0.5);
-}
-
-/* 비활성 버튼 스타일 개선 */
-.letter-btn.opacity-30 {
-    opacity: 0.4;
-    background: rgba(60, 60, 100, 0.3);
-    box-shadow: none;
-}
-
-/* 헤더 링크 */
-.header-links {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    backdrop-filter: blur(10px);
-}
-
-/* 상단으로 스크롤 버튼 */
-.scroll-top-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: rgba(126, 63, 242, 0.8);
-    color: white;
+    width: 30px;
+    height: 30px;
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center;
-    font-size: 20px;
+    margin: 3px;
+    background-color: #2a2a72;
+    border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transform: translateY(100px);
-    opacity: 0;
-    transition: all 0.3s ease;
-    z-index: 30;
-    border: none;
 }
 
-.scroll-top-btn.show {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.scroll-top-btn:hover {
-    background: rgba(126, 63, 242, 1);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-}
-
-/* 액션 버튼 */
-.action-btn {
-    padding: 8px 12px;
-    background-color: rgba(102, 16, 242, 0.7);
-    border-radius: 12px;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    transition: all 0.3s;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.action-btn:hover {
-    background-color: rgba(102, 16, 242, 0.9);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-}
-
-.action-btn.secondary {
-    background-color: rgba(42, 42, 114, 0.7);
-}
-
-.action-btn.secondary:hover {
-    background-color: rgba(42, 42, 114, 0.9);
-}
-
-/* 홈 버튼 효과 */
-#homeButton {
-    transition: all 0.3s;
-}
-
-#homeButton:hover {
-    text-shadow: 0 0 10px rgba(150, 150, 255, 0.9);
-    transform: translateY(-1px);
-}
-
-/* 애니메이션 효과 */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.letter-btn:hover {
+    background-color: #6610f2;
 }
 
 .term-card {
-    animation: fadeInUp 0.5s ease forwards;
-    opacity: 0;
+    background-color: rgba(30, 30, 60, 0.5);
+    margin: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 3px solid #6610f2;
 }
 
-/* 모바일 최적화를 위한 추가 스타일 */
-@media (max-width: 640px) {
-    .term-card {
-        padding: 1.25rem;
-    }
-    
-    .term-title {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .letter-btn {
-        width: 36px;
-        height: 36px;
-        line-height: 36px;
-        margin: 3px;
-        font-size: 14px;
-    }
-
-    .scroll-top-btn {
-        width: 45px;
-        height: 45px;
-        bottom: 15px;
-        right: 15px;
-    }
+.term-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(100, 100, 255, 0.3);
 }
 
-/* 다크 모드 최적화 */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --card-bg: rgba(25, 25, 50, 0.7);
-    }
-}
-
-/* 터치 디바이스 최적화 */
-@media (hover: none) {
-    .term-card:hover {
-        transform: none;
-        box-shadow: none;
-    }
-    
-    .letter-btn:active {
-        transform: scale(0.95);
-        background: rgba(126, 63, 242, 0.8);
-    }
-}
-
-/* 강조 텍스트 스타일 */
-strong { 
-    font-weight: bold;
+.term-title h3 {
+    margin: 0;
     color: #a294ff;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
