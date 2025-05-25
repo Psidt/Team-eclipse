@@ -39,7 +39,7 @@
 
             <!-- 내비게이션 버튼들: 다른 페이지로 이동하는 링크들입니다. -->
             <!-- 모바일에서는 우측에 정렬되도록 `ml-auto`를 추가하고, 버튼 자체의 패딩과 글자 크기 조정 -->
-            <nav aria-label="메인 내비게이션" class="ml-auto md:ml-0">
+            <nav aria-label="메인 내비게이션" class="w-full md:w-auto flex justify-end">
                 <ul class="flex flex-wrap justify-end gap-2">
                     <li>
                         <a href="home.html"
@@ -83,10 +83,10 @@
                        class="w-full pr-10 py-3 pl-14 bg-gray-800 text-gray-100 rounded-lg border border-gray-700
                               focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-lg md:text-xl"
                        aria-label="백과사전 용어 검색">
-                <!-- 돋보기 아이콘: 검색창 내부에 위치합니다. -->
+                <!-- 돋보기 아이콘: 검색창 내부에 위치합니다. `left-4`로 왼쪽 여백, `w-6 h-6`으로 크기 조정. -->
                 <button type="button"
-                        id="searchButton" <!-- 검색 기능을 위한 ID 추가 -->
-                        class="absolute left-4 top-1/2 -translate-y-1/2 p-1 text-gray-400
+                        id="searchButton"
+                        class="absolute left-4 top-1/2 -translate-y-1/2 p-1 text-gray-400 w-6 h-6 flex items-center justify-center
                                hover:text-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
                         aria-label="검색 실행"
                         tabindex="0">
