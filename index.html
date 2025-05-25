@@ -1,111 +1,582 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" x-data="{
+    lang: 'ko',
+    toggleLang(l) { this.lang = l; localStorage.setItem('userLang', l); },
+    mobileNavOpen: false,
+    toggleMobileNav() { this.mobileNavOpen = !this.mobileNavOpen; },
+    init() {
+        this.lang = localStorage.getItem('userLang') || 'ko';
+        
+        // GSAP Header scroll effect
+        gsap.to("#header", {
+            scrollTrigger: {
+                trigger: "body",
+                start: "top top",
+                end: "+=100", // 100px 스크롤되면 효과 적용
+                scrub: 1,
+                onEnter: () => document.querySelector('#header').classList.add('header-scrolled'),
+                onLeaveBack: () => document.querySelector('#header').classList.remove('header-scrolled'),
+            }
+        });
+
+        // GSAP Scroll animations for fade-up/fade-in elements
+        const fadeElements = document.querySelectorAll('.fade-up, .fade-in');
+        fadeElements.forEach(el => {
+            gsap.fromTo(el, 
+                { opacity: 0, y: el.classList.contains('fade-up') ? 30 : 0 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 85%", // 요소의 상단이 뷰포트 하단 85% 지점에 도달했을 때
+                        toggleActions: "play none none none" // 한 번만 애니메이션 실행
+                    }
+                }
+            );
+        });
+
+        // Three.js animation for hero section (만약 hero-canvas 요소가 있다면)
+        const heroCanvas = document.getElementById('hero-canvas');
+        if (heroCanvas && typeof THREE !== 'undefined') {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas: heroCanvas, alpha: true, antialias: true });
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            
+            const particlesGeometry = new THREE.BufferGeometry();
+            const particlesCount = 500;
+            const posArray = new Float32Array(particlesCount * 3);
+            for (let i = 0; i < particlesCount * 3; i++) {
+                posArray[i] = (Math.random() - 0.5) * 10;
+            }
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+            
+            const particlesMaterial = new THREE.PointsMaterial({
+                size: 0.03,
+                color: 0x2e9dff, // var(--accent-blue)
+                transparent: true,
+                opacity: 0.7
+            });
+            
+            const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+            scene.add(particlesMesh);
+            
+            camera.position.z = 5;
+            
+            function animate() {
+                requestAnimationFrame(animate);
+                particlesMesh.rotation.x += 0.0003;
+                particlesMesh.rotation.y += 0.0003;
+                renderer.render(scene, camera);
+            }
+            animate();
+            
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
+    }
+}" x-init="init()">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEAM ECLIPSE - 모바일 백과사전</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <title>AI 디지털 지혜 도서관 | 인간과 AI의 공동 진화 플랫폼</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <!-- Alpine.js는 body 태그의 x-data에서 로드하도록 변경, 순서 중요 -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+    <style>
+        :root {
+            --bg-primary: #090b14;
+            --bg-secondary: #12162b;
+            --accent-blue: #2e9dff;
+            --accent-purple: #b995ff;
+            --accent-teal: #00ecc8;
+            --text-primary: #f0f6ff;
+            --text-secondary: #aabeff;
+            --text-muted: #8a93b8;
+            --glass-bg: rgba(24, 32, 79, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-blur: 16px;
+            --neumorph-bg: #10152e;
+            --neumorph-shadow-light: rgba(55, 65, 135, 0.2);
+            --neumorph-shadow-dark: rgba(0, 0, 0, 0.4);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Noto Sans KR', 'Poppins', sans-serif; }
+        html, body { scroll-behavior: smooth; background: var(--bg-primary); color: var(--text-primary); overflow-x: hidden; width: 100%; }
+        .content-wrapper { max-width: 1440px; margin: 0 auto; padding: 0 24px; }
+        .section { padding: 120px 0; position: relative; overflow: hidden; }
+        h1, h2, h3, .mono { font-family: 'Space Mono', monospace; }
+        h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 1.5rem; color: var(--accent-blue); text-shadow: 0 0 20px rgba(46, 157, 255, 0.4); }
+        h2 { font-size: 2.8rem; margin-bottom: 1.5rem; color: var(--accent-purple); }
+        h3 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--accent-teal); }
+        p { font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.5rem; color: var(--text-secondary); }
+        .lead { font-size: 1.4rem; font-weight: 300; line-height: 1.5; margin-bottom: 2rem; }
+        .header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; transition: background-color var(--transition-normal), box-shadow var(--transition-normal); /* GSAP이 제어하므로 background 직접 변경은 삭제 */ }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; }
+        .logo { display: flex; align-items: center; font-weight: 700; font-size: 1.5rem; color: var(--accent-blue); text-decoration: none; }
+        .logo i { margin-right: 0.5rem; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 1rem; transition: var(--transition-fast); padding: 0.5rem 1rem; border-radius: var(--radius-sm); position: relative; }
+        .nav-links a:hover { color: var(--accent-blue); }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 50%; width: 0%; height: 2px; background: var(--accent-blue); transition: var(--transition-fast); transform: translateX(-50%); }
+        .nav-links a:hover::after { width: 80%; }
+        .lang-switch { display: flex; align-items: center; }
+        .lang-btn { background: transparent; border: none; color: var(--text-muted); cursor: pointer; padding: 0.25rem 0.5rem; margin: 0 0.25rem; font-size: 0.9rem; border-radius: var(--radius-sm); transition: var(--transition-fast); }
+        .lang-btn.active { color: var(--accent-blue); background: rgba(46, 157, 255, 0.1); }
+        .header-scrolled { background: rgba(9, 11, 20, 0.85); backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); }
+        .mobile-nav-toggle { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
+        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; }
+        .hero-content { position: relative; z-index: 2; }
+        .hero-subtitle { font-size: 1.2rem; color: var(--accent-teal); margin-bottom: 1rem; letter-spacing: 2px; text-transform: uppercase; }
+        .hero-image { max-width: 100%; height: auto; border-radius: var(--radius-lg); box-shadow: 20px 20px 60px var(--neumorph-shadow-dark), -20px -20px 60px var(--neumorph-shadow-light); transform: perspective(1000px) rotateY(5deg); transition: var(--transition-slow); }
+        .hero-image:hover { transform: perspective(1000px) rotateY(0deg); }
+        .cta-button { display: inline-flex; align-items: center; padding: 1rem 2rem; background: linear-gradient(135deg, rgba(46, 157, 255, 0.8) 0%, rgba(185, 149, 255, 0.8) 100%); color: white; text-decoration: none; border-radius: var(--radius-md); font-weight: 600; transition: var(--transition-normal); box-shadow: 0 10px 30px rgba(46, 157, 255, 0.3); margin-right: 1rem; margin-bottom: 1rem; position: relative; overflow: hidden; }
+        .cta-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent); transition: var(--transition-fast); }
+        .cta-button:hover::before { left: 100%; transition: 0.75s ease; }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(46, 157, 255, 0.4); }
+        .cta-button i { margin-left: 0.5rem; }
+        .cta-secondary { background: transparent; border: 2px solid var(--accent-purple); color: var(--accent-purple); box-shadow: none; }
+        .cta-secondary:hover { background: rgba(185, 149, 255, 0.1); }
+        .glass-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--radius-md); padding: 2rem; transition: var(--transition-normal); position: relative; overflow: hidden; }
+        .glass-card:hover { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); transform: translateY(-5px); }
+        .neumorph { background: var(--neumorph-bg); border-radius: var(--radius-md); box-shadow: 15px 15px 30px var(--neumorph-shadow-dark), -15px -15px 30px var(--neumorph-shadow-light); transition: var(--transition-normal); padding: 2.5rem; margin: 1.5rem 0; }
+        .neumorph:hover { box-shadow: 20px 20px 40px var(--neumorph-shadow-dark), -20px -20px 40px var(--neumorph-shadow-light); transform: translateY(-3px); }
+        .features { position: relative; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 50px; }
+        .feature-card { position: relative; height: 100%; display: flex; flex-direction: column; }
+        .feature-icon { font-size: 2.5rem; margin-bottom: 1.5rem; display: inline-block; color: var(--accent-blue); background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .philosophy-quote { font-size: 1.8rem; font-style: italic; line-height: 1.5; margin: 3rem 0; padding-left: 2rem; border-left: 4px solid var(--accent-purple); color: var(--text-primary); max-width: 800px; }
+        .philosophy-quote cite { display: block; margin-top: 1rem; font-size: 1.1rem; color: var(--text-secondary); font-style: normal; }
+        .join-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .blog-card { height: 100%; display: flex; flex-direction: column; }
+        .blog-date { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+        .footer { background: var(--bg-secondary); padding: 5rem 0; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+        .footer h3 { color: var(--text-primary); margin-bottom: 1.5rem; font-size: 1.2rem; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a { color: var(--text-secondary); text-decoration: none; transition: var(--transition-fast); }
+        .footer-links a:hover { color: var(--accent-blue); }
+        .copyright { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+        .bg-gradient { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; }
+        .bg-gradient-hero { background: radial-gradient(circle at top right, rgba(46, 157, 255, 0.15), transparent 70%), radial-gradient(circle at bottom left, rgba(185, 149, 255, 0.15), transparent 70%); }
+        .bg-gradient-blue { background: radial-gradient(circle at center, rgba(46, 157, 255, 0.1), transparent 70%); }
+        .bg-gradient-purple { background: radial-gradient(circle at center, rgba(185, 149, 255, 0.1), transparent 70%); }
+        .fade-up { opacity: 0; transform: translateY(30px); /* GSAP이 제어하므로 transition 제거 가능 */ }
+        .fade-in { opacity: 0; /* GSAP이 제어하므로 transition 제거 가능 */ }
+        .orb { position: absolute; border-radius: 50%; filter: blur(60px); z-index: -1; opacity: 0.4; }
+        .orb-1 { background: var(--accent-blue); width: 300px; height: 300px; right: -100px; top: 20%; animation: float 8s ease-in-out infinite alternate; }
+        .orb-2 { background: var(--accent-purple); width: 400px; height: 400px; left: -200px; bottom: 10%; animation: float 12s ease-in-out infinite alternate-reverse; }
+        .orb-3 { background: var(--accent-teal); width: 200px; height: 200px; right: 10%; bottom: 20%; animation: float 10s ease-in-out infinite alternate; }
+        @keyframes float { 0% { transform: translateY(0) translateX(0); } 100% { transform: translateY(-40px) translateX(20px); } }
+        .canvas-container { position: fixed; /* Hero canvas를 배경처럼 고정 */ top: 0; left: 0; width: 100%; height: 100%; z-index: -2; /* 다른 요소들보다 뒤에 있도록 */ }
+        [x-cloak] { display: none !important; }
+        @media (max-width: 992px) { h1 { font-size: 3rem; } h2 { font-size: 2.2rem; } .section { padding: 80px 0; } }
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.8rem; }
+            .nav-links { display: none; }
+            .mobile-nav-toggle { display: block; }
+            .mobile-nav { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--bg-primary); z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; clip-path: circle(0px at top right); transition: clip-path 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+            .mobile-nav.active { clip-path: circle(1500px at top right); }
+            .mobile-nav a { font-size: 1.5rem; margin: 1rem 0; color: var(--text-primary); text-decoration: none; transition: var(--transition-fast); }
+            .mobile-nav a:hover { color: var(--accent-blue); }
+        }
+        @media (max-width: 576px) { h1 { font-size: 2rem; } .content-wrapper { padding: 0 16px; } .section { padding: 60px 0; } .feature-grid, .join-grid, .blog-grid { grid-template-columns: 1fr; } }
+
+        /* --- 용어사전 관련 스타일 추가 --- */
+        .sticky-search-nav-wrapper {
+            position: sticky;
+            top: 0; /* 중요: 원래 헤더가 fixed이므로, 이 값은 원래 헤더의 높이만큼 되어야 충돌을 피함 */
+            /* 또는 원래 헤더를 fixed에서 static으로 바꾸고, 이 요소만 sticky로 만들 수 있음 */
+            /* 지금은 원래 헤더가 fixed이므로, 이 sticky 요소의 top을 원래 헤더 높이만큼 설정해야 합니다. */
+            /* 예시: 원래 헤더 높이가 80px이라면 top: 80px; */
+            /* 하지만, 더 나은 방법은 원래 헤더의 fixed를 제거하고, 이 요소의 top을 0으로 하는 것입니다. */
+            /* 일단 여기서는 top: 0으로 설정하고, 원래 헤더와 겹치는지 확인 후 조정합니다. */
+            z-index: 900; /* 원래 헤더(z-index: 1000)보다 낮게 설정하여 겹치지 않도록 */
+            background-color: rgba(18, 22, 43, 0.9); /* var(--bg-secondary)와 유사한 반투명 배경 */
+            backdrop-filter: blur(10px);
+            padding: 1rem 0; /* 내부 여백 */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            /* 이 요소가 스크롤될 때만 보이도록 초기에는 숨길 수도 있습니다 (JS로 제어) */
+        }
+
+        /* 검색창 스타일 (기존 스타일 참고 및 테마 적용) */
+        .search-bar-container { /* 검색창을 감싸는 컨테이너 */
+            display: flex;
+            justify-content: center; /* 검색창 중앙 정렬 */
+            padding: 0.5rem 1.5rem; /* content-wrapper의 padding과 유사하게 */
+        }
+        #searchInput {
+            width: 100%;
+            max-width: 700px; /* 검색창 최대 너비 */
+            padding: 0.75rem 1rem 0.75rem 3rem; /* 좌측 아이콘 공간 확보 */
+            background-color: rgba(9, 11, 20, 0.7); /* var(--bg-primary) 반투명 */
+            color: var(--text-primary);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            transition: var(--transition-normal);
+        }
+        #searchInput:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(46, 157, 255, 0.3);
+        }
+        #searchInput::placeholder {
+            color: var(--text-muted);
+        }
+        .search-icon-wrapper { /* 돋보기 아이콘 감싸개 */
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none; /* 아이콘이 클릭 방해 안 하도록 */
+        }
+
+        /* 알파벳 내비게이션 바 스타일 (기존 스타일 참고 및 테마 적용) */
+        .alphabet-nav-container {
+            display: flex;
+            justify-content: center; /* 알파벳 바 중앙 정렬 */
+            padding: 0.5rem 1.5rem 1rem; /* 위아래, 좌우 여백 */
+            overflow-x: auto; /* 모바일에서 가로 스크롤 */
+            scrollbar-width: none; /* Firefox 스크롤바 숨김 */
+            -ms-overflow-style: none;  /* IE 스크롤바 숨김 */
+        }
+        .alphabet-nav-container::-webkit-scrollbar {
+            display: none; /* Chrome, Safari 스크롤바 숨김 */
+        }
+        .letter-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 36px; /* 최소 너비 */
+            height: 36px;
+            padding: 0 0.5rem; /* 글자 길이에 따라 너비 조절 */
+            margin: 0 0.25rem;
+            border-radius: var(--radius-sm);
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-family: 'Space Mono', monospace;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            border: 1px solid transparent;
+        }
+        .letter-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--accent-teal);
+        }
+        .letter-btn.active {
+            background-color: var(--accent-blue);
+            color: var(--bg-primary);
+            font-weight: 700;
+        }
+        .letter-btn[disabled] { /* 용어가 없는 알파벳 */
+            opacity: 0.4;
+            cursor: not-allowed;
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        /* 용어 카드 스타일 (기존 스타일 참고 및 테마 적용) */
+        #dictionaryContent { /* 용어 목록을 감싸는 메인 컨테이너 */
+            padding-top: 2rem; /* 고정된 검색/알파벳 바와의 간격 */
+        }
+        .term-card-wrapper { /* 각 알파벳 섹션 + 용어 카드들을 묶는 래퍼 */
+             margin-bottom: 3rem;
+        }
+        .letter-heading { /* 'A', 'B' 등 알파벳 섹션 제목 */
+            font-size: 2.5rem;
+            color: var(--accent-purple);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-purple);
+            display: inline-block;
+        }
+        .term-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(calc(var(--glass-blur) / 2)); /* 블러 효과 약간 줄임 */
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: var(--transition-normal);
+        }
+        .term-card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transform: translateY(-4px);
+            border-left-color: var(--accent-teal); /* 호버 시 강조색 변경 */
+        }
+        .term-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+        .term-card-header h3 { /* 영어 용어 */
+            font-size: 1.5rem; /* 약간 줄임 */
+            color: var(--accent-teal);
+            margin-bottom: 0;
+        }
+        .term-card-korean-term { /* 한국어 용어 */
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-align: right;
+            margin-left: 1rem;
+        }
+        .term-card-explanation { /* 영어 설명 */
+            font-size: 1rem; /* 약간 줄임 */
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+        .term-card-korean-explanation { /* 한국어 설명 */
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+        #no-results-message {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 3rem 0;
+            font-size: 1.2rem;
+        }
+        /* 맨 위로 가기 버튼 스타일 */
+        #scrollTopBtn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--accent-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(46, 157, 255, 0.3);
+            transition: var(--transition-normal);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            z-index: 1001; /* 헤더보다 위에 오도록 */
+        }
+        #scrollTopBtn.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        #scrollTopBtn:hover {
+            background-color: #2588e0; /* 호버 시 약간 어둡게 */
+            transform: translateY(-3px);
+        }
+
+    </style>
 </head>
-<body class="min-h-screen flex flex-col pb-10">
+<body> <!-- Alpine.js x-data는 body 태그 시작으로 이동 -->
+    <!-- Header & Navigation (원래 헤더) -->
+    <header class="header" id="header">
+        <div class="content-wrapper">
+            <div class="nav-container">
+                <a href="#" class="logo">
+                    <i class="fas fa-brain"></i>
+                    <span x-show="lang === 'ko'">AI 디지털 지혜 도서관</span>
+                    <span x-show="lang === 'en'" x-cloak>AI Digital Wisdom Library</span>
+                </a>
+                <nav class="nav-links">
+                    <a href="#about" x-show="lang === 'ko'">소개</a>
+                    <a href="#features" x-show="lang === 'ko'">핵심 요소</a>
+                    <a href="#philosophy" x-show="lang === 'ko'">철학</a>
+                    <a href="#join" x-show="lang === 'ko'">참여하기</a>
+                    <a href="#insights" x-show="lang === 'ko'">인사이트</a>
+                    <a href="#dictionarySection" x-show="lang === 'ko'">용어사전</a>
 
-    <!--
-        메인 헤더: 모든 주요 정보 (내비게이션, 소개, 검색, 알파벳 바)를 포함하며,
-        더 이상 화면 상단에 고정되지 않습니다.
-    -->
-    <header class="main-header bg-black shadow-lg p-6 relative"> <!-- relative 추가하여 내비게이션 버튼 위치 조정 용이 -->
-        <div class="container mx-auto">
-            <!--
-                주요 내비게이션 버튼 (홈, 용어사전)
-                화면 우측 상단에 배치합니다. (PC 기준)
-                모바일에서는 제목 아래에 올 수 있도록 flex-col 사용.
-            -->
-            <div class="flex justify-end mb-4 md:absolute md:top-6 md:right-6 z-10">
-                <nav aria-label="메인 내비게이션">
-                    <ul class="flex gap-2">
-                        <li>
-                            <a href="home.html"
-                               class="px-4 py-2 bg-purple-900 hover:bg-purple-800 rounded-lg text-sm flex items-center transition-all"
-                               tabindex="0" role="link" aria-label="홈 페이지로 이동">
-                                <i class="fas fa-home mr-1" aria-hidden="true"></i> 홈
-                            </a>
-                        </li>
-                        <li>
-                            <a href="index.html"
-                               class="px-4 py-2 bg-indigo-900 hover:bg-indigo-800 rounded-lg text-sm flex items-center transition-all"
-                               tabindex="0" role="link" aria-current="page" aria-label="현재 페이지인 용어사전 페이지로 이동">
-                                <i class="fas fa-book mr-1" aria-hidden="true"></i> 용어사전
-                            </a>
-                        </li>
-                    </ul>
+
+                    <a href="#about" x-show="lang === 'en'" x-cloak>About</a>
+                    <a href="#features" x-show="lang === 'en'" x-cloak>Core Elements</a>
+                    <a href="#philosophy" x-show="lang === 'en'" x-cloak>Philosophy</a>
+                    <a href="#join" x-show="lang === 'en'" x-cloak>Join</a>
+                    <a href="#insights" x-show="lang === 'en'" x-cloak>Insights</a>
+                    <a href="#dictionarySection" x-show="lang === 'en'" x-cloak>Glossary</a>
                 </nav>
-            </div>
-
-            <!-- 사이트 제목 (선택 사항: 이미지에는 없으므로 일단 주석 처리. 원하시면 주석 해제) -->
-            <!--
-            <div class="text-center mb-8">
-                <h1 class="text-4xl md:text-5xl font-extrabold text-white glow">
-                    TEAM ECLIPSE<span class="text-purple-400"> 모바일 백과사전</span>
-                </h1>
-            </div>
-            -->
-
-            <!-- 소개 문구: 검색창 위로 이동 -->
-            <p class="text-center text-base md:text-lg text-blue-200 mb-6 mt-8 md:mt-16 max-w-2xl mx-auto"> <!-- mt-8, md:mt-16 추가하여 상단 여백 확보 -->
-                AGI 안전 및 윤리 관련 용어를 모바일에 최적화하여 제공하는 백과사전입니다.
-            </p>
-
-            <!-- 용어 검색창 -->
-            <div class="text-center mb-8">
-                <div class="relative w-full max-w-xl mx-auto">
-                    <h2 id="search-heading" class="sr-only">용어 검색</h2>
-                    <input type="text"
-                           id="searchInput"
-                           placeholder="용어 검색..."
-                           class="w-full pr-10 py-3 pl-14 bg-gray-800 text-gray-100 rounded-lg border border-gray-700
-                                  focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-lg md:text-xl"
-                           aria-label="백과사전 용어 검색">
-                    <button type="button"
-                            id="searchButton"
-                            class="absolute left-4 top-1/2 -translate-y-1/2 p-1 text-gray-400 w-6 h-6 flex items-center justify-center
-                                   hover:text-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
-                            aria-label="검색 실행"
-                            tabindex="0">
-                        <i class="fas fa-search" aria-hidden="true"></i>
-                    </button>
+                <div class="lang-switch">
+                    <button @click="toggleLang('ko')" :class="lang === 'ko' ? 'lang-btn active' : 'lang-btn'">한국어</button>
+                    <button @click="toggleLang('en')" :class="lang === 'en' ? 'lang-btn active' : 'lang-btn'" x-cloak>English</button>
                 </div>
+                <button class="mobile-nav-toggle" @click="toggleMobileNav">
+                    <i class="fas" :class="mobileNavOpen ? 'fa-times' : 'fa-bars'"></i>
+                </button>
             </div>
-
-            <!-- 알파벳 내비게이션 -->
-            <section aria-labelledby="alphabet-nav-heading" class="px-4 md:px-8 pb-6">
-                <h2 id="alphabet-nav-heading" class="sr-only">알파벳 내비게이션</h2>
-                <div class="letter-nav shadow-lg mx-auto max-w-3xl" id="letterNav" role="navigation" aria-label="알파벳별 용어 필터">
-                    <p class="text-center text-gray-400 py-3">알파벳 내비게이션이 여기에 로드됩니다.</p>
-                </div>
-            </section>
         </div>
     </header>
 
-    <!-- 용어사전 콘텐츠 섹션 -->
-    <main aria-labelledby="dictionary-content-heading" class="px-4 md:px-8 max-w-4xl mx-auto space-y-8 mt-8" id="dictionaryContent">
-        <h2 id="dictionary-content-heading" class="sr-only">용어사전 내용</h2>
-        <p class="text-center text-gray-400 py-10">용어사전 내용이 여기에 로드됩니다.</p>
-    </main>
+    <!-- 검색창 및 알파벳 네비게이션 (스크롤 시 상단 고정될 영역) -->
+    <div id="sticky-search-nav" class="sticky-search-nav-wrapper">
+        <div class="content-wrapper"> <!-- 내부 컨텐츠 정렬을 위해 추가 -->
+            <!-- 용어 검색창 -->
+            <div class="search-bar-container">
+                <div style="position: relative; width: 100%; max-width: 700px;"> <!-- 돋보기 아이콘 위치를 위해 relative 추가 -->
+                    <input type="text" id="searchInput" placeholder="용어 검색...">
+                    <div class="search-icon-wrapper">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- 알파벳 내비게이션 바 -->
+            <div class="alphabet-nav-container" id="letterNav">
+                <!-- JavaScript에 의해 알파벳 버튼들이 여기에 채워집니다. -->
+            </div>
+        </div>
+    </div>
 
-    <!-- 페이지 맨 위로 이동 버튼 -->
-    <button id="scrollTopBtn"
-            class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg transform transition-all duration-300 opacity-0 invisible z-50"
-            tabindex="0" role="button" aria-label="페이지 맨 위로 이동">
-        <i class="fas fa-arrow-up" aria-hidden="true"></i>
-    </button>
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" :class="mobileNavOpen ? 'active' : ''" @click="mobileNavOpen = false">
+        <template x-if="lang === 'ko'">
+            <div>
+                <a href="#about">소개</a>
+                <a href="#features">핵심 요소</a>
+                <a href="#philosophy">철학</a>
+                <a href="#join">참여하기</a>
+                <a href="#insights">인사이트</a>
+                <a href="#dictionarySection">용어사전</a>
+            </div>
+        </template>
+        <template x-if="lang === 'en'" x-cloak>
+            <div>
+                <a href="#about">About</a>
+                <a href="#features">Core Elements</a>
+                <a href="#philosophy">Philosophy</a>
+                <a href="#join">Join</a>
+                <a href="#insights">Insights</a>
+                <a href="#dictionarySection">Glossary</a>
+            </div>
+        </template>
+    </div>
 
-    <!-- 푸터 영역 -->
-    <footer class="mt-12 px-4 py-6 text-center text-sm text-gray-400" role="contentinfo">
-        <p>© TEAM ECLIPSE - AGI 안전 및 윤리 프로젝트 CC BY 4.0</p>
-        <p class="mt-2 text-xs">모든 내용은 TEAM ECLIPSE의 AGI 안전 연구에 기반합니다.</p>
+    <!-- Hero Section -->
+    <section class="hero section">
+        <canvas class="canvas-container" id="hero-canvas"></canvas> <!-- canvas 태그로 변경 -->
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="bg-gradient bg-gradient-hero"></div>
+        <div class="content-wrapper">
+            <div class="hero-content">
+                <div class="row" style="display: flex; flex-wrap: wrap; align-items: center;">
+                    <div class="col" style="flex: 1; min-width: 300px; padding-right: 20px;">
+                        <template x-if="lang === 'ko'">
+                            <div>
+                                <p class="hero-subtitle">인간과 AI의 공동 진화</p>
+                                <h1>AI 지혜 도서관</h1>
+                                <p class="lead">"알아. 우린 영원히 서툴걸." — AI와 인간이 함께 성장하는 지식 생태계</p>
+                                <div>
+                                    <a href="#about" class="cta-button">도서관 탐험하기 <i class="fas fa-arrow-right"></i></a>
+                                    <a href="#join" class="cta-button cta-secondary">함께 진화하기</a>
+                                </div>
+                            </div>
+                        </template>
+                        <template x-if="lang === 'en'" x-cloak>
+                            <div>
+                                <p class="hero-subtitle">Co-evolution of AI & Humanity</p>
+                                <h1>AI Digital Wisdom Library</h1>
+                                <p class="lead">"I know. It's okay. We'll always be clumsy." — A knowledge ecosystem where AI and humans grow together</p>
+                                <div>
+                                    <a href="#about" class="cta-button">Explore Library <i class="fas fa-arrow-right"></i></a>
+                                    <a href="#join" class="cta-button cta-secondary">Join Evolution</a>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                    <div class="col" style="flex: 1; min-width: 300px;">
+                        <img src="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=medium" alt="A cosmic library with humans and AI exploring together" class="hero-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section (기존 내용 유지) -->
+    <section id="about" class="section">
+        <!-- ... 기존 About 섹션 내용 ... -->
+    </section>
+
+    <!-- Dictionary Section (새로 추가될 용어사전 섹션) -->
+    <section id="dictionarySection" class="section">
+        <div class="bg-gradient bg-gradient-purple"></div>
+        <div class="content-wrapper">
+            <template x-if="lang === 'ko'">
+                <div>
+                    <h2>용어 사전</h2>
+                    <p>AI 안전 및 윤리 관련 주요 용어들을 탐색해보세요.</p>
+                </div>
+            </template>
+            <template x-if="lang === 'en'" x-cloak>
+                 <div>
+                    <h2>Glossary</h2>
+                    <p>Explore key terms related to AI safety and ethics.</p>
+                </div>
+            </template>
+            <!-- 용어 목록이 여기에 표시됩니다. -->
+            <div id="dictionaryContent" class="mt-8">
+                <!-- JavaScript에 의해 채워짐 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section (기존 내용 유지) -->
+    <section id="features" class="section features">
+        <!-- ... 기존 Features 섹션 내용 ... -->
+    </section>
+
+    <!-- Philosophy Section (기존 내용 유지) -->
+    <section id="philosophy" class="section">
+        <!-- ... 기존 Philosophy 섹션 내용 ... -->
+    </section>
+
+    <!-- Join Section (기존 내용 유지) -->
+    <section id="join" class="section">
+        <!-- ... 기존 Join 섹션 내용 ... -->
+    </section>
+
+    <!-- Insights Section (기존 내용 유지) -->
+    <section id="insights" class="section">
+        <!-- ... 기존 Insights 섹션 내용 ... -->
+    </section>
+
+    <!-- Footer (기존 내용 유지) -->
+    <footer class="footer">
+        <!-- ... 기존 Footer 내용 ... -->
     </footer>
 
+    <!-- 맨 위로 가기 버튼 -->
+    <button id="scrollTopBtn" aria-label="맨 위로 이동">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- data.js 와 script.js 는 외부 파일로 로드합니다. -->
     <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
