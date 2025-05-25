@@ -123,17 +123,47 @@ body::before {
 }
 
 #searchInput {
-    transition: all 0.3s;
+    padding: 12px 16px; 
+    font-size: 16px; 
+    border-radius: 12px;
+    background-color: rgba(30, 30, 50, 0.8);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+}
+
+#searchInput::placeholder {
+    color: rgba(255, 255, 255, 0.6);
 }
 
 #searchInput:focus {
-    box-shadow: 0 0 0 3px rgba(126, 63, 242, 0.3);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(126, 63, 242, 0.3), 0 4px 12px rgba(0, 0, 0, 0.3);
+    background-color: rgba(40, 40, 70, 0.9);
+    border-color: rgba(126, 63, 242, 0.5);
     transform: translateY(-2px);
+}
+
+.search-icon {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 18px;
+}
+
+.search-clear {
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.search-clear:hover {
+    color: rgba(255, 255, 255, 0.9);
 }
 
 /* 스크롤바 디자인 */
 ::-webkit-scrollbar {
-    width: 5px;
+    width: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -148,8 +178,8 @@ body::before {
 /* 알파벳 내비게이션 */
 .letter-nav {
     background-color: rgba(30, 30, 60, 0.8);
-    border-radius: 15px;
-    padding: 8px;
+    border-radius: 18px;
+    padding: 10px 12px;
     position: sticky;
     top: 70px;
     z-index: 10;
@@ -157,8 +187,10 @@ body::before {
     white-space: nowrap;
     scrollbar-width: none;
     backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    text-align: center;
 }
 
 .letter-nav::-webkit-scrollbar {
@@ -167,21 +199,24 @@ body::before {
 
 .letter-btn {
     display: inline-block;
-    width: 36px;
-    height: 36px;
-    line-height: 36px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
     text-align: center;
-    margin: 3px;
+    margin: 4px;
     border-radius: 50%;
-    background: rgba(60, 60, 100, 0.5);
-    color: #c0c0ff;
-    font-weight: bold;
+    background: rgba(60, 60, 100, 0.6);
+    color: #ffffff;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.3s;
     position: relative;
     overflow: hidden;
     transform-style: preserve-3d;
     transform: perspective(500px);
+    font-size: 16px;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .letter-btn:before {
@@ -191,7 +226,7 @@ body::before {
     left: -10px;
     right: -10px;
     bottom: -10px;
-    background: linear-gradient(45deg, rgba(126, 63, 242, 0.3), transparent);
+    background: linear-gradient(45deg, rgba(126, 63, 242, 0.4), transparent);
     transform: translateZ(-10px);
     filter: blur(8px);
     opacity: 0;
@@ -203,15 +238,22 @@ body::before {
 }
 
 .letter-btn:hover, .letter-btn.active {
-    background: rgba(126, 63, 242, 0.7);
+    background: rgba(126, 63, 242, 0.8);
     color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .letter-btn.active {
     transform: perspective(500px) translateZ(5px);
-    box-shadow: 0 0 15px rgba(126, 63, 242, 0.4);
+    box-shadow: 0 0 20px rgba(126, 63, 242, 0.5);
+}
+
+/* 비활성 버튼 스타일 개선 */
+.letter-btn.opacity-30 {
+    opacity: 0.4;
+    background: rgba(60, 60, 100, 0.3);
+    box-shadow: none;
 }
 
 /* 헤더 링크 */
@@ -220,6 +262,77 @@ body::before {
     top: 0;
     z-index: 20;
     backdrop-filter: blur(10px);
+}
+
+/* 상단으로 스크롤 버튼 */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(126, 63, 242, 0.8);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 30;
+    border: none;
+}
+
+.scroll-top-btn.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.scroll-top-btn:hover {
+    background: rgba(126, 63, 242, 1);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* 액션 버튼 */
+.action-btn {
+    padding: 8px 12px;
+    background-color: rgba(102, 16, 242, 0.7);
+    border-radius: 12px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.action-btn:hover {
+    background-color: rgba(102, 16, 242, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.action-btn.secondary {
+    background-color: rgba(42, 42, 114, 0.7);
+}
+
+.action-btn.secondary:hover {
+    background-color: rgba(42, 42, 114, 0.9);
+}
+
+/* 홈 버튼 효과 */
+#homeButton {
+    transition: all 0.3s;
+}
+
+#homeButton:hover {
+    text-shadow: 0 0 10px rgba(150, 150, 255, 0.9);
+    transform: translateY(-1px);
 }
 
 /* 애니메이션 효과 */
@@ -239,13 +352,6 @@ body::before {
     opacity: 0;
 }
 
-/* 각 카드마다 지연 시간을 다르게 설정 */
-.term-card:nth-child(2) { animation-delay: 0.05s; }
-.term-card:nth-child(3) { animation-delay: 0.1s; }
-.term-card:nth-child(4) { animation-delay: 0.15s; }
-.term-card:nth-child(5) { animation-delay: 0.2s; }
-/* 필요시 더 추가 가능 */
-
 /* 모바일 최적화를 위한 추가 스타일 */
 @media (max-width: 640px) {
     .term-card {
@@ -258,10 +364,18 @@ body::before {
     }
     
     .letter-btn {
-        width: 32px;
-        height: 32px;
-        line-height: 32px;
-        margin: 2px;
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
+        margin: 3px;
+        font-size: 14px;
+    }
+
+    .scroll-top-btn {
+        width: 45px;
+        height: 45px;
+        bottom: 15px;
+        right: 15px;
     }
 }
 
@@ -279,9 +393,9 @@ body::before {
         box-shadow: none;
     }
     
-    .letter-btn:hover {
-        background: rgba(60, 60, 100, 0.5);
-        color: #c0c0ff;
+    .letter-btn:active {
+        transform: scale(0.95);
+        background: rgba(126, 63, 242, 0.8);
     }
 }
 
