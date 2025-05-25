@@ -4,24 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEAM ECLIPSE 모바일 백과사전</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <header>
-        <h1>TEAM ECLIPSE 모바일 백과사전</h1>
-        <p>AGI 안전 및 윤리 관련 용어 모음</p>
-    </header>
-    
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="용어 검색...">
+<body class="pb-10">
+    <!-- Header with links -->
+    <div class="header-links bg-space bg-opacity-80 shadow-lg px-4 py-3 mb-4 flex flex-col md:flex-row items-center justify-between">
+        <h1 class="text-xl md:text-2xl font-bold text-white glow mb-2 md:mb-0">TEAM ECLIPSE<span class="text-purple-400"> 모바일 백과사전</span></h1>
+        <div class="flex flex-wrap justify-center gap-2">
+            <a href="https://jbofxwsy.gensparkspace.com/" class="px-3 py-1 bg-purple-900 hover:bg-purple-800 rounded-lg text-sm flex items-center transition-all">
+                <i class="fas fa-book mr-1"></i> Dictionary & Research Review
+            </a>
+            <a href="https://zqsglqwg.gensparkspace.com/" class="px-3 py-1 bg-indigo-900 hover:bg-indigo-800 rounded-lg text-sm flex items-center transition-all">
+                <i class="fas fa-shield-alt mr-1"></i> AGI RISK MANAGEMENT
+            </a>
+        </div>
     </div>
-    
-    <div id="letterNav"></div>
-    
-    <div id="dictionaryContent"></div>
-    
-    <footer>
-        <p>© TEAM ECLIPSE - AGI 안전 및 윤리 프로젝트</p>
+
+    <!-- Introduction -->
+    <div class="px-4 md:px-8 py-2 mb-6">
+        <p class="text-center text-sm md:text-base text-blue-200 mb-4">AGI 안전 및 윤리 관련 용어를 모바일에 최적화하여 제공하는 백과사전입니다.</p>
+    </div>
+
+    <!-- Search bar -->
+    <div class="search-container sticky top-16 z-10 px-4 md:px-8 mb-4">
+        <div class="relative mx-auto max-w-2xl">
+            <input type="text" id="searchInput" placeholder="용어 검색..." class="w-full px-4 py-2 rounded-lg bg-gray-900 bg-opacity-80 text-gray-100 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <span class="absolute right-3 top-2 text-gray-400">
+                <i class="fas fa-search"></i>
+            </span>
+        </div>
+    </div>
+
+    <!-- Alphabet navigation -->
+    <div class="px-4 md:px-8 mb-6">
+        <div class="letter-nav shadow-lg mx-auto max-w-3xl" id="letterNav">
+            <!-- Will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Dictionary content -->
+    <div class="px-4 md:px-8 max-w-4xl mx-auto" id="dictionaryContent">
+        <!-- Will be populated by JavaScript -->
+    </div>
+
+    <!-- 맨 위로 이동 버튼 -->
+    <button id="scrollTopBtn" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg transform transition-all duration-300 opacity-0 invisible z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="mt-12 px-4 py-6 text-center text-sm text-gray-400">
+        <p>© TEAM ECLIPSE - AGI 안전 및 윤리 프로젝트 CC BY 4.0</p>
+        <p class="mt-2 text-xs">모든 내용은 TEAM ECLIPSE의 AGI 안전 연구에 기반합니다.</p>
     </footer>
 
     <script src="data.js"></script>
