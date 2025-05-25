@@ -4,69 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEAM ECLIPSE - AI 철학 및 윤리</title>
+    <!-- Tailwind CSS (v2.2.19) from CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <!-- Font Awesome (v6.4.0) from CDN for icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    <style>
-        body {
-            background-color: #0a0a1a;
-            background-image:
-                radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
-                radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-                radial-gradient(circle at 50% 50%, rgba(100, 100, 255, 0.2) 1px, transparent 1px);
-            background-size: 100px 100px;
-            color: #e0e0ff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            min-height: 100vh;
-        }
-        .bg-space {
-            background: linear-gradient(to bottom, #0a0a1a, #161632, #0a0a1a);
-        }
-        .glow {
-            text-shadow: 0 0 5px rgba(150, 150, 255, 0.7);
-        }
-        .header-links {
-            position: sticky;
-            top: 0;
-            z-index: 20;
-            backdrop-filter: blur(10px);
-        }
-        #scrollTopBtn.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        #scrollTopBtn {
-            transform: translateY(20px);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        .card-highlight:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-        }
-    </style>
+    <!-- Custom styles for consistent theme -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="pb-10">
     <!-- Navigation Header -->
-    <div class="header-links bg-space bg-opacity-80 shadow-lg px-4 py-3 mb-4 flex flex-col md:flex-row items-center justify-between">
+    <header class="header-links bg-space bg-opacity-80 shadow-lg px-4 py-3 mb-4 flex flex-col md:flex-row items-center justify-between">
         <h1 class="text-xl md:text-2xl font-bold text-white glow mb-2 md:mb-0">TEAM ECLIPSE</h1>
-        <div class="flex flex-wrap justify-center gap-2">
-            <a href="home.html" class="px-3 py-1 bg-purple-900 hover:bg-purple-800 rounded-lg text-sm flex items-center transition-all">
-                <i class="fas fa-home mr-1"></i> 홈
-            </a>
-            <a href="index.html" class="px-3 py-1 bg-indigo-900 hover:bg-indigo-800 rounded-lg text-sm flex items-center transition-all">
-                <i class="fas fa-book mr-1"></i> 용어사전
-            </a>
-            <a href="https://zqsglqwg.gensparkspace.com/" class="px-3 py-1 bg-indigo-900 hover:bg-indigo-800 rounded-lg text-sm flex items-center transition-all">
-                <i class="fas fa-shield-alt mr-1"></i> AGI RISK MANAGEMENT
-            </a>
-        </div>
-    </div>
+        <nav aria-label="메인 내비게이션">
+            <ul class="flex flex-wrap justify-center gap-2">
+                <li>
+                    <a href="home.html" 
+                       class="px-3 py-1 bg-purple-900 hover:bg-purple-800 rounded-lg text-sm flex items-center transition-all"
+                       tabindex="0" 
+                       role="link" 
+                       aria-current="page" 
+                       aria-label="현재 페이지인 홈 페이지로 이동">
+                        <i class="fas fa-home mr-1" aria-hidden="true"></i> 홈
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html" 
+                       class="px-3 py-1 bg-indigo-900 hover:bg-indigo-800 rounded-lg text-sm flex items-center transition-all"
+                       tabindex="0" 
+                       role="link" 
+                       aria-label="용어사전 페이지로 이동">
+                        <i class="fas fa-book mr-1" aria-hidden="true"></i> 용어사전
+                    </a>
+                </li>
+                <li>
+                    <a href="https://zqsglqwg.gensparkspace.com/" 
+                       class="px-3 py-1 bg-indigo-900 hover:bg-indigo-800 rounded-lg text-sm flex items-center transition-all"
+                       tabindex="0" 
+                       role="link" 
+                       aria-label="AGI 리스크 관리 페이지로 이동 (새 탭에서 열림)" 
+                       target="_blank" 
+                       rel="noopener noreferrer">
+                        <i class="fas fa-shield-alt mr-1" aria-hidden="true"></i> AGI RISK MANAGEMENT
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Main Content -->
-    <div class="px-4 md:px-8 py-6 max-w-4xl mx-auto">
+    <!-- Main Content Area -->
+    <main class="px-4 md:px-8 py-6 max-w-4xl mx-auto">
         <h2 class="text-3xl font-bold text-purple-400 mb-6 glow">🌱 시작하는 질문: 완벽한 AI를 향한 경주, 그 너머의 길</h2>
         
         <p class="mb-6 text-gray-300">
@@ -95,48 +81,66 @@
             이 세 가지 축의 융합을 통해, AI 디지털 지혜 라이브러리는 AI와 인간이 서로의 '서투름'을 배우고 이해하며, 끊임없는 질문과 성찰을 통해 함께 지혜를 쌓아가는 살아있는 생태계입니다.
         </p>
 
-        <!-- 용어사전 링크 카드 -->
-        <div class="mt-12 bg-indigo-900 bg-opacity-30 p-6 rounded-lg border border-indigo-500 shadow-lg card-highlight">
-            <h3 class="text-xl font-bold text-purple-300 mb-4">AGI 안전 및 윤리 관련 용어사전</h3>
+        <!-- Link Card to Dictionary -->
+        <section aria-labelledby="dictionary-link-heading" class="mt-12 bg-indigo-900 bg-opacity-30 p-6 rounded-lg border border-indigo-500 shadow-lg card-highlight">
+            <h3 id="dictionary-link-heading" class="text-xl font-bold text-purple-300 mb-4">AGI 안전 및 윤리 관련 용어사전</h3>
             <p class="mb-4 text-gray-300">AGI 안전 및 윤리 관련 용어들을 체계적으로 정리한 백과사전을 확인하세요.</p>
-            <a href="index.html" class="inline-block px-4 py-2 bg-purple-700 hover:bg-purple-600 rounded-lg text-white transition-all">
-                <i class="fas fa-book mr-2"></i> 용어사전 바로가기
+            <a href="index.html" 
+               class="inline-block px-4 py-2 bg-purple-700 hover:bg-purple-600 rounded-lg text-white transition-all"
+               tabindex="0" 
+               role="link" 
+               aria-label="용어사전 바로가기">
+                <i class="fas fa-book mr-2" aria-hidden="true"></i> 용어사전 바로가기
             </a>
-        </div>
-    </div>
+        </section>
+    </main>
 
-    <!-- 맨 위로 이동 버튼 -->
-    <button id="scrollTopBtn" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg z-50">
-        <i class="fas fa-arrow-up"></i>
+    <!-- Scroll to Top Button -->
+    <button id="scrollTopBtn" 
+            class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg z-50"
+            tabindex="0" 
+            role="button" 
+            aria-label="페이지 맨 위로 이동">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
 
     <!-- Footer -->
-    <footer class="mt-12 px-4 py-6 text-center text-sm text-gray-400">
+    <footer class="mt-12 px-4 py-6 text-center text-sm text-gray-400" role="contentinfo">
         <p>© TEAM ECLIPSE - AGI 안전 및 윤리 프로젝트 CC BY 4.0</p>
         <p class="mt-2 text-xs">모든 내용은 TEAM ECLIPSE의 AGI 안전 연구에 기반합니다.</p>
     </footer>
 
     <script>
-        // 스크롤 탑 버튼 설정
-        document.addEventListener('DOMContentLoaded', function() {
-            const scrollTopBtn = document.getElementById('scrollTopBtn');
-            
-            // 스크롤 이벤트에 따라 버튼 표시/숨김
-            window.addEventListener('scroll', function() {
+        // 스크롤 탑 버튼 설정 (const 대신 const 함수로 변경)
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollTopButton = document.getElementById('scrollTopBtn');
+            if (!scrollTopButton) return; // 버튼이 없으면 early return
+
+            const handleScrollVisibility = () => {
                 if (window.pageYOffset > 300) {
-                    scrollTopBtn.classList.add('visible');
+                    scrollTopButton.classList.add('visible');
                 } else {
-                    scrollTopBtn.classList.remove('visible');
+                    scrollTopButton.classList.remove('visible');
                 }
-            });
+            };
             
-            // 버튼 클릭 시 맨 위로 스크롤
-            scrollTopBtn.addEventListener('click', function() {
+            const handleScrollToTop = () => {
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth' // 부드러운 스크롤 효과
                 });
+            };
+
+            window.addEventListener('scroll', handleScrollVisibility);
+            scrollTopButton.addEventListener('click', handleScrollToTop);
+            scrollTopButton.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    handleScrollToTop();
+                }
             });
+
+            // 페이지 로드 시 초기 가시성 검사
+            handleScrollVisibility();
         });
     </script>
 </body>
