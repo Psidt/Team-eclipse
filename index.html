@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-[#0a0a1a] text-[#e0e0ff] font-sans min-h-screen">
-    <!-- 고정 헤더 -->
-    <header class="fixed top-0 w-full z-50 bg-gradient-to-b from-[#0a0a1a] via-[#161632] to-[#0a0a1a] shadow-lg">
+    <!-- 헤더 -->
+    <header class="bg-gradient-to-b from-[#0a0a1a] via-[#161632] to-[#0a0a1a] shadow-lg">
         <div class="flex flex-col md:flex-row items-center justify-between px-4 py-3">
             <h1 class="text-xl md:text-2xl font-bold text-white glow mb-2 md:mb-0">
                 TEAM ECLIPSE<span class="text-purple-400"> 모바일 백과사전</span>
@@ -24,9 +24,8 @@
                 </a>
             </div>
         </div>
-        
-        <!-- 검색바 (항상 상단 고정) -->
-        <div class="px-4 py-2 bg-[#1a1a2a]/80 backdrop-blur">
+        <!-- 검색바 -->
+        <div id="searchBarWrapper" class="transition-all duration-300 z-50">
             <div class="relative max-w-2xl mx-auto">
                 <input type="text" id="searchInput" placeholder="용어 검색..."
                     class="w-full px-4 py-2 rounded-lg bg-gray-900 bg-opacity-80 text-gray-100 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500">
@@ -35,6 +34,8 @@
                 </span>
             </div>
         </div>
+        <!-- 알파벳 네비게이션 -->
+        <nav id="letterNav" class="letter-nav"></nav>
     </header>
 
     <!-- 컨텐츠 영역 -->
@@ -42,15 +43,9 @@
         <div class="text-center mb-6">
             <p class="text-blue-200">AGI 안전 및 윤리 관련 용어를 모바일에 최적화하여 제공하는 백과사전입니다.</p>
         </div>
-
-        <!-- 알파벳 네비게이션 -->
-        <nav class="letter-nav mb-6" id="letterNav"></nav>
-
-        <!-- 용어 컨텐츠 -->
         <div class="max-w-4xl mx-auto" id="dictionaryContent"></div>
     </main>
 
-    <!-- 푸터 -->
     <footer class="mt-12 px-4 py-6 text-center text-sm text-gray-400">
         <p>© TEAM ECLIPSE - AGI 안전 및 윤리 프로젝트 CC BY 4.0</p>
         <p class="mt-2 text-xs">모든 내용은 TEAM ECLIPSE의 AGI 안전 연구에 기반합니다.</p>
