@@ -39,7 +39,6 @@
                         <i class="fas fa-book mr-1" aria-hidden="true"></i> 용어사전
                     </a>
                 </li>
-                <!-- AGI RISK MANAGEMENT link removed as per latest image -->
             </ul>
         </nav>
     </header>
@@ -52,11 +51,11 @@
         </p>
     </section>
 
-    <!-- Search Bar Section (Background now opaque) -->
-    <section aria-labelledby="search-heading" class="search-container sticky top-16 z-10 px-4 md:px-8 mb-4">
+    <!-- Search Bar Section (z-index increased for proper layering) -->
+    <section aria-labelledby="search-heading" class="search-container sticky top-16 z-30 px-4 md:px-8 mb-4">
         <h2 id="search-heading" class="sr-only">용어 검색</h2>
         <div class="relative mx-auto max-w-2xl 
-                    bg-gray-900 rounded-lg p-3 shadow-xl border border-gray-700"> <!-- Changed to bg-gray-900 (opaque) -->
+                    bg-gray-900 rounded-lg p-3 shadow-xl border border-gray-700">
             <input type="text" 
                    id="searchInput" 
                    placeholder="용어 검색..." 
@@ -110,6 +109,20 @@
             </p>
             <p class="text-blue-300 text-xs md:text-sm" lang="ko">
                 악의적인 행위자가 의도적으로 AI 모델 훈련에 사용되는 데이터를 손상시키거나 미묘하게 변경하는 기술적인 공격 기술입니다.
+            </p>
+        </article>
+
+        <!-- Placeholder for 'Alignment' term (matching the latest image) -->
+        <article class="bg-gray-800 bg-opacity-60 rounded-lg p-6 shadow-xl border border-gray-700" aria-labelledby="alignment-heading">
+            <header class="flex items-center justify-between mb-4">
+                <h3 id="alignment-heading" class="text-xl md:text-2xl font-bold text-purple-400">Alignment</h3>
+                <span class="text-purple-300 text-sm md:text-base" aria-label="한국어 번역 정렬">정렬</span>
+            </header>
+            <p class="mb-4 text-gray-200 text-sm md:text-base">
+                Refers to the process of ensuring an AI system acts in accordance with the goals and values intended by the developer or user. It can be likened to 'training' or 'domesticating' the AI to operate beneficially without diverging from human intent. Failure to achieve alignment means the AI could act harmfully in unexpected ways and is considered one of the severe risks that AGI could pose.
+            </p>
+            <p class="text-blue-300 text-xs md:text-sm" lang="ko">
+                AI 시스템이 개발자나 사용자가 의도한 목표와 가치에 맞게 행동하도록 만드는 과정입니다.
             </p>
         </article>
     </main>
