@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TEAM ECLIPSE 모바일 백과사전</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="styles.css">
+ <title>TEAM ECLIPSE 모바일 백과사전</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-[#0a0a1a] text-[#e0e0ff] font-sans min-h-screen">
   <!-- 헤더 -->
@@ -16,11 +16,17 @@
         TEAM ECLIPSE<span class="text-purple-400"> 모바일 백과사전</span>
       </h1>
       <div class="flex flex-wrap gap-2">
-        <a href="https://jbofxwsy.gensparkspace.com/" class="px-3 py-1 bg-purple-900 hover:bg-purple-800 rounded-lg text-sm flex items-center transition-all">
-          <i class="fas fa-book mr-1"></i> Dictionary & Research Review
+        <a href="index.html" class="px-3 py-1 bg-purple-900 hover:bg-purple-800 rounded-lg text-sm flex items-center transition-all">
+          <i class="fas fa-book mr-1"></i> 백과사전 (메인)
         </a>
-        <a href="https://zqsglqwg.gensparkspace.com/" class="px-3 py-1 bg-indigo-900 hover:bg-indigo-800 rounded-lg text-sm flex items-center transition-all">
-          <i class="fas fa-shield-alt mr-1"></i> AGI RISK MANAGEMENT
+        <a href="history.html" class="px-3 py-1 bg-blue-900 hover:bg-blue-800 rounded-lg text-sm flex items-center transition-all">
+          <i class="fas fa-history mr-1"></i> history
+        </a>
+        <a href="vision.html" class="px-3 py-1 bg-green-900 hover:bg-green-800 rounded-lg text-sm flex items-center transition-all">
+          <i class="fas fa-lightbulb mr-1"></i> vision
+        </a>
+        <a href="research.html" class="px-3 py-1 bg-indigo-900 hover:bg-indigo-800 rounded-lg text-sm flex items-center transition-all">
+          <i class="fas fa-flask mr-1"></i> R&D
         </a>
       </div>
     </div>
@@ -37,6 +43,16 @@
   </header>
 
   <!-- 컨텐츠 영역 -->
+  <main class="pt-36 px-4 md:px-8">
+    <div class="text-center mb-10 mt-2">
+      <p class="text-blue-200 text-base md:text-lg">>A dictionary providing terms related to AI safety and ethics.
+        AGI 안전 및 윤리 관련 용어를 모바일에 최적화하여 제공하는 백과사전입니다.</p>
+    </div>
+    <div class="max-w-4xl mx-auto" id="dictionaryContent"></div>
+  </main>
+
+  <!-- 맨 위로 버튼 -->
+
   <main class="pt-36 px-4 md:px-8">
     <div class="text-center mb-10 mt-2">
       <p class="text-blue-200 text-base md:text-lg">AGI 안전 및 윤리 관련 용어를 모바일에 최적화하여 제공하는 백과사전입니다.</p>
