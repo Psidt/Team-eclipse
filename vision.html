@@ -168,8 +168,21 @@ main{
   margin:auto;
   padding:0 20px;
 }
-section{margin:3.5rem 0;} /* 각 섹션의 상하 바깥 여백 */
+section {
+  margin: 3.5rem 0; /* 각 섹션의 상하 바깥 여백 */
+  scroll-margin-top: 70px; /* 여기에 추가! 고정 헤더 높이만큼 스크롤 여백 (예시값) */
+}
+/* h2 스타일은 그대로 둡니다. */
 h2{ /* 섹션 제목 (H2) */
+  color: var(--accent-soft);
+  font-size: 1.4em;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.2em;
+  margin-top: 2.2em;
+  margin-bottom: 0.7em;
+  font-family: 'Fira Mono', monospace;
+  text-align: left; /* 왼쪽 정렬 */
+}h2{ /* 섹션 제목 (H2) */
   color: var(--accent-soft);
   font-size: 1.4em;
   border-bottom: 1px solid var(--border-color);
