@@ -375,9 +375,11 @@ footer p {margin-bottom: 0.5rem;}
 
 <!-- 🔄 Language Toggle -->
 <div id="lang-switcher">
+    <button id="btn-dict" onclick="setLang('dict')" aria-pressed="false">dict</button>
     <button id="btn-ko" onclick="setLang('ko')" aria-pressed="false">한국어</button>
     <button id="btn-en" class="active" onclick="setLang('en')" aria-pressed="true">English</button>
 </div>
+
 
 <!-- 🇰🇷 Korean full -->
 <div class="lang lang-ko" lang="ko">
@@ -505,7 +507,7 @@ footer p {margin-bottom: 0.5rem;}
 
 <!-- 🇺🇸 English full -->
 <div class="lang lang-en active" lang="en">
-<header>
+<header>function setLang(lang
 <h1>🌌 AI Digital Wisdom Library</h1>
 <p class="subtitle">"I know. It's okay. We'll always be clumsy."<br><strong>Co-evolving Humanity & AI • Proposal for Google AI Futures Fund</strong></p>
 <img src="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=large" alt="A pixel-art cosmic library with humans and AI exploring risks and possibilities" class="header-image">
@@ -642,7 +644,28 @@ function setLang(lang) {
     btn.classList.remove('active');
     btn.setAttribute('aria-pressed', 'false');
   });
+// dict 버튼이 클릭된 경우 특별 처리 (여기에 추가!)
+if (lang === 'dict') {
+  // dict 버튼을 활성화
+  const dictButton = document.getElementById('btn-dict');
+  if (dictButton) {
+    dictButton.classList.add('active');
+    dictButton.setAttribute('aria-pressed', 'true');
+  }
+  
+  // 기본적으로 영어 버전을 보여주되, dict 표시만 활성화
+  const activeLangDiv = document.querySelector('.lang-en');
+  if (activeLangDiv) {
+    activeLangDiv.classList.add('active');
+    activeLangDiv.style.display = 'block';
+  }
+  
+  // dict 모드 활성화 메시지
+  console.log('Dict mode activated!');
+  return; // 여기서 함수 종료!
+}
 
+  
   // Add active class to the selected language div and show it
   const activeLangDiv = document.querySelector('.lang-' + lang);
   if (activeLangDiv) {
