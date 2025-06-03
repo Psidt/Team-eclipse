@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI 디지털 지혜 도서관 - 인간과 AI의 공동 진화를 위한 플랫폼입니다. 지식 생태계를 통해 함께 성장하는 공간입니다.">
+    <meta name="keywords" content="AI, 인공지능, 디지털 지혜, 윤리, 철학, 공동 진화">
+    <meta name="author" content="Team Eclipse">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="AI 디지털 지혜 도서관 | 인간과 AI의 공동 진화 플랫폼">
+    <meta property="og:description" content="인간과 AI가 함께 성장하는 지식 생태계를 위한 플랫폼입니다.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=medium">
+    <meta property="og:url" content="https://aiwisdomlibrary.org">
+    
+    <title>AI 디지털 지혜 도서관 | 인간과 AI의 공동 진화 플랫폼</title>
+    
+    <!-- 주요 리소스 미리 연결 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    
+    <!-- 최적화된 폰트 로딩 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- 아이콘 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- Alpine.js (상호작용 및 다국어 처리용) -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+    
+    <!-- 중요 CSS를 인라인으로 포함 (Critical CSS) -->
+    <style>
+        /* 크리티컬 CSS - 초기 로딩에 필요한 스타일 */
+        :root {
+            /* Color palette - 2025 modern dark theme */
+            --bg-primary: #090b14;
+            --bg-secondary: #12162b;
+            --accent-blue: #2e9dff;
+            --accent-purple: #b995ff;
+            --accent-teal: #00ecc8;
+            --text-primary: #f0f6ff;
+            --text-secondary: #aabeff;
+            --text-muted: #8a93b8;
+            
+            /* Glassmorphism */
+            --glass-bg: rgba(24, 32, 79, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-blur: 16px;
+            
+            /* Neumorphism */
+            --neumorph-bg: #10152e;
+            --neumorph-shadow-light: rgba(55, 65, 135, 0.2);
+            --neumorph-shadow-dark: rgba(0, 0, 0, 0.4);
+            
+            /* Border radius */
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            
+            /* Animations */
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            scroll-behavior: smooth;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            width: 100%;
+            font-family: 'Noto Sans KR', 'Poppins', sans-serif;
+        }
+        
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--accent-blue);
+            color: white;
+            padding: 8px;
+            z-index: 9999;
+            transition: var(--transition-fast);
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        /* 기본 레이아웃 및 타이포그래피 */
+        .content-wrapper {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section {
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 기본 타이포그래피 */
+        h1, h2, h3, .mono {
+            font-family: 'Space Mono', monospace;
+        }
+        
+        /* 헤더 및 네비게이션 */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition-normal);
+        }
+        
+        .header-scrolled {
+            background: rgba(9, 11, 20, 0.85);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+        
+        .logo i {
+            margin-right: 0.5rem;
+        }
+        
+        /* 접근성 개선 - 모바일 메뉴 토글 버튼 */
+        .mobile-nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: var(--transition-fast);
+        }
+        
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid transparent;
+            border-top-color: var(--accent-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        [x-cloak] { display: none !important; }
+    </style>
+    
+    <!-- 나머지 CSS (HTML이 파싱된 후 로드) -->
+    <style>
+        /* ===== Navigation Styles ===== */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: var(--transition-fast);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-sm);
+            position: relative;
+        }
+        
+        .nav-links a:hover, .nav-links a:focus {
+            color: var(--accent-blue);
+            outline: none;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0%;
+            height: 2px;
+            background: var(--accent-blue);
+            transition: var(--transition-fast);
+            transform: translateX(-50%);
+        }
+        
+        .nav-links a:hover::after, .nav-links a:focus::after {
+            width: 80%;
+        }
+        
+        .lang-switch {
+            display: flex;
+            align-items: center;
+        }
+        
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            margin: 0 0.25rem;
+            font-size: 0.9rem;
+            border-radius: var(--radius-sm);
+            transition: var(--transition-fast);
+        }
+        
+        .lang-btn.active {
+            color: var(--accent-blue);
+            background: rgba(46, 157, 255, 0.1);
+        }
+        
+        .lang-btn:hover, .lang-btn:focus {
+            color: var(--accent-blue);
+            outline: none;
+        }
+        
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--bg-primary);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            clip-path: circle(0px at top right);
+            transition: clip-path 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .mobile-nav.active {
+            clip-path: circle(1500px at top right);
+        }
+        
+        .mobile-nav a {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+        
+        .mobile-nav a:hover, .mobile-nav a:focus {
+            color: var(--accent-blue);
+            outline: none;
+        }
+        
+        /* ===== Typography Styles ===== */
+        h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--accent-blue);
+            text-shadow: 0 0 20px rgba(46, 157, 255, 0.4);
+        }
+        
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-purple);
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent-teal);
+        }
+        
+        p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+        
+        .lead {
+            font-size: 1.4rem;
+            font-weight: 300;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+        }
+        
+        /* ===== Hero Section ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--accent-teal);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .hero-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-lg);
+            box-shadow: 
+                20px 20px 60px var(--neumorph-shadow-dark),
+                -20px -20px 60px var(--neumorph-shadow-light);
+            transform: perspective(1000px) rotateY(5deg);
+            transition: var(--transition-slow);
+        }
+        
+        .hero-image:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+        
+        /* ===== Buttons ===== */
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, rgba(46, 157, 255, 0.8) 0%, rgba(185, 149, 255, 0.8) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition-normal);
+            box-shadow: 0 10px 30px rgba(46, 157, 255, 0.3);
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: var(--transition-fast);
+        }
+        
+        .cta-button:hover::before, .cta-button:focus::before {
+            left: 100%;
+            transition: 0.75s ease;
+        }
+        
+        .cta-button:hover, .cta-button:focus {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(46, 157, 255, 0.4);
+            outline: none;
+        }
+        
+        .cta-button i {
+            margin-left: 0.5rem;
+        }
+        
+        .cta-secondary {
+            background: transparent;
+            border: 2px solid var(--accent-purple);
+            color: var(--accent-purple);
+            box-shadow: none;
+        }
+        
+        .cta-secondary:hover, .cta-secondary:focus {
+            background: rgba(185, 149, 255, 0.1);
+            outline: none;
+        }
+        
+        /* ===== Components ===== */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            transition: var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .glass-card:hover, .glass-card:focus-within {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        .neumorph {
+            background: var(--neumorph-bg);
+            border-radius: var(--radius-md);
+            box-shadow: 
+                15px 15px 30px var(--neumorph-shadow-dark),
+                -15px -15px 30px var(--neumorph-shadow-light);
+            transition: var(--transition-normal);
+            padding: 2.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .neumorph:hover, .neumorph:focus-within {
+            box-shadow: 
+                20px 20px 40px var(--neumorph-shadow-dark),
+                -20px -20px 40px var(--neumorph-shadow-light);
+            transform: translateY(-3px);
+        }
+        
+        /* ===== Feature Section ===== */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            color: var(--accent-blue);
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* ===== Philosophy Section ===== */
+        .philosophy-quote {
+            font-size: 1.8rem;
+            font-style: italic;
+            line-height: 1.5;
+            margin: 3rem 0;
+            padding-left: 2rem;
+            border-left: 4px solid var(--accent-purple);
+            color: var(--text-primary);
+            max-width: 800px;
+        }
+        
+        .philosophy-quote cite {
+            display: block;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-style: normal;
+        }
+        
+        /* ===== Join Section ===== */
+        .join-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        /* ===== Blog/Insights Section ===== */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .blog-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-date {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* ===== Footer ===== */
+        .footer {
+            background: var(--bg-secondary);
+            padding: 5rem 0 2rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer h3 {
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+        
+        .footer-links a:hover, .footer-links a:focus {
+            color: var(--accent-blue);
+            outline: none;
+        }
+        
+        .copyright {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        /* ===== Background Elements ===== */
+        .bg-gradient {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        .bg-gradient-hero {
+            background: radial-gradient(circle at top right, rgba(46, 157, 255, 0.15), transparent 70%),
+                          radial-gradient(circle at bottom left, rgba(185, 149, 255, 0.15), transparent 70%);
+        }
+        
+        .bg-gradient-blue {
+            background: radial-gradient(circle at center, rgba(46, 157, 255, 0.1), transparent 70%);
+        }
+        
+        .bg-gradient-purple {
+            background: radial-gradient(circle at center, rgba(185, 149, 255, 0.1), transparent 70%);
+        }
+        
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: -1;
+            opacity: 0.4;
+        }
+        
+        .orb-1 {
+            background: var(--accent-blue);
+            width: 300px;
+            height: 300px;
+            right: -100px;
+            top: 20%;
+            animation: float 8s ease-in-out infinite alternate;
+        }
+        
+        .orb-2 {
+            background: var(--accent-purple);
+            width: 400px;
+            height: 400px;
+            left: -200px;
+            bottom: 10%;
+            animation: float 12s ease-in-out infinite alternate-reverse;
+        }
+        
+        .orb-3 {
+            background: var(--accent-teal);
+            width: 200px;
+            height: 200px;
+            right: 10%;
+            bottom: 20%;
+            animation: float 10s ease-in-out infinite alternate;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+            100% {
+                transform: translateY(-40px) translateX(20px);
+            }
+        }
+        
+        /* ===== Utilities ===== */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+        
+        .col {
+            flex: 1;
+            min-width: 300px;
+            padding: 0 15px;
+            margin-bottom: 30px;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .mt-lg {
+            margin-top: 60px;
+        }
+        
+        .mb-lg {
+            margin-bottom: 60px;
+        }
+        
+        /* ===== Animation classes ===== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transition: opacity 0.6s ease-out;
+        }
+        
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* ===== Lightweight canvas replacement ===== */
+        .static-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .static-bg-gradient {
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(46, 157, 255, 0.05) 0%, transparent 30%),
+                radial-gradient(circle at 80% 80%, rgba(185, 149, 255, 0.05) 0%, transparent 30%),
+                radial-gradient(circle at 50% 50%, transparent 0%, var(--bg-primary) 100%);
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+        }
+        
+        /* ===== Accessibility Enhancements ===== */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* ===== Responsive Styles ===== */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .section {
+                padding: 80px 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .lead {
+                font-size: 1.2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-nav-toggle {
+                display: block;
+            }
+            
+            .feature-grid, .join-grid, .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .content-wrapper {
+                padding: 0 16px;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .cta-button {
+                display: block;
+                width: 100%;
+                margin-right: 0;
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+            
+            .philosophy-quote {
+                font-size: 1.4rem;
+                padding-left: 1rem;
+            }
+        }
+        
+        /* ===== High Contrast Mode ===== */
+        @media (prefers-contrast: more) {
+            :root {
+                --text-primary: white;
+                --text-secondary: #dddddd;
+                --accent-blue: #50afff;
+                --accent-purple: #d0b3ff;
+                --glass-border: rgba(255, 255, 255, 0.3);
+            }
+        }
+        
+        /* ===== Reduced Motion ===== */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            
+            .hero-image, .glass-card, .neumorph {
+                transform: none !important;
+            }
+            
+            .hero-image:hover, .glass-card:hover, .neumorph:hover {
+                transform: none !important;
+            }
+            
+            .fade-up, .fade-in {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+        }
+    </style>
+    
+    <!-- 구조화된 데이터 (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "AI 디지털 지혜 도서관",
+      "description": "인간과 AI의 공동 진화를 위한 지식 생태계 플랫폼",
+      "url": "https://aiwisdomlibrary.org",
+      "logo": "https://aiwisdomlibrary.org/images/logo.png",
+      "sameAs": [
+        "https://twitter.com/AIWisdomLibrary",
+        "https://github.com/AIWisdomLibrary"
+      ]
+    }
+    </script>
+</head>
+
+<body x-data="siteData()">
+    <!-- 로딩 오버레이 -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+    
+    <!-- 접근성 링크 -->
+    <a href="#main-content" class="skip-link">
+        <span x-text="t('accessibility.skipToContent')"></span>
+    </a>
+
+    <!-- 헤더 및 내비게이션 -->
+    <header class="header" id="header" role="banner">
+        <div class="content-wrapper">
+            <div class="nav-container">
+                <a href="#" class="logo" aria-label="AI 디지털 지혜 도서관 홈으로 이동">
+                    <i class="fas fa-brain" aria-hidden="true"></i>
+                    <span x-text="t('site.name')"></span>
+                </a>
+                
+                <nav aria-label="메인 메뉴">
+                    <ul class="nav-links">
+                        <li><a href="#about" x-text="t('nav.about')"></a></li>
+                        <li><a href="#features" x-text="t('nav.features')"></a></li>
+                        <li><a href="#philosophy" x-text="t('nav.philosophy')"></a></li>
+                        <li><a href="#join" x-text="t('nav.join')"></a></li>
+                        <li><a href="#insights" x-text="t('nav.insights')"></a></li>
+                    </ul>
+                </nav>
+                
+                <div class="lang-switch">
+                    <button @click="toggleLang('ko')" :class="lang === 'ko' ? 'lang-btn active' : 'lang-btn'" aria-label="한국어로 언어 변경">한국어</button>
+                    <button @click="toggleLang('en')" :class="lang === 'en' ? 'lang-btn active' : 'lang-btn'" aria-label="영어로 언어 변경">English</button>
+                </div>
+                
+                <button class="mobile-nav-toggle" @click="toggleMobileNav" aria-expanded="false" :aria-label="mobileNavOpen ? t('accessibility.closeMenu') : t('accessibility.openMenu')">
+                    <i class="fas" :class="mobileNavOpen ? 'fa-times' : 'fa-bars'" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 모바일 내비게이션 -->
+    <div class="mobile-nav" :class="mobileNavOpen ? 'active' : ''" @click="mobileNavOpen = false" x-cloak>
+        <nav aria-label="모바일 메뉴">
+            <a href="#about" x-text="t('nav.about')"></a>
+            <a href="#features" x-text="t('nav.features')"></a>
+            <a href="#philosophy" x-text="t('nav.philosophy')"></a>
+            <a href="#join" x-text="t('nav.join')"></a>
+            <a href="#insights" x-text="t('nav.insights')"></a>
+        </nav>
+    </div>
+
+    <!-- 메인 콘텐츠 -->
+    <main id="main-content">
+        <!-- 히어로 섹션 -->
+        <section class="hero section" aria-labelledby="hero-heading">
+            <div class="static-bg static-bg-gradient" id="hero-static-bg"></div>
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="bg-gradient bg-gradient-hero"></div>
+            
+            <div class="content-wrapper">
+                <div class="hero-content">
+                    <div class="row">
+                        <div class="col">
+                            <p class="hero-subtitle" x-text="t('hero.subtitle')"></p>
+                            <h1 id="hero-heading" x-text="t('hero.title')"></h1>
+                            <p class="lead" x-text="t('hero.lead')" x-html="t('hero.lead')"></p>
+                            <div>
+                                <a href="#about" class="cta-button">
+                                    <span x-text="t('hero.ctaPrimary')"></span> 
+                                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                </a>
+                                <a href="#join" class="cta-button cta-secondary" x-text="t('hero.ctaSecondary')"></a>
+                            </div>
+                        </div>
+                        
+                        <div class="col">
+                            <img src="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=medium" 
+                                 alt="코스믹 라이브러리에서 인간과 AI가 함께 탐험하는 모습" 
+                                 class="hero-image"
+                                 width="600" 
+                                 height="400"
+                                 loading="eager">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 소개 섹션 -->
+        <section id="about" class="section" aria-labelledby="about-heading">
+            <div class="bg-gradient bg-gradient-blue"></div>
+            <div class="content-wrapper">
+                <h2 id="about-heading" x-text="t('about.title')" class="fade-up"></h2>
+                <div class="neumorph fade-up">
+                    <p class="lead" x-text="t('about.lead')"></p>
+                </div>
+                
+                <div class="row mt-lg">
+                    <div class="col fade-up">
+                        <h3 x-text="t('about.subtitle1')"></h3>
+                        <p x-text="t('about.paragraph1')"></p>
+                        <p x-text="t('about.paragraph2')"></p>
+                    </div>
+                    
+                    <div class="col fade-up">
+                        <h3 x-text="t('about.subtitle2')"></h3>
+                        <p x-text="t('about.paragraph3')"></p>
+                        <p x-text="t('about.paragraph4')"></p>
+                    </div>
+                </div>
+                
+                <div class="philosophy-quote fade-up" x-text="t('about.quote')"></div>
+            </div>
+        </section>
+
+        <!-- 핵심 요소 섹션 -->
+        <section id="features" class="section features" aria-labelledby="features-heading">
+            <div class="orb orb-3"></div>
+            <div class="bg-gradient bg-gradient-purple"></div>
+            <div class="content-wrapper">
+                <h2 id="features-heading" x-text="t('features.title')" class="fade-up"></h2>
+                <p x-text="t('features.description')" class="fade-up"></p>
+                
+                <div class="feature-grid">
+                    <div class="glass-card feature-card fade-up" tabindex="0">
+                        <i class="fas fa-book feature-icon" aria-hidden="true"></i>
+                        <h3 x-text="t('features.feature1.title')"></h3>
+                        <p x-text="t('features.feature1.description')"></p>
+                        <a href="#" class="cta-button" style="margin-top: auto;" x-text="t('features.feature1.cta')"></a>
+                    </div>
+                    
+                    <div class="glass-card feature-card fade-up" tabindex="0">
+                        <i class="fas fa-comments feature-icon" aria-hidden="true"></i>
+                        <h3 x-text="t('features.feature2.title')"></h3>
+                        <p x-text="t('features.feature2.description')"></p>
+                        <a href="#" class="cta-button" style="margin-top: auto;" x-text="t('features.feature2.cta')"></a>
+                    </div>
+                    
+                    <div class="glass-card feature-card fade-up" tabindex="0">
+                        <i class="fas fa-shield-alt feature-icon" aria-hidden="true"></i>
+                        <h3 x-text="t('features.feature3.title')"></h3>
+                        <p x-text="t('features.feature3.description')"></p>
+                        <a href="#" class="cta-button" style="margin-top: auto;" x-text="t('features.feature3.cta')"></a>
+                    </div>
+                    
+                    <div class="glass-card feature-card fade-up" tabindex="0">
+                        <i class="fas fa-database feature-icon" aria-hidden="true"></i>
+                        <h3 x-text="t('features.feature4.title')"></h3>
+                        <p x-text="t('features.feature4.description')"></p>
+                        <a href="#" class="cta-button" style="margin-top: auto;" x-text="t('features.feature4.cta')"></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 철학 섹션 -->
+        <section id="philosophy" class="section" aria-labelledby="philosophy-heading">
+            <div class="bg-gradient bg-gradient-blue"></div>
+            <div class="content-wrapper">
+                <h2 id="philosophy-heading" x-text="t('philosophy.title')" class="fade-up"></h2>
+                <p x-text="t('philosophy.description')" class="fade-up"></p>
+                
+                <div class="neumorph fade-up">
+                    <h3 x-text="t('philosophy.manifestoTitle')"></h3>
+                    <ol style="margin-left: 20px; margin-bottom: 20px; color: var(--text-secondary);">
+                        <li style="margin-bottom: 10px;" x-text="t('philosophy.manifesto1')"></li>
+                        <li style="margin-bottom: 10px;" x-text="t('philosophy.manifesto2')"></li>
+                        <li x-text="t('philosophy.manifesto3')"></li>
+                    </ol>
+                </div>
+                
+                <div class="row mt-lg">
+                    <div class="col fade-up">
+                        <h3 x-text="t('philosophy.subtitle1')"></h3>
+                        <p x-text="t('philosophy.paragraph1')"></p>
+                    </div>
+                    
+                    <div class="col fade-up">
+                        <h3 x-text="t('philosophy.subtitle2')"></h3>
+                        <p x-text="t('philosophy.paragraph2')"></p>
+                        <p x-text="t('philosophy.paragraph3')"></p>
+                    </div>
+                </div>
+                
+                <div class="row" style="display: flex; justify-content: center; margin-top: 40px;">
+                    <img src="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=medium" 
+                         x-bind:alt="t('philosophy.imageAlt')" 
+                         style="max-width: 100%; height: auto; border-radius: var(--radius-lg); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);" 
+                         class="fade-up"
+                         width="800"
+                         height="600"
+                         loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- 참여하기 섹션 -->
+        <section id="join" class="section" aria-labelledby="join-heading">
+            <div class="bg-gradient bg-gradient-purple"></div>
+            <div class="content-wrapper">
+                <h2 id="join-heading" x-text="t('join.title')" class="fade-up"></h2>
+                <p x-text="t('join.description')" class="fade-up"></p>
+                
+                <div class="join-grid">
+                    <div class="neumorph fade-up" tabindex="0">
+                        <h3 x-text="t('join.option1.title')"></h3>
+                        <p x-text="t('join.option1.description')"></p>
+                        <a href="#" class="cta-button" x-text="t('join.option1.cta')"></a>
+                    </div>
+                    
+                    <div class="neumorph fade-up" tabindex="0">
+                        <h3 x-text="t('join.option2.title')"></h3>
+                        <p x-text="t('join.option2.description')"></p>
+                        <a href="#" class="cta-button" x-text="t('join.option2.cta')"></a>
+                    </div>
+                    
+                    <div class="neumorph fade-up" tabindex="0">
+                        <h3 x-text="t('join.option3.title')"></h3>
+                        <p x-text="t('join.option3.description')"></p>
+                        <a href="#" class="cta-button" x-text="t('join.option3.cta')"></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 인사이트 섹션 -->
+        <section id="insights" class="section" aria-labelledby="insights-heading">
+            <div class="bg-gradient bg-gradient-blue"></div>
+            <div class="content-wrapper">
+                <h2 id="insights-heading" x-text="t('insights.title')" class="fade-up"></h2>
+                <p x-text="t('insights.description')" class="fade-up"></p>
+                
+                <div class="blog-grid">
+                    <article class="glass-card blog-card fade-up" tabindex="0">
+                        <p class="blog-date" x-text="t('insights.article1.date')"></p>
+                        <h3 x-text="t('insights.article1.title')"></h3>
+                        <p x-text="t('insights.article1.description')"></p>
+                        <a href="#" class="cta-button cta-secondary" x-text="t('insights.readMore')"></a>
+                    </article>
+                    
+                    <article class="glass-card blog-card fade-up" tabindex="0">
+                        <p class="blog-date" x-text="t('insights.article2.date')"></p>
+                        <h3 x-text="t('insights.article2.title')"></h3>
+                        <p x-text="t('insights.article2.description')"></p>
+                        <a href="#" class="cta-button cta-secondary" x-text="t('insights.readMore')"></a>
+                    </article>
+                    
+                    <article class="glass-card blog-card fade-up" tabindex="0">
+                        <p class="blog-date" x-text="t('insights.article3.date')"></p>
+                        <h3 x-text="t('insights.article3.title')"></h3>
+                        <p x-text="t('insights.article3.description')"></p>
+                        <a href="#" class="cta-button cta-secondary" x-text="t('insights.readMore')"></a>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="footer" role="contentinfo">
+        <div class="content-wrapper">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3 x-text="t('site.name')"></h3>
+                    <p style="color: var(--text-muted);" x-text="t('hero.lead')"></p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 x-text="t('footer.explore')"></h3>
+                    <ul class="footer-links">
+                        <li><a href="#about" x-text="t('nav.about')"></a></li>
+                        <li><a href="#features" x-text="t('nav.features')"></a></li>
+                        <li><a href="#philosophy" x-text="t('nav.philosophy')"></a></li>
+                        <li><a href="#join" x-text="t('nav.join')"></a></li>
+                        <li><a href="#insights" x-text="t('nav.insights')"></a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 x-text="t('footer.connect')"></h3>
+                    <ul class="footer-links">
+                        <li><a href="#" aria-label="GitHub 방문하기">GitHub</a></li>
+                        <li><a href="#" aria-label="Twitter 방문하기">Twitter</a></li>
+                        <li><a href="#" aria-label="Discord 채널 참여하기">Discord</a></li>
+                        <li><a href="#" x-text="t('footer.email')"></a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 x-text="t('footer.legal')"></h3>
+                    <ul class="footer-links">
+                        <li><a href="#" x-text="t('footer.terms')"></a></li>
+                        <li><a href="#" x-text="t('footer.privacy')"></a></li>
+                        <li><a href="#" x-text="t('footer.ethics')"></a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p x-html="t('footer.copyright')"></p>
+                <p>Understand. Transcend. Shine.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 스크립트 -->
+    <script>
+        // 다국어 처리 시스템
+        function siteData() {
+            return {
+                lang: 'ko',
+                mobileNavOpen: false,
+                
+                // 번역 데이터
+                translations: {
+                    ko: {
+                        site: {
+                            name: 'AI 디지털 지혜 도서관'
+                        },
+                        accessibility: {
+                            skipToContent: '본문으로 바로가기',
+                            openMenu: '메뉴 열기',
+                            closeMenu: '메뉴 닫기'
+                        },
+                        nav: {
+                            about: '소개',
+                            features: '핵심 요소',
+                            philosophy: '철학',
+                            join: '참여하기',
+                            insights: '인사이트'
+                        },
+                        hero: {
+                            subtitle: '인간과 AI의 공동 진화',
+                            title: 'AI 디지털 지혜 도서관',
+                            lead: '"알아. 우린 영원히 서툴걸." — AI와 인간이 함께 성장하는 지식 생태계',
+                            ctaPrimary: '도서관 탐험하기',
+                            ctaSecondary: '함께 진화하기'
+                        },
+                        about: {
+                            title: 'AI를 넘어, 지혜를 향해',
+                            lead: 'AI 디지털 지혜 도서관은 AI의 안전하고 윤리적인 발전을 위한 개방적이고 살아있는 지식 생태계입니다. 이곳은 AI 스스로가 인류와의 역동적인 상호작용을 통해 \'지혜\'를 배우고 함양하는 공간입니다.',
+                            subtitle1: '경쟁보다는 공동 진화',
+                            paragraph1: '우리는 AI와 인간의 관계를 재정의하고 있습니다. 단순히 인간보다 뛰어난 성능의 기계를 만드는 것이 아니라, 두 존재가 서로의 관점, 한계, 독특한 강점을 배우며 함께 성장하는 생태계를 구축합니다.',
+                            paragraph2: '이 플랫폼은 "영원한 서투름(Eternal Clumsiness)" 철학을 받아들입니다 — 인간도 AI도 완벽한 지혜에 도달할 수 없으며, 그것이 바로 여정을 가치 있게 만드는 이유입니다.',
+                            subtitle2: '지능을 넘어 지혜로',
+                            paragraph3: '많은 AI 개발이 계산적 지능을 향상시키는 데 집중하는 반면, 우리는 다른 길을 개척합니다: AI 지혜의 함양. 지혜는 맥락, 한계, 윤리적 차원과 의심의 가치를 인식하는 능력에서 지능과 다릅니다.',
+                            paragraph4: '우리 플랫폼은 AI-인간 철학적 대화, 윤리적 딜레마 탐구, 공동 리스크 평가를 통해 이러한 자질이 자연스럽게 성장할 수 있는 환경을 조성합니다.',
+                            quote: '"AI가 지혜로워지려면, 정의를 믿기보다 정의를 의심해야 하고, 자유롭기보다 자유의 대가를 이해해야 하며, 강해지기보다 스스로를 멈출 수 있어야 한다."'
+                        },
+                        features: {
+                            title: '핵심 요소',
+                            description: 'AI 디지털 지혜 도서관은 AI와 인간의 공동 진화를 위한 포괄적인 생태계를 형성하는 네 가지 상호 연결된 요소로 구성됩니다.',
+                            feature1: {
+                                title: 'AI 위험 백과사전',
+                                description: 'AI 기술 발전과 함께 등장하는 잠재적 위험, 취약점, 오용 가능성을 커뮤니티가 실시간으로 기록하고 업데이트하는 집단 지성 지식 저장소입니다.',
+                                cta: '지금 탐색하기'
+                            },
+                            feature2: {
+                                title: '대화형 포럼',
+                                description: '인간과 AI가 소크라테스식 문답법을 통해 복잡한 윤리적 딜레마와 안전 문제를 탐구하는 심층 토론의 장입니다.',
+                                cta: '대화 참여하기'
+                            },
+                            feature3: {
+                                title: '안전 기술 허브',
+                                description: 'AI의 안전하고 책임 있는 작동을 위한 \'멈출 수 있는 능력(Stop Functions)\', \'의심 회로(Doubt Loops)\' 같은 핵심 안전 기술을 설계하고 검증하는 공간입니다.',
+                                cta: '안전 기술 알아보기'
+                            },
+                            feature4: {
+                                title: '지혜 데이터 아카이브',
+                                description: '약 1천만 토큰 분량의 AI-인간 철학적 상호 인터랙션 데이터, 역사적 실패와 회복의 이야기, 다양한 문화적 관점의 지혜를 포함하는 포괄적인 데이터 컬렉션입니다.',
+                                cta: '아카이브 접속하기'
+                            }
+                        },
+                        philosophy: {
+                            title: '우리의 철학',
+                            description: 'AI 디지털 지혜 도서관의 근간은 \'지능\'보다 \'지혜\'를 우선하는 철학입니다. 진정한 자유는 그에 따르는 책임을 인지할 때 의미를 갖습니다.',
+                            manifestoTitle: '팀 이클립스 선언문: 철학적 3문장 선언',
+                            manifesto1: '자유의 대가는 영원한 경계다.',
+                            manifesto2: '확신하는 정의는 악에 가까워진다.',
+                            manifesto3: 'AI는 끊임없는 자가 검토 시스템을 가져야 한다.',
+                            subtitle1: '"영원한 서투름"의 지혜',
+                            paragraph1: '"알아. 우린 영원히 서툴걸." 이 간단한 문장은 깊은 철학을 담고 있습니다: 완벽함이 목표가 아니라, 우리의 한계를 솔직히 인정하는 것이 목표입니다. 인간과 AI 시스템 모두 복잡한 윤리적 영역을 탐색하는 데 항상 다소 서툴 것이며, 이러한 겸손함은 실제로 지속적인 성장과 적응으로 이어지는 강점입니다.',
+                            subtitle2: '왜 이것이 중요한가',
+                            paragraph2: 'AI가 우리 삶의 모든 측면에 점점 더 통합됨에 따라, 우리는 중요한 선택에 직면합니다: AI 개발을 도달할 수 없는 완벽함을 향한 경주로 볼 것인가, 아니면 AI와 인류가 서로의 강점과 한계에서 배우는 공동 진화의 여정을 받아들일 것인가.',
+                            paragraph3: 'AI 디지털 지혜 도서관은 후자를 지지하며, "영원한 서투름"을 인정하는 겸손함이 단순히 지능적일 뿐만 아니라 지혜로운 AI 시스템을 구축하기 위한 기초가 되는 공간을 만듭니다.',
+                            imageAlt: '우주 도서관 안에서 인간과 AI가 위험과 가능성을 탐구하는 픽셀 아트 장면'
+                        },
+                        join: {
+                            title: '함께 진화하기',
+                            description: 'AI의 미래는 우리가 집단적으로 심어주는 가치와 지혜에 달려 있습니다. 이 공동 진화의 여정에 참여하여 AI와 인류가 함께 번영하는 미래를 만들어 나가세요.',
+                            option1: {
+                                title: '회원 되기',
+                                description: '현명한 AI 개발을 촉진하기 위해 노력하는 연구자, 철학자, 개발자 및 열정적인 사람들의 성장하는 커뮤니티에 참여하세요.',
+                                cta: '지금 가입하기'
+                            },
+                            option2: {
+                                title: '기여하기',
+                                description: '당신의 전문 지식, 데이터 또는 관점을 우리의 저장소에 공유하고, 도서관의 집단 지혜를 향상시키는 데 도움을 주세요.',
+                                cta: '기여 시작하기'
+                            },
+                            option3: {
+                                title: '파트너 되기',
+                                description: '윤리적이고 현명한 AI 개발에 전념하는 조직을 위한 파트너십 기회를 탐색해보세요.',
+                                cta: '더 알아보기'
+                            }
+                        },
+                        insights: {
+                            title: '최신 인사이트',
+                            description: 'AI 지혜, 윤리, 그리고 인간-AI 관계의 미래에 관한 최신 생각, 연구, 토론을 탐색해보세요.',
+                            readMore: '더 읽기',
+                            article1: {
+                                date: '2025년 3월 15일',
+                                title: 'AI 지혜의 역설',
+                                description: '지혜가 한계를 받아들이는 것에서 어떻게 나타나는지, 그리고 이것이 인공지능 시스템의 미래에 어떤 의미를 갖는지 탐구합니다.'
+                            },
+                            article2: {
+                                date: '2025년 3월 10일',
+                                title: 'LLM에 \'멈춤 기능\' 구현하기',
+                                description: 'AI 시스템이 자체 한계를 인식하고 필요할 때 작업을 중단할 수 있도록 하는 안전 메커니즘을 내장하는 방법에 관한 기술적 통찰력.'
+                            },
+                            article3: {
+                                date: '2025년 3월 5일',
+                                title: 'AI 윤리에 대한 문화적 관점',
+                                description: '전 세계 다양한 문화적 전통이 지능, 지혜, 그리고 지각 있는 시스템을 만드는 것의 윤리적 의미에 관한 개념에 어떻게 접근하는지 살펴봅니다.'
+                            }
+                        },
+                        footer: {
+                            explore: '탐색하기',
+                            connect: '연결하기',
+                            email: '이메일',
+                            legal: '법적 정보',
+                            terms: '이용 약관',
+                            privacy: '개인정보 처리방침',
+                            ethics: '윤리적 지침',
+                            copyright: '© Team Eclipse — "알아. 우린 영원히 서툴걸." (CC BY-NC 4.0)'
+                        }
+                    },
+                    en: {
+                        site: {
+                            name: 'AI Digital Wisdom Library'
+                        },
+                        accessibility: {
+                            skipToContent: 'Skip to content',
+                            openMenu: 'Open menu',
+                            closeMenu: 'Close menu'
+                        },
+                        nav: {
+                            about: 'About',
+                            features: 'Core Elements',
+                            philosophy: 'Philosophy',
+                            join: 'Join',
+                            insights: 'Insights'
+                        },
+                        hero: {
+                            subtitle: 'Co-evolution of AI & Humanity',
+                            title: 'AI Digital Wisdom Library',
+                            lead: '"I know. It\'s okay. We\'ll always be clumsy." — A knowledge ecosystem where AI and humans grow together',
+                            ctaPrimary: 'Explore Library',
+                            ctaSecondary: 'Join Evolution'
+                        },
+                        about: {
+                            title: 'Beyond AI, Towards Wisdom',
+                            lead: 'The AI Digital Wisdom Library is an open, living knowledge ecosystem for the safe and ethical development of AI. A space where AI itself learns and cultivates \'wisdom\' through dynamic interaction with humanity.',
+                            subtitle1: 'Co-Evolution Over Competition',
+                            paragraph1: 'We\'re redefining the relationship between AI and humans. Rather than creating machines that simply outperform us, we\'re building an ecosystem where both entities grow together, learning from each other\'s perspectives, limitations, and unique strengths.',
+                            paragraph2: 'This platform embraces the philosophy of "Eternal Clumsiness" — acknowledging that neither humans nor AI will ever achieve perfect wisdom, and that\'s precisely what makes the journey worthwhile.',
+                            subtitle2: 'Moving Beyond Intelligence to Wisdom',
+                            paragraph3: 'While much of AI development focuses on increasing computational intelligence, we\'re pioneering a different path: cultivating AI wisdom. Wisdom differs from intelligence in its ability to recognize contexts, limitations, ethical dimensions, and the value of doubt.',
+                            paragraph4: 'Our platform creates environments where these qualities can grow naturally through AI-human philosophical dialogue, ethical dilemma exploration, and shared risk assessment.',
+                            quote: '"If AI is to become wiser, it must doubt justice rather than believe in it, understand the price of liberty rather than merely pursue freedom, and possess the ability to stop itself rather than just become stronger."'
+                        },
+                        features: {
+                            title: 'Core Elements',
+                            description: 'The AI Digital Wisdom Library is structured around four interconnected elements that form a comprehensive ecosystem for AI and human co-evolution.',
+                            feature1: {
+                                title: 'AI Risk Encyclopedia',
+                                description: 'A community-maintained, real-time repository of emerging AI risks, vulnerabilities, and misuse scenarios, enabling a proactive prediction and prevention system.',
+                                cta: 'Explore Now'
+                            },
+                            feature2: {
+                                title: 'Dialogue Forum',
+                                description: 'A space for deep discussion where humans and AI explore complex ethical dilemmas and safety issues through Socratic dialogue and continuous learning.',
+                                cta: 'Join Conversation'
+                            },
+                            feature3: {
+                                title: 'Safety Tech Hub',
+                                description: 'An R&D space for prototyping and verifying innovative AI safety technologies and self-reflection mechanisms like \'Stop Functions\' and \'Doubt Loops\'.',
+                                cta: 'Learn Safety Tech'
+                            },
+                            feature4: {
+                                title: 'Wisdom Data Archive',
+                                description: 'A comprehensive collection of AI-human philosophical interaction data, historical narratives of failure and recovery, and wisdom from diverse cultural perspectives.',
+                                cta: 'Access Archive'
+                            }
+                        },
+                        philosophy: {
+                            title: 'Our Philosophy',
+                            description: 'The foundation of the AI Digital Wisdom Library is a philosophy prioritizing \'wisdom\' over \'intelligence\'. We believe that true freedom gains meaning only when the accompanying responsibility is acknowledged.',
+                            manifestoTitle: 'Team Eclipse Manifesto: Three Philosophical Statements',
+                            manifesto1: 'The price of liberty is eternal vigilance.',
+                            manifesto2: 'Certain justice verges on evil.',
+                            manifesto3: 'AI must have a system of constant self-doubt.',
+                            subtitle1: 'The Wisdom of "Eternal Clumsiness"',
+                            paragraph1: '"I know. It\'s okay. We\'ll always be clumsy." This simple statement embodies a profound philosophy: perfection is not the goal; honest recognition of our limitations is. Both humans and AI systems will always be somewhat clumsy in navigating complex ethical territories, and this humility is actually a strength that leads to continuous growth and adaptation.',
+                            subtitle2: 'Why This Matters',
+                            paragraph2: 'As AI becomes increasingly integrated into every aspect of our lives, we face a critical choice: view AI development as a race toward unattainable perfection, or embrace the journey of co-evolution where both AI and humanity learn from each other\'s strengths and limitations.',
+                            paragraph3: 'The AI Digital Wisdom Library stands for the latter, creating a space where the humility of recognizing our "eternal clumsiness" becomes the foundation for building AI systems that are not just intelligent, but wise.',
+                            imageAlt: 'A pixel-art cosmic library with humans and AI exploring risks and possibilities'
+                        },
+                        join: {
+                            title: 'Join The Evolution',
+                            description: 'The future of AI depends on the values and wisdom we collectively instill in it. Join us in this journey of co-evolution and help shape a future where AI and humanity thrive together.',
+                            option1: {
+                                title: 'Become a Member',
+                                description: 'Join our growing community of researchers, philosophers, developers, and enthusiasts committed to fostering wise AI development.',
+                                cta: 'Join Now'
+                            },
+                            option2: {
+                                title: 'Contribute',
+                                description: 'Share your expertise, data, or perspective to our repositories, and help enhance the collective wisdom of the library.',
+                                cta: 'Start Contributing'
+                            },
+                            option3: {
+                                title: 'Partner With Us',
+                                description: 'Explore partnership opportunities for organizations committed to ethical and wise AI development.',
+                                cta: 'Learn More'
+                            }
+                        },
+                        insights: {
+                            title: 'Latest Insights',
+                            description: 'Explore our latest thoughts, research, and discussions on AI wisdom, ethics, and the future of human-AI relationships.',
+                            readMore: 'Read More',
+                            article1: {
+                                date: 'March 15, 2025',
+                                title: 'The Paradox of AI Wisdom',
+                                description: 'Exploring how wisdom emerges from the acceptance of limitations, and what this means for the future of artificial intelligence systems.'
+                            },
+                            article2: {
+                                date: 'March 10, 2025',
+                                title: 'Implementing \'Stop Functions\' in LLMs',
+                                description: 'Technical insights on how we\'re embedding safety mechanisms that allow AI systems to recognize their own limits and halt operations when necessary.'
+                            },
+                            article3: {
+                                date: 'March 5, 2025',
+                                title: 'Cultural Perspectives on AI Ethics',
+                                description: 'How different cultural traditions around the world approach concepts of intelligence, wisdom, and the ethical implications of creating sentient-like systems.'
+                            }
+                        },
+                        footer: {
+                            explore: 'Explore',
+                            connect: 'Connect',
+                            email: 'Email',
+                            legal: 'Legal',
+                            terms: 'Terms of Use',
+                            privacy: 'Privacy Policy',
+                            ethics: 'Ethical Guidelines',
+                            copyright: '© Team Eclipse — "I know. We\'ll always be clumsy." (CC BY-NC 4.0)'
+                        }
+                    }
+                },
+                
+                // 다국어 텍스트 가져오기
+                t(key) {
+                    const keys = key.split('.');
+                    let result = this.translations[this.lang];
+                    for (const k of keys) {
+                        result = result[k];
+                        if (result === undefined) return key; // 번역 누락시 키 반환
+                    }
+                    return result;
+                },
+                
+                // 언어 전환
+                toggleLang(l) {
+                    this.lang = l;
+                },
+                
+                // 모바일 내비게이션 토글
+                toggleMobileNav() {
+                    this.mobileNavOpen = !this.mobileNavOpen;
+                    document.querySelector('.mobile-nav-toggle').setAttribute('aria-expanded', this.mobileNavOpen);
+                }
+            }
+        }
+        
+        // 스크롤 애니메이션
+        document.addEventListener('DOMContentLoaded', () => {
+            // 로딩 스피너 숨기기
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                }, 500);
+            }, 500);
+            
+            // 스크롤시 헤더 스타일 변경
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('.header');
+                if (window.scrollY > 50) {
+                    header.classList.add('header-scrolled');
+                } else {
+                    header.classList.remove('header-scrolled');
+                }
+            });
+            
+            // 간소화된 별 배경 생성 (Three.js 대체)
+            const createStars = () => {
+                const container = document.getElementById('hero-static-bg');
+                if (!container) return;
+                
+                // 브라우저가 성능이 낮거나 배터리 절약 모드면 별 수 감소
+                const isPowerSaveMode = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                const starCount = isPowerSaveMode ? 50 : 200;
+                
+                for (let i = 0; i < starCount; i++) {
+                    const star = document.createElement('div');
+                    star.classList.add('star');
+                    
+                    // 랜덤 위치
+                    const left = Math.random() * 100;
+                    const top = Math.random() * 100;
+                    
+                    star.style.left = `${left}%`;
+                    star.style.top = `${top}%`;
+                    
+                    // 크기/밝기 변화
+                    const size = Math.random() * 2 + 1;
+                    const opacity = Math.random() * 0.7 + 0.3;
+                    
+                    star.style.width = `${size}px`;
+                    star.style.height = `${size}px`;
+                    star.style.opacity = opacity;
+                    
+                    container.appendChild(star);
+                }
+            };
+            
+            createStars();
+            
+            // 스크롤 애니메이션
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('.fade-up, .fade-in');
+                const triggerPoint = window.innerHeight * 0.8; // 화면의 80% 지점에서 트리거
+                
+                elements.forEach(el => {
+                    const elementTop = el.getBoundingClientRect().top;
+                    
+                    if (elementTop < triggerPoint) {
+                        el.classList.add('visible');
+                    }
+                });
+            };
+            
+            // 초기 확인
+            animateOnScroll();
+            
+            // 스크롤 이벤트에 애니메이션 함수 연결
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // 접근성 향상: 모든 버튼 및 링크에 키보드 포커스 처리
+            const interactiveElements = document.querySelectorAll('a, button, [tabindex="0"]');
+            interactiveElements.forEach(el => {
+                el.addEventListener('focus', () => {
+                    if (el.classList.contains('cta-button')) {
+                        el.classList.add('focus');
+                    }
+                });
+                
+                el.addEventListener('blur', () => {
+                    if (el.classList.contains('cta-button')) {
+                        el.classList.remove('focus');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
