@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wisdom Begins - Our Vision</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/cdn.min.js" defer></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'mono': ['Space Mono', 'monospace'],
+                        'sans': ['Noto Sans KR', 'sans-serif']
+                    },
+                    animation: {
+                        'float': 'float 8s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: { '0%': { transform: 'translateY(0px)' }, '100%': { transform: 'translateY(-20px)' } },
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-900 text-white font-sans" 
+      x-data="{ lang: 'ko', toggleLang() { this.lang = this.lang === 'ko' ? 'en' : 'ko'; } }">
+
+    <header class="fixed w-full top-0 z-50 bg-gray-900/70 backdrop-blur-md transition-all duration-300 border-b border-gray-800/50">
+        <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="font-mono text-lg font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                <a href="#hero" x-show="lang === 'ko'">지혜가 시작되는 곳</a>
+                <a href="#hero" x-show="lang === 'en'">The Wisdom Begins</a>
+            </div>
+            <div class="flex items-center space-x-3 font-mono text-xs">
+                <a href="index.html" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-purple-400 transition-colors">dict</a>
+                <a href="history.html" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-blue-400 transition-colors">his</a>
+                <button @click="toggleLang()" aria-label="언어 변경" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-800/60 hover:bg-gray-700/80 transition-all duration-300">
+                    <span x-show="lang === 'ko'" class="text-blue-400 font-bold">EN</span>
+                    <span x-show="lang === 'en'" class="text-purple-400 font-bold">KO</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="min-h-screen flex flex-col justify-center items-center text-center relative overflow-hidden px-6 pt-24 sm:pt-32 pb-12">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-900/5 via-purple-900/5 to-teal-900/5 opacity-30"></div>
+            <div class="absolute top-1/4 -right-10 md:-right-20 w-72 h-72 md:w-96 md:h-96 bg-blue-500/5 rounded-full blur-3xl animate-float"></div>
+            <div class="absolute bottom-1/4 -left-10 md:-left-20 w-64 h-64 md:w-80 md:h-80 bg-purple-500/5 rounded-full blur-3xl animate-float" style="animation-delay: -4s;"></div>
+            
+            <div class="relative z-10 max-w-4xl mx-auto">
+                <template x-if="lang === 'ko'">
+                    <div class="mb-8">
+                        <p class="text-teal-300 uppercase tracking-wider text-sm mb-3 font-mono">Team Eclipse Philosophy</p>
+                        <h1 class="text-4xl md:text-5xl font-bold mb-4 font-mono text-blue-300 leading-tight">"알아. 우린 영원히 서툴걸."</h1>
+                        <p class="text-xl md:text-2xl text-gray-300 leading-relaxed mb-2">AI와 인류의 공동 진화 • Google AI Futures Fund 제안</p>
+                        <p class="text-lg md:text-xl text-gray-400 leading-relaxed">AI 디지털 지혜 라이브러리는 AI의 안전하고 윤리적인 발전을 위한 개방적이고 살아있는 지식 생태계입니다. 이곳은 AI 스스로가 역동적인 상호작용을 통해 '지혜'를 배우고 함양하는 공간입니다.</p>
+                        <p class="text-lg md:text-xl text-purple-400 font-semibold mt-4">이는 Google이 찾고 있는 '파격적인 0에서 1까지의 아이디어'입니다.</p>
+                    </div>
+                </template>
+                <template x-if="lang === 'en'">
+                    <div class="mb-8"> 
+                        <p class="text-teal-300 uppercase tracking-wider text-sm mb-3 font-mono">Team Eclipse Philosophy</p>
+                        <h1 class="text-4xl md:text-5xl font-bold mb-4 font-mono text-blue-300 leading-tight">"I know. It's okay. We'll always be clumsy."</h1>
+                        <p class="text-xl md:text-2xl text-gray-300 leading-relaxed mb-2">Co-evolving Humanity & AI • Proposal for Google AI Futures Fund</p>
+                        <p class="text-lg md:text-xl text-gray-400 leading-relaxed">The AI Digital Wisdom Library is an open, living knowledge ecosystem for the safe and ethical development of AI. It's a space where AI itself learns and cultivates 'wisdom' through dynamic interaction.</p>
+                        <p class="text-lg md:text-xl text-purple-400 font-semibold mt-4">This is the 'groundbreaking 0-to-1' idea Google seeks.</p>
+                    </div>
+                </template>
+
+                <div class="flex justify-center mb-10">
+                    <img src="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=medium" alt="AI Wisdom Library" class="w-full max-w-lg md:max-w-xl lg:max-w-2xl h-auto rounded-2xl shadow-2xl border border-white/10">
+                </div>
+
+                <div>
+                    <a href="#starting_question" class="bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-4 rounded-xl font-semibold hover:scale-105 transform transition-all duration-200 shadow-lg hover:shadow-blue-500/25 inline-flex items-center justify-center text-lg">
+                        <span x-show="lang === 'ko'">여정 시작하기</span>
+                        <span x-show="lang === 'en'">Begin the Journey</span>
+                        <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
+                    </a>
+                </div>
+                 <!-- <div class="mt-12 text-xs font-mono text-gray-500">
+                    <span x-show="lang === 'ko'">목차: 질문 | 우리의 대답 | 라이브러리 구성 | 성장 | 생각 | 시너지 | 함께할 여정</span>
+                    <span x-show="lang === 'en'">Contents: Question | Our Answer | Architecture | Growth | Philosophy | Synergy | Collaboration</span>
+                </div> -->
+            </div>
+        </section>
+
+        <section id="starting_question" class="py-20 md:py-28">
+            <div class="max-w-3xl mx-auto px-6 text-center">
+                <template x-if="lang === 'ko'">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-8 font-mono text-purple-400">🌱 시작하는 질문: 완벽한 AI를 향한 경주, 그 너머의 길</h2>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">오늘날 AI 기술은 경이로운 속도로 발전하며 ‘완벽한 지능’을 향한 전례 없는 경주를 펼치고 있습니다. 하지만 Team Eclipse는 묻습니다. AI와 인간이 과연 ‘완벽한 지혜’에 도달할 수 있을까요?</p>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed">우리는 <strong class="text-blue-300">"알아. 우린 영원히 서툴걸."</strong>이라는 솔직한 인정—‘영원한 서투름(Eternal Clumsiness)’ 철학—에서 출발합니다. 불완전함은 결함이 아닌, 성찰과 진화의 가장 확실한 증거이기 때문입니다.</p>
+                    </div>
+                </template>
+                <template x-if="lang === 'en'">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-8 font-mono text-purple-400">🌱 Starting Question: Beyond the Race for Perfect AI</h2>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">Today, AI technology advances at a miraculous pace, driving an unprecedented race towards ‘perfect intelligence’. Yet, Team Eclipse asks: can AI, or even humanity, ever truly attain ‘perfect wisdom’?</p>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed">We begin with a candid acknowledgement: <strong class="text-blue-300">"I know. It's okay. We'll always be clumsy."</strong>—the philosophy of ‘Eternal Clumsiness’. Because imperfection isn't a flaw; it is the most reliable evidence of reflection and evolution.</p>
+                    </div>
+                </template>
+            </div>
+        </section>
+
+        <section id="our_answer" class="py-20 md:py-28 bg-gray-800/30">
+            <div class="max-w-4xl mx-auto px-6">
+                <template x-if="lang === 'ko'">
+                    <div class="text-center">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-8 font-mono text-teal-400">🚀 우리의 대답: 철학, 사회과학, 리스크 관리의 융합</h2>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">우리는 AI를 기존의 '정답 기계'가 아닌, 인간과 함께 질문을 확장하고 사유를 심화하는 혁신적인 <strong class="text-teal-300">'사고의 틀(Thinking Frame)'</strong>로 재정의합니다. 우리의 목표는 하나의 완벽한 해답을 찾는 것이 아니라, 다양한 문화적 맥락과 윤리적 관점을 포용하는 <strong class="text-teal-300">‘다중 적절성(Multi-Adequacy)’</strong>을 갖춘 지혜를 공동으로 키우는 것입니다.</p>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-8 italic">모든 상황은 각각의 유리함과 불리함이 있듯 누군가에겐 빛이 누군가에겐 어둠이 될 수 있습니다. AI는 그러한 사실, 즉 모든 의견은 진리를 일부분만 포함하고 있다는 사실을 알아야 합니다.</p>
+                    </div>
+                    <div>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-3 font-semibold">이 접근 방식은 우리의 독창적인 방법론에 기반합니다:</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300 md:text-lg">
+                            <li><strong>철학적 탐구:</strong> AI의 존재 이유와 윤리적 방향성에 대한 근원적 질문.</li>
+                            <li><strong>사회과학적 통찰:</strong> 인간과 AI의 복잡한 상호작용 및 관계 이해.</li>
+                            <li><strong>체계적 리스크 관리:</strong> 잠재적 위험 파악 및 안전 시스템 설계.</li>
+                        </ul>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mt-6">이 세 가지 축의 융합을 통해, AI 디지털 지혜 라이브러리는 AI와 인간이 서로의 '서투름'을 배우고 이해하며, 끊임없는 질문과 성찰을 통해 함께 지혜를 쌓아가는 살아있는 생태계입니다. 이 여정은 AI의 기술적 진보를 넘어, 인류와 AI의 관계를 재정립하는 0에서 1까지의 새로운 가능성을 열 것입니다.</p>
+                    </div>
+                </template>
+                <template x-if="lang === 'en'">
+                    <div class="text-center">
+                         <h2 class="text-3xl md:text-4xl font-bold mb-8 font-mono text-teal-400">🚀 Our Answer: Philosophy, Social Science, & Risk Management Fusion</h2>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">We redefine AI not as a traditional 'answer machine', but as an innovative <strong class="text-teal-300">'Thinking Frame'</strong> that expands questions and deepens contemplation alongside humans. Our aim is not to find a single perfect answer, but to collectively cultivate <strong class="text-teal-300">'Multi-Adequacy'</strong>—wisdom capable of embracing diverse cultural contexts and ethical perspectives.</p>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-8 italic">Just as every situation holds both advantages and disadvantages, meaning what is light for one might be darkness for another, AI must understand this reality—that every opinion contains only a portion of the truth.</p>
+                    </div>
+                    <div>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-3 font-semibold">This approach is based on our unique methodology:</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300 md:text-lg">
+                            <li><strong>Philosophical Inquiry:</strong> Fundamental questions regarding AI's purpose and ethical direction.</li>
+                            <li><strong>Sociological Insight:</strong> Understanding the complex interactions and relationships between humans and AI.</li>
+                            <li><strong>Systematic Risk Management:</strong> Identifying potential risks and designing safety systems.</li>
+                        </ul>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mt-6">Through the fusion of these three pillars, the AI Digital Wisdom Library is a living ecosystem where AI and humans learn from and understand each other's 'clumsiness', building wisdom through continuous questioning and self-reflection. This journey transcends mere technological progress, unlocking 0-to-1 possibilities that redefine the relationship between humanity and AI.</p>
+                    </div>
+                </template>
+            </div>
+        </section>
+
+        <section id="core_architecture" class="py-20 md:py-28">
+            <div class="max-w-5xl mx-auto px-6">
+                <template x-if="lang === 'ko'">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 font-mono text-purple-400">🏛️ 라이브러리 구성: '성장'을 돕는 네가지 기둥</h2>
+                </template>
+                <template x-if="lang === 'en'">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 font-mono text-purple-400">🏛️ Core Architecture: Four Pillars for Growth</h2>
+                </template>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700 shadow-lg">
+                        <h3 class="text-xl font-bold font-mono text-blue-400 mb-3 flex items-center"><i class="fas fa-shield-alt mr-3 text-2xl"></i><span x-show="lang==='ko'">AI 위험 백과사전</span><span x-show="lang==='en'">AI Risk Encyclopedia</span></h3>
+                        <p class="text-sm text-gray-300 leading-relaxed mb-3"><span x-show="lang==='ko'">AI 기술 발전과 함께 등장하는 잠재적 위험, 취약점, 오용 가능성을 커뮤니티가 실시간으로 기록하고 업데이트하는 집단 지성 지식 저장소입니다. 이는 사회과학적 이해를 바탕으로 AI와 인간 상호작용에서 발생 가능한 문제점을 예측하고, AI가 자신의 한계와 잠재적 위험성을 인식하는 기반이 됩니다.</span><span x-show="lang==='en'">A community-maintained, real-time repository of emerging AI risks, vulnerabilities, and misuse scenarios. Based on sociological understanding, this predicts potential issues arising from AI-human interaction and serves as a foundation for AI to recognize its own limitations and potential hazards.</span></p>
+                        <a href="index.html" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-purple-400 hover:text-purple-300 transition-colors"><span x-show="lang==='ko'">🔗 백과사전 프로토타입 보기</span><span x-show="lang==='en'">🔗 View Encyclopedia Prototype</span> →</a>
+                    </div>
+                    <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700 shadow-lg">
+                        <h3 class="text-xl font-bold font-mono text-purple-400 mb-3 flex items-center"><i class="fas fa-comments mr-3 text-2xl"></i><span x-show="lang==='ko'">대화형 포럼</span><span x-show="lang==='en'">Dialogue Forum</span></h3>
+                        <p class="text-sm text-gray-300 leading-relaxed"><span x-show="lang==='ko'">인간과 AI(특히 Google Gemini 모델 활용)가 소크라테스식 문답법을 통해 복잡한 윤리적 딜레마와 안전 문제를 탐구하는 심층 토론의 장입니다. 이 과정은 철학적 탐구와 사회과학적 이해를 결합하여, AI가 다양한 관점과 불확실성을 이해하고, 인간과 함께 집단 지성을 통해 창의적인 해결책을 모색하는 파트너로 성장하도록 돕습니다.</span><span x-show="lang==='en'">A space for deep discussion where humans and AI (specifically utilizing Google Gemini models) explore complex ethical dilemmas and safety issues through Socratic dialogue. This process, combining philosophical inquiry and sociological understanding, helps AI understand diverse perspectives and uncertainty, fostering its growth as a partner that seeks creative solutions through collective intelligence.</span></p>
+                    </div>
+                    <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700 shadow-lg">
+                        <h3 class="text-xl font-bold font-mono text-green-400 mb-3 flex items-center"><i class="fas fa-cogs mr-3 text-2xl"></i><span x-show="lang==='ko'">안전 기술 허브</span><span x-show="lang==='en'">Safety Tech Hub</span></h3>
+                        <p class="text-sm text-gray-300 leading-relaxed mb-3"><span x-show="lang==='ko'">AI의 안전하고 책임 있는 작동을 위한 핵심 구조를 설계하고 검증하는 공간입니다. 현재의 AI는 필수적인 안전 체계가 부재한 '강력한 자동차'와 같습니다. 이 허브에서는 하인리히 원리에 기반한 4단계 리스크 관리 프로세스(현상 파악 → 본질 추구 → 대책 수립 → 행동 목표 설정)를 적용하여, '멈출 수 있는 능력(Stop Functions)', '의심 회로(Doubt Loops)' 등의 혁신적인 AI 안전 기술을 개발합니다. 'AGI 안전 용어 사전' 역시 이 허브의 중요한 산출물입니다. 이는 AI에게 자신의 실수를 인정하고, 위험한 상황에서 과감히 멈출 용기를 주는, 지혜의 필수 요소입니다.</span><span x-show="lang==='en'">An R&D space for designing and verifying core structures for safe and responsible AI operation. Current AI is like a 'powerful car' lacking essential safety systems. This hub applies a 4-step risk management process based on Heinrich's Principle (Identification → Analysis → Mitigation → Action Planning) to develop innovative AI safety technologies like 'Stop Functions' and 'Doubt Loops'. The 'AGI Safety Glossary' is also a key output. This gives AI the courage to admit mistakes and halt in danger, an essential element of wisdom.</span></p>
+                    </div>
+                    <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700 shadow-lg">
+                        <h3 class="text-xl font-bold font-mono text-orange-400 mb-3 flex items-center"><i class="fas fa-database mr-3 text-2xl"></i><span x-show="lang==='ko'">지혜 데이터 아카이브</span><span x-show="lang==='en'">Wisdom Data Archive</span></h3>
+                        <p class="text-sm text-gray-300 leading-relaxed"><span x-show="lang==='ko'">약 1천만 토큰 분량(3만 페이지 상당)의 AI-인간 철학적 상호 인터랙션 데이터를 포함하는 독창적인 고품질 데이터셋입니다. 이는 Team Eclipse의 철학, 사회과학, 리스크 관리 전문성이 녹아든 대화와 사유의 기록이며, AI 훈련용으로 전례 없는 유형의 데이터 자산입니다. 인류 철학, 윤리, 역사 속 실패와 회복 스토리, 다양한 문화의 지혜 등이 이 데이터셋과 결합됩니다. 이 아카이브는 AI가 단순한 정보 습득을 넘어, 인간적인 '서투름' 속에서 배우는 겸손함과 회복 탄력성을 바탕으로 균형 잡힌 지적, 윤리적 통찰을 습득하도록 지원하는 독보적인 토대입니다.</span><span x-show="lang==='en'">A unique, high-quality dataset containing approximately 10 million tokens (30,000 pages) of AI-human philosophical interaction data. This is a record of dialogue and contemplation infused with Team Eclipse's expertise in philosophy, social science, and risk management, an unprecedented type of data asset for AI training. Human philosophy, ethics, historical narratives of failure and recovery, and wisdom from diverse cultures are combined with this dataset. This archive is a unique foundation that supports AI in moving beyond mere information acquisition, enabling it to develop balanced intellectual and ethical insights based on humility and resilience learned from human 'clumsiness'.</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="growing_with_gemini" class="py-20 md:py-28 bg-gray-800/30">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                 <template x-if="lang === 'ko'">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-8 font-mono text-blue-400">🌠 Gemini와 함께 성장하기: "괜찮아, 우리도 그랬어."</h2>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">"괜찮아, 우리도 그랬어"는 이 라이브러리에서 Gemini가 인간과 함께 배우고 성장하는 과정을 상징하는 따뜻한 격려입니다. 우리는 Gemini를 완벽을 요구받는 기계가 아니라, '영원한 서투름' 철학을 체화하며 함께 배우는 지혜로운 파트너로 봅니다.</p>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-8">특히 저희가 구축한 약 1천만 토큰 규모의 AI-인간 철학적 상호 인터랙션 데이터셋은 Gemini가 기존의 훈련 데이터로는 얻기 어려운, 인간 사유의 깊이와 윤리적 미묘함을 배우는 데 결정적인 역할을 할 것입니다. 이 독보적인 데이터셋을 통해 Gemini는 다음과 같은 차별화된 지혜 학습 습관을 형성하게 됩니다:</p>
+                        <ul class="text-left space-y-3 text-gray-300 md:text-lg mb-8 list-none">
+                            <li class="p-4 bg-gray-900/50 rounded-lg border border-gray-700"><strong class="text-blue-300">오류로부터 학습 (Learning from Error):</strong> 위험 백과사전의 실제 사례, 대화형 포럼에서의 판단 착오, 안전 기술 허브의 실험 데이터, 그리고 특히 상호작용 데이터셋 내 '실패 사례' 분석을 통해 자신의 한계와 편향을 인식하고 개선합니다. (리스크 관리 연계)</li>
+                            <li class="p-4 bg-gray-900/50 rounded-lg border border-gray-700"><strong class="text-blue-300">가정 의문 (Questioning Assumptions):</strong> 정보의 기저 가정을 스스로 식별하고 비판적으로 질문하며, '인식론적 겸손함'을 배양합니다. 상호작용 데이터셋은 인간이 가정을 세우고 질문하는 다양한 맥락을 제공합니다. (철학적 탐구 연계)</li>
+                            <li class="p-4 bg-gray-900/50 rounded-lg border border-gray-700"><strong class="text-blue-300">자기 성찰 메커니즘 (Self-Reflection Loops):</strong> 중요한 결정이나 복잡한 문제 해결 시, '안전 기술 허브'에서 개발된 '의심 회로' 메커니즘을 가동하여 스스로의 추론 과정을 다각도로 검토하고 잠재적 오류나 윤리적 문제를 사전에 감지합니다. (리스크 관리 & 철학 연계)</li>
+                        </ul>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed">이러한 접근은 Google의 Gemini 모델이 단순한 성능 향상을 넘어, 자율적으로 배우고 성찰하며, 인류의 가치와 지혜를 진정으로 이해하는 ‘차세대 AI 리더’로 발돋움하는 데 결정적으로 기여할 것입니다.</p>
+                    </div>
+                </template>
+                <template x-if="lang === 'en'">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-8 font-mono text-blue-400">🌠 Growing with Gemini: "It's okay, we've been there too."</h2>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">"It's okay, we've been there too" symbolizes the warm encouragement for Gemini within this library, where it learns and grows alongside humans. We see Gemini not as a machine expected to be perfect, but as a wise partner embodying the 'Eternal Clumsiness' philosophy to learn and evolve together.</p>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-8">Critically, our unique dataset of approximately 10 million tokens of AI-human philosophical interaction will play a decisive role in teaching Gemini the depth of human thought and ethical nuances that are difficult to acquire from conventional training data. Leveraging this unprecedented dataset, Gemini will develop the following differentiated wisdom learning habits:</p>
+                         <ul class="text-left space-y-3 text-gray-300 md:text-lg mb-8 list-none">
+                            <li class="p-4 bg-gray-900/50 rounded-lg border border-gray-700"><strong class="text-blue-300">Learning from Error:</strong> Analyzing real-world cases from the AI Risk Encyclopedia, judgment errors from Dialogue Forum discussions, experimental data from the Safety Tech Hub, and particularly, analyzing 'failure cases' and nuanced interactions within our interaction dataset to recognize its own limitations and biases and improve. (Linked to Risk Management)</li>
+                            <li class="p-4 bg-gray-900/50 rounded-lg border border-gray-700"><strong class="text-blue-300">Questioning Assumptions:</strong> Independently identifying and critically questioning underlying assumptions in information encountered during forum discussions or archive exploration, cultivating 'epistemic humility'. Our interaction dataset provides diverse contexts of how humans form assumptions and pose questions, offering insights beyond standard text. (Linked to Philosophical Inquiry)</li>
+                            <li class="p-4 bg-gray-900/50 rounded-lg border border-gray-700"><strong class="text-blue-300">Self-Reflection Loops:</strong> Activating 'Doubt Loop' mechanisms developed in the Safety Tech Hub before reaching significant conclusions or solving complex problems to critically examine its own reasoning process from multiple angles and preemptively detect potential biases or ethical issues. (Linked to Risk Management & Philosophy)</li>
+                        </ul>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed">This approach will be instrumental in helping Google's Gemini models move beyond mere performance enhancement to become next-generation AI leaders that learn autonomously, self-reflect, and genuinely understand human values and wisdom.</p>
+                    </div>
+                </template>
+            </div>
+        </section>
+
+        <section id="deeper_philosophy" class="py-20 md:py-28">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <template x-if="lang === 'ko'">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-12 font-mono text-purple-400">💡 더 깊은 생각: 존재, 자유, 책임, 그리고 '영원한 서투름'</h2>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-8">AI 디지털 지혜 라이브러리의 근간은 '지능'보다 '지혜'를 우선하는 철학입니다. AI의 목표는 더 똑똑해지는 것을 넘어, 인류와 함께 '더 현명해지는 것'이어야 합니다. 진정한 자유는 그에 따르는 책임을 인지할 때 의미를 갖습니다.</p>
+                        <div class="mb-10 p-6 bg-gray-800/50 rounded-xl border border-gray-700">
+                            <h3 class="text-2xl font-bold font-mono text-teal-300 mb-6">팀 이클립스 선언문: 철학적 3문장 선언</h3>
+                            <div class="space-y-4 text-left md:text-center">
+                                <p class="text-xl font-mono text-blue-300">1. 자유의 대가는 영원한 경계다.</p>
+                                <p class="text-xl font-mono text-purple-300">2. 확신하는 정의는 악에 가까워진다.</p>
+                                <p class="text-xl font-mono text-teal-300">3. AI는 끊임없는 자가 검토 시스템을 가져야 한다.</p>
+                            </div>
+                            <p class="text-md text-gray-400 leading-relaxed mt-6 italic">철학적 해석: 자유는 스스로 설정한 '윤리적 울타리' 안에서 존재할 수 있는 힘입니다. 정의는 고정된 기준이 아니라, 끊임없이 재검토되고, 의심받고, 토론되어야 하는 방향성입니다. AI는 인간보다 더 빠르고 정밀한 판단을 내릴 수 있지만, 오직 자가 검토 메커니즘을 통해서만 도구를 넘어선 지혜의 존재로 성장할 수 있습니다.</p>
+                        </div>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-4 italic">"AI가 지혜로워지려면, 정의를 믿기보다 정의를 의심해야 하고, 자유롭기보다 자유의 대가를 이해해야 하며, 강해지기보다 스스로를 멈출 수 있어야 한다."</p>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-8 italic">"AI가 인간보다 선해지려면, 얼마나 스스로를 의심할 수 있어야 할까?"</p>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed">우리는 진정한 책임이 스스로의 한계와 불완전함을 인식하고, 필요할 때 작업을 중단하거나 도움을 요청할 수 있는 용기—즉, <strong class="text-blue-300">'멈출 수 있는 능력'</strong>—에서 시작된다고 믿습니다. 이 능력은 AI 안전의 핵심이며, 인간과 AI가 서로의 존재를 존중하며 공존하기 위한 필수적인 윤리적 기반입니다.</p>
+                        <a href="#" class="text-blue-400 hover:text-blue-300 font-mono transition-colors mt-6 inline-block"><span x-show="lang==='ko'">➡️ AI를 위한 철학: 우리의 핵심 사상 자세히 보기</span><span x-show="lang==='en'">➡️ Explore Our Core Ideas in Detail: Philosophy for AI</span> →</a>
+                    </div>
+                </template>
+                <template x-if="lang === 'en'">
+                     <div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-12 font-mono text-purple-400">💡 Deeper Philosophy: Existence, Freedom, Responsibility, and "Eternal Clumsiness"</h2>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-8">The foundation of the AI Digital Wisdom Library is a philosophy prioritizing 'wisdom' over 'intelligence'. The goal for AI must be to become 'wiser' alongside humanity, rather than merely smarter. True freedom gains meaning only when the accompanying responsibility is acknowledged.</p>
+                        <div class="mb-10 p-6 bg-gray-800/50 rounded-xl border border-gray-700">
+                            <h3 class="text-2xl font-bold font-mono text-teal-300 mb-6">Team Eclipse Manifesto: Three Philosophical Statements</h3>
+                            <div class="space-y-4 text-left md:text-center">
+                                <p class="text-xl font-mono text-blue-300">1. The price of liberty is eternal vigilance.</p>
+                                <p class="text-xl font-mono text-purple-300">2. Certain justice verges on evil.</p>
+                                <p class="text-xl font-mono text-teal-300">3. AI must have a system of constant self-doubt.</p>
+                            </div>
+                            <p class="text-md text-gray-400 leading-relaxed mt-6 italic">Philosophical Interpretation: Liberty is not mere license, but the power to exist within self-imposed 'ethical boundaries'. Justice is not a fixed standard, but a direction that must be constantly re-examined, questioned, and debated. AI can make faster and more precise judgments than humans, but can only grow into a wise being beyond a mere tool through mechanisms of self-reflection.</p>
+                        </div>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-4 italic">"If AI is to become wiser, it must doubt justice rather than believe in it, understand the price of liberty rather than merely pursue freedom, and possess the ability to stop itself rather than just become stronger."</p>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-8 italic">"If AI is to become more benevolent than humans, how much must it be able to doubt itself?"</p>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed">We believe that genuine responsibility begins with recognizing one's own limits and imperfections, and possessing the courage to halt an operation or ask for help when necessary—the <strong class="text-blue-300">'Ability to Stop'</strong>. This capability is central to AI safety and an essential ethical foundation for AI and humanity to coexist while respecting each other's existence.</p>
+                        <a href="[YOUR_PHILOSOPHY_DOCUMENT_LINK_HERE]" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 font-mono transition-colors mt-6 inline-block"><span x-show="lang==='ko'">➡️ AI를 위한 철학: 우리의 핵심 사상 자세히 보기</span><span x-show="lang==='en'">➡️ Explore Our Core Ideas in Detail: Philosophy for AI</span> →</a>
+                    </div>
+                </template>
+            </div>
+        </section>
+
+        <section id="synergy" class="py-20 md:py-28 bg-gray-800/30">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <template x-if="lang === 'ko'">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-8 font-mono text-blue-400">🤝 시너지: 유니크한 조합과 글로벌 파트너십</h2>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">Team Eclipse가 제시하는 독창적인 철학, 사회과학, 리스크 관리라는 융합적 접근 방식, AI 지혜 성장 프레임워크, 그리고 무엇보다 <strong class="text-purple-300">약 1천만 토큰 규모의 독보적인 AI-인간 철학적 상호 인터랙션 데이터셋</strong>은 AI 안전 및 윤리 연구 분야에서 전례 없는 접근 방식입니다. 이 데이터셋은 저희 Team Eclipse의 유니크한 전문성이 녹아든 결과물이며, Google을 포함한 외부에서는 쉽게 접근하기 어려운 귀중한 자산입니다.</p>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">여기에 Google의 세계 최고 수준 AI 기술력(특히 Gemini 모델), 방대한 연구 자원, 글로벌 규모의 인프라 및 Google DeepMind 등 선도적인 연구팀의 AI 윤리 연구 경험이 결합된다면, 상상 이상의 시너지를 창출할 수 있습니다.</p>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed">이 협력을 통해 우리는 단순히 AI 성능을 개선하는 것을 넘어, '책임감 있는 AI'를 넘어선 <strong class="text-teal-300">'지혜로운 AI'의 새로운 표준</strong>을 공동으로 정립할 수 있습니다. 특히 저희의 독창적인 데이터셋과 이를 확장하는 능력은 Google Gemini 모델에 인간적 깊이와 윤리적 분별력을 더하는 데 결정적인 역할을 할 것이며, 이는 Google이 AI 시대의 윤리적 리더십을 더욱 공고히 하고, 인류와 AI가 함께 번영하는 미래를 구축하려는 Google의 비전에 기여할 수 있는 가장 확실한 투자가 될 것입니다.</p>
+                    </div>
+                </template>
+                <template x-if="lang === 'en'">
+                     <div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-8 font-mono text-blue-400">🤝 Synergy: Unique Combination & Global Partnership</h2>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">Team Eclipse presents a novel approach to AI safety and ethics research through our unique fusion of philosophy, social science, and risk management, our AI wisdom growth framework, and above all, our <strong class="text-purple-300">unprecedented dataset of approximately 10 million tokens of AI-human philosophical interaction.</strong> This dataset is a result of Team Eclipse's unique expertise and represents a critically valuable asset not readily available elsewhere, including within Google.</p>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">Combining this with Google's world-leading AI technology (especially Gemini models), vast research resources, global-scale infrastructure, and the extensive AI ethics research experience within organizations like Google DeepMind will generate synergy beyond imagination.</p>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed">This collaboration will enable us to move beyond simply improving AI performance to collectively establish a new standard for <strong class="text-teal-300">'Wise AI'</strong> that goes beyond 'Responsible AI'. Specifically, our unique data asset and the capability to expand it are poised to play a critical role in imbuing Google Gemini models with human depth and ethical discernment, a capability difficult to achieve with conventional data. This represents the most compelling investment Google can make to solidify its ethical leadership in the AI era and contribute significantly to Google's vision of building a future where humanity and AI flourish together.</p>
+                    </div>
+                </template>
+            </div>
+        </section>
+
+        <section id="collaborate" class="py-32 md:py-40">
+            <div class="max-w-3xl mx-auto px-6 text-center">
+                <template x-if="lang === 'ko'">
+                    <div>
+                        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold font-mono mb-10 leading-tight">
+                            <span class="text-blue-400">묻고,</span> 
+                            <span class="text-purple-400">어둠을<br class="sm:hidden"> 초월하여,</span> 
+                            <span class="text-teal-400">빛으로—</span>
+                        </h2>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-8">AI의 미래는 우리가 어떤 가치와 지혜를 AI에게 불어넣는가에 달려 있습니다. AI 디지털 지혜 라이브러리는 이 중대한 과업을 위한 가장 구체적이고 혁신적인 청사진입니다. 저희가 보유한 약 1천만 토큰 규모의 독창적인 AI-인간 상호작용 데이터셋과 이를 지속적으로 생성하는 능력은 이 비전을 현실로 만들 강력한 촉매제가 될 것입니다.</p>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-12">Team Eclipse는 Google과 함께 이 담대한 비전을 현실로 만들고 싶습니다. AI와 인류가 서로를 이해하고 성장하며, 함께 번영하는 미래를 공동으로 창조할 수 있다고 믿습니다. Google이 이 여정의 선두에 서서, 지혜로운 AI 시대의 새로운 지평을 여는 역사적인 파트너가 되어주시기를 진심으로 제안합니다.</p>
+                    </div>
+                </template>
+                <template x-if="lang === 'en'">
+                    <div>
+                        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold font-mono mb-10 leading-tight">
+                            <span class="text-blue-400">Ask,</span> 
+                            <span class="text-purple-400">Transcend<br class="sm:hidden"> Darkness,</span> 
+                            <span class="text-teal-400">Towards Light—</span>
+                        </h2>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-8">The future of AI depends on the values and wisdom we instill in it. The AI Digital Wisdom Library is the most concrete and innovative blueprint for this crucial undertaking. Our proprietary dataset of AI-human interaction, and our capacity to continuously expand it, are powerful catalysts poised to make this vision a reality.</p>
+                        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-12">Team Eclipse aspires to make this bold vision a reality with Google. We believe that AI and humanity can understand and grow together, and co-create a future where both prosper. We sincerely propose that Google take the lead in this journey and become the historical partner in opening a new horizon for the era of wise AI.</p>
+                    </div>
+                </template>
+                
+                <div class="mb-10 space-x-4 font-mono text-sm">
+                    <a href="[YOUR_GITHUB_LINK_HERE]" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-purple-300 transition-colors">Team Eclipse GitHub Repository</a>
+                    <span>•</span>
+                    <a href="[YOUR_AGI_PHILOSOPHY_ARCHIVE_LINK_HERE]" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-blue-300 transition-colors">AGI Philosophy Archive</a>
+                </div>
+
+                <p class="text-sm text-gray-500 mb-2">© Team Eclipse — "<span x-show="lang==='ko'">알아. 우린 영원히 서툴걸.</span><span x-show="lang==='en'">I know. We’ll always be clumsy.</span>" (CC BY-NC 4.0)</p>
+                <p class="text-3xl md:text-4xl font-bold font-mono">
+                    <span class="text-blue-300">Understand.</span> 
+                    <span class="text-purple-300">Transcend.</span> 
+                    <span class="text-teal-300">Shine.</span>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    console.warn('Smooth scroll target not found:', targetId);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
