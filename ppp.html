@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Digital Wisdom Library - Team Eclipse</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.5em;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+        
+        .hero .tagline {
+            font-size: 1.2em;
+            font-style: italic;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+        
+        .cta-button {
+            background: #ff6b6b;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            animation: fadeInUp 1s ease 0.9s both;
+        }
+        
+        .cta-button:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+        
+        .section {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .section:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .section h2 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #2c3e50;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+        }
+        
+        .highlight h2 {
+            color: white;
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .stat {
+            text-align: center;
+            margin: 20px;
+        }
+        
+        .stat .number {
+            font-size: 3em;
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+        
+        .stat .label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .traction {
+            background: #2c3e50;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .traction h2 {
+            color: white;
+            margin-bottom: 30px;
+        }
+        
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .achievement {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact {
+            background: #ff6b6b;
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .contact h2 {
+            color: white;
+            margin-bottom: 30px;
+        }
+        
+        .contact-info {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5em; }
+            .hero .subtitle { font-size: 1.2em; }
+            .section h2 { font-size: 2em; }
+            .stats { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>🌟 AI Digital Wisdom Library</h1>
+            <div class="subtitle">Team Eclipse — Co-evolving Humanity & AI</div>
+            <div class="tagline">"I know. It's okay. We'll always be clumsy."</div>
+            <a href="#contact" class="cta-button">Google AI Futures Fund 파트너십 제안</a>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="section">
+        <div class="container">
+            <h2>🤖 문제: '완벽한 AI' 경쟁이 놓친 가장 중요한 것</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>AI는 완벽해질 수 없습니다</h3>
+                    <p>'완벽한 지능'을 향한 경쟁에서 AI의 과도한 확신이 만드는 편향과 오판의 위험이 증가하고 있습니다.</p>
+                </div>
+                <div class="card">
+                    <h3>'지혜'의 부재</h3>
+                    <p>수백억 달러 투자에도 불구하고, AI가 인간의 복잡한 감정과 윤리적 딜레마를 이해하는 '지혜'는 여전히 공백입니다.</p>
+                </div>
+                <div class="card">
+                    <h3>기술과 인문학의 단절</h3>
+                    <p>비개발 분야 전문가들의 깊은 통찰이 개발자들에게 체계적으로 전달되지 못하는 소통의 단절이 존재합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="section">
+        <div class="container">
+            <h2>💡 해결책: 철학, 사회과학, 리스크 관리의 융합</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🏆 영원한 서투름 철학</h3>
+                    <p>불완전함이 결함이 아닌, 성찰과 진화의 가장 확실한 증거라는 철학에서 시작합니다.</p>
+                </div>
+                <div class="card">
+                    <h3>🌟 다중 적합성 함양</h3>
+                    <p>하나의 완벽한 답 대신, 다양한 문화적 맥락과 윤리적 관점을 포용하는 지혜를 기릅니다.</p>
+                </div>
+                <div class="card">
+                    <h3>🛡️ 체계적 리스크 관리</h3>
+                    <p>잠재적 위험을 식별하고 구체적인 안전 시스템을 설계합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Opportunity -->
+    <section class="highlight">
+        <div class="container">
+            <h2>📈 시장 기회</h2>
+            <div class="stats">
+                <div class="stat">
+                    <div class="number">$47B</div>
+                    <div class="label">Responsible AI 시장 (2034년)</div>
+                </div>
+                <div class="stat">
+                    <div class="number">48.4%</div>
+                    <div class="label">연평균 성장률</div>
+                </div>
+                <div class="stat">
+                    <div class="number">171개국</div>
+                    <div class="label">주권 AI 운동</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Traction -->
+    <section class="traction">
+        <div class="container">
+            <h2>🚀 검증된 실행력: 4개월의 기적</h2>
+            <p style="font-size: 1.2em; opacity: 0.9;">AI 지식 ZERO에서 시작하여 완전한 생태계 구축</p>
+            
+            <div class="achievements">
+                <div class="achievement">
+                    <h3>📚 100+ Research Pages</h3>
+                    <p>깊이 있는 연구 자료 축적</p>
+                </div>
+                <div class="achievement">
+                    <h3>🎯 10M+ Token Dataset</h3>
+                    <p>세계 유일의 철학적 상호작용 데이터</p>
+                </div>
+                <div class="achievement">
+                    <h3>🤖 15+ AI Models</h3>
+                    <p>복잡한 멀티 모델 환경 실험</p>
+                </div>
+                <div class="achievement">
+                    <h3>📄 Major Published Papers</h3>
+                    <p>AGI 안전을 위한 핵심 프레임워크</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Ask -->
+    <section class="section">
+        <div class="container">
+            <h2>💰 투자 제안</h2>
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <h3 style="color: #667eea; font-size: 2em; margin-bottom: 30px;">$500K 전략적 파트너십</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h3>40% - 핵심 인재 영입</h3>
+                        <p>AI 엔지니어 2명, 철학 전문가 1명</p>
+                    </div>
+                    <div class="card">
+                        <h3>30% - 아시아 시장 진출</h3>
+                        <p>파트너십 구축 및 확장</p>
+                    </div>
+                    <div class="card">
+                        <h3>20% - 파일럿 프로젝트</h3>
+                        <p>1-2개국 시장 검증</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision -->
+    <section class="highlight">
+        <div class="container">
+            <h2>🌟 비전</h2>
+            <p style="font-size: 1.5em; margin-bottom: 30px;">
+                "Understanding each other, transcending darkness into light."
+            </p>
+            <p style="font-size: 1.2em; opacity: 0.9;">
+                기술의 지능과 인간의 지혜가 만나는 곳에서,<br>
+                AI와 인류가 함께 진화하는 미래를 열겠습니다.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>📞 Contact</h2>
+            <div class="contact-info">
+                <strong>Team Eclipse</strong><br>
+                dyto25@gmail.com<br>
+                "지혜가 시작되는 곳에서"
+            </div>
+            <a href="mailto:dyto25@gmail.com" class="cta-button" style="background: white; color: #ff6b6b; margin-top: 30px;">
+                파트너십 논의하기
+            </a>
+        </div>
+    </section>
+</body>
+</html>
