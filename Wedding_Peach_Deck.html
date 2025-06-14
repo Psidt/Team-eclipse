@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eclipse Solutions - AI Future Fund Pitch Deck</title>
+    <title>Eclipse: Wedding_Peach_Deck</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -32,8 +32,6 @@
             opacity: 1; visibility: visible; pointer-events: auto; z-index: 2;
         }
 
-        .presentation-slide.layout-split { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 5vw 8vw; }
-
         .hero-main-message {
             background: linear-gradient(45deg, #3b82f6 0%, #8b5cf6 25%, #06b6d4 50%, #3b82f6 75%, #8b5cf6 100%);
             background-size: 300% 300%;
@@ -48,20 +46,6 @@
             100% { background-position: 100% 50%; }
         }
 
-        .content-box {
-            background: rgba(20, 20, 22, 0.7);
-            border: 1px solid rgba(75, 85, 99, 0.2);
-            border-radius: 1rem;
-            padding: 1.5rem 2rem;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-        .content-box:hover {
-            border-color: rgba(129, 140, 248, 0.3);
-            transform: translateY(-4px);
-        }
-
         .vision-slide {
             background-image: radial-gradient(circle at 50% 50%, rgba(17, 24, 39, 0) 0%, rgba(0, 0, 0, 0.9) 60%),
                               linear-gradient(45deg, rgba(14, 2, 33, 0.8), rgba(4, 15, 36, 0.8));
@@ -72,125 +56,6 @@
             inset: 0;
             background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="1" cy="1" r="0.5" fill="rgba(255,255,255,0.1)"/></svg>');
             opacity: 0.5;
-        }
-
-        @media (max-width: 768px) {
-            .presentation-slide {
-                padding: 3rem 1.5rem;
-                justify-content: flex-start;
-            }
-            .presentation-slide.layout-split {
-                grid-template-columns: 1fr;
-                padding: 3rem 1.5rem;
-                gap: 1.5rem;
-            }
-            .content-box {
-                padding: 1.25rem;
-            }
-            .content-box:hover {
-                transform: none;
-            }
-        }
-        
-        .nav-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.3);
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .nav-dot:hover {
-            background-color: rgba(255, 255, 255, 0.6);
-        }
-
-        .nav-dot.active {
-            background-color: rgba(255, 255, 255, 1);
-            transform: scale(1.2);
-        }
-
-    <style>
-        body { 
-            font-family: 'Inter', sans-serif; 
-            overflow: hidden;
-            background-color: #000;
-        }
-        #presentation-container { 
-            position: relative; 
-            width: 100vw; 
-            height: 100vh; 
-        }
-        .presentation-slide {
-            position: absolute !important; inset: 0 !important; 
-            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.8s !important;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 5vw; overflow-y: auto; box-sizing: border-box;
-            opacity: 0; visibility: hidden; pointer-events: none; z-index: 1;
-        }
-        .presentation-slide:first-child {
-            opacity: 1; visibility: visible; pointer-events: auto; z-index: 2;
-        }
-
-        .presentation-slide.layout-split { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 5vw 8vw; }
-
-        .hero-main-message {
-            background: linear-gradient(45deg, #3b82f6 0%, #8b5cf6 25%, #06b6d4 50%, #3b82f6 75%, #8b5cf6 100%);
-            background-size: 300% 300%;
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            animation: gentleGradientFlow 8s ease-in-out infinite alternate;
-        }
-
-        @keyframes gentleGradientFlow {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-
-        .content-box {
-            background: rgba(20, 20, 22, 0.7);
-            border: 1px solid rgba(75, 85, 99, 0.2);
-            border-radius: 1rem;
-            padding: 1.5rem 2rem;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-        .content-box:hover {
-            border-color: rgba(129, 140, 248, 0.3);
-            transform: translateY(-4px);
-        }
-
-        .vision-slide {
-            background-image: radial-gradient(circle at 50% 50%, rgba(17, 24, 39, 0) 0%, rgba(0, 0, 0, 0.9) 60%),
-                              linear-gradient(45deg, rgba(14, 2, 33, 0.8), rgba(4, 15, 36, 0.8));
-        }
-        .vision-slide::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="1" cy="1" r="0.5" fill="rgba(255,255,255,0.1)"/></svg>');
-            opacity: 0.5;
-        }
-
-        @media (max-width: 768px) {
-            .presentation-slide {
-                padding: 3rem 1.5rem;
-                justify-content: flex-start;
-            }
-            .presentation-slide.layout-split {
-                grid-template-columns: 1fr;
-                padding: 3rem 1.5rem;
-                gap: 1.5rem;
-            }
-            .content-box {
-                padding: 1.25rem;
-            }
-            .content-box:hover {
-                transform: none;
-            }
         }
         
         .nav-dot {
@@ -213,12 +78,10 @@
             transform: scale(1.2);
         }
     </style>
-    
 </head>
 <body class="bg-black text-white antialiased">
 
     <main id="presentation-container">
-        
         <!-- Slide 1: Title -->
         <section class="presentation-slide text-center">
             <div class="animate-in">
@@ -238,48 +101,51 @@
             </div>
         </section>
 
-      <!-- Slide 2: The Question (Desktop Metaphor) -->
-<section class="presentation-slide" id="slide-desktop">
-    </div>
-    <div class="desktop-taskbar">
-        <div class="taskbar-item active">
-            <img src="https://img.icons8.com/fluency/48/gem-stone.png" alt="Gemini Icon"/>
-            <span>Gemini App</span>
-        </div>
-        <div class="taskbar-item">
-            <span>+ Gemini App</span>
-        </div>
-    </div>
+        <!-- Slide 2: The Question (Self-Contained Responsive Section) -->
+        <section class="presentation-slide p-0 overflow-hidden bg-[#0d1117] items-center justify-center">
+            <!-- Desktop Background & Icons (Hidden on mobile) -->
+            <div class="absolute inset-0 bg-gradient-to-br from-[#0d1117] to-[#1a2333] opacity-80"></div>
+            <div class="hidden md:grid absolute top-8 left-8 grid-cols-6 gap-6">
+                <div class="flex flex-col items-center text-center text-white text-xs"><img src="https://img.icons8.com/dotty/80/ffffff/workstation.png" class="w-12 h-12 mb-2" alt="PC Icon"/><p>My Gentrap</p></div>
+                <div class="flex flex-col items-center text-center text-white text-xs"><img src="https://img.icons8.com/dotty/80/ffffff/chrome.png" class="w-12 h-12 mb-2" alt="Chrome Icon"/><p>Chrome</p></div>
+                <div class="flex flex-col items-center text-center text-white text-xs"><img src="https://img.icons8.com/dotty/80/ffffff/reminders.png" class="w-12 h-12 mb-2" alt="Notes Icon"/><p>GemNotes</p></div>
+                <div class="flex flex-col items-center text-center text-white text-xs"><img src="https://img.icons8.com/dotty/80/ffffff/paint-palette.png" class="w-12 h-12 mb-2" alt="Paint Icon"/><p>GemPaint</p></div>
+                <div class="flex flex-col items-center text-center text-white text-xs"><img src="https://img.icons8.com/dotty/80/ffffff/doom-logo.png" class="w-12 h-12 mb-2" alt="Doom Icon"/><p>Doom II</p></div>
+                <div class="flex flex-col items-center text-center text-white text-xs"><img src="https://img.icons8.com/fluency/48/gem-stone.png" class="w-12 h-12 mb-2" alt="Gemini Icon"/><p>Gemini App</p></div>
+            </div>
+            <div class="hidden md:flex absolute bottom-0 left-0 right-0 h-10 bg-black/50 backdrop-blur-sm border-t border-white/10 items-center px-4">
+                <div class="flex items-center gap-2 px-3 py-1 bg-white/10 rounded"><img src="https://img.icons8.com/fluency/48/gem-stone.png" class="w-6 h-6" alt="Gemini Icon"/><span>Gemini App</span></div>
+                <div class="px-3 py-1"><span>+ Gemini App</span></div>
+            </div>
 
-    <!-- The App Window -->
-    <div class="app-window animate-in">
-        <div class="title-bar">
-            <span>Gemini App</span>
-            <div class="window-controls">
-                <span>_</span><span>◻</span><span class="close-btn">×</span>
-            </div>
-        </div>
-        <div class="app-content">
-            <!-- Left Panel: The Question -->
-            <div class="content-left">
-                <h2 class="text-3xl sm:text-4xl font-bold text-gray-200">The Question</h2>
-                <h3 class="mt-4 text-2xl sm:text-3xl font-semibold text-blue-400">Beyond the Race for Perfect AI</h3>
-                <div class="mt-8 space-y-4 text-base sm:text-lg">
-                    <p><strong class="text-blue-300">Current Reality:</strong> AI Intelligence ↑ vs Ethical Judgment ↓</p>
-                    <p><strong class="text-purple-300">Problem:</strong> Overconfidence → Bias & Misjudgment</p>
-                    <p><strong class="text-red-300">Result:</strong> Global AI Safety Trust Gap</p>
+            <!-- The App Window: Adapts to screen size using Tailwind's responsive prefixes -->
+            <div class="animate-in w-full h-full md:w-[90%] md:max-w-[1200px] md:h-[80vh] md:max-h-[700px] bg-[#1e1e1e] md:border md:border-gray-700 md:rounded-lg shadow-2xl flex flex-col z-10">
+                <div class="bg-[#333] p-2 px-4 flex justify-between items-center md:rounded-t-lg flex-shrink-0">
+                    <span class="font-bold">Gemini App</span>
+                    <div class="flex gap-2 text-sm"><span>_</span><span>◻</span><span class="text-[#ff5f56]">×</span></div>
+                </div>
+                <div class="flex-grow grid grid-cols-1 md:grid-cols-2 gap-6 p-4 md:p-6 overflow-auto">
+                    <!-- Left Panel: The Question -->
+                    <div class="pb-8 md:pb-0">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-200">The Question</h2>
+                        <h3 class="mt-4 text-2xl md:text-3xl font-semibold text-blue-400">Beyond the Race for Perfect AI</h3>
+                        <div class="mt-8 space-y-4 text-base md:text-lg">
+                            <p><strong class="text-blue-300">Current Reality:</strong> AI Intelligence ↑ vs Ethical Judgment ↓</p>
+                            <p><strong class="text-purple-300">Problem:</strong> Overconfidence → Bias & Misjudgment</p>
+                            <p><strong class="text-red-300">Result:</strong> Global AI Safety Trust Gap</p>
+                        </div>
+                    </div>
+                    <!-- Right Panel: The Image -->
+                    <div>
+                        <img src="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=large" alt="A symbolic image" class="w-full h-auto object-contain border border-gray-700 [image-rendering:pixelated]">
+                        <div class="mt-4 p-3 border border-gray-700 rounded bg-[#111] flex justify-between items-center">
+                            <p class="text-sm">"Understanding each other, transcending darkness into the light."</p>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded text-sm flex-shrink-0">Send</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- Right Panel: The Image -->
-            <div class="content-right">
-                <img src="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=large" alt="A symbolic image of a futuristic figure against a dark, abstract background" class="pixel-art-image">
-                <div class="chat-input-area">
-                    <button class="send-btn">Send</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
 
 <!-- Slide 3: The Answer - A New Foundation -->
 <section class="presentation-slide">
