@@ -4,14 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eclipse Solutions - AI Future Fund Pitch Deck</title>
+    
+            <!-- 🌸 구글 폰트 연결 - Inter 폰트 사용 -->
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+        <!-- 💫 외부 라이브러리들 - 스타일링과 애니메이션용 -->
+    
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <style>
+    <style>         /* 🌟 기본 스타일 설정 */
+
         body { 
             font-family: 'Inter', sans-serif; 
             overflow: hidden;
@@ -22,6 +29,9 @@
             width: 100vw; 
             height: 100vh; 
         }
+               
+        /* ✨ 슬라이드 기본 스타일: 모든 슬라이드에 적용되는 공통 규칙입니다. */
+
         .presentation-slide {
             position: absolute !important; inset: 0 !important; 
             transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.8s !important;
@@ -484,12 +494,38 @@
         </button>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const slides = Array.from(document.querySelectorAll('.presentation-slide'));
-            let currentSlide = 0;
-            if (slides.length === 0) { console.warn('No slides found'); return; }
+    <!-- 🎮 네비게이션 컨트롤 - 하단 중앙 -->
+    <div id="presentation-navigation" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 px-2 py-1 rounded-full bg-black/20 backdrop-blur-sm transition-opacity duration-300">
+        <!-- 첫 슬라이드로 가기 버튼 -->
+        <button id="presentation-first-slide" class="p-1 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed">
+            <i data-lucide="rewind" class="w-4 h-4 text-white/80"></i>
+        </button>
+        <!-- 이전 슬라이드 버튼 -->
+        <button id="presentation-prev-slide" class="p-1 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed">
+            <i data-lucide="chevron-left" class="w-4 h-4 text-white/80"></i>
+        </button>
+        <!-- 슬라이드 표시점들 -->
+        <div id="presentation-dots" class="flex gap-1.5 items-center"></div>
+        <!-- 다음 슬라이드 버튼 -->
+        <button id="presentation-next-slide" class="p-1 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed">
+            <i data-lucide="chevron-right" class="w-4 h-4 text-white/80"></i>
+        </button>
+    </div>
 
+    <script>
+        // 🚀 프레젠테이션 초기화 및 제어 JavaScript
+        document.addEventListener('DOMContentLoaded', () => {
+            // 📋 모든 슬라이드 요소 가져오기
+            const slides = Array.from(document.querySelectorAll('.presentation-slide'));
+            let currentSlide = 0; // 현재 슬라이드 인덱스
+            
+            // ⚠️ 슬라이드가 없으면 경고하고 종료
+            if (slides.length === 0) { 
+                console.warn('No slides found'); 
+                return; 
+            }
+
+            // 🎨 애니메이션 요소 캐싱 시스템
             let animatedElementsCache = new WeakMap();
             const getAnimatedElements = (slide) => {
                 if (!animatedElementsCache.has(slide)) {
@@ -497,8 +533,11 @@
                 }
                 return animatedElementsCache.get(slide);
             };
+
+            // 🧹 캐시 정리 함수
             const clearSlideCache = (slide) => slide && animatedElementsCache.has(slide) && animatedElementsCache.delete(slide);
 
+            // 👀 슬라이드 표시/숨김 제어
             const setSlideVisible = (slide, visible) => {
                 if (!slide) return;
                 if (visible) {
@@ -514,50 +553,70 @@
                 }
             };
 
+            // 🎯 특정 슬라이드로 이동하는 메인 함수
             const goToSlide = (slideIndex, isInitial = false) => {
+                // 유효성 검사
                 if (slideIndex < 0 || slideIndex >= slides.length) return false;
                 if (slideIndex === currentSlide && !isInitial) return true;
 
                 const [oldSlide, newSlide] = [slides[currentSlide], slides[slideIndex]];
+                
+                // 진행 중인 애니메이션 정리
                 if (typeof gsap !== 'undefined') gsap.killTweensOf('[data-animate]');
                 
+                // 🎬 애니메이션 타임라인 생성
                 const timeline = gsap.timeline({
                     onComplete: () => {
+                        // 애니메이션 완료 후 성능 최적화
                         [oldSlide, newSlide].forEach(slide => {
                             if (slide) getAnimatedElements(slide).forEach(el => el.style.willChange = 'auto');
                         });
                     }
                 });
 
+                // 🌅 이전 슬라이드 페이드아웃 (초기화가 아닌 경우)
                 if (!isInitial && oldSlide && oldSlide !== newSlide) {
                     const oldElements = getAnimatedElements(oldSlide);
                     if (oldElements.length > 0) {
                         oldElements.forEach(el => el.style.willChange = 'opacity, transform');
-                        timeline.to(oldElements, { opacity: 0, y: 20, stagger: 0.05, duration: 0.5, ease: 'power3.in' });
+                        timeline.to(oldElements, { 
+                            opacity: 0, 
+                            y: 20, 
+                            stagger: 0.05, 
+                            duration: 0.5, 
+                            ease: 'power3.in' 
+                        });
                     }
                 }
 
+                // 🔄 슬라이드 전환
                 timeline.call(() => {
                     if(oldSlide && oldSlide !== newSlide) setSlideVisible(oldSlide, false);
                     setSlideVisible(newSlide, true);
                     currentSlide = slideIndex;
-                    updateUIElements();
+                    updateUIElements(); // UI 업데이트
                 }, null, isInitial ? 0 : '+=0.2');
 
+                // ✨ 새 슬라이드 페이드인
                 const newElements = getAnimatedElements(newSlide);
                 if (newElements.length > 0) {
                     newElements.forEach(el => el.style.willChange = 'opacity, transform');
-                    timeline.fromTo(newElements, { opacity: 0, y: 20 }, { opacity: 1, y: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out' });
+                    timeline.fromTo(newElements, 
+                        { opacity: 0, y: 20 }, 
+                        { opacity: 1, y: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out' }
+                    );
                 }
                 return true;
             };
 
+            // 🎮 네비게이션 함수들
             const nextSlide = () => goToSlide(currentSlide + 1);
             const prevSlide = () => goToSlide(currentSlide - 1);
             const firstSlide = () => goToSlide(0);
             const lastSlide = () => goToSlide(slides.length - 1);
 
-            let boundElements = new Set();
+            // 📊 UI 요소 상태 업데이트
+            let boundElements = new Set(); // 이벤트 리스너 중복 방지
             
             function updateUIElements() {
                 const dotsContainer = document.getElementById('presentation-dots');
@@ -565,6 +624,7 @@
                 const nextButton = document.getElementById('presentation-next-slide');
                 const firstButton = document.getElementById('presentation-first-slide');
 
+                // 🔘 네비게이션 점들 활성화 상태 업데이트
                 if (dotsContainer) {
                     const dots = dotsContainer.querySelectorAll('.nav-dot');
                     dots.forEach((dot, index) => {
@@ -576,11 +636,13 @@
                     });
                 }
 
+                // 🔒 버튼 활성화/비활성화
                 if (prevButton) prevButton.disabled = currentSlide === 0;
                 if (nextButton) nextButton.disabled = currentSlide === slides.length - 1;
                 if (firstButton) firstButton.disabled = currentSlide === 0;
             }
             
+            // 🎛️ 네비게이션 UI 초기화
             function initializeUIElements() {
                 const navContainer = document.getElementById('presentation-navigation');
                 const dotsContainer = document.getElementById('presentation-dots');
@@ -589,6 +651,8 @@
                 const firstButton = document.getElementById('presentation-first-slide');
 
                 const totalSlides = slides.length;
+                
+                // 슬라이드가 1개 이하면 네비게이션 숨기기
                 if (totalSlides <= 1) {
                     if (navContainer) navContainer.style.display = 'none';
                     return;
@@ -596,6 +660,7 @@
 
                 if (navContainer) navContainer.style.display = 'flex';
 
+                // 🔘 네비게이션 점들 생성
                 if (dotsContainer && totalSlides > 1) {
                     dotsContainer.innerHTML = '';
                     slides.forEach((_, index) => {
@@ -607,6 +672,7 @@
                     });
                 }
 
+                // 🔘 버튼 이벤트 리스너 등록 (중복 방지)
                 if (prevButton && !boundElements.has(prevButton)) {
                     prevButton.addEventListener('click', prevSlide);
                     boundElements.add(prevButton);
@@ -622,6 +688,7 @@
                 }
             }
 
+            // ♿ 접근성을 위한 스크린 리더 알림
             const announceSlide = () => {
                 const announcement = `Slide ${currentSlide + 1} of ${slides.length}`;
                 let announcer = document.getElementById('presentation-announcer');
@@ -635,7 +702,9 @@
                 announcer.textContent = announcement;
             };
 
+            // ⌨️ 키보드 이벤트 처리
             window.addEventListener('keydown', (e) => {
+                // 입력 필드에서는 키보드 네비게이션 비활성화
                 if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) return;
                 
                 let handled = false;
@@ -647,12 +716,20 @@
                 
                 if (keyMap[e.key]) handled = keyMap[e.key]();
                 
-                if (handled) { e.preventDefault(); e.stopPropagation(); announceSlide(); }
+                if (handled) { 
+                    e.preventDefault(); 
+                    e.stopPropagation(); 
+                    announceSlide(); 
+                }
             });
 
+            // 📱 터치 제스처 처리
             let touchStartX = null, touchStartY = null;
+            
             document.addEventListener('touchstart', (e) => {
-                if (e.touches.length === 1) [touchStartX, touchStartY] = [e.touches[0].clientX, e.touches[0].clientY];
+                if (e.touches.length === 1) {
+                    [touchStartX, touchStartY] = [e.touches[0].clientX, e.touches[0].clientY];
+                }
             }, { passive: true });
 
             document.addEventListener('touchend', (e) => {
@@ -660,9 +737,11 @@
                     touchStartX = touchStartY = null;
                     return;
                 }
+                
                 const [touchEndX, touchEndY] = [e.changedTouches[0].clientX, e.changedTouches[0].clientY];
                 const [deltaX, deltaY] = [touchStartX - touchEndX, touchStartY - touchEndY];
                 
+                // 가로 스와이프가 세로보다 크고 충분한 거리면 슬라이드 변경
                 if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
                     e.preventDefault();
                     deltaX > 0 ? nextSlide() : prevSlide();
@@ -670,6 +749,7 @@
                 touchStartX = touchStartY = null;
             });
 
+            // 🖱️ 마우스 휠 처리
             let wheelTimeout, isWheelActive = false;
             document.addEventListener('wheel', (e) => {
                 if (isWheelActive) return;
@@ -684,24 +764,35 @@
                 }, 100);
             }, { passive: false });
 
+            // 🌍 전역 API 노출 (외부에서 접근 가능)
             window.presentationAPI = { goToSlide, nextSlide, prevSlide, firstSlide, lastSlide };
 
+            // 🚀 초기화 실행
             try {
                 currentSlide = 0;
                 initializeUIElements();
+                
+                // 아이콘 초기화
                 if (typeof lucide !== 'undefined' && lucide.createIcons) lucide.createIcons();
                 
+                // 첫 번째 슬라이드 표시
                 if (slides.length > 0) {
                     updateUIElements();
-                    slides.forEach((slide, index) => { setSlideVisible(slide, index === 0); });
+                    slides.forEach((slide, index) => { 
+                        setSlideVisible(slide, index === 0); 
+                    });
                     goToSlide(0, true);
                 } else {
                     console.warn('No slides found');
                 }
                 
-                document.dispatchEvent(new CustomEvent('presentationReady', { detail: { slideCount: slides.length, currentSlide } }));
+                // 초기화 완료 이벤트 발생
+                document.dispatchEvent(new CustomEvent('presentationReady', { 
+                    detail: { slideCount: slides.length, currentSlide } 
+                }));
             } catch (error) {
                 console.error('Failed to initialize:', error);
+                // 오류 발생시 최소한 첫 슬라이드는 표시
                 if (slides.length > 0) setSlideVisible(slides[0], true);
             }
         });
