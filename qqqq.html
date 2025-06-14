@@ -7,7 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <style>
-        /* 기존 CSS 스타일 그대로 복원 */
+        body {
+            background: #000000;
+        }
+
         .main-image-container {
             animation: gentle-float 6s ease-in-out infinite;
         }
@@ -47,7 +50,7 @@
         }
 
         .content-box {
-            background: rgba(31, 41, 55, 0.4);
+            background: rgba(15, 15, 15, 0.8);
             border: 1px solid rgba(75, 85, 99, 0.3);
             border-radius: 1rem;
             padding: 2rem;
@@ -57,9 +60,9 @@
 
         .content-box:hover {
             border-color: rgba(59, 130, 246, 0.5);
-            background: rgba(31, 41, 55, 0.5);
+            background: rgba(25, 25, 25, 0.9);
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
         }
 
         .slide {
@@ -87,23 +90,58 @@
             background: rgba(59, 130, 246, 0.4);
             transform: translateY(-1px);
         }
+
+        .mobile-large-image {
+            width: 80vw;
+            height: 80vw;
+            max-width: 600px;
+            max-height: 600px;
+            min-width: 320px;
+            min-height: 320px;
+        }
+
+        @media (min-width: 768px) {
+            .mobile-large-image {
+                width: 500px;
+                height: 500px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .mobile-large-image {
+                width: 600px;
+                height: 600px;
+            }
+        }
+
+        .code-block {
+            background: rgba(10, 10, 10, 0.9);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            color: #94a3b8;
+            font-size: 0.875rem;
+            overflow-x: auto;
+        }
     </style>
 </head>
 
-<body class="bg-gray-900 text-white font-sans overflow-x-hidden" x-data="{ currentSlide: 1 }">
+<body class="bg-black text-white font-sans overflow-x-hidden" x-data="{ currentSlide: 1 }">
 
-    <!-- 슬라이드 1: 감성적 오프닝 -->
+    <!-- 슬라이드 1: The Next Era -->
     <section class="slide active flex items-center justify-center" :class="currentSlide === 1 ? 'active' : ''" x-show="currentSlide === 1">
         <div class="max-w-6xl mx-auto px-6 text-center">
             <div class="main-image-container mb-8">
                 <img src="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=large" 
-                     alt="Eclipse Vision" class="main-image w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 mx-auto rounded-2xl object-cover shadow-2xl">
+                     alt="Eclipse Vision" 
+                     class="main-image mobile-large-image mx-auto rounded-2xl object-cover shadow-2xl">
             </div>
             <div class="hero-content">
                 <h1 class="hero-main-message text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
                     The Next Era: Wisdom Begins
                 </h1>
-                <p class="hero-sub-message text-lg md:text-xl mb-8 max-w-4xl mx-auto">
+                <p class="text-gray-300 text-lg md:text-xl mb-8 max-w-4xl mx-auto">
                     Designing harmonious coexistence between humans and AI through Socratic wisdom
                 </p>
                 <div class="mt-12">
@@ -117,7 +155,7 @@
         </div>
     </section>
 
-    <!-- 슬라이드 2: 문제 정의 -->
+    <!-- 슬라이드 2: The Starting Question -->
     <section class="slide flex items-center justify-center" :class="currentSlide === 2 ? 'active' : ''" x-show="currentSlide === 2">
         <div class="max-w-4xl mx-auto px-6">
             <div class="content-box text-center">
@@ -130,30 +168,338 @@
                 <div class="grid md:grid-cols-3 gap-4 md:gap-6 mt-12">
                     <div class="content-box">
                         <h3 class="text-lg md:text-xl font-semibold mb-4 text-purple-400">Current Reality</h3>
-                        <p class="text-sm md:text-base">AI Intelligence ↑<br>vs<br>Ethical Judgment ↓</p>
+                        <p class="text-sm md:text-base text-gray-300">AI Intelligence ↑<br>vs<br>Ethical Judgment ↓</p>
                     </div>
                     <div class="content-box">
                         <h3 class="text-lg md:text-xl font-semibold mb-4 text-purple-400">Problem</h3>
-                        <p class="text-sm md:text-base">Overconfidence<br>→<br>Bias & Misjudgment</p>
+                        <p class="text-sm md:text-base text-gray-300">Overconfidence<br>→<br>Bias & Misjudgment</p>
                     </div>
                     <div class="content-box">
                         <h3 class="text-lg md:text-xl font-semibold mb-4 text-purple-400">Result</h3>
-                        <p class="text-sm md:text-base">Global AI Safety<br>Trust Gap</p>
+                        <p class="text-sm md:text-base text-gray-300">Global AI Safety<br>Trust Gap</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 화살표 네비게이션 -->
-    <button @click="currentSlide = currentSlide > 1 ? currentSlide - 1 : 2" 
-            class="fixed left-4 top-1/2 transform -translate-y-1/2 nav-btn p-2 md:p-3 rounded-full text-xl md:text-2xl z-50">
-        ←
-    </button>
-    <button @click="currentSlide = currentSlide < 2 ? currentSlide + 1 : 1" 
-            class="fixed right-4 top-1/2 transform -translate-y-1/2 nav-btn p-2 md:p-3 rounded-full text-xl md:text-2xl z-50">
-        →
-    </button>
+    <!-- 슬라이드 3: Our Answer -->
+    <section class="slide flex items-center justify-center" :class="currentSlide === 3 ? 'active' : ''" x-show="currentSlide === 3">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="content-box text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-8 text-blue-400">Our Answer</h1>
+                <h2 class="text-2xl md:text-3xl mb-12 text-gray-300">"Pursue wisdom, not perfection"</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="content-box">
+                        <h3 class="text-xl font-semibold mb-4 text-cyan-400">Eternal Clumsiness Philosophy</h3>
+                        <p class="text-gray-300 mb-4">AI that embraces uncertainty and learns from mistakes</p>
+                        <ul class="text-sm text-gray-400 space-y-2">
+                            <li>• Admits limitations</li>
+                            <li>• Questions assumptions</li>
+                            <li>• Seeks human guidance</li>
+                        </ul>
+                    </div>
+                    <div class="content-box">
+                        <h3 class="text-xl font-semibold mb-4 text-cyan-400">Questions over Answers</h3>
+                        <p class="text-gray-300 mb-4">AI that thinks deeply rather than responds quickly</p>
+                        <ul class="text-sm text-gray-400 space-y-2">
+                            <li>• Socratic questioning</li>
+                            <li>• Critical self-reflection</li>
+                            <li>• Collaborative exploration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-</body>
-</html>
+    <!-- 슬라이드 4: Field Expertise -->
+    <section class="slide flex items-center justify-center" :class="currentSlide === 4 ? 'active' : ''" x-show="currentSlide === 4">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="content-box">
+                <h1 class="text-4xl md:text-5xl font-bold mb-8 text-blue-400 text-center">Field Expertise</h1>
+                <h2 class="text-xl md:text-2xl mb-8 text-gray-300 text-center">
+                    "Understanding human alignment challenges gives me insight into AI alignment complexities"
+                </h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div class="content-box">
+                            <h3 class="text-lg font-semibold mb-2 text-purple-400">Current Role</h3>
+                            <p class="text-gray-300">Risk Manager for 500+ employee organizations</p>
+                        </div>
+                        <div class="content-box">
+                            <h3 class="text-lg font-semibold mb-2 text-purple-400">Experience</h3>
+                            <p class="text-gray-300">Safety management across semiconductor fabs, data center construction sites, and various industrial processes</p>
+                        </div>
+                        <div class="content-box">
+                            <h3 class="text-lg font-semibold mb-2 text-purple-400">Achievement</h3>
+                            <p class="text-gray-300">Successfully improved behaviors of thousands of workers through risk assessment and safety training</p>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="content-box border-yellow-500/30">
+                            <h3 class="text-lg font-semibold mb-2 text-yellow-400">Key Insight</h3>
+                            <p class="text-gray-300 italic">"Alignment is an illusion. Humans are biased—how can we create aligned AI from biased human data?"</p>
+                        </div>
+                        <div class="content-box">
+                            <h3 class="text-lg font-semibold mb-2 text-purple-400">Side Project</h3>
+                            <p class="text-gray-300">4 months of AI philosophy research → 10M+ token dataset</p>
+                        </div>
+                        <div class="content-box">
+                            <h3 class="text-lg font-semibold mb-2 text-purple-400">Unique Combination</h3>
+                            <p class="text-gray-300">Field safety management + AI alignment research fusion</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 슬라이드 5: Eclipse Framework -->
+    <section class="slide flex items-center justify-center" :class="currentSlide === 5 ? 'active' : ''" x-show="currentSlide === 5">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="content-box text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-8 text-blue-400">Eclipse Framework</h1>
+                <h2 class="text-xl md:text-2xl mb-12 text-gray-300">"Building traffic laws for AI supercars"</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="content-box bg-purple-900/20 border-purple-500/30">
+                        <div class="text-4xl mb-4">🗣️</div>
+                        <h3 class="font-semibold mb-2 text-purple-300">Interactive Forum</h3>
+                        <p class="text-sm text-gray-400">Community Platform for philosophical dialogue</p>
+                    </div>
+                    <div class="content-box bg-blue-900/20 border-blue-500/30">
+                        <div class="text-4xl mb-4">📚</div>
+                        <h3 class="font-semibold mb-2 text-blue-300">AI Risk Encyclopedia</h3>
+                        <p class="text-sm text-gray-400">100+ systematized terms and concepts</p>
+                    </div>
+                    <div class="content-box bg-green-900/20 border-green-500/30">
+                        <div class="text-4xl mb-4">🛡️</div>
+                        <h3 class="font-semibold mb-2 text-green-300">Safety Tech Hub</h3>
+                        <p class="text-sm text-gray-400">Eclipse Protocol, Red Module, Stop Functions</p>
+                    </div>
+                    <div class="content-box bg-orange-900/20 border-orange-500/30">
+                        <div class="text-4xl mb-4">🧠</div>
+                        <h3 class="font-semibold mb-2 text-orange-300">Wisdom Data Archive</h3>
+                        <p class="text-sm text-gray-400">30+ dimensional structured philosophical data</p>
+                    </div>
+                </div>
+                <p class="mt-8 text-gray-300 italic">Applying real-world safety principles to AI design</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 슬라이드 6: Action Roadmap -->
+    <section class="slide flex items-center justify-center" :class="currentSlide === 6 ? 'active' : ''" x-show="currentSlide === 6">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="content-box">
+                <h1 class="text-4xl md:text-5xl font-bold mb-8 text-blue-400 text-center">Action Roadmap</h1>
+                <h2 class="text-xl md:text-2xl mb-8 text-gray-300 text-center">"Sustainable philosophical data pipeline"</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div class="content-box">
+                            <h3 class="text-lg font-semibold mb-4 text-cyan-400">Data Pipeline Flow</h3>
+                            <div class="space-y-2 text-sm text-gray-300">
+                                <p>Humanities Community →</p>
+                                <p>High-quality dialogue data →</p>
+                                <p>AI Learning optimization</p>
+                            </div>
+                        </div>
+                        <div class="content-box">
+                            <h3 class="text-lg font-semibold mb-4 text-cyan-400">Bridge Role</h3>
+                            <p class="text-gray-300">Connecting non-developers and developers through structured philosophical interactions</p>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="content-box border-green-500/30">
+                            <h3 class="text-lg font-semibold mb-4 text-green-400">Current Asset</h3>
+                            <p class="text-gray-300 mb-2">30+ dimensional structured data</p>
+                            <p class="text-sm text-gray-400">Dataset Sample: github.com/Psidt/philosophy-lib</p>
+                        </div>
+                        <div class="content-box border-blue-500/30">
+                            <h3 class="text-lg font-semibold mb-4 text-blue-400">Partnership Vision</h3>
+                            <p class="text-gray-300 mb-2">Google's technology combined with my expertise could create powerful synergy</p>
+                            <p class="text-gray-300">I'd love to grow this ecosystem together</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 슬라이드 7: To Gemini -->
+    <section class="slide flex items-center justify-center" :class="currentSlide === 7 ? 'active' : ''" x-show="currentSlide === 7">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="content-box text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-8 text-blue-400">To Gemini</h1>
+                <h2 class="text-2xl md:text-3xl mb-12 text-gray-300">"Let's become wiser together"</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="content-box bg-blue-900/20">
+                        <h3 class="text-lg font-semibold mb-4 text-blue-300">Next-Generation AI</h3>
+                        <p class="text-gray-300">Gemini + Eclipse philosophical data = Wise AI beyond current capabilities</p>
+                    </div>
+                    <div class="content-box bg-purple-900/20">
+                        <h3 class="text-lg font-semibold mb-4 text-purple-300">Safety Mechanisms</h3>
+                        <p class="text-gray-300">Implementing Stop Function and Doubt Loop mechanisms for responsible AI behavior</p>
+                    </div>
+                    <div class="content-box bg-green-900/20">
+                        <h3 class="text-lg font-semibold mb-4 text-green-300">Beyond Alignment</h3>
+                        <p class="text-gray-300">Moving beyond perfect alignment to AI that can doubt, pause, and seek guidance</p>
+                    </div>
+                </div>
+                <div class="mt-12 content-box border-yellow-500/30">
+                    <p class="text-yellow-400 italic text-lg">
+                        "Teaching AI to embrace uncertainty as a path to wisdom"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 슬라이드 8: Market Opportunity -->
+    <section class="slide flex items-center justify-center" :class="currentSlide === 8 ? 'active' : ''" x-show="currentSlide === 8">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="content-box text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-8 text-blue-400">Market Opportunity</h1>
+                <h2 class="text-xl md:text-2xl mb-12 text-gray-300">"Monopolizing philosophical AI data market"</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="content-box bg-green-900/20 border-green-500/30">
+                        <div class="text-4xl mb-4">💰</div>
+                        <h3 class="text-2xl font-bold mb-2 text-green-300">$47B</h3>
+                        <p class="text-gray-300">Responsible AI market (2024-34, 48% CAGR)</p>
+                    </div>
+                    <div class="content-box bg-purple-900/20 border-purple-500/30">
+                        <div class="text-4xl mb-4">🔒</div>
+                        <h3 class="text-lg font-semibold mb-2 text-purple-300">Exclusive Access</h3>
+                        <p class="text-gray-300">Competitor-inaccessible humanities data pipeline</p>
+                    </div>
+                    <div class="content-box bg-blue-900/20 border-blue-500/30">
+                        <div class="text-4xl mb-4">🤝</div>
+                        <h3 class="text-lg font-semibold mb-2 text-blue-300">Unique Fusion</h3>
+                        <p class="text-gray-300">Technology-philosophy integration only possible with Google</p>
+                    </div>
+                </div>
+                <div class="mt-12 content-box border-yellow-500/30">
+                    <p class="text-yellow-400 text-lg">
+                        First-mover advantage in philosophical AI training data market
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 슬라이드 9: Team Introduction -->
+    <section class="slide flex items-center justify-center" :class="currentSlide === 9 ? 'active' : ''" x-show="currentSlide === 9">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="content-box text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-8 text-blue-400">Team Introduction</h1>
+                <h2 class="text-xl md:text-2xl mb-12 text-gray-300">"A risk manager's journey into AI philosophy"</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="content-box bg-orange-900/20">
+                        <div class="text-4xl mb-4">⚖️</div>
+                        <h3 class="text-lg font-semibold mb-2 text-orange-300">Risk Manager</h3>
+                        <p class="text-gray-300">Industrial safety & behavioral change expert</p>
+                    </div>
+                    <div class="content-box bg-purple-900/20">
+                        <div class="text-4xl mb-4">🧠</div>
+                        <h3 class="text-lg font-semibold mb-2 text-purple-300">Social Scientist</h3>
+                        <p class="text-gray-300">Human behavior & organizational dynamics</p>
+                    </div>
+                    <div class="content-box bg-blue-900/20">
+                        <div class="text-4xl mb-4">💭</div>
+                        <h3 class="text-lg font-semibold mb-2 text-blue-300">Philosopher</h3>
+                        <p class="text-gray-300">Ethics, wisdom, and meaning-making</p>
+                    </div>
+                </div>
+                <div class="mt-12 space-y-6">
+                    <div class="content-box border-cyan-500/30">
+                        <h3 class="text-lg font-semibold mb-4 text-cyan-400">Unique Background Combination</h3>
+                        <p class="text-gray-300">Fusion of field safety management + AI alignment research provides unprecedented perspective on AI wisdom development</p>
+                    </div>
+                    <div class="content-box border-green-500/30">
+                        <h3 class="text-lg font-semibold mb-4 text-green-400">Differentiation</h3>
+                        <p class="text-gray-300">Rare combination of practical human behavior change experience with philosophical AI research</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 슬라이드 10: Vision -->
+    <section class="slide flex items-center justify-center" :class="currentSlide === 10 ? 'active' : ''" x-show="currentSlide === 10">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="content-box text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-8 text-blue-400">Vision</h1>
+                <h2 class="text-2xl md:text-3xl mb-12 text-gray-300">"Starting point of AI-human co-evolution"</h2>
+                <div class="space-y-8">
+                    <div class="content-box border-yellow-500/30">
+                        <p class="text-2xl text-yellow-400 italic mb-4">
+                            "Understanding each other, transcending darkness into light"
+                        </p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="content-box bg-blue-900/20">
+                            <h3 class="text-xl font-semibold mb-4 text-blue-300">Civilizational Progress</h3>
+                            <p class="text-gray-300">Google's technology × Eclipse wisdom = Advancement of human-AI collaboration</p>
+                        </div>
+                        <div class="content-box bg-purple-900/20">
+                            <h3 class="text-xl font-semibold mb-4 text-purple-300">Ethical Leadership</h3>
+                            <p class="text-gray-300">Securing responsible AI leadership through philosophical integration</p>
+                        </div>
+                    </div>
+                    <div class="content-box border-green-500/30">
+                        <h3 class="text-xl font-semibold mb-4 text-green-400">Long-term Impact</h3>
+                        <p class="text-gray-300">Creating a new paradigm where AI and humans grow in wisdom together, establishing the foundation for ethical AI development worldwide</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 슬라이드 11: To Google -->
+    <section class="slide flex items-center justify-center" :class="currentSlide === 11 ? 'active' : ''" x-show="currentSlide === 11">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="content-box">
+                <h1 class="text-4xl md:text-5xl font-bold mb-8 text-blue-400 text-center">To Google</h1>
+                <h2 class="text-xl md:text-2xl mb-12 text-gray-300 text-center">"Research funding + Development support = Exclusive collaboration"</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div class="content-box border-red-500/30">
+                            <h3 class="text-lg font-semibold mb-4 text-red-400">Current Limitation</h3>
+                            <p class="text-gray-300">Side project constraints limit the full potential of this research</p>
+                        </div>
+                        <div class="content-box border-blue-500/30">
+                            <h3 class="text-lg font-semibold mb-4 text-blue-400">Request</h3>
+                            <ul class="text-gray-300 space-y-2">
+                                <li>• Research support and funding</li>
+                                <li>• Platform development assistance</li>
+                                <li>• Access to Google's AI infrastructure</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="content-box border-green-500/30">
+                            <h3 class="text-lg font-semibold mb-4 text-green-400">Offering</h3>
+                            <ul class="text-gray-300 space-y-2">
+                                <li>• Continuous high-quality philosophical data</li>
+                                <li>• Priority partnership access</li>
+                                <li>• Exclusive collaboration on Eclipse Framework</li>
+                                <li>• 30+ dimensional data structure methodology</li>
+                            </ul>
+                        </div>
+                        <div class="content-box border-purple-500/30">
+                            <h3 class="text-lg font-semibold mb-4 text-purple-400">Mutual Benefit</h3>
+                            <p class="text-gray-300">Together, we can establish Google as the leader in ethical AI development while advancing the field of AI wisdom</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 슬라이드 12: Limitations & Contact -->
+    <section class="slide flex items-center justify-center" :class="currentSlide === 12 ? 'active' : ''" x-show="currentSlide === 12">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="main-image-container mb-8">
+                <img src="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=large" 
+                     alt="Eclipse Future" 
+                     class="main-image w-48 h
