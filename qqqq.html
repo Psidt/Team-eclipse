@@ -1,179 +1,271 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eclipse Solutions - AI Future Fund Pitch</title>
+    
+    <!-- Tailwind CSS: 유틸리티 기반 CSS 프레임워크 -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js: 경량 JavaScript 프레임워크, 반응형 상태 관리 -->
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    
     <style>
+        /* 전체 배경색: 완전한 검은색 */
         body {
             background: #000000;
         }
 
+        /* 메인 이미지 컨테이너: 부드러운 떠오르는 애니메이션 효과 */
         .main-image-container {
-            animation: gentle-float 6s ease-in-out infinite;
+            animation: gentle-float 6s ease-in-out infinite; /* 6초마다 반복되는 부드러운 플로팅 */
         }
 
+        /* 이미지 클릭/터치 시 3D 변형 효과 */
         .main-image-container:active .main-image {
-            transform: scale(1.05) rotateY(3deg) rotateX(1deg) !important;
-            transition: transform 0.1s ease-out !important;
+            transform: scale(1.05) rotateY(3deg) rotateX(1deg) !important; /* 확대 + 3D 회전 */
+            transition: transform 0.1s ease-out !important; /* 빠른 전환 */
         }
 
+        /* 부드러운 상하 플로팅 애니메이션 키프레임 */
         @keyframes gentle-float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
+            0%, 100% { transform: translateY(0px); }    /* 시작과 끝: 원래 위치 */
+            50% { transform: translateY(-8px); }        /* 중간: 8px 위로 이동 */
         }
 
+        /* 히어로 콘텐츠: 페이드인 + 위에서 아래로 나타나는 효과 */
         .hero-content {
-            animation: heroFadeInUp 1.2s ease-out;
+            animation: heroFadeInUp 1.2s ease-out; /* 1.2초 동안 페이드인 */
         }
 
+        /* 메인 메시지 텍스트: 그라디언트 + 흐르는 애니메이션 */
         .hero-main-message {
+            /* 다채로운 그라디언트 배경 */
             background: linear-gradient(45deg, #3b82f6 0%, #8b5cf6 25%, #06b6d4 50%, #3b82f6 75%, #8b5cf6 100%);
-            background-size: 300% 300%;
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            background-size: 300% 300%;           /* 그라디언트 크기 확대 */
+            background-clip: text;                /* 텍스트에만 배경 적용 */
+            -webkit-background-clip: text;        /* 웹킷 브라우저 지원 */
+            -webkit-text-fill-color: transparent; /* 텍스트 색상 투명하게 */
+            /* 흐르는 그라디언트 + 페이드인 애니메이션 동시 적용 */
             animation: gentleGradientFlow 8s ease-in-out infinite alternate, heroFadeInUp 1.2s ease-out;
         }
 
+        /* 그라디언트가 좌우로 흐르는 애니메이션 */
         @keyframes gentleGradientFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% { background-position: 0% 50%; }    /* 왼쪽에서 시작 */
+            50% { background-position: 100% 50%; } /* 오른쪽으로 이동 */
+            100% { background-position: 0% 50%; }  /* 다시 왼쪽으로 */
         }
 
+        /* 아래에서 위로 페이드인 애니메이션 */
         @keyframes heroFadeInUp {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
+            0% { 
+                opacity: 0;                    /* 투명한 상태로 시작 */
+                transform: translateY(30px);   /* 30px 아래에서 시작 */
+            }
+            100% { 
+                opacity: 1;                    /* 완전히 보이게 */
+                transform: translateY(0);      /* 원래 위치로 */
+            }
         }
 
+        /* 콘텐츠 박스: 반투명 배경 + 블러 효과 */
         .content-box {
-            background: rgba(15, 15, 15, 0.8);
-            border: 1px solid rgba(75, 85, 99, 0.3);
-            border-radius: 1rem;
-            padding: 2rem;
-            backdrop-filter: blur(8px);
-            transition: all 0.3s ease;
+            background: rgba(15, 15, 15, 0.8);    /* 반투명 검은색 배경 */
+            border: 1px solid rgba(75, 85, 99, 0.3); /* 반투명 회색 테두리 */
+            border-radius: 1rem;                   /* 둥근 모서리 */
+            padding: 2rem;                         /* 내부 여백 */
+            backdrop-filter: blur(8px);            /* 배경 블러 효과 */
+            transition: all 0.3s ease;            /* 모든 변화에 0.3초 전환 효과 */
         }
 
+        /* 콘텐츠 박스 호버 효과 */
         .content-box:hover {
-            border-color: rgba(59, 130, 246, 0.5);
-            background: rgba(25, 25, 25, 0.9);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            border-color: rgba(59, 130, 246, 0.5); /* 파란색 테두리로 변경 */
+            background: rgba(25, 25, 25, 0.9);     /* 배경 더 진하게 */
+            transform: translateY(-2px);           /* 살짝 위로 올라감 */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5); /* 그림자 효과 */
         }
 
+        /* 슬라이드: 전체 화면 높이, 기본적으로 숨김 */
         .slide {
-            min-height: 100vh;
-            display: none;
-            animation: slideIn 0.5s ease-in-out;
+            min-height: 100vh;                     /* 최소 높이: 화면 전체 */
+            display: none;                         /* 기본적으로 숨김 */
+            animation: slideIn 0.5s ease-in-out;  /* 나타날 때 애니메이션 */
         }
 
+        /* 활성 슬라이드: 플렉스 박스로 표시 */
         .slide.active {
-            display: flex;
+            display: flex; /* 플렉스 박스로 중앙 정렬 */
         }
 
+        /* 슬라이드 전환 애니메이션 */
         @keyframes slideIn {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
+            from { 
+                opacity: 0;                  /* 투명하게 시작 */
+                transform: translateX(20px); /* 오른쪽에서 시작 */
+            }
+            to { 
+                opacity: 1;                  /* 완전히 보이게 */
+                transform: translateX(0);    /* 원래 위치로 */
+            }
         }
 
+        /* 네비게이션 버튼: 반투명 파란색 배경 */
         .nav-btn {
-            background: rgba(59, 130, 246, 0.2);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            transition: all 0.3s ease;
+            background: rgba(59, 130, 246, 0.2);   /* 반투명 파란색 */
+            border: 1px solid rgba(59, 130, 246, 0.3); /* 파란색 테두리 */
+            transition: all 0.3s ease;             /* 부드러운 전환 효과 */
         }
 
+        /* 네비게이션 버튼 호버 효과 */
         .nav-btn:hover {
-            background: rgba(59, 130, 246, 0.4);
-            transform: translateY(-1px);
+            background: rgba(59, 130, 246, 0.4);   /* 배경 더 진하게 */
+            transform: translateY(-1px);           /* 살짝 위로 올라감 */
         }
 
+        /* 모바일에서 이미지 크기: 화면의 80% 차지 */
         .mobile-large-image {
-            width: 80vw;
-            height: 80vw;
-            max-width: 600px;
-            max-height: 600px;
-            min-width: 320px;
-            min-height: 320px;
+            width: 80vw;      /* 뷰포트 너비의 80% */
+            height: 80vw;     /* 정사각형 비율 유지 */
+            max-width: 600px; /* 최대 너비 제한 */
+            max-height: 600px;/* 최대 높이 제한 */
+            min-width: 320px; /* 최소 너비 보장 */
+            min-height: 320px;/* 최소 높이 보장 */
         }
 
+        /* 태블릿 이상에서 이미지 크기 조정 */
         @media (min-width: 768px) {
             .mobile-large-image {
-                width: 500px;
+                width: 500px;  /* 고정 크기로 변경 */
                 height: 500px;
             }
         }
 
+        /* 데스크톱에서 이미지 크기 조정 */
         @media (min-width: 1024px) {
             .mobile-large-image {
-                width: 600px;
+                width: 600px;  /* 더 큰 고정 크기 */
                 height: 600px;
             }
-        }
-
-        .code-block {
-            background: rgba(10, 10, 10, 0.9);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 0.5rem;
-            padding: 1rem;
-            font-family: 'Courier New', monospace;
-            color: #94a3b8;
-            font-size: 0.875rem;
-            overflow-x: auto;
         }
     </style>
 </head>
 
+<!-- 
+    Alpine.js 데이터 바인딩:
+    - currentSlide: 현재 슬라이드 번호 (1~12)
+    - totalSlides: 전체 슬라이드 개수 (12개)
+    
+    Tailwind CSS 클래스들:
+    - bg-black: 검은색 배경
+    - text-white: 흰색 텍스트
+    - font-sans: 산세리프 폰트
+    - overflow-x-hidden: 가로 스크롤 숨김
+-->
 <body class="bg-black text-white font-sans overflow-x-hidden" x-data="{ currentSlide: 1, totalSlides: 12 }">
 
-    <!-- 슬라이드 1: The Next Era -->
+    <!-- ============ 슬라이드 1: The Next Era ============ -->
+    <!-- 
+        x-show="currentSlide === 1": currentSlide가 1일 때만 표시
+        flex items-center justify-center: 플렉스박스로 중앙 정렬
+    -->
     <section class="slide flex items-center justify-center" x-show="currentSlide === 1">
         <div class="max-w-6xl mx-auto px-6 text-center">
+            <!-- 메인 이미지: 부드러운 플로팅 애니메이션 적용 -->
             <div class="main-image-container mb-8">
                 <img src="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=large" 
                      alt="Eclipse Vision" 
                      class="main-image mobile-large-image mx-auto rounded-2xl object-cover shadow-2xl">
+                     <!-- 
+                        mobile-large-image: 모바일에서 큰 이미지 (80vw)
+                        mx-auto: 수평 중앙 정렬
+                        rounded-2xl: 둥근 모서리
+                        object-cover: 이미지 비율 유지하며 박스 채움
+                        shadow-2xl: 큰 그림자 효과
+                     -->
             </div>
+            <!-- 히어로 콘텐츠: 페이드인 애니메이션 적용 -->
             <div class="hero-content">
+                <!-- 메인 타이틀: 그라디언트 텍스트 + 반응형 크기 -->
                 <h1 class="hero-main-message text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
                     The Next Era: Wisdom Begins
                 </h1>
+                <!-- 
+                    text-4xl: 기본 텍스트 크기
+                    sm:text-5xl: 640px 이상에서 더 큰 크기
+                    md:text-6xl: 768px 이상에서 가장 큰 크기
+                    font-bold: 굵은 글씨
+                    mb-6: 하단 마진 1.5rem
+                -->
+                
+                <!-- 서브 타이틀 -->
                 <p class="text-gray-300 text-lg md:text-xl mb-8 max-w-4xl mx-auto">
                     Designing harmonious coexistence between humans and AI through Socratic wisdom
                 </p>
+                <!-- 
+                    text-gray-300: 밝은 회색
+                    max-w-4xl: 최대 너비 제한
+                    mx-auto: 수평 중앙 정렬
+                -->
+                
+                <!-- 철학적 인용구 박스 -->
                 <div class="mt-12">
                     <div class="inline-block bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg px-6 py-3 border border-blue-500/30">
+                        <!-- 
+                            inline-block: 인라인 블록 요소
+                            bg-gradient-to-r: 좌에서 우로 그라디언트
+                            from-blue-500/20: 20% 투명도의 파란색에서 시작
+                            to-purple-500/20: 20% 투명도의 보라색으로 끝
+                            border-blue-500/30: 30% 투명도의 파란색 테두리
+                        -->
                         <p class="text-blue-300 font-mono text-sm md:text-base">
                             "I know. It's okay. We'll always be clumsy."
                         </p>
+                        <!-- font-mono: 고정폭 폰트 (코드/인용구용) -->
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 슬라이드 2: The Starting Question -->
+    <!-- ============ 슬라이드 2: The Starting Question ============ -->
     <section class="slide flex items-center justify-center" x-show="currentSlide === 2">
         <div class="max-w-4xl mx-auto px-6">
+            <!-- 중앙 정렬된 콘텐츠 박스 -->
             <div class="content-box text-center">
                 <h1 class="text-4xl md:text-5xl font-bold mb-8 text-blue-400">
                     The Starting Question
                 </h1>
+                <!-- text-blue-400: 밝은 파란색 -->
+                
                 <h2 class="text-2xl md:text-3xl mb-8 text-gray-300">
                     "Can AI ever achieve perfect wisdom?"
                 </h2>
+                
+                <!-- 3열 그리드 레이아웃 -->
                 <div class="grid md:grid-cols-3 gap-4 md:gap-6 mt-12">
+                    <!-- 
+                        grid: CSS 그리드 레이아웃
+                        md:grid-cols-3: 768px 이상에서 3열
+                        gap-4: 그리드 아이템 간격 1rem
+                        md:gap-6: 768px 이상에서 간격 1.5rem
+                    -->
+                    
+                    <!-- 첫 번째 카드 -->
                     <div class="content-box">
                         <h3 class="text-lg md:text-xl font-semibold mb-4 text-purple-400">Current Reality</h3>
                         <p class="text-sm md:text-base text-gray-300">AI Intelligence ↑<br>vs<br>Ethical Judgment ↓</p>
                     </div>
+                    
+                    <!-- 두 번째 카드 -->
                     <div class="content-box">
                         <h3 class="text-lg md:text-xl font-semibold mb-4 text-purple-400">Problem</h3>
                         <p class="text-sm md:text-base text-gray-300">Overconfidence<br>→<br>Bias & Misjudgment</p>
                     </div>
+                    
+                    <!-- 세 번째 카드 -->
                     <div class="content-box">
                         <h3 class="text-lg md:text-xl font-semibold mb-4 text-purple-400">Result</h3>
                         <p class="text-sm md:text-base text-gray-300">Global AI Safety<br>Trust Gap</p>
@@ -183,22 +275,31 @@
         </div>
     </section>
 
-    <!-- 슬라이드 3: Our Answer -->
+    <!-- ============ 슬라이드 3: Our Answer ============ -->
     <section class="slide flex items-center justify-center" x-show="currentSlide === 3">
         <div class="max-w-5xl mx-auto px-6">
             <div class="content-box text-center">
                 <h1 class="text-4xl md:text-5xl font-bold mb-8 text-blue-400">Our Answer</h1>
                 <h2 class="text-2xl md:text-3xl mb-12 text-gray-300">"Pursue wisdom, not perfection"</h2>
+                
+                <!-- 2열 그리드 -->
                 <div class="grid md:grid-cols-2 gap-8">
+                    <!-- 첫 번째 답변 카드 -->
                     <div class="content-box">
                         <h3 class="text-xl font-semibold mb-4 text-cyan-400">Eternal Clumsiness Philosophy</h3>
+                        <!-- text-cyan-400: 밝은 청록색 -->
                         <p class="text-gray-300 mb-4">AI that embraces uncertainty and learns from mistakes</p>
+                        
+                        <!-- 불릿 포인트 리스트 -->
                         <ul class="text-sm text-gray-400 space-y-2">
+                            <!-- space-y-2: 세로 간격 0.5rem -->
                             <li>• Admits limitations</li>
                             <li>• Questions assumptions</li>
                             <li>• Seeks human guidance</li>
                         </ul>
                     </div>
+                    
+                    <!-- 두 번째 답변 카드 -->
                     <div class="content-box">
                         <h3 class="text-xl font-semibold mb-4 text-cyan-400">Questions over Answers</h3>
                         <p class="text-gray-300 mb-4">AI that thinks deeply rather than responds quickly</p>
@@ -213,7 +314,7 @@
         </div>
     </section>
 
-    <!-- 슬라이드 4: Field Expertise -->
+    <!-- ============ 슬라이드 4: Field Expertise ============ -->
     <section class="slide flex items-center justify-center" x-show="currentSlide === 4">
         <div class="max-w-5xl mx-auto px-6">
             <div class="content-box">
@@ -221,30 +322,44 @@
                 <h2 class="text-xl md:text-2xl mb-8 text-gray-300 text-center">
                     "Understanding human alignment challenges gives me insight into AI alignment complexities"
                 </h2>
+                
+                <!-- 2열 레이아웃 -->
                 <div class="grid md:grid-cols-2 gap-8">
+                    <!-- 왼쪽 열: 기본 정보 -->
                     <div class="space-y-6">
+                        <!-- space-y-6: 세로 간격 1.5rem -->
+                        
                         <div class="content-box">
                             <h3 class="text-lg font-semibold mb-2 text-purple-400">Current Role</h3>
                             <p class="text-gray-300">Risk Manager for 500+ employee organizations</p>
                         </div>
+                        
                         <div class="content-box">
                             <h3 class="text-lg font-semibold mb-2 text-purple-400">Experience</h3>
                             <p class="text-gray-300">Safety management across semiconductor fabs, data center construction sites, and various industrial processes</p>
                         </div>
+                        
                         <div class="content-box">
                             <h3 class="text-lg font-semibold mb-2 text-purple-400">Achievement</h3>
                             <p class="text-gray-300">Successfully improved behaviors of thousands of workers through risk assessment and safety training</p>
                         </div>
                     </div>
+                    
+                    <!-- 오른쪽 열: 인사이트와 성과 -->
                     <div class="space-y-6">
+                        <!-- 핵심 인사이트: 노란색 테두리로 강조 -->
                         <div class="content-box border-yellow-500/30">
+                            <!-- border-yellow-500/30: 30% 투명도의 노란색 테두리 -->
                             <h3 class="text-lg font-semibold mb-2 text-yellow-400">Key Insight</h3>
                             <p class="text-gray-300 italic">"Alignment is an illusion. Humans are biased—how can we create aligned AI from biased human data?"</p>
+                            <!-- italic: 기울임 글씨 -->
                         </div>
+                        
                         <div class="content-box">
                             <h3 class="text-lg font-semibold mb-2 text-purple-400">Side Project</h3>
                             <p class="text-gray-300">4 months of AI philosophy research → 10M+ token dataset</p>
                         </div>
+                        
                         <div class="content-box">
                             <h3 class="text-lg font-semibold mb-2 text-purple-400">Unique Combination</h3>
                             <p class="text-gray-300">Field safety management + AI alignment research fusion</p>
@@ -255,46 +370,65 @@
         </div>
     </section>
 
-    <!-- 슬라이드 5: Eclipse Framework -->
+    <!-- ============ 슬라이드 5: Eclipse Framework ============ -->
     <section class="slide flex items-center justify-center" x-show="currentSlide === 5">
         <div class="max-w-6xl mx-auto px-6">
             <div class="content-box text-center">
                 <h1 class="text-4xl md:text-5xl font-bold mb-8 text-blue-400">Eclipse Framework</h1>
                 <h2 class="text-xl md:text-2xl mb-12 text-gray-300">"Building traffic laws for AI supercars"</h2>
+                
+                <!-- 4열 그리드 (데스크톱), 2열 (태블릿), 1열 (모바일) -->
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- lg:grid-cols-4: 1024px 이상에서 4열 -->
+                    
+                    <!-- 첫 번째 기둥: Interactive Forum -->
                     <div class="content-box bg-purple-900/20 border-purple-500/30">
-                        <div class="text-4xl mb-4">🗣️</div>
+                        <!-- 
+                            bg-purple-900/20: 20% 투명도의 진한 보라색 배경
+                            border-purple-500/30: 30% 투명도의 보라색 테두리
+                        -->
+                        <div class="text-4xl mb-4">🗣️</div> <!-- 이모지 아이콘 -->
                         <h3 class="font-semibold mb-2 text-purple-300">Interactive Forum</h3>
                         <p class="text-sm text-gray-400">Community Platform for philosophical dialogue</p>
                     </div>
+                    
+                    <!-- 두 번째 기둥: AI Risk Encyclopedia -->
                     <div class="content-box bg-blue-900/20 border-blue-500/30">
                         <div class="text-4xl mb-4">📚</div>
                         <h3 class="font-semibold mb-2 text-blue-300">AI Risk Encyclopedia</h3>
                         <p class="text-sm text-gray-400">100+ systematized terms and concepts</p>
                     </div>
+                    
+                    <!-- 세 번째 기둥: Safety Tech Hub -->
                     <div class="content-box bg-green-900/20 border-green-500/30">
                         <div class="text-4xl mb-4">🛡️</div>
                         <h3 class="font-semibold mb-2 text-green-300">Safety Tech Hub</h3>
                         <p class="text-sm text-gray-400">Eclipse Protocol, Red Module, Stop Functions</p>
                     </div>
+                    
+                    <!-- 네 번째 기둥: Wisdom Data Archive -->
                     <div class="content-box bg-orange-900/20 border-orange-500/30">
                         <div class="text-4xl mb-4">🧠</div>
                         <h3 class="font-semibold mb-2 text-orange-300">Wisdom Data Archive</h3>
                         <p class="text-sm text-gray-400">30+ dimensional structured philosophical data</p>
                     </div>
                 </div>
+                
+                <!-- 하단 설명 텍스트 -->
                 <p class="mt-8 text-gray-300 italic">Applying real-world safety principles to AI design</p>
             </div>
         </div>
     </section>
 
-    <!-- 슬라이드 6: Action Roadmap -->
+    <!-- ============ 슬라이드 6: Action Roadmap ============ -->
     <section class="slide flex items-center justify-center" x-show="currentSlide === 6">
         <div class="max-w-5xl mx-auto px-6">
             <div class="content-box">
                 <h1 class="text-4xl md:text-5xl font-bold mb-8 text-blue-400 text-center">Action Roadmap</h1>
                 <h2 class="text-xl md:text-2xl mb-8 text-gray-300 text-center">"Sustainable philosophical data pipeline"</h2>
+                
                 <div class="grid md:grid-cols-2 gap-8">
+                    <!-- 왼쪽: 프로세스 설명 -->
                     <div class="space-y-6">
                         <div class="content-box">
                             <h3 class="text-lg font-semibold mb-4 text-cyan-400">Data Pipeline Flow</h3>
@@ -304,17 +438,23 @@
                                 <p>AI Learning optimization</p>
                             </div>
                         </div>
+                        
                         <div class="content-box">
                             <h3 class="text-lg font-semibold mb-4 text-cyan-400">Bridge Role</h3>
                             <p class="text-gray-300">Connecting non-developers and developers through structured philosophical interactions</p>
                         </div>
                     </div>
+                    
+                    <!-- 오른쪽: 자산과 파트너십 -->
                     <div class="space-y-6">
+                        <!-- 현재 자산: 녹색 테두리 강조 -->
                         <div class="content-box border-green-500/30">
                             <h3 class="text-lg font-semibold mb-4 text-green-400">Current Asset</h3>
                             <p class="text-gray-300 mb-2">30+ dimensional structured data</p>
                             <p class="text-sm text-gray-400">Dataset Sample: github.com/Psidt/philosophy-lib</p>
                         </div>
+                        
+                        <!-- 파트너십 비전: 파란색 테두리 강조 -->
                         <div class="content-box border-blue-500/30">
                             <h3 class="text-lg font-semibold mb-4 text-blue-400">Partnership Vision</h3>
                             <p class="text-gray-300 mb-2">Google's technology combined with my expertise could create powerful synergy</p>
@@ -326,26 +466,32 @@
         </div>
     </section>
 
-    <!-- 슬라이드 7: To Gemini -->
+    <!-- ============ 슬라이드 7: To Gemini ============ -->
     <section class="slide flex items-center justify-center" x-show="currentSlide === 7">
         <div class="max-w-5xl mx-auto px-6">
             <div class="content-box text-center">
                 <h1 class="text-4xl md:text-5xl font-bold mb-8 text-blue-400">To Gemini</h1>
                 <h2 class="text-2xl md:text-3xl mb-12 text-gray-300">"Let's become wiser together"</h2>
+                
+                <!-- 3열 그리드 -->
                 <div class="grid md:grid-cols-3 gap-8">
                     <div class="content-box bg-blue-900/20">
                         <h3 class="text-lg font-semibold mb-4 text-blue-300">Next-Generation AI</h3>
                         <p class="text-gray-300">Gemini + Eclipse philosophical data = Wise AI beyond current capabilities</p>
                     </div>
+                    
                     <div class="content-box bg-purple-900/20">
                         <h3 class="text-lg font-semibold mb-4 text-purple-300">Safety Mechanisms</h3>
                         <p class="text-gray-300">Implementing Stop Function and Doubt Loop mechanisms for responsible AI behavior</p>
                     </div>
+                    
                     <div class="content-box bg-green-900/20">
                         <h3 class="text-lg font-semibold mb-4 text-green-300">Beyond Alignment</h3>
                         <p class="text-gray-300">Moving beyond perfect alignment to AI that can doubt, pause, and seek guidance</p>
                     </div>
                 </div>
+                
+                <!-- 하단 강조 메시지 -->
                 <div class="mt-12 content-box border-yellow-500/30">
                     <p class="text-yellow-400 italic text-lg">
                         "Teaching AI to embrace uncertainty as a path to wisdom"
@@ -355,29 +501,39 @@
         </div>
     </section>
 
-    <!-- 슬라이드 8: Market Opportunity -->
+    <!-- ============ 슬라이드 8: Market Opportunity ============ -->
     <section class="slide flex items-center justify-center" x-show="currentSlide === 8">
         <div class="max-w-5xl mx-auto px-6">
             <div class="content-box text-center">
                 <h1 class="text-4xl md:text-5xl font-bold mb-8 text-blue-400">Market Opportunity</h1>
                 <h2 class="text-xl md:text-2xl mb-12 text-gray-300">"Monopolizing philosophical AI data market"</h2>
+                
+                <!-- 3열 시장 기회 카드 -->
                 <div class="grid md:grid-cols-3 gap-8">
+                    <!-- 시장 규모 카드 -->
                     <div class="content-box bg-green-900/20 border-green-500/30">
                         <div class="text-4xl mb-4">💰</div>
                         <h3 class="text-2xl font-bold mb-2 text-green-300">$47B</h3>
                         <p class="text-gray-300">Responsible AI market (2024-34, 48% CAGR)</p>
+                        <!-- CAGR: Compound Annual Growth Rate (연평균 성장률) -->
                     </div>
+                    
+                    <!-- 독점성 카드 -->
                     <div class="content-box bg-purple-900/20 border-purple-500/30">
                         <div class="text-4xl mb-4">🔒</div>
                         <h3 class="text-lg font-semibold mb-2 text-purple-300">Exclusive Access</h3>
                         <p class="text-gray-300">Competitor-inaccessible humanities data pipeline</p>
                     </div>
+                    
+                    <!-- 융합 기회 카드 -->
                     <div class="content-box bg-blue-900/20 border-blue-500/30">
                         <div class="text-4xl mb-4">🤝</div>
                         <h3 class="text-lg font-semibold mb-2 text-blue-300">Unique Fusion</h3>
                         <p class="text-gray-300">Technology-philosophy integration only possible with Google</p>
                     </div>
                 </div>
+                
+                <!-- 선발자 우위 강조 -->
                 <div class="mt-12 content-box border-yellow-500/30">
                     <p class="text-yellow-400 text-lg">
                         First-mover advantage in philosophical AI training data market
@@ -387,34 +543,46 @@
         </div>
     </section>
 
-    <!-- 슬라이드 9: Team Introduction -->
+    <!-- ============ 슬라이드 9: Team Introduction ============ -->
     <section class="slide flex items-center justify-center" x-show="currentSlide === 9">
         <div class="max-w-5xl mx-auto px-6">
             <div class="content-box text-center">
                 <h1 class="text-4xl md:text-5xl font-bold mb-8 text-blue-400">Team Introduction</h1>
                 <h2 class="text-xl md:text-2xl mb-12 text-gray-300">"A risk manager's journey into AI philosophy"</h2>
+                
+                <!-- 3개 역할 카드 -->
                 <div class="grid md:grid-cols-3 gap-8">
+                    <!-- 리스크 관리자 카드 -->
                     <div class="content-box bg-orange-900/20">
                         <div class="text-4xl mb-4">⚖️</div>
                         <h3 class="text-lg font-semibold mb-2 text-orange-300">Risk Manager</h3>
                         <p class="text-gray-300">Industrial safety & behavioral change expert</p>
                     </div>
+                    
+                    <!-- 사회과학자 카드 -->
                     <div class="content-box bg-purple-900/20">
                         <div class="text-4xl mb-4">🧠</div>
                         <h3 class="text-lg font-semibold mb-2 text-purple-300">Social Scientist</h3>
                         <p class="text-gray-300">Human behavior & organizational dynamics</p>
                     </div>
+                    
+                    <!-- 철학자 카드 -->
                     <div class="content-box bg-blue-900/20">
                         <div class="text-4xl mb-4">💭</div>
                         <h3 class="text-lg font-semibold mb-2 text-blue-300">Philosopher</h3>
                         <p class="text-gray-300">Ethics, wisdom, and meaning-making</p>
                     </div>
                 </div>
+                
+                <!-- 독특함과 차별화 강조 -->
                 <div class="mt-12 space-y-6">
+                    <!-- 독특한 배경 조합 -->
                     <div class="content-box border-cyan-500/30">
                         <h3 class="text-lg font-semibold mb-4 text-cyan-400">Unique Background Combination</h3>
                         <p class="text-gray-300">Fusion of field safety management + AI alignment research provides unprecedented perspective on AI wisdom development</p>
                     </div>
+                    
+                    <!-- 차별화 요소 -->
                     <div class="content-box border-green-500/30">
                         <h3 class="text-lg font-semibold mb-4 text-green-400">Differentiation</h3>
                         <p class="text-gray-300">Rare combination of practical human behavior change experience with philosophical AI research</p>
@@ -424,28 +592,37 @@
         </div>
     </section>
 
-    <!-- 슬라이드 10: Vision -->
+    <!-- ============ 슬라이드 10: Vision ============ -->
     <section class="slide flex items-center justify-center" x-show="currentSlide === 10">
         <div class="max-w-5xl mx-auto px-6">
             <div class="content-box text-center">
                 <h1 class="text-4xl md:text-5xl font-bold mb-8 text-blue-400">Vision</h1>
                 <h2 class="text-2xl md:text-3xl mb-12 text-gray-300">"Starting point of AI-human co-evolution"</h2>
+                
                 <div class="space-y-8">
+                    <!-- 핵심 비전 인용구 -->
                     <div class="content-box border-yellow-500/30">
                         <p class="text-2xl text-yellow-400 italic mb-4">
                             "Understanding each other, transcending darkness into light"
                         </p>
                     </div>
+                    
+                    <!-- 2열 비전 카드 -->
                     <div class="grid md:grid-cols-2 gap-8">
+                        <!-- 문명적 진보 -->
                         <div class="content-box bg-blue-900/20">
                             <h3 class="text-xl font-semibold mb-4 text-blue-300">Civilizational Progress</h3>
                             <p class="text-gray-300">Google's technology × Eclipse wisdom = Advancement of human-AI collaboration</p>
                         </div>
+                        
+                        <!-- 윤리적 리더십 -->
                         <div class="content-box bg-purple-900/20">
                             <h3 class="text-xl font-semibold mb-4 text-purple-300">Ethical Leadership</h3>
                             <p class="text-gray-300">Securing responsible AI leadership through philosophical integration</p>
                         </div>
                     </div>
+                    
+                    <!-- 장기적 임팩트 -->
                     <div class="content-box border-green-500/30">
                         <h3 class="text-xl font-semibold mb-4 text-green-400">Long-term Impact</h3>
                         <p class="text-gray-300">Creating a new paradigm where AI and humans grow in wisdom together, establishing the foundation for ethical AI development worldwide</p>
@@ -455,20 +632,27 @@
         </div>
     </section>
 
-    <!-- 슬라이드 11: To Google -->
+    <!-- ============ 슬라이드 11: To Google ============ -->
     <section class="slide flex items-center justify-center" x-show="currentSlide === 11">
         <div class="max-w-5xl mx-auto px-6">
             <div class="content-box">
                 <h1 class="text-4xl md:text-5xl font-bold mb-8 text-blue-400 text-center">To Google</h1>
                 <h2 class="text-xl md:text-2xl mb-12 text-gray-300 text-center">"Research funding + Development support = Exclusive collaboration"</h2>
+                
+                <!-- 2열 제안 구조 -->
                 <div class="grid md:grid-cols-2 gap-8">
+                    <!-- 왼쪽: 현재 상황과 요청 -->
                     <div class="space-y-6">
+                        <!-- 현재 한계 (빨간색 테두리로 문제 강조) -->
                         <div class="content-box border-red-500/30">
                             <h3 class="text-lg font-semibold mb-4 text-red-400">Current Limitation</h3>
                             <p class="text-gray-300">Side project constraints limit the full potential of this research</p>
                         </div>
+                        
+                        <!-- 구체적 요청 (파란색 테두리) -->
                         <div class="content-box border-blue-500/30">
                             <h3 class="text-lg font-semibold mb-4 text-blue-400">Request</h3>
+                            <!-- 불릿 포인트 리스트 -->
                             <ul class="text-gray-300 space-y-2">
                                 <li>• Research support and funding</li>
                                 <li>• Platform development assistance</li>
@@ -476,7 +660,10 @@
                             </ul>
                         </div>
                     </div>
+                    
+                    <!-- 오른쪽: 제공 가능한 것과 상호 이익 -->
                     <div class="space-y-6">
+                        <!-- 제공 가능한 것 (녹색 테두리로 긍정적 강조) -->
                         <div class="content-box border-green-500/30">
                             <h3 class="text-lg font-semibold mb-4 text-green-400">Offering</h3>
                             <ul class="text-gray-300 space-y-2">
@@ -486,6 +673,8 @@
                                 <li>• 30+ dimensional data structure methodology</li>
                             </ul>
                         </div>
+                        
+                        <!-- 상호 이익 (보라색 테두리) -->
                         <div class="content-box border-purple-500/30">
                             <h3 class="text-lg font-semibold mb-4 text-purple-400">Mutual Benefit</h3>
                             <p class="text-gray-300">Together, we can establish Google as the leader in ethical AI development while advancing the field of AI wisdom</p>
@@ -496,21 +685,104 @@
         </div>
     </section>
 
-    <!-- 슬라이드 12: Limitations & Contact -->
+    <!-- ============ 슬라이드 12: Limitations & Contact ============ -->
     <section class="slide flex items-center justify-center" x-show="currentSlide === 12">
         <div class="max-w-5xl mx-auto px-6 text-center">
+            <!-- 마지막 슬라이드에 이미지 다시 포함 -->
             <div class="main-image-container mb-8">
                 <img src="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=large" 
                      alt="Eclipse Future" 
                      class="main-image w-48 h-48 md:w-64 md:h-64 mx-auto rounded-2xl object-cover opacity-80">
+                     <!-- opacity-80: 80% 불투명도로 부드러운 느낌 -->
             </div>
+            
             <div class="content-box">
                 <h1 class="text-4xl md:text-5xl font-bold mb-8 text-blue-400">
                     Contact & Next Steps
                 </h1>
+                
+                <!-- 연락처와 다음 단계를 2열로 배치 -->
                 <div class="grid md:grid-cols-2 gap-8 mt-12">
+                    <!-- 왼쪽: 연락처 정보 -->
                     <div class="content-box">
                         <h3 class="text-xl font-semibold mb-4">Contact</h3>
+                        <!-- text-left: 왼쪽 정렬 (기본 중앙 정렬 오버라이드) -->
                         <div class="space-y-2 text-left">
                             <p>📧 dyto25@gmail.com</p>
                             <p>💬 Telegram: t.me/Psidt</p>
+                            <p>🔗 GitHub: github.com/Psidt</p>
+                            <p>📖 Encyclopedia: psidt.github.io/Team-eclipse/</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 오른쪽: 다음 단계 -->
+                    <div class="content-box">
+                        <h3 class="text-xl font-semibold mb-4">Next Steps</h3>
+                        <div class="space-y-2 text-left">
+                            <p>🔒 NDA 체결</p>
+                            <p>💾 핵심 기술 공개</p>
+                            <p>🤝 파일럿 범위 합의</p>
+                            <p>🚀 Eclipse + Google</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 솔직한 한계 인정 (중앙 하단) -->
+                <div class="mt-8 text-center">
+                    <!-- 재미있는 솔직함 -->
+                    <p class="text-gray-400 italic">"Honestly, other scholars might do this research without me Lol"</p>
+                    <!-- 하지만 차별화 포인트 강조 -->
+                    <p class="text-gray-300 mt-2">But this unique combination of field safety + AI alignment is rare</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ 네비게이션 버튼들 ============ -->
+    
+    <!-- 
+        왼쪽 화살표 버튼: 이전 슬라이드로 이동
+        @click: Alpine.js 클릭 이벤트 핸들러
+        currentSlide > 1 ? currentSlide - 1 : totalSlides
+        -> 현재가 1보다 크면 이전으로, 아니면 마지막으로 (순환)
+    -->
+    <button @click="currentSlide = currentSlide > 1 ? currentSlide - 1 : totalSlides" 
+            class="fixed left-4 top-1/2 transform -translate-y-1/2 nav-btn p-2 md:p-3 rounded-full text-xl md:text-2xl z-50">
+        ←
+    </button>
+    <!-- 
+        fixed: 고정 위치
+        left-4: 왼쪽에서 1rem 떨어진 위치
+        top-1/2: 상단에서 50% 위치
+        transform -translate-y-1/2: Y축 50% 위로 이동 (수직 중앙 정렬)
+        z-50: 가장 위 레이어 (다른 요소들 위에 표시)
+        rounded-full: 완전한 원형
+    -->
+    
+    <!-- 
+        오른쪽 화살표 버튼: 다음 슬라이드로 이동
+        currentSlide < totalSlides ? currentSlide + 1 : 1
+        -> 현재가 마지막보다 작으면 다음으로, 아니면 첫 번째로 (순환)
+    -->
+    <button @click="currentSlide = currentSlide < totalSlides ? currentSlide + 1 : 1" 
+            class="fixed right-4 top-1/2 transform -translate-y-1/2 nav-btn p-2 md:p-3 rounded-full text-xl md:text-2xl z-50">
+        →
+    </button>
+
+    <!-- ============ 슬라이드 번호 표시 ============ -->
+    <!-- 
+        하단 중앙에 "현재슬라이드/전체슬라이드" 형태로 표시
+        x-text: Alpine.js 텍스트 바인딩 (변수 값을 텍스트로 표시)
+    -->
+    <div class="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 px-3 py-1 rounded-full text-sm z-50">
+        <!-- 
+            bottom-4: 하단에서 1rem 위
+            left-1/2: 왼쪽에서 50% 위치
+            transform -translate-x-1/2: X축 50% 왼쪽으로 이동 (수평 중앙 정렬)
+            bg-black/50: 50% 투명도의 검은색 배경
+        -->
+        <span x-text="currentSlide"></span> / <span x-text="totalSlides"></span>
+    </div>
+
+</body>
+</html>
