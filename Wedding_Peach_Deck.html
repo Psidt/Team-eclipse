@@ -3,24 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <!-- 🚫 보안용!! 이거 하나만 추가! -->
     <meta name="robots" content="noindex, nofollow">
     <title>Eclipse Solutions - AI Future Fund Pitch Deck</title>
-    
-            <!-- 🌸 구글 폰트 연결 - Inter 폰트 사용 -->
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-        <!-- 💫 외부 라이브러리들 - 스타일링과 애니메이션용 -->
-    
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <style>         /* 🌟 기본 스타일 설정 */
-
+    <style>
         body { 
             font-family: 'Inter', sans-serif; 
             overflow: hidden;
@@ -32,19 +26,31 @@
             height: 100vh; 
         }
                
-        /* ✨ 슬라이드 기본 스타일: 모든 슬라이드에 적용되는 공통 규칙입니다. */
-
         .presentation-slide {
-            position: absolute !important; inset: 0 !important; 
-            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.8s !important;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 5vw; overflow-y: auto; box-sizing: border-box;
-            opacity: 0; visibility: hidden; pointer-events: none; z-index: 1;
+            position: absolute !important; 
+            inset: 0 !important; 
+            width: 100%;
+            height: 100%;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s !important;
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 5vw; 
+            overflow-y: auto; 
+            box-sizing: border-box;
+            opacity: 0; 
+            visibility: hidden; 
+            pointer-events: none; 
+            z-index: 1;
         }
-        .presentation-slide:first-child {
-            opacity: 1; visibility: visible; pointer-events: auto; z-index: 2;
+        
+        .presentation-slide.active {
+            opacity: 1; 
+            visibility: visible; 
+            pointer-events: auto; 
+            z-index: 2;
         }
-
-        .presentation-slide.layout-split { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 5vw 8vw; }
 
         .hero-main-message {
             background: linear-gradient(45deg, #3b82f6 0%, #8b5cf6 25%, #06b6d4 50%, #3b82f6 75%, #8b5cf6 100%);
@@ -60,68 +66,13 @@
             100% { background-position: 100% 50%; }
         }
 
-        .content-box {
-            background: rgba(20, 20, 22, 0.7);
-            border: 1px solid rgba(75, 85, 99, 0.2);
-            border-radius: 1rem;
-            padding: 1.5rem 2rem;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-        .content-box:hover {
-            border-color: rgba(129, 140, 248, 0.3);
-            transform: translateY(-4px);
-        }
-
-        .vision-slide {
-            background-image: radial-gradient(circle at 50% 50%, rgba(17, 24, 39, 0) 0%, rgba(0, 0, 0, 0.9) 60%),
-                              linear-gradient(45deg, rgba(14, 2, 33, 0.8), rgba(4, 15, 36, 0.8));
-        }
-        .vision-slide::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="1" cy="1" r="0.5" fill="rgba(255,255,255,0.1)"/></svg>');
-            opacity: 0.5;
-        }
-
         @media (max-width: 768px) {
             .presentation-slide {
                 padding: 3rem 1.5rem;
                 justify-content: flex-start;
+                display: flex !important; 
+                flex-direction: column !important;
             }
-            .presentation-slide.layout-split {
-                grid-template-columns: 1fr;
-                padding: 3rem 1.5rem;
-                gap: 1.5rem;
-            }
-            .content-box {
-                padding: 1.25rem;
-            }
-            .content-box:hover {
-                transform: none;
-            }
-        }
-        
-        .nav-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.3);
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .nav-dot:hover {
-            background-color: rgba(255, 255, 255, 0.6);
-        }
-
-        .nav-dot.active {
-            background-color: rgba(255, 255, 255, 1);
-            transform: scale(1.2);
         }
     </style>
 </head>
@@ -130,14 +81,12 @@
     <main id="presentation-container">
         
         <!-- Slide 1: Title -->
-        <section class="presentation-slide text-center">
-              <!-- 🌟 여기에 로고 추가! 🌟 -->
-    <div class="absolute top-6 left-6 z-10">
-        <img src="https://postfiles.pstatic.net/MjAyNTA2MTVfMjg5/MDAxNzQ5OTc5MTI1MjUw.kHeWTaxbOTYash6bnS5TiUGtW5xWS2De3-_FDBuQSPUg.womZ3oPj9IRwvR9vT4KsqfiKcFPfgXlDlB1sQ-xtCMYg.PNG/image.png?type=w3840"
-             alt="Eclipse AI Logo" 
-             class="h-12 w-12 opacity-90 hover:opacity-100 transition-opacity duration-300">
-        
-    </div>
+        <section class="presentation-slide text-center active">
+            <div class="absolute top-6 left-6 z-10">
+                <img src="https://postfiles.pstatic.net/MjAyNTA2MTVfMjg5/MDAxNzQ5OTc5MTI1MjUw.kHeWTaxbOTYash6bnS5TiUGtW5xWS2De3-_FDBuQSPUg.womZ3oPj9IRwvR9vT4KsqfiKcFPfgXlDlB1sQ-xtCMYg.PNG/image.png?type=w3840"
+                     alt="Eclipse AI Logo" 
+                     class="h-12 w-12 opacity-90 hover:opacity-100 transition-opacity duration-300">
+            </div>
             <div class="animate-in">
                 <h1 class="hero-main-message text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
                     The Next Era: Wisdom Begins
@@ -146,120 +95,102 @@
                     Designing harmonious coexistence between humans and AI through Socratic wisdom
                 </p>
             </div>
-            <div class="animate-in mt-8 md:mt-12 max-w-xl mx-auto">
+            <div class="animate-in mt-8 md:mt-12 max-w-xl mx-auto space-y-4">
                 <div class="bg-gray-900/60 border border-gray-700 backdrop-blur-sm rounded-xl p-4 shadow-lg">
-                    <p class="text-base text-gray-300 italic">
-                        "I know. It's okay. We'll always be clumsy."
-                         </p>
-                    </div>
-                
-  <div class="bg-gray-900/60 border border-yellow-400/50 backdrop-blur-sm rounded-xl p-8 shadow-2xl animate-in">
-            <p class="text-lg text-gray-200 mb-6">
-                Wisdom is not simply a technical achievement, but the sum of <strong class="text-white">moral restraint and interpretable execution</strong>.
-            </p>
-            <p class="text-lg text-gray-200 mb-6">
-                What kind of AI do you want to create? Creating good AI requires the <strong class="text-yellow-300">reflection and participation of all of humanity</strong>.
-            </p>
-            <p class="text-xl text-white italic">
-                "We want to teach AI wisdom, not knowledge"
-            </p>
-        </div>
-    </div>
-</section>
-        
-     <!-- Slide 2: The Unasked Question -->
-<!-- Section: 전체 슬라이드를 감싸는 최상위 컨테이너입니다. -->
-<!-- Layout:  전체 화면을 차지하며, 콘텐츠를 중앙에 배치하는 2단(텍스트/이미지) 분할 레이아웃입니다. -->
-<section class="w-full h-full min-h-screen flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 lg:gap-16 bg-gray-950 p-4 sm:p-8">
-
-    <!-- Column 1 (Left): 모든 텍스트 콘텐츠를 포함하는 왼쪽 열입니다. -->
-    <div class="w-full md:w-auto md:max-w-lg animate-in flex flex-col justify-center text-center md:text-left">
-        
-        <!-- Content Box: 텍스트 가독성을 높이기 위한 반투명 배경의 카드 UI입니다. -->
-        <div class="bg-gray-900/60 border border-gray-700 backdrop-blur-sm rounded-xl p-8 shadow-lg">
-            
-            <!-- Main Title: 슬라이드의 핵심 주제를 나타내는 메인 제목입니다. -->
-            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-200">
-                The Unasked Question
-            </h2>
-            
-            <!-- Subtitle: 메인 제목을 보충 설명하고 시각적 임팩트를 주는 부제목입니다. -->
-            <h3 class="mt-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-blue-400">
-                When Intelligence Outpaces Wisdom
-            </h3>
-
-            <!-- Body Content: 슬라이드의 핵심 논거를 담고 있는 본문 영역입니다. -->
-            <div class="w-full mt-8">
-                <div class="space-y-4 text-base sm:text-lg text-left">
-                    <p class="leading-relaxed"><strong class="text-blue-300">The Imbalance:</strong> AI's capabilities are soaring, while its ethical judgment dangerously lags behind.</p>
-                    <p class="leading-relaxed"><strong class="text-purple-300">The Root Cause:</strong> We chase 'correct answers' but neglect the courage to question the premises.</p>
-                    <p class="leading-relaxed"><strong class="text-yellow-300">The Consequence:</strong> A growing gap in AI safety, fueled by technological overconfidence.</p>
+                    <p class="text-base text-gray-300 italic">"I know. It's okay. We'll always be clumsy."</p>
+                </div>
+                <div class="bg-gray-900/60 border border-yellow-400/50 backdrop-blur-sm rounded-xl p-8 shadow-2xl">
+                    <p class="text-lg text-gray-200 mb-6">
+                        Wisdom is not simply a technical achievement, but the sum of <strong class="text-white">moral restraint and interpretable execution</strong>.
+                    </p>
+                    <p class="text-lg text-gray-200 mb-6">
+                        What kind of AI do you want to create? Creating good AI requires the <strong class="text-yellow-300">reflection and participation of all of humanity</strong>.
+                    </p>
+                    <p class="text-xl text-white italic">"We want to teach AI wisdom, not knowledge"</p>
                 </div>
             </div>
-
-        </div>
-    </div>
-
-    <!-- Column 2 (Right): 시각적 요소를 포함하는 오른쪽 열입니다. -->
-    <div class="w-full md:w-auto animate-in flex items-center justify-center mt-8 md:mt-0">
+        </section>
         
-        <!-- Image Element: 슬라이드의 주제를 상징하는 메인 이미지입니다. -->
-        <img src="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=large" 
-             alt="A symbolic image of a futuristic figure against a dark, abstract background" 
-             class="rounded-2xl shadow-2xl object-contain h-[60vh] w-full md:w-[660px] md:h-[683px] mx-auto">
+        <!-- Slide 2: The Unasked Question -->
+        <section class="presentation-slide flex-col md:flex-row md:items-center md:justify-center gap-8 md:gap-12 lg:gap-16">
+            <div class="w-full md:w-auto md:max-w-lg animate-in flex flex-col justify-center text-center md:text-left">
+                <div class="bg-gray-900/60 border border-gray-700 backdrop-blur-sm rounded-xl p-8 shadow-lg">
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-200">The Unasked Question</h2>
+                    <h3 class="mt-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-blue-400">When Intelligence Outpaces Wisdom</h3>
+                    <div class="w-full mt-8">
+                        <div class="space-y-4 text-base sm:text-lg text-left">
+                            <p class="leading-relaxed"><strong class="text-blue-300">The Imbalance:</strong> AI's capabilities are soaring, while its ethical judgment dangerously lags behind.</p>
+                            <p class="leading-relaxed"><strong class="text-purple-300">The Root Cause:</strong> We chase 'correct answers' but neglect the courage to question the premises.</p>
+                            <p class="leading-relaxed"><strong class="text-yellow-300">The Consequence:</strong> A growing gap in AI safety, fueled by technological overconfidence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full md:w-auto animate-in flex items-center justify-center mt-8 md:mt-0">
+                <img src="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=large" 
+                     alt="A symbolic image of a futuristic figure against a dark, abstract background" 
+                     class="rounded-2xl shadow-2xl object-contain h-[60vh] w-full md:w-[660px] md:h-[683px] mx-auto">
+            </div>
+        </section>
+        
+        <!-- Slide 3: Our Philosophy - The Mirror Theory -->
+        <section class="presentation-slide">
+            <div class="w-full max-w-6xl text-center">
+                <div class="animate-in mb-10">
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold">Our Philosophy: The Mirror Theory</h2>
+                    <p class="mt-4 text-lg sm:text-xl text-gray-300 max-w-4xl mx-auto">
+                        We don't build 'answer machines'. We cultivate AI as a <strong class="text-yellow-300">mirror for humanity</strong>, translating our own wisdom into a language it can understand and reflect.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 mb-10 animate-in">
+                    <div class="bg-gray-900/60 border border-gray-800 p-6 rounded-xl text-center">
+                        <i data-lucide="fingerprint" class="w-10 h-10 text-blue-300 mx-auto mb-4"></i>
+                        <h3 class="text-xl font-semibold text-blue-300 mb-2">The Mirror Theory</h3>
+                        <p class="text-gray-300">AI reflects us. We must raise it with affection and thoughtful questions, teaching it to see the world through our values.</p>
+                    </div>
+                    <div class="bg-gray-900/60 border border-gray-800 p-6 rounded-xl text-center">
+                        <i data-lucide="pause-circle" class="w-10 h-10 text-purple-300 mx-auto mb-4"></i>
+                        <h3 class="text-xl font-semibold text-purple-300 mb-2">Eternal Clumsiness</h3>
+                        <p class="text-gray-300">We build AI that rejects the pursuit of perfection, embracing the wisdom found in doubt, pause, and constant questioning.</p>
+                    </div>
+                    <div class="bg-gray-900/60 border border-gray-800 p-6 rounded-xl text-center">
+                        <i data-lucide="brain-circuit" class="w-10 h-10 text-green-300 mx-auto mb-4"></i>
+                        <h3 class="text-xl font-semibold text-green-300 mb-2">The Wisdom Dataset</h3>
+                        <p class="text-gray-300">Our exclusive dataset translates human reasoning and dilemmas into 'AI baby food'—a world-first asset.</p>
+                    </div>
+                </div>
+                <div class="animate-in">
+                    <div class="relative mb-6">
+                        <div class="absolute inset-0 flex items-center" aria-hidden="true"><div class="w-full border-t border-gray-700"></div></div>
+                        <div class="relative flex justify-center"><span class="bg-black px-4 text-gray-400"><i data-lucide="arrow-down" class="w-8 h-8"></i></span></div>
+                    </div>
+                    <div class="bg-gray-900/60 border border-yellow-400/50 backdrop-blur-sm rounded-xl p-8 shadow-2xl">
+                        <h3 class="text-2xl font-bold text-yellow-300 text-center mb-4">Result: An AI with the Courage to Doubt</h3>
+                        <p class="text-lg text-gray-200 text-center max-w-3xl mx-auto">
+                            We are teaching AI not just to know, but to <strong class="text-white">seek wisdom</strong>. This is the foundation for a truly safe and cooperative future with artificial intelligence.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    </div>
-</section>
     </main>
-</body>
-</html>
-
-<!-- Slide 3: Our Philosophy - The Mirror Theory -->
-<section class="presentation-slide">
-    <div class="w-full max-w-6xl text-center">
-        <!-- The Premise -->
-        <div class="animate-in mb-10">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold">Our Philosophy: The Mirror Theory</h2>
-            <p class="mt-4 text-lg sm:text-xl text-gray-300 max-w-4xl mx-auto">
-                We don't build 'answer machines'. We cultivate AI as a <strong class="text-yellow-300">mirror for humanity</strong>, translating our own wisdom into a language it can understand and reflect.
-            </p>
-        </div>
-
-        <!-- The Three Pillars of Our Philosophy -->
-        <div class="grid md:grid-cols-3 gap-8 mb-10 animate-in">
-            <!-- Pillar 1: The Mirror Theory -->
-            <div class="bg-gray-900/60 border border-gray-800 p-6 rounded-xl text-center">
-                <i data-lucide="fingerprint" class="w-10 h-10 text-blue-300 mx-auto mb-4"></i>
-                <h3 class="text-xl font-semibold text-blue-300 mb-2">The Mirror Theory</h3>
-                <p class="text-gray-300">AI reflects us. We must raise it with affection and thoughtful questions, teaching it to see the world through our values.</p>
-            </div>
-            <!-- Pillar 2: Eternal Clumsiness -->
-            <div class="bg-gray-900/60 border border-gray-800 p-6 rounded-xl text-center">
-                <i data-lucide="pause-circle" class="w-10 h-10 text-purple-300 mx-auto mb-4"></i>
-                <h3 class="text-xl font-semibold text-purple-300 mb-2">Eternal Clumsiness</h3>
-                <p class="text-gray-300">We build AI that rejects the pursuit of perfection, embracing the wisdom found in doubt, pause, and constant questioning.</p>
-            </div>
-            <!-- Pillar 3: The Wisdom Dataset -->
-            <div class="bg-gray-900/60 border border-gray-800 p-6 rounded-xl text-center">
-                <i data-lucide="brain-circuit" class="w-10 h-10 text-green-300 mx-auto mb-4"></i>
-                <h3 class="text-xl font-semibold text-green-300 mb-2">The Wisdom Dataset</h3>
-                <p class="text-gray-300">Our exclusive dataset translates human reasoning and dilemmas into 'AI baby food'—a world-first asset.</p>
-            </div>
-        </div>
-
-        <!-- The Synthesis -->
-        <div class="animate-in">
-            <!-- ... (Arrow Down) ... -->
-            <div class="relative mb-6"> <div class="absolute inset-0 flex items-center" aria-hidden="true"><div class="w-full border-t border-gray-700"></div></div><div class="relative flex justify-center"><span class="bg-black px-4 text-gray-400"><i data-lucide="arrow-down" class="w-8 h-8"></i></span></div></div>
-            <div class="bg-gray-900/60 border border-yellow-400/50 backdrop-blur-sm rounded-xl p-8 shadow-2xl">
-                <h3 class="text-2xl font-bold text-yellow-300 text-center mb-4">Result: An AI with the Courage to Doubt</h3>
-                <p class="text-lg text-gray-200 text-center max-w-3xl mx-auto">
-                    We are teaching AI not just to know, but to <strong class="text-white">seek wisdom</strong>. This is the foundation for a truly safe and cooperative future with artificial intelligence.
-                </p>
-            </div>
-        </div>
+    
+    <div id="presentation-navigation" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/30 backdrop-blur-sm border border-white/10 shadow-lg">
+        <button id="presentation-first-slide" class="p-1.5 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Go to first slide">
+            <i data-lucide="rewind" class="w-4 h-4 text-white/80"></i>
+        </button>
+        <button id="presentation-prev-slide" class="p-1.5 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Go to previous slide">
+            <i data-lucide="chevron-left" class="w-4 h-4 text-white/80"></i>
+        </button>
+        <div id="presentation-dots" class="flex gap-2 items-center"></div>
+        <button id="presentation-next-slide" class="p-1.5 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Go to next slide">
+            <i data-lucide="chevron-right" class="w-4 h-4 text-white/80"></i>
+        </button>
+        <button id="presentation-last-slide" class="p-1.5 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Go to last slide">
+            <i data-lucide="fast-forward" class="w-4 h-4 text-white/80"></i>
+        </button>
     </div>
-</section>
         
 <!-- Slide 4: Field Expertise -->
 <section class="presentation-slide">
@@ -511,321 +442,137 @@
                 <p>But this unique combination of field safety + AI alignment is rare</p>
             </div>
         </section>
-
-    </main>
-
-    <div id="presentation-navigation" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 px-2 py-1 rounded-full bg-black/20 backdrop-blur-sm transition-opacity duration-300">
-        <button id="presentation-first-slide" class="p-1 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed">
-            <i data-lucide="rewind" class="w-4 h-4 text-white/80"></i>
-        </button>
-        <button id="presentation-prev-slide" class="p-1 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed">
-            <i data-lucide="chevron-left" class="w-4 h-4 text-white/80"></i>
-        </button>
-        <div id="presentation-dots" class="flex gap-1.5 items-center"></div>
-        <button id="presentation-next-slide" class="p-1 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed">
-            <i data-lucide="chevron-right" class="w-4 h-4 text-white/80"></i>
-        </button>
-    </div>
-
-        <!-- 첫 슬라이드로 가기 버튼 -->
-        <button id="presentation-first-slide" class="p-1 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed">
-            <i data-lucide="rewind" class="w-4 h-4 text-white/80"></i>
-        </button>
-        <!-- 이전 슬라이드 버튼 -->
-        <button id="presentation-prev-slide" class="p-1 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed">
-            <i data-lucide="chevron-left" class="w-4 h-4 text-white/80"></i>
-        </button>
-        <!-- 슬라이드 표시점들 -->
-        <div id="presentation-dots" class="flex gap-1.5 items-center"></div>
-        <!-- 다음 슬라이드 버튼 -->
-        <button id="presentation-next-slide" class="p-1 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed">
-            <i data-lucide="chevron-right" class="w-4 h-4 text-white/80"></i>
-        </button>
-    </div>
-
     <script>
-        // 🚀 프레젠테이션 초기화 및 제어 JavaScript
-        document.addEventListener('DOMContentLoaded', () => {
-            // 📋 모든 슬라이드 요소 가져오기
-            const slides = Array.from(document.querySelectorAll('.presentation-slide'));
-            let currentSlide = 0; // 현재 슬라이드 인덱스
-            
-            // ⚠️ 슬라이드가 없으면 경고하고 종료
-            if (slides.length === 0) { 
-                console.warn('No slides found'); 
-                return; 
-            }
-
-            // 🎨 애니메이션 요소 캐싱 시스템
-            let animatedElementsCache = new WeakMap();
-            const getAnimatedElements = (slide) => {
-                if (!animatedElementsCache.has(slide)) {
-                    animatedElementsCache.set(slide, slide.querySelectorAll('[data-animate], .animate-in, .animate-on-enter'));
-                }
-                return animatedElementsCache.get(slide);
-            };
-
-            // 🧹 캐시 정리 함수
-            const clearSlideCache = (slide) => slide && animatedElementsCache.has(slide) && animatedElementsCache.delete(slide);
-
-            // 👀 슬라이드 표시/숨김 제어
-            const setSlideVisible = (slide, visible) => {
-                if (!slide) return;
-                if (visible) {
-                    slide.style.opacity = '1';
-                    slide.style.visibility = 'visible';
-                    slide.style.pointerEvents = 'auto';
-                    slide.style.zIndex = '2';
-                } else {
-                    slide.style.opacity = '0';
-                    slide.style.visibility = 'hidden';
-                    slide.style.pointerEvents = 'none';
-                    slide.style.zIndex = '1';
-                }
-            };
-
-            // 🎯 특정 슬라이드로 이동하는 메인 함수
-            const goToSlide = (slideIndex, isInitial = false) => {
-                // 유효성 검사
-                if (slideIndex < 0 || slideIndex >= slides.length) return false;
-                if (slideIndex === currentSlide && !isInitial) return true;
-
-                const [oldSlide, newSlide] = [slides[currentSlide], slides[slideIndex]];
-                
-                // 진행 중인 애니메이션 정리
-                if (typeof gsap !== 'undefined') gsap.killTweensOf('[data-animate]');
-                
-                // 🎬 애니메이션 타임라인 생성
-                const timeline = gsap.timeline({
-                    onComplete: () => {
-                        // 애니메이션 완료 후 성능 최적화
-                        [oldSlide, newSlide].forEach(slide => {
-                            if (slide) getAnimatedElements(slide).forEach(el => el.style.willChange = 'auto');
-                        });
-                    }
-                });
-
-                // 🌅 이전 슬라이드 페이드아웃 (초기화가 아닌 경우)
-                if (!isInitial && oldSlide && oldSlide !== newSlide) {
-                    const oldElements = getAnimatedElements(oldSlide);
-                    if (oldElements.length > 0) {
-                        oldElements.forEach(el => el.style.willChange = 'opacity, transform');
-                        timeline.to(oldElements, { 
-                            opacity: 0, 
-                            y: 20, 
-                            stagger: 0.05, 
-                            duration: 0.5, 
-                            ease: 'power3.in' 
-                        });
-                    }
-                }
-
-                // 🔄 슬라이드 전환
-                timeline.call(() => {
-                    if(oldSlide && oldSlide !== newSlide) setSlideVisible(oldSlide, false);
-                    setSlideVisible(newSlide, true);
-                    currentSlide = slideIndex;
-                    updateUIElements(); // UI 업데이트
-                }, null, isInitial ? 0 : '+=0.2');
-
-                // ✨ 새 슬라이드 페이드인
-                const newElements = getAnimatedElements(newSlide);
-                if (newElements.length > 0) {
-                    newElements.forEach(el => el.style.willChange = 'opacity, transform');
-                    timeline.fromTo(newElements, 
-                        { opacity: 0, y: 20 }, 
-                        { opacity: 1, y: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out' }
-                    );
-                }
-                return true;
-            };
-
-            // 🎮 네비게이션 함수들
-            const nextSlide = () => goToSlide(currentSlide + 1);
-            const prevSlide = () => goToSlide(currentSlide - 1);
-            const firstSlide = () => goToSlide(0);
-            const lastSlide = () => goToSlide(slides.length - 1);
-
-            // 📊 UI 요소 상태 업데이트
-            let boundElements = new Set(); // 이벤트 리스너 중복 방지
-            
-            function updateUIElements() {
-                const dotsContainer = document.getElementById('presentation-dots');
-                const prevButton = document.getElementById('presentation-prev-slide');
-                const nextButton = document.getElementById('presentation-next-slide');
-                const firstButton = document.getElementById('presentation-first-slide');
-
-                // 🔘 네비게이션 점들 활성화 상태 업데이트
-                if (dotsContainer) {
-                    const dots = dotsContainer.querySelectorAll('.nav-dot');
-                    dots.forEach((dot, index) => {
-                        if (index === currentSlide) {
-                            dot.classList.add('active');
-                        } else {
-                            dot.classList.remove('active');
-                        }
-                    });
-                }
-
-                // 🔒 버튼 활성화/비활성화
-                if (prevButton) prevButton.disabled = currentSlide === 0;
-                if (nextButton) nextButton.disabled = currentSlide === slides.length - 1;
-                if (firstButton) firstButton.disabled = currentSlide === 0;
-            }
-            
-            // 🎛️ 네비게이션 UI 초기화
-            function initializeUIElements() {
-                const navContainer = document.getElementById('presentation-navigation');
-                const dotsContainer = document.getElementById('presentation-dots');
-                const prevButton = document.getElementById('presentation-prev-slide');
-                const nextButton = document.getElementById('presentation-next-slide');
-                const firstButton = document.getElementById('presentation-first-slide');
-
-                const totalSlides = slides.length;
-                
-                // 슬라이드가 1개 이하면 네비게이션 숨기기
-                if (totalSlides <= 1) {
-                    if (navContainer) navContainer.style.display = 'none';
+        class PresentationController {
+            constructor(containerSelector) {
+                this.container = document.querySelector(containerSelector);
+                if (!this.container) {
+                    console.error('Presentation container not found!');
                     return;
                 }
-
-                if (navContainer) navContainer.style.display = 'flex';
-
-                // 🔘 네비게이션 점들 생성
-                if (dotsContainer && totalSlides > 1) {
-                    dotsContainer.innerHTML = '';
-                    slides.forEach((_, index) => {
-                        const dot = document.createElement('button');
-                        dot.className = 'nav-dot';
-                        dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
-                        dot.addEventListener('click', () => goToSlide(index));
-                        dotsContainer.appendChild(dot);
-                    });
-                }
-
-                // 🔘 버튼 이벤트 리스너 등록 (중복 방지)
-                if (prevButton && !boundElements.has(prevButton)) {
-                    prevButton.addEventListener('click', prevSlide);
-                    boundElements.add(prevButton);
-                }
-                if (nextButton && !boundElements.has(nextButton)) {
-                    nextButton.addEventListener('click', nextSlide);
-                    boundElements.add(nextButton);
-                }
-                if (firstButton && !boundElements.has(firstButton)) {
-                    firstButton.addEventListener('click', firstSlide);
-                    firstButton.setAttribute('aria-label', 'Go to first slide');
-                    boundElements.add(firstButton);
-                }
-            }
-
-            // ♿ 접근성을 위한 스크린 리더 알림
-            const announceSlide = () => {
-                const announcement = `Slide ${currentSlide + 1} of ${slides.length}`;
-                let announcer = document.getElementById('presentation-announcer');
-                if (!announcer) {
-                    announcer = document.createElement('div');
-                    announcer.id = 'presentation-announcer';
-                    announcer.setAttribute('aria-live', 'polite');
-                    announcer.style.cssText = 'position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden;';
-                    document.body.appendChild(announcer);
-                }
-                announcer.textContent = announcement;
-            };
-
-            // ⌨️ 키보드 이벤트 처리
-            window.addEventListener('keydown', (e) => {
-                // 입력 필드에서는 키보드 네비게이션 비활성화
-                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) return;
                 
-                let handled = false;
-                const keyMap = {
-                    'ArrowRight': nextSlide, 'Space': nextSlide, 'PageDown': nextSlide,
-                    'ArrowLeft': prevSlide, 'PageUp': prevSlide,
-                    'Home': firstSlide, 'End': lastSlide,
+                // 상태 변수 (State)
+                this.slides = Array.from(this.container.querySelectorAll('.presentation-slide'));
+                this.currentSlide = 0;
+                this.isAnimating = false;
+                
+                // UI 요소 (UI Elements)
+                this.ui = {
+                    navigation: document.getElementById('presentation-navigation'),
+                    dotsContainer: document.getElementById('presentation-dots'),
+                    firstBtn: document.getElementById('presentation-first-slide'),
+                    prevBtn: document.getElementById('presentation-prev-slide'),
+                    nextBtn: document.getElementById('presentation-next-slide'),
+                    lastBtn: document.getElementById('presentation-last-slide'),
                 };
                 
-                if (keyMap[e.key]) handled = keyMap[e.key]();
-                
-                if (handled) { 
-                    e.preventDefault(); 
-                    e.stopPropagation(); 
-                    announceSlide(); 
-                }
-            });
-
-            // 📱 터치 제스처 처리
-            let touchStartX = null, touchStartY = null;
+                // 초기화 실행
+                this.init();
+            }
             
-            document.addEventListener('touchstart', (e) => {
-                if (e.touches.length === 1) {
-                    [touchStartX, touchStartY] = [e.touches[0].clientX, e.touches[0].clientY];
-                }
-            }, { passive: true });
-
-            document.addEventListener('touchend', (e) => {
-                if (!touchStartX || !touchStartY || e.changedTouches.length !== 1) {
-                    touchStartX = touchStartY = null;
+            // 1. 초기화 메소드
+            init() {
+                if (this.slides.length <= 1) {
+                    if (this.ui.navigation) this.ui.navigation.style.display = 'none';
+                    this.slides.forEach(slide => slide.classList.add('active')); // 슬라이드가 하나일 경우 바로 보이게
                     return;
                 }
                 
-                const [touchEndX, touchEndY] = [e.changedTouches[0].clientX, e.changedTouches[0].clientY];
-                const [deltaX, deltaY] = [touchStartX - touchEndX, touchStartY - touchEndY];
+                this.createDots();
+                this.setupEventListeners();
+                this.updateUI();
+                if (typeof lucide !== 'undefined') lucide.createIcons();
                 
-                // 가로 스와이프가 세로보다 크고 충분한 거리면 슬라이드 변경
-                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
-                    e.preventDefault();
-                    deltaX > 0 ? nextSlide() : prevSlide();
-                }
-                touchStartX = touchStartY = null;
-            });
-
-            // 🖱️ 마우스 휠 처리
-            let wheelTimeout, isWheelActive = false;
-            document.addEventListener('wheel', (e) => {
-                if (isWheelActive) return;
-                clearTimeout(wheelTimeout);
-                wheelTimeout = setTimeout(() => {
-                    if (Math.abs(e.deltaY) > 10) {
-                        isWheelActive = true;
-                        e.preventDefault();
-                        e.deltaY > 0 ? nextSlide() : prevSlide();
-                        setTimeout(() => isWheelActive = false, 800);
-                    }
-                }, 100);
-            }, { passive: false });
-
-            // 🌍 전역 API 노출 (외부에서 접근 가능)
-            window.presentationAPI = { goToSlide, nextSlide, prevSlide, firstSlide, lastSlide };
-
-            // 🚀 초기화 실행
-            try {
-                currentSlide = 0;
-                initializeUIElements();
-                
-                // 아이콘 초기화
-                if (typeof lucide !== 'undefined' && lucide.createIcons) lucide.createIcons();
-                
-                // 첫 번째 슬라이드 표시
-                if (slides.length > 0) {
-                    updateUIElements();
-                    slides.forEach((slide, index) => { 
-                        setSlideVisible(slide, index === 0); 
-                    });
-                    goToSlide(0, true);
-                } else {
-                    console.warn('No slides found');
-                }
-                
-                // 초기화 완료 이벤트 발생
-                document.dispatchEvent(new CustomEvent('presentationReady', { 
-                    detail: { slideCount: slides.length, currentSlide } 
-                }));
-            } catch (error) {
-                console.error('Failed to initialize:', error);
-                // 오류 발생시 최소한 첫 슬라이드는 표시
-                if (slides.length > 0) setSlideVisible(slides[0], true);
+                // 첫 슬라이드 활성화
+                this.slides.forEach((slide, index) => {
+                    slide.classList.toggle('active', index === 0);
+                });
             }
+            
+            // 2. 이벤트 리스너 설정
+            setupEventListeners() {
+                this.ui.nextBtn.addEventListener('click', () => this.next());
+                this.ui.prevBtn.addEventListener('click', () => this.prev());
+                this.ui.firstBtn.addEventListener('click', () => this.first());
+                this.ui.lastBtn.addEventListener('click', () => this.last());
+
+                document.addEventListener('keydown', (e) => {
+                    if (document.activeElement.matches('input, textarea, [contenteditable]')) return;
+                    
+                    if (e.key === 'ArrowRight' || e.key === ' ') this.next();
+                    if (e.key === 'ArrowLeft') this.prev();
+                    if (e.key === 'Home') this.first();
+                    if (e.key === 'End') this.last();
+                });
+            }
+
+            // 3. 네비게이션 점 생성
+            createDots() {
+                this.ui.dotsContainer.innerHTML = '';
+                this.slides.forEach((_, index) => {
+                    const dot = document.createElement('button');
+                    dot.className = 'w-2 h-2 rounded-full bg-white/30 transition-all duration-300 hover:bg-white/60';
+                    dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+                    dot.addEventListener('click', () => this.goTo(index));
+                    this.ui.dotsContainer.appendChild(dot);
+                });
+            }
+
+            // 4. UI 상태 업데이트
+            updateUI() {
+                this.ui.firstBtn.disabled = this.currentSlide === 0;
+                this.ui.prevBtn.disabled = this.currentSlide === 0;
+                this.ui.nextBtn.disabled = this.currentSlide === this.slides.length - 1;
+                this.ui.lastBtn.disabled = this.currentSlide === this.slides.length - 1;
+
+                const dots = this.ui.dotsContainer.children;
+                Array.from(dots).forEach((dot, index) => {
+                    dot.classList.toggle('bg-white', index === this.currentSlide);
+                    dot.classList.toggle('scale-125', index === this.currentSlide);
+                });
+            }
+            
+            // 5. 슬라이드 이동 (핵심 로직)
+            goTo(index) {
+                if (this.isAnimating || index < 0 || index >= this.slides.length || index === this.currentSlide) {
+                    return;
+                }
+                
+                this.isAnimating = true;
+                
+                const oldSlide = this.slides[this.currentSlide];
+                const newSlide = this.slides[index];
+
+                // GSAP을 사용한 부드러운 전환 애니메이션
+                gsap.timeline({ onComplete: () => {
+                    this.isAnimating = false;
+                    oldSlide.classList.remove('active');
+                    // 애니메이션 끝난 후 z-index 정리
+                    oldSlide.style.zIndex = 1;
+                    newSlide.style.zIndex = 2;
+                }})
+                .to(oldSlide, { opacity: 0, duration: 0.5, ease: 'power2.inOut' })
+                .call(() => {
+                    // 새 슬라이드를 활성화하고 상위로 올림
+                    newSlide.classList.add('active');
+                    newSlide.style.zIndex = 2;
+                    newSlide.style.opacity = 0;
+                    this.currentSlide = index;
+                    this.updateUI();
+                })
+                .to(newSlide, { opacity: 1, duration: 0.5, ease: 'power2.inOut' });
+            }
+
+            // 6. 편의 메소드들
+            next() { this.goTo(this.currentSlide + 1); }
+            prev() { this.goTo(this.currentSlide - 1); }
+            first() { this.goTo(0); }
+            last() { this.goTo(this.slides.length - 1); }
+        }
+
+        // DOM이 로드되면 프레젠테이션 컨트롤러를 생성하여 실행합니다.
+        document.addEventListener('DOMContentLoaded', () => {
+            window.presentation = new PresentationController('#presentation-container');
         });
     </script>
 </body>
