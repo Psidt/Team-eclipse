@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ✨ FIX: 모바일 세이프 에어리어(Safe Area)를 사용하기 위해 viewport-fit=cover 추가 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="robots" content="noindex, nofollow">
     <title>Eclipse Solutions - AI Future Fund Pitch Deck</title>
     
@@ -15,15 +16,24 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        body { 
-            font-family: 'Inter', sans-serif; 
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
             overflow: hidden;
             background-color: #000;
         }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            display: flex;
+            flex-direction: column;
+        }
+        
         #presentation-container { 
             position: relative; 
-            width: 100vw; 
-            height: 100vh; 
+            flex-grow: 1; 
+            width: 100%;
+            overflow: hidden; 
         }
                
         .presentation-slide {
@@ -36,7 +46,7 @@
             flex-direction: column; 
             justify-content: center; 
             align-items: center; 
-            padding: 5vw; 
+            padding: 2vw 5vw; 
             overflow-y: auto; 
             box-sizing: border-box;
             opacity: 0; 
@@ -68,10 +78,8 @@
 
         @media (max-width: 768px) {
             .presentation-slide {
-                padding: 3rem 1.5rem;
-                justify-content: flex-start;
-                display: flex !important; 
-                flex-direction: column !important;
+                padding: 2rem 1rem; /* 모바일 패딩 조정 */
+                justify-content: center; /* 세로 중앙 정렬 유지 */
             }
         }
     </style>
@@ -79,6 +87,7 @@
 <body class="bg-black text-white antialiased">
 
     <main id="presentation-container">
+        
         
         <!-- Slide 1: Title -->
         <section class="presentation-slide text-center active">
@@ -442,7 +451,13 @@
                 <p>But this unique combination of field safety + AI alignment is rare</p>
             </div>
         </section>
-    <script>
+    
+        <script>
+        /**
+         * PresentationController Class
+         * 프레젠테이션의 모든 상태와 제어를 담당하는 메인 컨트롤러입니다.
+         * 버튼, 키보드, 터치 스와이프 등 모든 입력을 처리합니다.
+         */
         class PresentationController {
             constructor(containerSelector) {
                 this.container = document.querySelector(containerSelector);
@@ -451,12 +466,16 @@
                     return;
                 }
                 
-                // 상태 변수 (State)
+                // --- 1. 상태 변수 (State) ---
                 this.slides = Array.from(this.container.querySelectorAll('.presentation-slide'));
                 this.currentSlide = 0;
                 this.isAnimating = false;
                 
-                // UI 요소 (UI Elements)
+                // 터치 제스처 추적용 변수
+                this.touchStartX = null;
+                this.touchStartY = null;
+                
+                // --- 2. UI 요소 캐싱 (UI Elements) ---
                 this.ui = {
                     navigation: document.getElementById('presentation-navigation'),
                     dotsContainer: document.getElementById('presentation-dots'),
@@ -466,37 +485,45 @@
                     lastBtn: document.getElementById('presentation-last-slide'),
                 };
                 
-                // 초기화 실행
+                // --- 3. 초기화 실행 ---
                 this.init();
             }
             
-            // 1. 초기화 메소드
+            /**
+             * 초기화 메소드: 모든 설정의 시작점
+             */
             init() {
+                // 슬라이드가 1개 이하면 네비게이션을 숨기고 종료
                 if (this.slides.length <= 1) {
                     if (this.ui.navigation) this.ui.navigation.style.display = 'none';
-                    this.slides.forEach(slide => slide.classList.add('active')); // 슬라이드가 하나일 경우 바로 보이게
+                    this.slides.forEach(slide => slide.classList.add('active'));
                     return;
                 }
                 
                 this.createDots();
                 this.setupEventListeners();
                 this.updateUI();
-                if (typeof lucide !== 'undefined') lucide.createIcons();
+                if (typeof lucide !== 'undefined') lucide.createIcons(); // Lucide 아이콘 렌더링
                 
-                // 첫 슬라이드 활성화
+                // 첫 슬라이드를 활성 상태로 설정
                 this.slides.forEach((slide, index) => {
                     slide.classList.toggle('active', index === 0);
                 });
             }
             
-            // 2. 이벤트 리스너 설정
+            /**
+             * 모든 이벤트 리스너(클릭, 키보드, 터치)를 설정
+             */
             setupEventListeners() {
+                // 버튼 클릭 이벤트
                 this.ui.nextBtn.addEventListener('click', () => this.next());
                 this.ui.prevBtn.addEventListener('click', () => this.prev());
                 this.ui.firstBtn.addEventListener('click', () => this.first());
                 this.ui.lastBtn.addEventListener('click', () => this.last());
 
+                // 키보드 이벤트
                 document.addEventListener('keydown', (e) => {
+                    // 입력 필드에 포커스된 경우 무시
                     if (document.activeElement.matches('input, textarea, [contenteditable]')) return;
                     
                     if (e.key === 'ArrowRight' || e.key === ' ') this.next();
@@ -504,9 +531,52 @@
                     if (e.key === 'Home') this.first();
                     if (e.key === 'End') this.last();
                 });
+
+                // 터치 제스처 이벤트
+                this.container.addEventListener('touchstart', (e) => this.handleTouchStart(e), { passive: true });
+                this.container.addEventListener('touchend', (e) => this.handleTouchEnd(e));
             }
 
-            // 3. 네비게이션 점 생성
+            /**
+             * 터치 시작 시 좌표 기록
+             */
+            handleTouchStart(e) {
+                if (e.touches.length === 1) {
+                    this.touchStartX = e.touches[0].clientX;
+                    this.touchStartY = e.touches[0].clientY;
+                }
+            }
+
+            /**
+             * 터치 종료 시 스와이프 방향을 감지하여 슬라이드 전환
+             */
+            handleTouchEnd(e) {
+                if (!this.touchStartX || !this.touchStartY || e.changedTouches.length !== 1) {
+                    return;
+                }
+
+                const touchEndX = e.changedTouches[0].clientX;
+                const touchEndY = e.changedTouches[0].clientY;
+                const deltaX = this.touchStartX - touchEndX;
+                const deltaY = this.touchStartY - touchEndY;
+                
+                // 가로 스와이프가 세로보다 크고, 50px 이상 움직였을 때만 슬라이드 전환
+                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+                    if (deltaX > 0) {
+                        this.next(); // 왼쪽으로 스와이프 -> 다음 슬라이드
+                    } else {
+                        this.prev(); // 오른쪽으로 스와이프 -> 이전 슬라이드
+                    }
+                }
+
+                // 좌표 초기화
+                this.touchStartX = null;
+                this.touchStartY = null;
+            }
+
+            /**
+             * 슬라이드 개수에 맞춰 네비게이션 점(dot)들을 동적으로 생성
+             */
             createDots() {
                 this.ui.dotsContainer.innerHTML = '';
                 this.slides.forEach((_, index) => {
@@ -518,7 +588,9 @@
                 });
             }
 
-            // 4. UI 상태 업데이트
+            /**
+             * 현재 슬라이드에 맞춰 네비게이션 UI(버튼 비활성화, 점 활성화)를 업데이트
+             */
             updateUI() {
                 this.ui.firstBtn.disabled = this.currentSlide === 0;
                 this.ui.prevBtn.disabled = this.currentSlide === 0;
@@ -532,8 +604,11 @@
                 });
             }
             
-            // 5. 슬라이드 이동 (핵심 로직)
+            /**
+             * 특정 인덱스의 슬라이드로 이동하는 핵심 메소드
+             */
             goTo(index) {
+                // 유효성 검사: 애니메이션 중, 범위를 벗어난 경우, 같은 슬라이드인 경우 중단
                 if (this.isAnimating || index < 0 || index >= this.slides.length || index === this.currentSlide) {
                     return;
                 }
@@ -543,37 +618,35 @@
                 const oldSlide = this.slides[this.currentSlide];
                 const newSlide = this.slides[index];
 
-                // GSAP을 사용한 부드러운 전환 애니메이션
-                gsap.timeline({ onComplete: () => {
-                    this.isAnimating = false;
-                    oldSlide.classList.remove('active');
-                    // 애니메이션 끝난 후 z-index 정리
-                    oldSlide.style.zIndex = 1;
-                    newSlide.style.zIndex = 2;
-                }})
+                // GSAP 라이브러리를 사용한 부드러운 전환 애니메이션
+                gsap.timeline({ 
+                    onComplete: () => {
+                        this.isAnimating = false;
+                        oldSlide.classList.remove('active');
+                        oldSlide.style.zIndex = 1;
+                        newSlide.style.zIndex = 2;
+                    }
+                })
                 .to(oldSlide, { opacity: 0, duration: 0.5, ease: 'power2.inOut' })
                 .call(() => {
-                    // 새 슬라이드를 활성화하고 상위로 올림
                     newSlide.classList.add('active');
-                    newSlide.style.zIndex = 2;
-                    newSlide.style.opacity = 0;
+                    newSlide.style.zIndex = 2; // 전환 중 새 슬라이드를 위로 올림
+                    newSlide.style.opacity = 0; // 투명 상태에서 애니메이션 시작 준비
                     this.currentSlide = index;
                     this.updateUI();
                 })
                 .to(newSlide, { opacity: 1, duration: 0.5, ease: 'power2.inOut' });
             }
 
-            // 6. 편의 메소드들
+            // --- 편의 메소드들 ---
             next() { this.goTo(this.currentSlide + 1); }
             prev() { this.goTo(this.currentSlide - 1); }
             first() { this.goTo(0); }
             last() { this.goTo(this.slides.length - 1); }
         }
 
-        // DOM이 로드되면 프레젠테이션 컨트롤러를 생성하여 실행합니다.
+        // DOM이 모두 로드된 후, PresentationController를 생성하여 프레젠테이션을 시작합니다.
         document.addEventListener('DOMContentLoaded', () => {
             window.presentation = new PresentationController('#presentation-container');
         });
     </script>
-</body>
-</html>
