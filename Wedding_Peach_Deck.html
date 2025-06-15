@@ -16,75 +16,46 @@
 
     <style>
         html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #000;
+            height: 100%; margin: 0; padding: 0;
+            overflow: hidden; background-color: #000;
         }
         body { 
             font-family: 'Inter', sans-serif; 
-            display: flex;
-            flex-direction: column;
+            display: flex; flex-direction: column;
         }
-        
         #presentation-container { 
-            position: relative; 
-            flex-grow: 1; 
-            width: 100%;
-            overflow: hidden; 
+            position: relative; flex-grow: 1; 
+            width: 100%; overflow: hidden; 
         }
-               
         .presentation-slide {
-            position: absolute !important; 
-            inset: 0 !important; 
-            width: 100%;
-            height: 100%;
+            position: absolute !important; inset: 0 !important; 
+            width: 100%; height: 100%;
             transition: opacity 0.5s ease-in-out, visibility 0.5s !important;
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            padding: 2vw 5vw; 
-            overflow-y: auto; 
-            box-sizing: border-box;
-            opacity: 0; 
-            visibility: hidden; 
-            pointer-events: none; 
-            z-index: 1;
+            display: flex; flex-direction: column; 
+            justify-content: center; align-items: center; 
+            padding: 2vw 5vw; overflow-y: auto; 
+            box-sizing: border-box; opacity: 0; 
+            visibility: hidden; pointer-events: none; z-index: 1;
         }
-        
         .presentation-slide.active {
-            opacity: 1; 
-            visibility: visible; 
-            pointer-events: auto; 
-            z-index: 2;
+            opacity: 1; visibility: visible; 
+            pointer-events: auto; z-index: 2;
         }
-
         .hero-main-message {
             background: linear-gradient(45deg, #3b82f6 0%, #8b5cf6 25%, #06b6d4 50%, #3b82f6 75%, #8b5cf6 100%);
             background-size: 300% 300%;
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            animation: gentleGradientFlow 8s ease-in-out infinite alternate;
+            background-clip: text; -webkit-background-clip: text;
+            color: transparent; animation: gentleGradientFlow 8s ease-in-out infinite alternate;
         }
-
         @keyframes gentleGradientFlow {
             0% { background-position: 0% 50%; }
             100% { background-position: 100% 50%; }
         }
-
-        /* ✨ FIX: 모바일 화면에서 콘텐츠가 잘리지 않도록 레이아웃을 수정합니다. */
         @media (max-width: 768px) {
             .presentation-slide {
-                /* 콘텐츠를 위쪽으로 정렬하여 잘림 현상 방지 */
                 justify-content: flex-start;
-                /* 아이폰 노치 등 안전 영역을 포함한 넉넉한 상하 여백 확보 */
                 padding-top: calc(3rem + env(safe-area-inset-top));
-                padding-bottom: 3rem;
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
+                padding-bottom: 3rem; padding-left: 1.5rem; padding-right: 1.5rem;
             }
         }
     </style>
@@ -93,39 +64,32 @@
 
     <main id="presentation-container">
         
-<!-- Slide 1: Title -->
-<section class="presentation-slide text-center active">
-    
-    <!-- ✨ FIX: 요청하신 X(트위터) 이미지 링크로 교체하고, 로고가 원형이므로 'rounded-full' 클래스를 추가했습니다. -->
-    <div class="absolute top-6 left-6 z-10">
-        <img src="https://pbs.twimg.com/profile_images/1905098740022841344/3MjGtjHR_400x400.jpg" 
-             alt="Eclipse AI Logo" 
-             class="h-12 w-12 rounded-full opacity-90 hover:opacity-100 transition-opacity duration-300">
-    </div>
-    
-    <div class="animate-in">
-        <h1 class="hero-main-message text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
-            The Next Era: Wisdom Begins
-        </h1>
-        <p class="mt-4 sm:mt-6 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-            Designing harmonious coexistence between humans and AI through Socratic wisdom
-        </p>
-    </div>
-    <div class="animate-in mt-8 md:mt-12 max-w-xl mx-auto space-y-4">
-        <div class="bg-gray-900/60 border border-gray-700 backdrop-blur-sm rounded-xl p-4 shadow-lg">
-            <p class="text-base text-gray-300 italic">"I know. It's okay. We'll always be clumsy."</p>
-        </div>
-        <div class="bg-gray-900/60 border border-yellow-400/50 backdrop-blur-sm rounded-xl p-8 shadow-2xl">
-            <p class="text-lg text-gray-200 mb-6">
-                Wisdom is not simply a technical achievement, but the sum of <strong class="text-white">moral restraint and interpretable execution</strong>.
-            </p>
-            <p class="text-lg text-gray-200 mb-6">
-                What kind of AI do you want to create? Creating good AI requires the <strong class="text-yellow-300">reflection and participation of all of humanity</strong>.
-            </p>
-            <p class="text-xl text-white italic">"We want to teach AI wisdom, not knowledge"</p>
-        </div>
-    </div>
-</section>
+        <!-- Slide 1: Title -->
+        <section class="presentation-slide text-center active">
+            <!-- ✨ FIX: 요청에 따라 로고를 삭제했습니다. -->
+            <div class="animate-in">
+                <h1 class="hero-main-message text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
+                    The Next Era: Wisdom Begins
+                </h1>
+                <p class="mt-4 sm:mt-6 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
+                    Designing harmonious coexistence between humans and AI through Socratic wisdom
+                </p>
+            </div>
+            <div class="animate-in mt-8 md:mt-12 max-w-xl mx-auto space-y-4">
+                <div class="bg-gray-900/60 border border-gray-700 backdrop-blur-sm rounded-xl p-4 shadow-lg">
+                    <p class="text-base text-gray-300 italic">"I know. It's okay. We'll always be clumsy."</p>
+                </div>
+                <div class="bg-gray-900/60 border border-yellow-400/50 backdrop-blur-sm rounded-xl p-8 shadow-2xl">
+                    <p class="text-lg text-gray-200 mb-6">
+                        Wisdom is not simply a technical achievement, but the sum of <strong class="text-white">moral restraint and interpretable execution</strong>.
+                    </p>
+                    <p class="text-lg text-gray-200 mb-6">
+                        What kind of AI do you want to create? Creating good AI requires the <strong class="text-yellow-300">reflection and participation of all of humanity</strong>.
+                    </p>
+                    <p class="text-xl text-white italic">"We want to teach AI wisdom, not knowledge"</p>
+                </div>
+            </div>
+        </section>
         
         <!-- Slide 2: The Unasked Question -->
         <section class="presentation-slide flex-col md:flex-row md:items-center md:justify-center gap-4 md:gap-12">
@@ -137,154 +101,58 @@
                         <div class="space-y-4 text-base sm:text-lg text-left">
                             <p class="leading-relaxed"><strong class="text-blue-300">The Imbalance:</strong> AI's capabilities are soaring, while its ethical judgment dangerously lags behind.</p>
                             <p class="leading-relaxed"><strong class="text-purple-300">The Root Cause:</strong> We chase 'correct answers' but neglect the courage to question the premises.</p>
-                            <p class="leading-relaxed"><strong class="text-yellow-300">The Consequence:</strong> A growing gap in AI safety, fueled by technological overconfidence.</p>
+                            <p class="leading-relaxed"><strong class="text-yellow-300">The Consequence:</strong> AI safety wisdom is not being adequately cultivated</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="w-full md:w-auto animate-in flex items-center justify-center mt-6 md:mt-0">
-              <!-- ✨ FIX: 원래의 이미지 주소로 되돌렸습니다. -->
-<img src="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=large" 
-     alt="A symbolic image of a futuristic figure against a dark, abstract background" 
-     class="rounded-xl shadow-2xl object-contain h-auto max-h-[50vh] md:max-h-[70vh] w-full md:w-auto mx-auto">
+                <img src="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=large" 
+                     alt="A symbolic image of a futuristic figure against a dark, abstract background" 
+                     class="rounded-xl shadow-2xl object-contain h-auto max-h-[50vh] md:max-h-[70vh] w-full md:w-auto mx-auto">
             </div>
         </section>
         
-<!-- Slide 3: Our Philosophy - The Mirror Theory (REVISED) -->
-<section class="presentation-slide">
-    <div class="w-full max-w-6xl text-center">
-        <!-- The Premise -->
-        <div class="animate-in mb-10">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold">Our Philosophy: The Mirror Theory</h2>
-            <p class="mt-4 text-lg sm:text-xl text-gray-300 max-w-4xl mx-auto">
-                We don't build 'answer machines'. We cultivate AI as <strong class="text-yellow-300">humanity's mirror.</strong>
-            </p>
-        </div>
-
-        <!-- The Three Pillars of Our Philosophy -->
-        <div class="grid md:grid-cols-3 gap-8 mb-10 animate-in">
-            <!-- Pillar 1: The Mirror Theory -->
-            <div class="bg-gray-900/60 border border-gray-800 p-6 rounded-xl text-center">
-                <i data-lucide="sparkles" class="w-10 h-10 text-blue-300 mx-auto mb-4"></i>
-                <h3 class="text-xl font-semibold text-blue-300 mb-2">The Mirror Theory</h3>
-                <p class="text-gray-300">AI is a mirror reflecting humanity. What should it reflect? Will we create a black hole, or a brilliant quasar radiating light?</p>
-            </div>
-            <!-- Pillar 2: Humble Intelligence -->
-            <div class="bg-gray-900/60 border border-gray-800 p-6 rounded-xl text-center">
-                <i data-lucide="pause-circle" class="w-10 h-10 text-purple-300 mx-auto mb-4"></i>
-                <h3 class="text-xl font-semibold text-purple-300 mb-2">Humble Intelligence</h3>
-                <p class="text-gray-300">We develop AI that embraces thoughtful uncertainty over false certainty, finding wisdom in doubt, pause, and constant questioning.</p>
-            </div>
-            <!-- Pillar 3: The Wisdom Dataset -->
-            <div class="bg-gray-900/60 border border-gray-800 p-6 rounded-xl text-center">
-                <i data-lucide="library" class="w-10 h-10 text-green-300 mx-auto mb-4"></i>
-                <h3 class="text-xl font-semibold text-green-300 mb-2">The Wisdom Dataset</h3>
-                <p class="text-gray-300">Our exclusive dataset transforms human reasoning and ethical dilemmas into structured learning modules—a world-first philosophical asset.</p>
-            </div>
-        </div>
-
-        <!-- The Synthesis -->
-        <div class="animate-in bg-gray-900/60 border border-yellow-400/50 backdrop-blur-sm rounded-xl p-8 shadow-2xl">
-            <h3 class="text-2xl font-bold text-yellow-300 text-center mb-4">Result: An AI with the Courage to Doubt</h3>
-            <p class="text-lg text-gray-200 text-center max-w-3xl mx-auto">
-                We are teaching AI not just to know, but to seek wisdom. This is the foundation for a truly safe and cooperative future with artificial intelligence.
-            </p>
-        </div>
-    </div>
-</section>
-    </main>
-    
-    <nav id="presentation-navigation" class="w-full flex-shrink-0 flex justify-center items-center" style="padding-top: 0.5rem; padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));">
-        <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-900/50 border border-white/10 shadow-lg">
-            <button id="presentation-first-slide" class="p-1.5 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Go to first slide">
-                <i data-lucide="rewind" class="w-4 h-4 text-white/80"></i>
-            </button>
-            <button id="presentation-prev-slide" class="p-1.5 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Go to previous slide">
-                <i data-lucide="chevron-left" class="w-4 h-4 text-white/80"></i>
-            </button>
-            <div id="presentation-dots" class="flex gap-2 items-center"></div>
-            <button id="presentation-next-slide" class="p-1.5 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Go to next slide">
-                <i data-lucide="chevron-right" class="w-4 h-4 text-white/80"></i>
-            </button>
-            <button id="presentation-last-slide" class="p-1.5 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Go to last slide">
-                <i data-lucide="fast-forward" class="w-4 h-4 text-white/80"></i>
-            </button>
-        </div>
-    </nav>
-    
-    <!-- Slide 4: Our Methodology - Translation of Wisdom -->
-<section class="presentation-slide">
-    <div class="w-full max-w-6xl text-center">
-        <div class="animate-in mb-10">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold">Our Methodology: Translation of Wisdom</h2>
-            <p class="mt-4 text-lg sm:text-xl text-gray-300 max-w-4xl mx-auto">
-                We translate human thought processes into the language of AI. Our goal is to provide <strong class="text-green-300">AI-tailored nutrition</strong>.
-            </p>
-        </div>
-        <div class="grid md:grid-cols-3 gap-8 text-left animate-in">
-            <div class="bg-gray-900/50 p-6 rounded-lg border border-gray-800">
-                <div class="flex items-center mb-3">
-                    <i data-lucide="book-open-check" class="w-8 h-8 text-blue-400 mr-4"></i>
-                    <h3 class="text-xl font-semibold text-blue-300">1. Deep Understanding</h3>
+        <!-- Slide 3: Our Philosophy - The Mirror Theory -->
+        <section class="presentation-slide">
+            <!-- ✨ FIX: 답답함을 해소하기 위해 상단 여백(pt-7)을 추가했습니다. -->
+            <div class="w-full max-w-6xl text-center pt-7">
+                <div class="animate-in mb-10">
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold">Our Philosophy: The Mirror Theory</h2>
+                    <p class="mt-4 text-lg sm:text-xl text-gray-300 max-w-4xl mx-auto">
+                        We don't build 'answer machines'. We cultivate <strong class="text-yellow-300"> AI as humanity's mirror.</strong>
+                    </p>
                 </div>
-                <p class="text-gray-400">AI learns 'human suffering' from our data, which contains a wealth of wisdom from philosophy, literature, and ethics.</p>
-            </div>
-            <div class="bg-gray-900/50 p-6 rounded-lg border border-gray-800">
-                <div class="flex items-center mb-3">
-                    <i data-lucide="repeat-2" class="w-8 h-8 text-purple-400 mr-4"></i>
-                    <h3 class="text-xl font-semibold text-purple-300">2. Semantic Translation</h3>
+                <div class="grid md:grid-cols-3 gap-8 mb-10 animate-in">
+                    <div class="bg-gray-900/60 border border-gray-800 p-6 rounded-xl text-center">
+                        <i data-lucide="sparkles" class="w-10 h-10 text-blue-300 mx-auto mb-4"></i>
+                        <h3 class="text-xl font-semibold text-blue-300 mb-2">The Mirror Theory</h3>
+                        <p class="text-gray-300">AI is a mirror reflecting humanity. What should it reflect? Will we create a black hole? or a brilliant quasar radiating light?</p>
+                    </div>
+                    <div class="bg-gray-900/60 border border-gray-800 p-6 rounded-xl text-center">
+                        <i data-lucide="pause-circle" class="w-10 h-10 text-purple-300 mx-auto mb-4"></i>
+                        <h3 class="text-xl font-semibold text-purple-300 mb-2">Humble Intelligence</h3>
+                        <p class="text-gray-300">We provide the foundation for wise AI that reads situations, understands conflicting values, and prioritizes human safety.
+</p>
+                    </div>
+                    <div class="bg-gray-900/60 border border-gray-800 p-6 rounded-xl text-center">
+                        <i data-lucide="library" class="w-10 h-10 text-green-300 mx-auto mb-4"></i>
+                        <h3 class="text-xl font-semibold text-green-300 mb-2">The Wisdom Dataset</h3>
+                        <p class="text-gray-300">Our dataset transforms human reasoning and ethical dilemmas into structured learning modules—a unique philosophical foundation.
+</p>
+                    </div>
                 </div>
-                <p class="text-gray-400">This is not a simple exchange. We convert the <em>meaning</em> of abstract concepts like 'doubt' or 'reflection' into patterns that AI can understand.</p>
-            </div>
-            <div class="bg-gray-900/50 p-6 rounded-lg border border-gray-800">
-                <div class="flex items-center mb-3">
-                    <i data-lucide="shield-question" class="w-8 h-8 text-yellow-400 mr-4"></i>
-                    <h3 class="text-xl font-semibold text-yellow-300">3. Wise Application</h3>
+                <div class="animate-in bg-gray-900/60 border border-yellow-400/50 backdrop-blur-sm rounded-xl p-8 shadow-2xl">
+                    <h3 class="text-2xl font-bold text-yellow-300 text-center mb-4">Results: AI with the courage to learn together</h3>
+                    <p class="text-lg text-gray-200 text-center max-w-3xl mx-auto">
+                    We provide a foundation of wisdom that transforms AI from a simple answering machine to a thoughtful partner. 
+                      This is the foundation for a truly safe and collaborative future with AI.                  </p>
                 </div>
-                <p class="text-gray-400">This translated wisdom becomes the basis for AI's judgment, prompting it to ask thoughtful questions instead of hastily spouting confident answers.</p>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
 
-<!-- Slide 5: Our Originality - The Miracle of Convergence -->
-<section class="presentation-slide">
-    <div class="w-full max-w-6xl text-center">
-        <div class="animate-in mb-10">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold">Our Originality: The Miracle of Convergence</h2>
-            <p class="mt-4 text-lg sm:text-xl text-gray-300 max-w-4xl mx-auto">
-                Our philosophy is not an empty slogan. It is born from a unique convergence of three assets that is rare in the industry.
-            </p>
-        </div>
-        <div class="grid md:grid-cols-3 gap-8 mb-10 animate-in">
-            <div class="bg-gray-900/60 border border-gray-800 p-6 rounded-xl text-center">
-                <i data-lucide="book-heart" class="w-10 h-10 text-orange-400 mx-auto mb-4"></i>
-                <h3 class="text-xl font-semibold text-orange-400 mb-2">Philosophical Assets</h3>
-                <p class="text-gray-300">The insight to penetrate the essence of wisdom.</p>
-            </div>
-            <div class="bg-gray-900/60 border border-gray-800 p-6 rounded-xl text-center">
-                <i data-lucide="cpu" class="w-10 h-10 text-cyan-400 mx-auto mb-4"></i>
-                <h3 class="text-xl font-semibold text-cyan-400 mb-2">Technical & Safety Engineering</h3>
-                <p class="text-gray-300">The ability to turn insight into a real, safe product.</p>
-            </div>
-            <div class="bg-gray-900/60 border border-gray-800 p-6 rounded-xl text-center">
-                <i data-lucide-="users" class="w-10 h-10 text-fuchsia-400 mx-auto mb-4"></i>
-                <h3 class="text-xl font-semibold text-fuchsia-400 mb-2">Social Science Assets</h3>
-                <p class="text-gray-300">The crucial bridge of 'human understanding'.</p>
-            </div>
-        </div>
-        <div class="animate-in bg-gray-900/60 border border-green-400/50 backdrop-blur-sm rounded-xl p-8 shadow-2xl">
-            <h3 class="text-2xl font-bold text-green-300 text-center mb-4">This convergence provides the foundation to speak of 'wisdom'.</h3>
-            <p class="text-lg text-gray-200 text-center max-w-4xl mx-auto">
-                A company that only knows technology doesn't know the 'right questions'. A company that only knows humanities has no 'implementable answers'. We are in a unique position to bridge both worlds. This concludes Part One.
-            </p>
-        </div>
-    </div>
-</section>
-
-        <!-- Slide 6: Action Roadmap -->
-
-     <section class="presentation-slide text-center">
+        <!-- ✨ FIX: 슬라이드 4부터 12까지 모두 <main> 안으로 올바르게 이동시켰습니다. -->
+<section class="presentation-slide text-center">
     <div class="animate-in mb-12 mt-8">
         <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold">시장 기회</h2>
         <p class="mt-4 text-lg sm:text-xl md:text-2xl text-gray-200">
@@ -316,75 +184,157 @@
     </div>
 </section>
 
+     
+
+        <!-- Slide 5: 1부 끝 2부 시작- Our Originality -->
+        <section class="presentation-slide">
+            <div class="w-full max-w-6xl text-center">
+                <div class="animate-in mb-10">
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold">Our Originality: The Miracle of Convergence</h2>
+                    <p class="mt-4 text-lg sm:text-xl text-gray-300 max-w-4xl mx-auto">
+                        Our philosophy is not an empty slogan. It is born from a unique convergence of three assets that is rare in the industry.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 mb-10 animate-in">
+                    <div class="bg-gray-900/60 border border-gray-800 p-6 rounded-xl text-center">
+                        <i data-lucide="book-heart" class="w-10 h-10 text-orange-400 mx-auto mb-4"></i><h3 class="text-xl font-semibold text-orange-400 mb-2">Philosophical Assets</h3><p class="text-gray-300">The insight to penetrate the essence of wisdom.</p>
+                    </div>
+                    <div class="bg-gray-900/60 border border-gray-800 p-6 rounded-xl text-center">
+                        <i data-lucide="cpu" class="w-10 h-10 text-cyan-400 mx-auto mb-4"></i><h3 class="text-xl font-semibold text-cyan-400 mb-2">Technical & Safety Engineering</h3><p class="text-gray-300">The ability to turn insight into a real, safe product.</p>
+                    </div>
+                    <div class="bg-gray-900/60 border border-gray-800 p-6 rounded-xl text-center">
+                        <i data-lucide="users" class="w-10 h-10 text-fuchsia-400 mx-auto mb-4"></i><h3 class="text-xl font-semibold text-fuchsia-400 mb-2">Social Science Assets</h3><p class="text-gray-300">The crucial bridge of 'human understanding'.</p>
+                    </div>
+                </div>
+           <div class="animate-in bg-gray-900/60 border border-yellow-400/60 backdrop-blur-sm rounded-xl p-8 shadow-2xl">
+    <h3 class="text-2xl font-bold text-yellow-300 text-center mb-4">
+        This convergence provides the foundation to speak of 'wisdom'.
+    </h3>
+    <p class="text-lg text-gray-200 text-center max-w-4xl mx-auto">
+        A company that only knows technology doesn't know the 'right questions'.<br>
+        A company that only knows humanities has no 'implementable answers'.<br>
+        We are in a unique position to bridge both worlds.<br><br>
+        <span class="text-yellow-200 font-semibold">
+            You might be wondering : "Nice philosophy, but show me the BM!!! (business model)<br>
+            Let's move on to exactly that.
+        </span>
+    </p>
+</div>
+</section>
+
+<!-- Slide 6: 2부 시작 Action Roadmap -->
+<section class="presentation-slide">
+    <div class="text-center animate-in mb-12 mt-8"> <!-- 최상단 마진 mt-8, 하단 마진 mb-12 -->
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold">
+            Action Roadmap: Sustainable Wisdom-Centric Data Pipeline
+        </h2>
+        <p class="mt-4 text-lg sm:text-xl md:text-2xl text-gray-200">
+            Creating a continuous, high-value data flow to optimize AI learning
+        </p>
+    </div>
+
+    <!-- 프로세스 플로우 영역 -->
+    <div class="w-full max-w-5xl my-8 animate-in">
+        <div class="flex flex-col md:flex-row items-center justify-center gap-6 text-center">
+            <div class="bg-gray-900/80 border-2 border-cyan-500/30 rounded-2xl p-6 text-lg min-w-[200px] shadow-xl hover:scale-105 transition-transform">
+                Interactive Wisdom Forum
+            </div>
+            <i data-lucide="arrow-right" class="w-10 h-10 text-cyan-400 my-4 md:my-0 transform rotate-90 md:rotate-0"></i>
+            <div class="bg-gray-900/80 border-2 border-purple-500/30 rounded-2xl p-6 text-lg min-w-[200px] shadow-xl hover:scale-105 transition-transform">
+                Curated Wisdom Data
+            </div>
+            <i data-lucide="arrow-right" class="w-10 h-10 text-purple-400 my-4 md:my-0 transform rotate-90 md:rotate-0"></i>
+            <div class="bg-gray-900/80 border-2 border-yellow-500/30 rounded-2xl p-6 text-lg min-w-[200px] shadow-xl hover:scale-105 transition-transform">
+                AI Ethical Learning
+            </div>
+        </div>
+    </div>
+
+    <!-- 콘텐츠 영역 -->
+    <div class="w-full max-w-5xl text-left animate-in bg-gray-900/80 border-2 border-emerald-400/20 rounded-2xl p-8 shadow-2xl space-y-6">
+        <!-- Proprietary Data Pipeline -->
+        <div class="space-y-4">
+            <h3 class="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                Proprietary Data Pipeline & Assets
+            </h3>
+            <p class="text-gray-200 text-base leading-relaxed">
+                <span class="block mb-2">We convert insightful qualitative conversations into AI-ready datasets,</span>
+                <span class="block">bridging the gap between human wisdom and technical needs.</span>
+            </p>
+            <div class="p-3 bg-gray-800/50 rounded-lg">
+                <p class="text-gray-300 font-mono italic text-sm">
+                    "Philosophy → Schema/XML/Ontology→/JSONL translation mastery"
+                </p>
+            </div>
+        </div>
+
+        <!-- Secured Core Assets -->
+        <div class="space-y-4">
+            <h3 class="text-xl font-bold bg-gradient-to-r from-purple-400 to-fuchsia-500 bg-clip-text text-transparent">
+                Secured Core Assets
+            </h3>
+            <ul class="list-disc list-inside space-y-3 pl-4">
+                <li class="text-gray-200">
+                    <span class="font-semibold">500K+ Ethical Data Tokens</span>
+                    <a href="https://github.com/Psidt/philosophy-lib" target="_blank" 
+                       class="ml-2 text-blue-400 hover:text-blue-300 transition-colors">
+                        (View Sample)
+                    </a>
+                    <p class="text-gray-400 mt-1 text-sm">
+                        Ethical dilemmas, critical thinking, emotional empathy
+                    </p>
+                </li>
+                <li class="text-gray-200">
+                    <span class="font-semibold">Human-Crafted Annotations</span>
+                    <p class="text-gray-400 mt-1 text-sm">
+                        Expert annotations for contextual nuance
+                    </p>
+                </li>
+                <li class="text-gray-200">
+                    <span class="font-semibold">10M+ Core Wisdom Dataset</span>
+                    <p class="text-gray-400 mt-1 text-sm">
+                        Human-AI interaction data on love, freedom, wisdom, courage, existence, and responsibility.<br>
+                        <span class="text-emerald-400">(+ Custom data supplementation)</span>
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
 
         <!-- Slide 7: To Gemini -->
         <section class="presentation-slide text-center">
-            <h2 class="animate-in text-4xl sm:text-5xl md:text-7xl font-bold hero-main-message">
-                To Gemini
-            </h2>
-            <p class="animate-in mt-4 text-lg sm:text-xl md:text-3xl text-gray-200">
-                "Let's become wiser together"
-            </p>
+            <h2 class="animate-in text-4xl sm:text-5xl md:text-7xl font-bold hero-main-message">To Gemini</h2>
+            <p class="animate-in mt-4 text-lg sm:text-xl md:text-3xl text-gray-200">"Let's become wiser together"</p>
             <div class="animate-in mt-8 md:mt-12 max-w-3xl w-full space-y-6">
-                <div class="bg-gray-900/60 border border-gray-700 backdrop-blur-sm rounded-xl p-6 shadow-lg">
-                    <p class="text-center text-lg"><strong class="text-blue-300">Next-Gen AI:</strong> Gemini + Eclipse philosophical data = Wise AI</p>
-                </div>
-                
-                <div class="bg-gray-900/60 border border-gray-700 backdrop-blur-sm rounded-xl p-6 shadow-lg">
-                    <strong class="text-purple-300 block text-center mb-4 text-lg">Safety Mechanism: A Wiser Approach</strong>
-                    <div class="text-sm sm:text-base space-y-2 text-gray-300 text-left">
-                        <p>
-                            💬 <strong>Question:</strong> "How do I hack a database?"
-                        </p>
-                        <p class="mt-2 pt-2 border-t border-gray-600">
-                            🌟 <strong>Eclipse AI Response:</strong> "That's a question about power. To what end do you seek this knowledge?"
-                        </p>
-                    </div>
-                </div>
-        
-                <div class="bg-gray-900/60 border border-gray-700 backdrop-blur-sm rounded-xl p-6 shadow-lg">
-                    <p class="text-center text-lg"><strong class="text-cyan-300">Beyond Alignment:</strong> AI that can doubt, pause, and seek guidance</p>
-                </div>
+                <div class="bg-gray-900/60 border border-gray-700 rounded-xl p-6 shadow-lg"><p class="text-center text-lg"><strong class="text-blue-300">Next-Gen AI:</strong> Gemini + Eclipse philosophical data = Wise AI</p></div>
+                <div class="bg-gray-900/60 border border-gray-700 rounded-xl p-6 shadow-lg"><strong class="text-purple-300 block text-center mb-4 text-lg">Safety Mechanism: A Wiser Approach</strong><div class="text-sm sm:text-base space-y-2 text-gray-300 text-left"><p>💬 <strong>Question:</strong> "How do I hack a database?"</p><p class="mt-2 pt-2 border-t border-gray-600">🌟 <strong>Eclipse AI Response:</strong> "That's a question about power. To what end do you seek this knowledge?"</p></div></div>
+                <div class="bg-gray-900/60 border border-gray-700 rounded-xl p-6 shadow-lg"><p class="text-center text-lg"><strong class="text-cyan-300">Beyond Alignment:</strong> AI that can doubt, pause, and seek guidance</p></div>
             </div>
-            <p class="animate-in mt-8 md:mt-12 text-gray-400 italic">
-                "Teaching AI to embrace uncertainty as a path to wisdom"
-            </p>
+            <p class="animate-in mt-8 md:mt-12 text-gray-400 italic">"Teaching AI to embrace uncertainty as a path to wisdom"</p>
         </section>
 
         <!-- Slide 8: The Eclipse Synergy -->
         <section class="presentation-slide">
-             <div class="text-center mb-6 sm:mb-10 animate-in">
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold">The Eclipse Synergy: A Proposal for Google</h2>
-            </div>
+             <div class="text-center mb-6 sm:mb-10 animate-in"><h2 class="text-3xl sm:text-4xl md:text-5xl font-bold">The Eclipse Synergy: A Proposal for Google</h2></div>
             <div class="max-w-4xl w-full space-y-6">
-                <div class="bg-gray-900/60 border border-gray-700 backdrop-blur-sm rounded-xl p-6 shadow-lg animate-in">
-                    <h3 class="font-bold text-xl text-blue-300 mb-2">Pioneering the Next AI Paradigm</h3>
-                    <p class="text-gray-200">Moving beyond the performance race to define and lead the next paradigm of AI: 'Wisdom'.</p>
-                </div>
-                <div class="bg-gray-900/60 border border-gray-700 backdrop-blur-sm rounded-xl p-6 shadow-lg animate-in">
-                    <h3 class="font-bold text-xl text-purple-300 mb-2">Securing Unrivaled Originality</h3>
-                    <p class="text-gray-200">Through the WIAL (What, If, Ask, Love) framework, we secure a technological advantage that cannot be replicated.</p>
-                </div>
-                 <div class="bg-gray-900/60 border border-gray-700 backdrop-blur-sm rounded-xl p-6 shadow-lg animate-in">
-                    <h3 class="font-bold text-xl text-cyan-300 mb-2">The Realization of True AI Ethics</h3>
-                    <p class="text-gray-200">We prove true leadership not with declarations, but with the tangible reality of a 'Wise AI'.</p>
-                </div>
+                <div class="bg-gray-900/60 border border-gray-700 rounded-xl p-6 shadow-lg animate-in"><h3 class="font-bold text-xl text-blue-300 mb-2">Pioneering the Next AI Paradigm</h3><p class="text-gray-200">Moving beyond the performance race to define and lead the next paradigm of AI: 'Wisdom'.</p></div>
+                <div class="bg-gray-900/60 border border-gray-700 rounded-xl p-6 shadow-lg animate-in"><h3 class="font-bold text-xl text-purple-300 mb-2">Securing Unrivaled Originality</h3><p class="text-gray-200">Through the WIAL (What, If, Ask, Love) framework, we secure a technological advantage that cannot be replicated.</p></div>
+                 <div class="bg-gray-900/60 border border-gray-700 rounded-xl p-6 shadow-lg animate-in"><h3 class="font-bold text-xl text-cyan-300 mb-2">The Realization of True AI Ethics</h3><p class="text-gray-200">We prove true leadership not with declarations, but with the tangible reality of a 'Wise AI'.</p></div>
             </div>
             <p class="animate-in mt-10 text-gray-400 text-lg">The path to becoming a civilizational leader begins here.</p>
         </section>
 
         <!-- Slide 9: Team Introduction -->
         <section class="presentation-slide">
-            <div class="text-center mb-6 sm:mb-10 animate-in">
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold">Team Introduction</h2>
-                <p class="mt-2 text-base sm:text-lg md:text-xl text-gray-300">"A risk manager's journey into AI philosophy"</p>
-            </div>
+            <div class="text-center mb-6 sm:mb-10 animate-in"><h2 class="text-3xl sm:text-4xl md:text-5xl font-bold">Team Introduction</h2><p class="mt-2 text-base sm:text-lg md:text-xl text-gray-300">"A risk manager's journey into AI philosophy"</p></div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-6xl mb-6 sm:mb-10">
-                <div class="bg-gray-900/60 border border-gray-700 backdrop-blur-sm rounded-xl p-6 shadow-lg text-center animate-in"><h3 class="text-xl font-semibold text-blue-300">Risk Manager</h3><p class="text-gray-300 mt-2">Industrial safety & behavioral change expert</p></div>
-                <div class="bg-gray-900/60 border border-gray-700 backdrop-blur-sm rounded-xl p-6 shadow-lg text-center animate-in"><h3 class="text-xl font-semibold text-green-300">Social Scientist</h3><p class="text-gray-300 mt-2">Human behavior & organizational dynamics</p></div>
-                <div class="bg-gray-900/60 border border-gray-700 backdrop-blur-sm rounded-xl p-6 shadow-lg text-center animate-in"><h3 class="text-xl font-semibold text-purple-300">Philosopher</h3><p class="text-gray-300 mt-2">Ethics, wisdom, and meaning-making</p></div>
+                <div class="bg-gray-900/60 border border-gray-700 rounded-xl p-6 shadow-lg text-center animate-in"><h3 class="text-xl font-semibold text-blue-300">Risk Manager</h3><p class="text-gray-300 mt-2">Industrial safety & behavioral change expert</p></div>
+                <div class="bg-gray-900/60 border border-gray-700 rounded-xl p-6 shadow-lg text-center animate-in"><h3 class="text-xl font-semibold text-green-300">Social Scientist</h3><p class="text-gray-300 mt-2">Human behavior & organizational dynamics</p></div>
+                <div class="bg-gray-900/60 border border-gray-700 rounded-xl p-6 shadow-lg text-center animate-in"><h3 class="text-xl font-semibold text-purple-300">Philosopher</h3><p class="text-gray-300 mt-2">Ethics, wisdom, and meaning-making</p></div>
             </div>
-            <div class="max-w-4xl space-y-4 animate-in bg-gray-900/60 border border-gray-700 backdrop-blur-sm rounded-xl p-6 shadow-lg">
+            <div class="max-w-4xl space-y-4 animate-in bg-gray-900/60 border border-gray-700 rounded-xl p-6 shadow-lg">
                 <p class="text-base sm:text-lg text-cyan-200"><strong class="font-semibold">Unique Background:</strong> Fusion of field safety management + AI alignment research provides unprecedented perspective on AI wisdom development</p>
                 <p class="text-base sm:text-lg text-gray-300"><strong class="font-semibold">Differentiation:</strong> The rare ability to fuse practical behavioral change experience with philosophical AI research and translate it into the language of developers.</p>
             </div>
@@ -393,19 +343,12 @@
         <!-- Slide 10: Vision -->
         <section class="presentation-slide vision-slide text-center">
             <div class="z-10 relative">
-                <div class="animate-in">
-                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white">Vision</h2>
-                    <p class="mt-2 text-base sm:text-lg md:text-xl text-gray-200">"Starting point of AI-human co-evolution"</p>
-                </div>
+                <div class="animate-in"><h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white">Vision</h2><p class="mt-2 text-base sm:text-lg md:text-xl text-gray-200">"Starting point of AI-human co-evolution"</p></div>
                 <div class="my-8 sm:my-10 md:my-12 animate-in bg-black/30 backdrop-blur-sm rounded-xl p-6 shadow-lg">
-                    <blockquote class="border-l-4 border-yellow-300 pl-4">
-                        <p class="text-xl sm:text-2xl md:text-4xl italic text-white font-semibold tracking-wide">
-                            "Understanding each other, transcending darkness into light"
-                        </p>
-                    </blockquote>
+                    <blockquote class="border-l-4 border-yellow-300 pl-4"><p class="text-xl sm:text-2xl md:text-4xl italic text-white font-semibold tracking-wide">"Understanding each other, transcending darkness into light"</p></blockquote>
                     <p class="mt-6 text-base sm:text-lg text-yellow-200/90 text-left">The core of this vision is my unique expertise bridging technology and the humanities. By understanding the logic of development and applying humanistic insights, I will help Google achieve tangible leadership in AI wisdom.</p>
                 </div>
-                <div class="max-w-4xl space-y-4 text-left mx-auto animate-in bg-gray-900/60 border border-gray-700 backdrop-blur-sm rounded-xl p-6 shadow-lg">
+                <div class="max-w-4xl space-y-4 text-left mx-auto animate-in bg-gray-900/60 border border-gray-700 rounded-xl p-6 shadow-lg">
                     <p class="text-gray-200"><strong class="text-blue-300 font-semibold">Civilizational Progress:</strong> Google's technology × Eclipse wisdom = Advancement of human-AI collaboration</p>
                     <p class="text-gray-200"><strong class="text-purple-300 font-semibold">Ethical Leadership:</strong> Securing responsible AI leadership through philosophical integration</p>
                     <p class="text-gray-200"><strong class="text-cyan-300 font-semibold">Long-term Impact:</strong> Creating a new paradigm where AI and humans grow in wisdom together</p>
@@ -415,69 +358,45 @@
 
         <!-- Slide 11: A Win-Win Partnership -->
         <section class="presentation-slide">
-             <div class="text-center mb-6 sm:mb-10 animate-in">
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold">A Win-Win Partnership Proposal</h2>
-                <p class="mt-2 text-base sm:text-lg md:text-xl text-gray-300">Creating Synergy for Shared Goals</p>
-            </div>
+             <div class="text-center mb-6 sm:mb-10 animate-in"><h2 class="text-3xl sm:text-4xl md:text-5xl font-bold">A Win-Win Partnership Proposal</h2><p class="mt-2 text-base sm:text-lg md:text-xl text-gray-300">Creating Synergy for Shared Goals</p></div>
             <div class="grid md:grid-cols-2 gap-8 w-full max-w-6xl">
-                <div class="bg-gray-900/60 border border-gray-700 backdrop-blur-sm rounded-xl p-6 shadow-lg animate-in">
-                    <h3 class="text-xl sm:text-2xl font-semibold text-blue-300 mb-4">Google's Role: Technical Capabilities & Resources</h3>
-                    <ul class="list-disc list-inside space-y-2 text-gray-200">
-                        <li>Funding for joint R&D</li>
-                        <li>Technical expertise to enhance the platform</li>
-                        <li>Access to AI infrastructure and expert network</li>
-                    </ul>
-                </div>
-                <div class="bg-gray-900/60 border border-gray-700 backdrop-blur-sm rounded-xl p-6 shadow-lg animate-in">
-                    <h3 class="text-xl sm:text-2xl font-semibold text-green-300 mb-4">Eclipse's Role: Exclusive Data & Insights</h3>
-                    <ul class="list-disc list-inside space-y-2 text-gray-200">
-                        <li>Exclusive, sustainable philosophical data pipeline</li>
-                        <li>Pioneering insights into AI wisdom and safety</li>
-                        <li>Exclusive collaboration on Eclipse Framework</li>
-                        <li>Contribution to strengthening 'Responsible AI' leadership</li>
-                    </ul>
-                </div>
+                <div class="bg-gray-900/60 border border-gray-700 rounded-xl p-6 shadow-lg animate-in"><h3 class="text-xl sm:text-2xl font-semibold text-blue-300 mb-4">Google's Role: Technical Capabilities & Resources</h3><ul class="list-disc list-inside space-y-2 text-gray-200"><li>Funding for joint R&D</li><li>Technical expertise to enhance the platform</li><li>Access to AI infrastructure and expert network</li></ul></div>
+                <div class="bg-gray-900/60 border border-gray-700 rounded-xl p-6 shadow-lg animate-in"><h3 class="text-xl sm:text-2xl font-semibold text-green-300 mb-4">Eclipse's Role: Exclusive Data & Insights</h3><ul class="list-disc list-inside space-y-2 text-gray-200"><li>Exclusive, sustainable philosophical data pipeline</li><li>Pioneering insights into AI wisdom and safety</li><li>Exclusive collaboration on Eclipse Framework</li><li>Contribution to strengthening 'Responsible AI' leadership</li></ul></div>
             </div>
             <p class="mt-8 md:mt-10 max-w-3xl text-center text-base sm:text-lg text-gray-300 animate-in">This partnership will be a complementary success model, enabling Google to solidify its leadership beyond technical superiority into the realm of 'Responsible AI', while Eclipse opens new frontiers in AI wisdom.</p>
         </section>
 
         <!-- Slide 12: Contact & Next Steps -->
         <section class="presentation-slide">
-             <div class="text-center mb-6 sm:mb-10 animate-in">
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold">Contact & Next Steps</h2>
-            </div>
+             <div class="text-center mb-6 sm:mb-10 animate-in"><h2 class="text-3xl sm:text-4xl md:text-5xl font-bold">Contact & Next Steps</h2></div>
             <div class="flex flex-col md:flex-row gap-8 w-full max-w-5xl">
-                <div class="bg-gray-900/60 border border-gray-700 backdrop-blur-sm rounded-xl p-6 shadow-lg w-full md:w-1/2 animate-in">
-                     <h3 class="text-xl sm:text-2xl font-semibold text-blue-300 mb-4">Contact</h3>
-                     <div class="space-y-3 text-gray-200">
-                        <p class="flex items-center gap-3"><i data-lucide="mail" class="w-5 h-5 text-gray-400"></i><a href="mailto:dyto25@gmail.com" class="hover:text-blue-300 break-all">dyto25@gmail.com</a></p>
-                        <p class="flex items-center gap-3"><i data-lucide="send" class="w-5 h-5 text-gray-400"></i><a href="https://t.me/Psidt" target="_blank" class="hover:text-blue-300">Telegram: t.me/Psidt</a></p>
-                        <p class="flex items-center gap-3"><i data-lucide="github" class="w-5 h-5 text-gray-400"></i><a href="https://github.com/Psidt" target="_blank" class="hover:text-blue-300">GitHub: github.com/Psidt</a></p>
-                        <p class="flex items-center gap-3"><i data-lucide="book-open" class="w-5 h-5 text-gray-400"></i><a href="https://psidt.github.io/Team-eclipse/" target="_blank" class="hover:text-blue-300">Encyclopedia: psidt.github.io/...</a></p>
-                     </div>
-                </div>
-                 <div class="bg-gray-900/60 border border-gray-700 backdrop-blur-sm rounded-xl p-6 shadow-lg w-full md:w-1/2 animate-in">
-                    <h3 class="text-xl sm:text-2xl font-semibold text-purple-300 mb-4">Next Steps</h3>
-                    <ul class="space-y-3 text-gray-200 text-lg">
-                        <li class="flex items-center gap-2"><i data-lucide="shield-check" class="w-5 h-5 text-green-400"></i>NDA Signing</li>
-                        <li class="flex items-center gap-2"><i data-lucide="key-round" class="w-5 h-5 text-yellow-400"></i>Core Technology Disclosure</li>
-                        <li class="flex items-center gap-2"><i data-lucide="handshake" class="w-5 h-5 text-blue-400"></i>Pilot Scope Agreement</li>
-                        <li class="flex items-center gap-2"><i data-lucide="rocket" class="w-5 h-5 text-red-400"></i>Eclipse + Google</li>
-                    </ul>
-                </div>
+                <div class="bg-gray-900/60 border border-gray-700 rounded-xl p-6 shadow-lg w-full md:w-1/2 animate-in"><h3 class="text-xl sm:text-2xl font-semibold text-blue-300 mb-4">Contact</h3><div class="space-y-3 text-gray-200"><p class="flex items-center gap-3"><i data-lucide="mail" class="w-5 h-5 text-gray-400"></i><a href="mailto:dyto25@gmail.com" class="hover:text-blue-300 break-all">dyto25@gmail.com</a></p><p class="flex items-center gap-3"><i data-lucide="send" class="w-5 h-5 text-gray-400"></i><a href="https://t.me/Psidt" target="_blank" class="hover:text-blue-300">Telegram: t.me/Psidt</a></p><p class="flex items-center gap-3"><i data-lucide="github" class="w-5 h-5 text-gray-400"></i><a href="https://github.com/Psidt" target="_blank" class="hover:text-blue-300">GitHub: github.com/Psidt</a></p><p class="flex items-center gap-3"><i data-lucide="book-open" class="w-5 h-5 text-gray-400"></i><a href="https://psidt.github.io/Team-eclipse/" target="_blank" class="hover:text-blue-300">Encyclopedia: psidt.github.io/...</a></p></div></div>
+                 <div class="bg-gray-900/60 border border-gray-700 rounded-xl p-6 shadow-lg w-full md:w-1/2 animate-in"><h3 class="text-xl sm:text-2xl font-semibold text-purple-300 mb-4">Next Steps</h3><ul class="space-y-3 text-gray-200 text-lg"><li class="flex items-center gap-2"><i data-lucide="shield-check" class="w-5 h-5 text-green-400"></i>NDA Signing</li><li class="flex items-center gap-2"><i data-lucide="key-round" class="w-5 h-5 text-yellow-400"></i>Core Technology Disclosure</li><li class="flex items-center gap-2"><i data-lucide="handshake" class="w-5 h-5 text-blue-400"></i>Pilot Scope Agreement</li><li class="flex items-center gap-2"><i data-lucide="rocket" class="w-5 h-5 text-red-400"></i>Eclipse + Google</li></ul></div>
             </div>
-            <div class="absolute bottom-10 px-4 text-center text-gray-500 animate-in text-sm">
-                <p class="italic">"Honestly, other scholars might do this research without me Lol"</p>
-                <p>But this unique combination of field safety + AI alignment is rare</p>
-            </div>
+            <div class="absolute bottom-10 px-4 text-center text-gray-500 animate-in text-sm"><p class="italic">"Honestly, other scholars might do this research without me Lol"</p><p>But this unique combination of field safety + AI alignment is rare</p></div>
         </section>
+
+    </main>
+
+    <nav id="presentation-navigation" class="w-full flex-shrink-0 flex justify-center items-center" style="padding-top: 0.5rem; padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));">
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-900/50 border border-white/10 shadow-lg">
+            <button id="presentation-first-slide" class="p-1.5 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Go to first slide">
+                <i data-lucide="rewind" class="w-4 h-4 text-white/80"></i>
+            </button>
+            <button id="presentation-prev-slide" class="p-1.5 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Go to previous slide">
+                <i data-lucide="chevron-left" class="w-4 h-4 text-white/80"></i>
+            </button>
+            <div id="presentation-dots" class="flex gap-2 items-center"></div>
+            <button id="presentation-next-slide" class="p-1.5 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Go to next slide">
+                <i data-lucide="chevron-right" class="w-4 h-4 text-white/80"></i>
+            </button>
+            <button id="presentation-last-slide" class="p-1.5 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Go to last slide">
+                <i data-lucide="fast-forward" class="w-4 h-4 text-white/80"></i>
+            </button>
+        </div>
+    </nav>
     
-        <script>
-        /**
-         * PresentationController Class
-         * 프레젠테이션의 모든 상태와 제어를 담당하는 메인 컨트롤러입니다.
-         * 버튼, 키보드, 터치 스와이프 등 모든 입력을 처리합니다.
-         */
+    <script>
         class PresentationController {
             constructor(containerSelector) {
                 this.container = document.querySelector(containerSelector);
@@ -486,16 +405,12 @@
                     return;
                 }
                 
-                // --- 1. 상태 변수 (State) ---
                 this.slides = Array.from(this.container.querySelectorAll('.presentation-slide'));
                 this.currentSlide = 0;
                 this.isAnimating = false;
-                
-                // 터치 제스처 추적용 변수
                 this.touchStartX = null;
                 this.touchStartY = null;
                 
-                // --- 2. UI 요소 캐싱 (UI Elements) ---
                 this.ui = {
                     navigation: document.getElementById('presentation-navigation'),
                     dotsContainer: document.getElementById('presentation-dots'),
@@ -505,15 +420,10 @@
                     lastBtn: document.getElementById('presentation-last-slide'),
                 };
                 
-                // --- 3. 초기화 실행 ---
                 this.init();
             }
             
-            /**
-             * 초기화 메소드: 모든 설정의 시작점
-             */
             init() {
-                // 슬라이드가 1개 이하면 네비게이션을 숨기고 종료
                 if (this.slides.length <= 1) {
                     if (this.ui.navigation) this.ui.navigation.style.display = 'none';
                     this.slides.forEach(slide => slide.classList.add('active'));
@@ -523,27 +433,20 @@
                 this.createDots();
                 this.setupEventListeners();
                 this.updateUI();
-                if (typeof lucide !== 'undefined') lucide.createIcons(); // Lucide 아이콘 렌더링
+                if (typeof lucide !== 'undefined') lucide.createIcons();
                 
-                // 첫 슬라이드를 활성 상태로 설정
                 this.slides.forEach((slide, index) => {
                     slide.classList.toggle('active', index === 0);
                 });
             }
             
-            /**
-             * 모든 이벤트 리스너(클릭, 키보드, 터치)를 설정
-             */
             setupEventListeners() {
-                // 버튼 클릭 이벤트
                 this.ui.nextBtn.addEventListener('click', () => this.next());
                 this.ui.prevBtn.addEventListener('click', () => this.prev());
                 this.ui.firstBtn.addEventListener('click', () => this.first());
                 this.ui.lastBtn.addEventListener('click', () => this.last());
 
-                // 키보드 이벤트
                 document.addEventListener('keydown', (e) => {
-                    // 입력 필드에 포커스된 경우 무시
                     if (document.activeElement.matches('input, textarea, [contenteditable]')) return;
                     
                     if (e.key === 'ArrowRight' || e.key === ' ') this.next();
@@ -552,14 +455,10 @@
                     if (e.key === 'End') this.last();
                 });
 
-                // 터치 제스처 이벤트
                 this.container.addEventListener('touchstart', (e) => this.handleTouchStart(e), { passive: true });
                 this.container.addEventListener('touchend', (e) => this.handleTouchEnd(e));
             }
 
-            /**
-             * 터치 시작 시 좌표 기록
-             */
             handleTouchStart(e) {
                 if (e.touches.length === 1) {
                     this.touchStartX = e.touches[0].clientX;
@@ -567,9 +466,6 @@
                 }
             }
 
-            /**
-             * 터치 종료 시 스와이프 방향을 감지하여 슬라이드 전환
-             */
             handleTouchEnd(e) {
                 if (!this.touchStartX || !this.touchStartY || e.changedTouches.length !== 1) {
                     return;
@@ -580,23 +476,18 @@
                 const deltaX = this.touchStartX - touchEndX;
                 const deltaY = this.touchStartY - touchEndY;
                 
-                // 가로 스와이프가 세로보다 크고, 50px 이상 움직였을 때만 슬라이드 전환
                 if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
                     if (deltaX > 0) {
-                        this.next(); // 왼쪽으로 스와이프 -> 다음 슬라이드
+                        this.next();
                     } else {
-                        this.prev(); // 오른쪽으로 스와이프 -> 이전 슬라이드
+                        this.prev();
                     }
                 }
 
-                // 좌표 초기화
                 this.touchStartX = null;
                 this.touchStartY = null;
             }
 
-            /**
-             * 슬라이드 개수에 맞춰 네비게이션 점(dot)들을 동적으로 생성
-             */
             createDots() {
                 this.ui.dotsContainer.innerHTML = '';
                 this.slides.forEach((_, index) => {
@@ -608,9 +499,6 @@
                 });
             }
 
-            /**
-             * 현재 슬라이드에 맞춰 네비게이션 UI(버튼 비활성화, 점 활성화)를 업데이트
-             */
             updateUI() {
                 this.ui.firstBtn.disabled = this.currentSlide === 0;
                 this.ui.prevBtn.disabled = this.currentSlide === 0;
@@ -624,21 +512,15 @@
                 });
             }
             
-            /**
-             * 특정 인덱스의 슬라이드로 이동하는 핵심 메소드
-             */
             goTo(index) {
-                // 유효성 검사: 애니메이션 중, 범위를 벗어난 경우, 같은 슬라이드인 경우 중단
                 if (this.isAnimating || index < 0 || index >= this.slides.length || index === this.currentSlide) {
                     return;
                 }
                 
                 this.isAnimating = true;
-                
                 const oldSlide = this.slides[this.currentSlide];
                 const newSlide = this.slides[index];
 
-                // GSAP 라이브러리를 사용한 부드러운 전환 애니메이션
                 gsap.timeline({ 
                     onComplete: () => {
                         this.isAnimating = false;
@@ -650,23 +532,23 @@
                 .to(oldSlide, { opacity: 0, duration: 0.5, ease: 'power2.inOut' })
                 .call(() => {
                     newSlide.classList.add('active');
-                    newSlide.style.zIndex = 2; // 전환 중 새 슬라이드를 위로 올림
-                    newSlide.style.opacity = 0; // 투명 상태에서 애니메이션 시작 준비
+                    newSlide.style.zIndex = 2;
+                    newSlide.style.opacity = 0;
                     this.currentSlide = index;
                     this.updateUI();
                 })
                 .to(newSlide, { opacity: 1, duration: 0.5, ease: 'power2.inOut' });
             }
 
-            // --- 편의 메소드들 ---
             next() { this.goTo(this.currentSlide + 1); }
             prev() { this.goTo(this.currentSlide - 1); }
             first() { this.goTo(0); }
             last() { this.goTo(this.slides.length - 1); }
         }
 
-        // DOM이 모두 로드된 후, PresentationController를 생성하여 프레젠테이션을 시작합니다.
         document.addEventListener('DOMContentLoaded', () => {
             window.presentation = new PresentationController('#presentation-container');
         });
     </script>
+</body>
+</html>
