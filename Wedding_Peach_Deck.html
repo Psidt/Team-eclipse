@@ -167,39 +167,49 @@
     </div>
 </section>
         
+     <!-- Slide 2: The Unasked Question -->
+<!-- Section: 전체 슬라이드를 감싸는 최상위 컨테이너입니다. -->
+<!-- Layout:  전체 화면을 차지하며, 콘텐츠를 중앙에 배치하는 2단(텍스트/이미지) 분할 레이아웃입니다. -->
+<section class="w-full h-full min-h-screen flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 lg:gap-16 bg-gray-950 p-4 sm:p-8">
 
-        <!-- Slide 2: The Starting Question -->
-        <section class="presentation-slide layout-split md:items-center md:justify-center md:gap-12 lg:gap-16">
-            <div class="w-full md:w-auto md:max-w-lg animate-in flex flex-col justify-center text-center md:text-left">
-                 <div class="bg-gray-900/60 border border-gray-700 backdrop-blur-sm rounded-xl p-8 shadow-lg">
-                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-200">
-                        The Question
-                    </h2>
-                    <h3 class="mt-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-blue-400">
-                        Beyond the Race for Perfect AI
-                    </h3>
-                    <div class="w-full mt-8">
-                        <div class="space-y-4 text-base sm:text-lg text-left">
-                            <p><strong class="text-blue-300">Current Reality:</strong> AI Intelligence ↑ vs Ethical Judgment ↓</p>
-                            <p><strong class="text-purple-300">Problem:</strong> Overconfidence → Bias & Misjudgment</p>
-                            <p><strong class="text-red-300">Result:</strong> Global AI Safety Trust Gap</p>
-                        </div>
-                    </div>
+    <!-- Column 1 (Left): 모든 텍스트 콘텐츠를 포함하는 왼쪽 열입니다. -->
+    <div class="w-full md:w-auto md:max-w-lg animate-in flex flex-col justify-center text-center md:text-left">
+        
+        <!-- Content Box: 텍스트 가독성을 높이기 위한 반투명 배경의 카드 UI입니다. -->
+        <div class="bg-gray-900/60 border border-gray-700 backdrop-blur-sm rounded-xl p-8 shadow-lg">
+            
+            <!-- Main Title: 슬라이드의 핵심 주제를 나타내는 메인 제목입니다. -->
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-200">
+                The Unasked Question
+            </h2>
+            
+            <!-- Subtitle: 메인 제목을 보충 설명하고 시각적 임팩트를 주는 부제목입니다. -->
+            <h3 class="mt-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-blue-400">
+                When Intelligence Outpaces Wisdom
+            </h3>
+
+            <!-- Body Content: 슬라이드의 핵심 논거를 담고 있는 본문 영역입니다. -->
+            <div class="w-full mt-8">
+                <div class="space-y-4 text-base sm:text-lg text-left">
+                    <p class="leading-relaxed"><strong class="text-blue-300">The Imbalance:</strong> AI's capabilities are soaring, while its ethical judgment dangerously lags behind.</p>
+                    <p class="leading-relaxed"><strong class="text-purple-300">The Root Cause:</strong> We chase 'correct answers' but neglect the courage to question the premises.</p>
+                    <p class="leading-relaxed"><strong class="text-yellow-300">The Consequence:</strong> A growing gap in AI safety, fueled by technological overconfidence.</p>
                 </div>
             </div>
-            <div class="w-full md:w-auto animate-in flex items-center justify-center mt-8 md:mt-0">
-                <!-- 
-                    [수정 사항]
-                    모바일에서 이미지가 잘리는 현상을 해결하기 위해,
-                    'object-cover'를 'object-contain'으로 변경했습니다.
-                -->
-                <img src="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=large" alt="A symbolic image of a futuristic figure against a dark, abstract background" class="rounded-2xl shadow-2xl object-contain h-[60vh] w-full md:w-[770px] md:h-[786px] mx-auto">
-            </div>
-        </section>
 
-    </main>
-</body>
-</html>
+        </div>
+    </div>
+
+    <!-- Column 2 (Right): 시각적 요소를 포함하는 오른쪽 열입니다. -->
+    <div class="w-full md:w-auto animate-in flex items-center justify-center mt-8 md:mt-0">
+        
+        <!-- Image Element: 슬라이드의 주제를 상징하는 메인 이미지입니다. -->
+        <img src="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=large" 
+             alt="A symbolic image of a futuristic figure against a dark, abstract background" 
+             class="rounded-2xl shadow-2xl object-contain h-[60vh] w-full md:w-[660px] md:h-[683px] mx-auto">
+
+    </div>
+</section>
 
 <!-- Slide 3: The Answer - A New Foundation -->
 <section class="presentation-slide">
