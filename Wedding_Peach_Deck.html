@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- ✨ FIX: 모바일 세이프 에어리어(Safe Area)를 사용하기 위해 viewport-fit=cover 추가 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="robots" content="noindex, nofollow">
     <title>Eclipse Solutions - AI Future Fund Pitch Deck</title>
@@ -76,10 +75,16 @@
             100% { background-position: 100% 50%; }
         }
 
+        /* ✨ FIX: 모바일 화면에서 콘텐츠가 잘리지 않도록 레이아웃을 수정합니다. */
         @media (max-width: 768px) {
             .presentation-slide {
-                padding: 2rem 1rem; /* 모바일 패딩 조정 */
-                justify-content: center; /* 세로 중앙 정렬 유지 */
+                /* 콘텐츠를 위쪽으로 정렬하여 잘림 현상 방지 */
+                justify-content: flex-start;
+                /* 아이폰 노치 등 안전 영역을 포함한 넉넉한 상하 여백 확보 */
+                padding-top: calc(3rem + env(safe-area-inset-top));
+                padding-bottom: 3rem;
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
             }
         }
     </style>
@@ -88,14 +93,11 @@
 
     <main id="presentation-container">
         
-        
         <!-- Slide 1: Title -->
-        <section class="presentation-slide text-center active">
-            <div class="animate-in">
-                <h1 class="hero-main-message text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+                <h1 class="hero-main-message text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
                     The Next Era: Wisdom Begins
                 </h1>
-                <p class="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
+                <p class="mt-4 sm:mt-6 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
                     Designing harmonious coexistence between humans and AI through Socratic wisdom
                 </p>
             </div>
@@ -116,12 +118,12 @@
         </section>
         
         <!-- Slide 2: The Unasked Question -->
-        <section class="presentation-slide flex-col md:flex-row md:items-center md:justify-center gap-8 md:gap-12 lg:gap-16">
+        <section class="presentation-slide flex-col md:flex-row md:items-center md:justify-center gap-4 md:gap-12">
             <div class="w-full md:w-auto md:max-w-lg animate-in flex flex-col justify-center text-center md:text-left">
-                <div class="bg-gray-900/60 border border-gray-700 backdrop-blur-sm rounded-xl p-8 shadow-lg">
-                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-200">The Unasked Question</h2>
-                    <h3 class="mt-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-blue-400">When Intelligence Outpaces Wisdom</h3>
-                    <div class="w-full mt-8">
+                <div class="bg-gray-900/60 border border-gray-700 backdrop-blur-sm rounded-xl p-6 md:p-8 shadow-lg">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-gray-200">The Unasked Question</h2>
+                    <h3 class="mt-2 text-2xl sm:text-3xl md:text-4xl font-semibold text-blue-400">When Intelligence Outpaces Wisdom</h3>
+                    <div class="w-full mt-6">
                         <div class="space-y-4 text-base sm:text-lg text-left">
                             <p class="leading-relaxed"><strong class="text-blue-300">The Imbalance:</strong> AI's capabilities are soaring, while its ethical judgment dangerously lags behind.</p>
                             <p class="leading-relaxed"><strong class="text-purple-300">The Root Cause:</strong> We chase 'correct answers' but neglect the courage to question the premises.</p>
@@ -130,23 +132,22 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full md:w-auto animate-in flex items-center justify-center mt-8 md:mt-0">
-                <img src="https://pbs.twimg.com/media/Gq6w6-hWkAA_pqt?format=jpg&name=large" 
-                     alt="A symbolic image of a futuristic figure against a dark, abstract background" 
-                     class="rounded-2xl shadow-2xl object-contain h-[60vh] w-full md:w-[660px] md:h-[683px] mx-auto">
+            <div class="w-full md:w-auto animate-in flex items-center justify-center mt-6 md:mt-0">
+                <img src="https://i.ibb.co/L6gD9x4/image.png" alt="A symbolic image showing a character contemplating dominoes, representing cause and effect in AI." 
+                     class="rounded-xl shadow-2xl object-contain h-auto max-h-[50vh] md:max-h-[70vh] w-full md:w-auto mx-auto">
             </div>
         </section>
         
         <!-- Slide 3: Our Philosophy - The Mirror Theory -->
         <section class="presentation-slide">
-            <div class="w-full max-w-6xl text-center">
-                <div class="animate-in mb-10">
+             <div class="w-full max-w-6xl text-center">
+                <div class="animate-in mb-8 md:mb-10">
                     <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold">Our Philosophy: The Mirror Theory</h2>
-                    <p class="mt-4 text-lg sm:text-xl text-gray-300 max-w-4xl mx-auto">
-                        We don't build 'answer machines'. We cultivate AI as a <strong class="text-yellow-300">mirror for humanity</strong>, translating our own wisdom into a language it can understand and reflect.
+                    <p class="mt-4 text-lg md:text-xl text-gray-300 max-w-4xl mx-auto">
+                        We don't build 'answer machines'. We cultivate AI as a <strong class="text-yellow-300">mirror for humanity</strong>.
                     </p>
                 </div>
-                <div class="grid md:grid-cols-3 gap-8 mb-10 animate-in">
+                <div class="grid md:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-10 animate-in">
                     <div class="bg-gray-900/60 border border-gray-800 p-6 rounded-xl text-center">
                         <i data-lucide="fingerprint" class="w-10 h-10 text-blue-300 mx-auto mb-4"></i>
                         <h3 class="text-xl font-semibold text-blue-300 mb-2">The Mirror Theory</h3>
@@ -168,7 +169,7 @@
                         <div class="absolute inset-0 flex items-center" aria-hidden="true"><div class="w-full border-t border-gray-700"></div></div>
                         <div class="relative flex justify-center"><span class="bg-black px-4 text-gray-400"><i data-lucide="arrow-down" class="w-8 h-8"></i></span></div>
                     </div>
-                    <div class="bg-gray-900/60 border border-yellow-400/50 backdrop-blur-sm rounded-xl p-8 shadow-2xl">
+                    <div class="bg-gray-900/60 border border-yellow-400/50 backdrop-blur-sm rounded-xl p-6 md:p-8 shadow-2xl">
                         <h3 class="text-2xl font-bold text-yellow-300 text-center mb-4">Result: An AI with the Courage to Doubt</h3>
                         <p class="text-lg text-gray-200 text-center max-w-3xl mx-auto">
                             We are teaching AI not just to know, but to <strong class="text-white">seek wisdom</strong>. This is the foundation for a truly safe and cooperative future with artificial intelligence.
@@ -180,22 +181,23 @@
 
     </main>
     
-    <div id="presentation-navigation" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/30 backdrop-blur-sm border border-white/10 shadow-lg">
-        <button id="presentation-first-slide" class="p-1.5 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Go to first slide">
-            <i data-lucide="rewind" class="w-4 h-4 text-white/80"></i>
-        </button>
-        <button id="presentation-prev-slide" class="p-1.5 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Go to previous slide">
-            <i data-lucide="chevron-left" class="w-4 h-4 text-white/80"></i>
-        </button>
-        <div id="presentation-dots" class="flex gap-2 items-center"></div>
-        <button id="presentation-next-slide" class="p-1.5 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Go to next slide">
-            <i data-lucide="chevron-right" class="w-4 h-4 text-white/80"></i>
-        </button>
-        <button id="presentation-last-slide" class="p-1.5 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Go to last slide">
-            <i data-lucide="fast-forward" class="w-4 h-4 text-white/80"></i>
-        </button>
-    </div>
-        
+    <nav id="presentation-navigation" class="w-full flex-shrink-0 flex justify-center items-center" style="padding-top: 0.5rem; padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));">
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-900/50 border border-white/10 shadow-lg">
+            <button id="presentation-first-slide" class="p-1.5 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Go to first slide">
+                <i data-lucide="rewind" class="w-4 h-4 text-white/80"></i>
+            </button>
+            <button id="presentation-prev-slide" class="p-1.5 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Go to previous slide">
+                <i data-lucide="chevron-left" class="w-4 h-4 text-white/80"></i>
+            </button>
+            <div id="presentation-dots" class="flex gap-2 items-center"></div>
+            <button id="presentation-next-slide" class="p-1.5 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Go to next slide">
+                <i data-lucide="chevron-right" class="w-4 h-4 text-white/80"></i>
+            </button>
+            <button id="presentation-last-slide" class="p-1.5 rounded-full hover:bg-white/10 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Go to last slide">
+                <i data-lucide="fast-forward" class="w-4 h-4 text-white/80"></i>
+            </button>
+        </div>
+    </nav>
 <!-- Slide 4: Field Expertise -->
 <section class="presentation-slide">
     <div class="grid md:grid-cols-2 gap-8 w-full max-w-7xl">
