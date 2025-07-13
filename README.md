@@ -1,4 +1,3 @@
-# Team Eclipse
 
 # Proposal for the Birth of Wise AI
 
@@ -164,4 +163,10 @@ A recommended framework for evaluating the social and ethical impacts of AI syst
 - IBM Watson Health: Shows the market advantage of rigorous safety certification in healthcare AI.
 - Scenario Example: Establishing a national AI safety monitoring center modeled after aviation control towers for real-time anomaly detection and emergency intervention.
 
-These enhancements provide greater practical realism and user-friendliness, making the policy proposal more actionable for government officials, industry leaders, and AI safety professionals worldwide.
+# Team Eclipse
+
+© AI Safety and Ethics Project 
+
+All content is based on AI safety research by TEAM ECLIPSE.
+
+모든 내용은 TEAM ECLIPSE의 AI 안전 연구에 기반합니다.
