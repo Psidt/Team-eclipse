@@ -6,7 +6,8 @@ Policy Proposal for the Birth of Wise AI
 Balancing Long-Term Vision and Practical Early Implementation for Responsible AI Innovation
 
 1. Introduction: The Foundation for Responsible AI Innovation
-Artificial intelligence (AI) brings unprecedented innovation and opportunity to humanity. However, the potential risks—such as malfunction, bias, and misuse—are fundamentally different in scale and nature from those of previous technologies.
+Artificial intelligence (AI) brings unprecedented innovation and opportunity to humanity.
+However, the potential risks—such as malfunction, bias, and misuse—are fundamentally different in scale and nature from those of previous technologies.
 While many countries are in the early stages of AI regulation, there remains a significant gap compared to the rigorous safety management frameworks established in high-risk industries like aviation, nuclear energy, and pharmaceuticals.
 
 This proposal argues for the application of stricter and more comprehensive safety standards to AI systems, taking into account their unique risk characteristics.
@@ -15,7 +16,8 @@ Safe AI is the best competitive advantage.
 
 ---
 
-2. Unique Risk Characteristics of AI Systems and the Need for Regulation
+2. Unique risk characteristics of AI systems and the need for risk management.
+   
 2.1. Unprecedented Scale of Impact
 Aviation accidents: Hundreds affected, regional/national impact
 
