@@ -151,7 +151,7 @@ AI's potential must be recognized, but its risks must not be underestimated. App
 
 ### Glossary of Terms
 
-https://psidt.github.io/Team-eclipse/
+[Glossary](https://psidt.github.io/Team-eclipse/)
 A comprehensive glossary defining key terms such as "High-Risk AI", "Risk Management Framework", "Explainability", etc., is provided for policymakers and practitioners.
 
 ### Social Impact Assessment (SIA)
