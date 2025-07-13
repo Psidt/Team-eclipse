@@ -2,7 +2,7 @@
 
 ---
 
-Policy Proposal for the Birth of Wise AI
+Proposal for the Birth of Wise AI
 Balancing Long-Term Vision and Practical Early Implementation for Responsible AI Innovation
 
 1. Introduction: The Foundation for Responsible AI Innovation
