@@ -3,41 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>AI Safety and Risk Glossary</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-<link rel="stylesheet" href="styles.css">
-</head>
-<body class="bg-[#0a0a1a] text-[#e0e0ff] font-sans min-h-screen">
-<!-- 헤더 -->
-<header class="bg-gradient-to-b from-[#0a0a1a] via-[#161632] to-[#0a0a1a] shadow-lg">
-  <div class="flex flex-col md:flex-row items-center justify-between px-4 py-3">
-    <h1 class="text-xl md:text-3xl font-extrabold text-white glow mb-2 md:mb-0 leading-tight">
-      AI <span class="text-purple-400">Safety</span> and <span class="text-purple-400">Risk</span> Glossary
-      <!-- 기존 span을 없애고 싶지 않다면, 여기에 부제목을 넣을 수도 있습니다. -->
-      <span class="block md:inline-block text-lg md:text-xl mt-1 md:mt-0 text-gray-300 opacity-80">
-        Decoding Complex Concepts
-      </span>
-    </h1>
-    <div class="flex flex-wrap gap-2">
-      <a href="history.html" class="px-3 py-1 bg-blue-900 hover:bg-blue-800 rounded-lg text-sm flex items-center transition-all">
-        <i class="fas fa-history mr-1"></i> history
-      </a>
-      <a href="vision.html" class="px-3 py-1 bg-green-900 hover:bg-green-800 rounded-lg text-sm flex items-center transition-all">
-        <i class="fas fa-lightbulb mr-1"></i> vision
-      </a>
-      <a href="research.html" class="px-3 py-1 bg-indigo-900 hover:bg-indigo-800 rounded-lg text-sm flex items-center transition-all">
-        <i class="fas fa-flask mr-1"></i> R&D
-      </a>
-    </div>
-  </div>
-  <!-- 검색바 -->
-</header>
+  
+  <!-- 🔥 [공유/모바일 최적화] -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TEAM ECLIPSE">
+  <meta property="og:title" content="AI Safety & Risk Glossary | Team Eclipse">
+  <meta property="og:description" content="AGI 안전 및 윤리 관련 용어를 정리한 모바일 백과사전 (Decoding Complex Concepts)">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1965&auto=format&fit=crop">
+  <meta name="theme-color" content="#0a0a1a">
 
-    <div id="searchBarWrapper" class="transition-all duration-300 z-50">
-      <div class="relative max-w-2xl mx-auto">
-        <input type="text" id="searchInput" placeholder="용어 검색..."
-          class="w-full px-4 py-2 rounded-lg bg-gray-900 bg-opacity-80 text-gray-100 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500">
+  <title>AI Safety and Risk Glossary</title>
+  
+  <!-- 라이브러리 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  
+  <!-- 기존 스타일 유지 -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- 🔥 [충돌 방지용 스타일] -->
+  <!-- script.js가 강제로 넣는 클래스가 디자인을 깨지 않도록 HTML에서 제어 -->
+  <style>
+    /* Tailwind의 Sticky 헤더를 사용할 것이므로, 기존 JS가 추가하는 클래스 효과 무력화 */
+    .sticky-search { 
+        position: static !important; 
+        box-shadow: none !important; 
+        animation: none !important;
+    }
+    /* 네온 텍스트 효과 */
+    .glow { text-shadow: 0 0 10px rgba(167, 139, 250, 0.5); }
+  </style>
+</head>
+
+<body class="bg-[#0a0a1a] text-[#e0e0ff] font-sans min-h-screen flex flex-col">
+
+  <!-- 헤더 (Tailwind로 Sticky 구현 - JS 없이도 고정됨) -->
+  <header class="sticky top-0 z-50 bg-[#0a0a1a]/95 backdrop-blur-md shadow-lg border-b border-gray-800 transition-all duration-300">
+    <div class="flex flex-col md:flex-row items-center justify-between px-4 py-3">
+      
+      <!-- 타이틀 -->
+      <h1 class="text-xl md:text-3xl font-extrabold text-white glow mb-2 md:mb-0 leading-tight text-center md:text-left">
+        AI <span class="text-purple-400">Safety</span> and <span class="text-purple-400">Risk</span> Glossary
+        <span class="block md:inline-block text-sm md:text-lg mt-1 md:mt-0 md:ml-2 text-gray-400 opacity-80 font-normal">
+          Decoding Complex Concepts
+        </span>
+      </h1>
+      
+      <!-- 네비게이션 -->
+      <div class="flex flex-wrap justify-center gap-2 mt-2 md:mt-0">
+        <a href="history.html" class="px-3 py-1 bg-blue-900/80 hover:bg-blue-800 rounded-lg text-xs md:text-sm flex items-center transition-all border border-blue-700/50">
+          <i class="fas fa-history mr-1"></i> history
+        </a>
+        <a href="vision.html" class="px-3 py-1 bg-green-900/80 hover:bg-green-800 rounded-lg text-xs md:text-sm flex items-center transition-all border border-green-700/50">
+          <i class="fas fa-lightbulb mr-1"></i> vision
+        </a>
+        <a href="research.html" class="px-3 py-1 bg-indigo-900/80 hover:bg-indigo-800 rounded-lg text-xs md:text-sm flex items-center transition-all border border-indigo-700/50">
+          <i class="fas fa-flask mr-1"></i> R&D
+        </a>
+      </div>
+    </div>
+
+    <!-- 검색바 Wrapper -->
+    <!-- ID 'searchBarWrapper'를 유지해서 JS 오류를 방지하되, 디자인은 Tailwind로 제어 -->
+    <div id="searchBarWrapper" class="w-full px-4 pb-4 pt-1 max-w-3xl mx-auto transition-all duration-300">
+      <div class="relative">
+        <input type="text" id="searchInput" placeholder="Type to search terms..."
+          class="w-full px-4 py-2 rounded-lg bg-gray-900/90 text-gray-100 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-500 transition-all shadow-inner">
         <span class="absolute right-3 top-2 text-gray-400">
           <i class="fas fa-search"></i>
         </span>
@@ -45,38 +76,32 @@
     </div>
   </header>
 
-<!-- 컨텐츠 영역 -->
-  
-<main class="pt-20 px-4 md:px-8">
-  <div class="text-center mb-6 max-w-4xl mx-auto">
-    <p class="text-white text-2xl font-semibold">A dictionary providing terms related to AI safety and ethics.</p>
-    <p class="text-blue-300 text-base mt-1">AI 안전 및 윤리 관련 용어를 알기 쉽게 설명합니다.</p>
-  </div>
-  <div class="max-w-4xl mx-auto" id="dictionaryContent"></div>
-</main>
-
-
-  <!-- 맨 위로 버튼 -->
-
-  <main class="pt-36 px-4 md:px-8">
-    <div class="text-center mb-10 mt-2">
-      <p class="text-blue-200 text-base md:text-lg">AI 안전 및 윤리 관련 용어를 모바일에 최적화하여 제공하는 백과사전입니다.</p>
+  <!-- 메인 컨텐츠 -->
+  <main class="flex-grow px-4 md:px-8 py-8">
+    <!-- 소개 문구 -->
+    <div class="text-center mb-10 max-w-4xl mx-auto space-y-2">
+      <p class="text-white text-lg md:text-2xl font-semibold">A dictionary providing terms related to AI safety and ethics.</p>
+      <p class="text-blue-300 text-sm md:text-base opacity-80">AI 안전 및 윤리 관련 용어를 모바일에 최적화하여 제공하는 백과사전입니다.</p>
     </div>
-    <div class="max-w-4xl mx-auto" id="dictionaryContent"></div>
+
+    <!-- 사전 데이터 렌더링 영역 (JS가 여기 채워줌) -->
+    <div class="max-w-4xl mx-auto min-h-[50vh]" id="dictionaryContent"></div>
   </main>
 
-  <!-- 맨 위로 버튼 -->
+  <!-- 맨 위로 버튼 (JS가 ID를 찾아서 제어함) -->
   <button id="scrollToTopBtn"
-    class="fixed bottom-8 right-8 z-50 hidden bg-purple-600 hover:bg-purple-800 text-white rounded-full p-3 shadow-lg transition-all duration-300"
+    class="fixed bottom-8 right-8 z-50 hidden bg-purple-600 hover:bg-purple-700 text-white rounded-full p-3 shadow-lg transition-all duration-300 hover:-translate-y-1 w-12 h-12 flex items-center justify-center"
     aria-label="맨 위로 이동">
     <i class="fas fa-arrow-up"></i>
   </button>
 
-  <footer class="mt-12 px-4 py-6 text-center text-sm text-gray-400">
-    <p>© TEAM ECLIPSE - AI 안전 및 윤리 프로젝트 CC BY 4.0</p>
-    <p class="mt-2 text-xs">모든 내용은 TEAM ECLIPSE의 AI 안전 연구에 기반합니다.</p>
+  <!-- 푸터 -->
+  <footer class="mt-auto px-4 py-8 text-center text-sm text-gray-500 border-t border-gray-800 bg-[#0a0a1a]">
+    <p class="font-semibold text-gray-400 tracking-wide">© TEAM ECLIPSE - AI Safety & Ethics Project</p>
+    <p class="mt-1 text-xs opacity-60">Research based on Eclipse Protocol (CC BY 4.0)</p>
   </footer>
 
+  <!-- 기존 JS 파일 연결 (손대지 않음) -->
   <script src="data.js"></script>
   <script src="script.js"></script>
 </body>
